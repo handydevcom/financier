@@ -10,7 +10,7 @@
 -->
 <resources>
 
-    <style name="AppTheme" parent="android:Theme.Black"></style>
+    <style name="AppTheme" parent="Theme.AppCompat"></style>
 
     <style name="CupcakeDialog" parent="android:Theme.Dialog">
         <item name="android:windowAnimationStyle">@null</item>
@@ -151,7 +151,7 @@
     </style>
 
     <style name="BottomBarButton">
-        <item name="android:background"></item>
+        <item name="android:background">@android:color/transparent</item>
         <item name="android:layout_width">@dimen/action_button_size</item>
         <item name="android:layout_height">@dimen/action_button_size</item>
     </style>

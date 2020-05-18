@@ -4,6 +4,7 @@
 
 ## About
 
+Financisto+ is a fork of the great Financisto app.
 Financisto is an open-source personal finance tracker for Android platform.
 
 ## Features
