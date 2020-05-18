@@ -8,9 +8,9 @@ import android.graphics.drawable.Drawable;
 import greendroid.widget.QuickAction;
 import ru.orangesoftware.financisto.R;
 
-class MyQuickAction extends QuickAction {
+public class MyQuickAction extends QuickAction {
 
-    MyQuickAction(Context ctx, int drawableId, int titleId) {
+    public MyQuickAction(Context ctx, int drawableId, int titleId) {
         super(ctx, buildDrawable(ctx, drawableId), titleId);
     }
 

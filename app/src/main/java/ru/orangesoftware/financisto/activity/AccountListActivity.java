@@ -284,8 +284,8 @@ public class AccountListActivity extends AbstractListActivity {
     private void showAccountInfo(long id) {
         LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         NodeInflater inflater = new NodeInflater(layoutInflater);
-        AccountInfoDialog accountInfoDialog = new AccountInfoDialog(this, id, db, inflater);
-        accountInfoDialog.show();
+        //AccountInfoDialog accountInfoDialog = new AccountInfoDialog(this, id, db, inflater);
+       // accountInfoDialog.show();
     }
 
 

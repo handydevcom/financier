@@ -15,6 +15,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+
 import ru.orangesoftware.financisto.R;
 import ru.orangesoftware.financisto.activity.AccountActivity;
 import ru.orangesoftware.financisto.activity.AccountListActivity;
@@ -28,14 +32,14 @@ import static ru.orangesoftware.financisto.utils.Utils.isNotEmpty;
 
 public class AccountInfoDialog {
 
-    private final AccountListActivity parentActivity;
+    private final FragmentActivity parentActivity;
     private final long accountId;
     private final DatabaseAdapter db;
     private final NodeInflater inflater;
     private final LayoutInflater layoutInflater;
     private final Utils u;
 
-    public AccountInfoDialog(AccountListActivity parentActivity, long accountId,
+    public AccountInfoDialog(FragmentActivity parentActivity, long accountId,
                              DatabaseAdapter db, NodeInflater inflater) {
         this.parentActivity = parentActivity;
         this.accountId = accountId;
