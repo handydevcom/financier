@@ -4,13 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.database.Cursor
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.AdapterView
 import android.widget.ImageButton
 import android.widget.ListAdapter
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.PopupMenu
 import greendroid.widget.QuickActionGrid
 import greendroid.widget.QuickActionWidget
 import greendroid.widget.QuickActionWidget.OnQuickActionClickListener
@@ -34,7 +34,7 @@ import ru.orangesoftware.main.base.AbstractListFragment
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class AccountsFragment: AbstractListFragment(R.layout.account_list) {
+open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
     companion object {
         val NEW_ACCOUNT_REQUEST = 1
         val EDIT_ACCOUNT_REQUEST = 2
@@ -43,8 +43,8 @@ class AccountsFragment: AbstractListFragment(R.layout.account_list) {
     }
     private var accountActionGrid: QuickActionWidget? = null
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         setupUi()
         setupMenuButton()
         calculateTotals()
@@ -53,12 +53,12 @@ class AccountsFragment: AbstractListFragment(R.layout.account_list) {
 
     private fun setupUi() {
         view?.findViewById<View>(R.id.integrity_error)?.setOnClickListener(View.OnClickListener { v: View -> v.visibility = View.GONE })
-        /*getListView().setOnItemLongClickListener(OnItemLongClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long ->
+        listView.onItemLongClickListener = AdapterView.OnItemLongClickListener { adapterView, view, position, id ->
             selectedId = id
             prepareAccountActionGrid()
             accountActionGrid!!.show(view)
             true
-        })*/
+        }
     }
 
     private fun setupMenuButton() {
@@ -67,16 +67,16 @@ class AccountsFragment: AbstractListFragment(R.layout.account_list) {
         }
         val bMenu = view?.findViewById<ImageButton>(R.id.bMenu)
         if (MyPreferences.isShowMenuButtonOnAccountsScreen(activity!!)) {
-            /*bMenu?.setOnClickListener { v: View? ->
-                val popupMenu = PopupMenu(this@AccountListActivity, bMenu)
-                val inflater: MenuInflater = getMenuInflater()
+            bMenu?.setOnClickListener { v: View? ->
+                val popupMenu = PopupMenu(activity!!, bMenu)
+                val inflater = activity!!.menuInflater
                 inflater.inflate(R.menu.account_list_menu, popupMenu.menu)
                 popupMenu.setOnMenuItemClickListener { item: MenuItem ->
                     handlePopupMenu(item.itemId)
                     true
                 }
                 popupMenu.show()
-            }*/
+            }
         } else {
             bMenu?.visibility = View.GONE
         }
@@ -92,7 +92,7 @@ class AccountsFragment: AbstractListFragment(R.layout.account_list) {
         }
     }
 
-    protected fun prepareAccountActionGrid() {
+    private fun prepareAccountActionGrid() {
         if(activity == null || db == null) {
             return
         }
@@ -176,7 +176,7 @@ class AccountsFragment: AbstractListFragment(R.layout.account_list) {
     }
 
     override fun createAdapter(cursor: Cursor?): ListAdapter? {
-        if(activity != null) {
+        if(activity == null) {
             return null
         }
         return AccountListAdapter2(activity!!, cursor)

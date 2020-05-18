@@ -38,7 +38,7 @@ class MainViewModel(fm: FragmentManager, val context: Context): ViewModel() {
                     return MenuListFragment()
                 }
             }
-            throw Exception("wrong tab")
+            throw Exception("wrong tab!")
         }
 
         override fun getCount(): Int {

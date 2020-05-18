@@ -142,7 +142,7 @@ public class Utils {
         return amount == 0 ? zeroColor : (amount > 0 ? positiveColor : negativeColor);
     }
 
-    public static TextAppearanceSpan getAmountSpan(Context context, long amount) {
+    private static TextAppearanceSpan getAmountSpan(Context context, long amount) {
         return new TextAppearanceSpan(context,
                 amount == 0
                         ? R.style.TextAppearance_ZeroAmount

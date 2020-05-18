@@ -28,8 +28,8 @@ abstract class AbstractListFragment protected constructor(private val contentId:
         return root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         db = DatabaseAdapter(activity!!)
         db!!.open()
         inflater = activity!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -58,7 +58,7 @@ abstract class AbstractListFragment protected constructor(private val contentId:
         cursor = null
     }
 
-    protected fun recreateAdapter() {
+    private fun recreateAdapter() {
         adapter = createAdapter(cursor)
         listAdapter = adapter
     }

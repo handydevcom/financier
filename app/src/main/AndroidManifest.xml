@@ -213,19 +213,19 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:icon="@drawable/icon_transfer"
             android:label="@string/recur"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
             android:name=".activity.RecurrenceActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/recur"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
             android:name=".activity.NotificationOptionsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/notification"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
             android:name=".activity.ReportsListActivity"
@@ -279,13 +279,13 @@
             android:name=".activity.AttributeActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/attribute"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
             android:name=".activity.SmsTemplateActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/sms_tpl"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
             android:name=".activity.SmsDragListActivity"
@@ -297,25 +297,25 @@
             android:name=".activity.DateFilterActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/filter"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
             android:name=".activity.NoteFilterActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/filter"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
             android:name=".activity.BlotterFilterActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/filter"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
             android:name=".activity.ReportFilterActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/filter"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
             android:name=".activity.CategoryActivity"
@@ -340,7 +340,7 @@
             android:name=".activity.ProjectActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/project"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
             android:name=".activity.ProjectListActivity"
@@ -350,7 +350,7 @@
             android:name=".activity.PayeeActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/payee"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
             android:name=".activity.PayeeListActivity"
@@ -360,7 +360,7 @@
             android:name=".activity.LocationActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/location"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
             android:name=".activity.LocationsListActivity"
@@ -378,7 +378,7 @@
             android:name=".activity.SelectTemplateActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/transaction_templates"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
             android:name=".activity.CsvExportActivity"
@@ -432,19 +432,19 @@
             android:name=".activity.AccountListTotalsDetailsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/totals"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
             android:name=".activity.BlotterTotalsDetailsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/totals"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
             android:name=".activity.BudgetListTotalsDetailsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/totals"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
             android:name=".activity.PurgeAccountActivity"
@@ -455,7 +455,7 @@
         <activity
             android:name=".activity.RequestPermissionActivity_"
             android:label="@string/permissions"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
             android:name="com.dropbox.core.android.AuthActivity"
