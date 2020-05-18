@@ -9,7 +9,7 @@
  * Contributors:
  * Denis Solonenko - initial API and implementation
  */
-package ru.orangesoftware.financisto.activity
+package ru.orangesoftware.main
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -17,6 +17,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import ru.orangesoftware.financisto.R
@@ -29,18 +30,26 @@ import ru.orangesoftware.financisto.dialog.WebViewDialog
 import ru.orangesoftware.financisto.utils.CurrencyCache
 import ru.orangesoftware.financisto.utils.MyPreferences
 import ru.orangesoftware.financisto.utils.PinProtection
+import androidx.lifecycle.ViewModelProvider
+import ru.orangesoftware.financisto.databinding.MainBinding
 
-class MainActivity : AppCompatActivity() /* implements TabHost.OnTabChangeListener*/ {
+class MainActivity : AppCompatActivity() {
     private var greenRobotBus: GreenRobotBus? = null
+    private lateinit var viewModel: MainViewModel
+
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(MyPreferences.switchLocale(base))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main)
-        //greenRobotBus = GreenRobotBus_.getInstance_(this)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
+        viewModel = ViewModelProvider(this, MainViewModelFactory(supportFragmentManager, this)).get(MainViewModel::class.java)
+        val binding: MainBinding =  DataBindingUtil.setContentView(this, R.layout.main)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+        //viewModel = MainViewModel(this, supportFragmentManager)
+        greenRobotBus = GreenRobotBus()
         initialLoad()
 
         /*final TabHost tabHost = getTabHost();

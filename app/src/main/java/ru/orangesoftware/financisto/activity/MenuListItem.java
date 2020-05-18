@@ -36,6 +36,7 @@ import static ru.orangesoftware.financisto.utils.EnumUtils.showPickOneDialog;
 import ru.orangesoftware.financisto.utils.ExecutableEntityEnum;
 import ru.orangesoftware.financisto.utils.IntegrityFix;
 import ru.orangesoftware.financisto.utils.SummaryEntityEnum;
+import ru.orangesoftware.main.MainActivity;
 
 public enum MenuListItem implements SummaryEntityEnum {
 

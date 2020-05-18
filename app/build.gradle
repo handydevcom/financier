@@ -6,10 +6,14 @@ repositories {
 }
 
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
+    dataBinding {
+        enabled = true
+    }
     compileSdkVersion 29
     buildToolsVersion '28.0.3'
 
@@ -79,18 +83,22 @@ android {
     }
 }
 
-def AAVersion = '4.6.0'
+def AAVersion = '4.7.0'
 
 dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation "androidx.constraintlayout:constraintlayout:2.0.0-beta6"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
     implementation "com.google.android.gms:play-services-base:11.0.2"
     implementation "com.google.android.gms:play-services-drive:11.0.2"
     implementation "com.google.android.gms:play-services-plus:11.0.2"
 
+    kapt "org.androidannotations:androidannotations:$AAVersion"
     annotationProcessor "org.androidannotations:androidannotations:$AAVersion"
     implementation "org.androidannotations:androidannotations-api:$AAVersion"
 

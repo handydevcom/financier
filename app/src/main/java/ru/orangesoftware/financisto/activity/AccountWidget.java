@@ -29,6 +29,7 @@ import ru.orangesoftware.financisto.model.CardIssuer;
 import ru.orangesoftware.financisto.model.ElectronicPaymentType;
 import ru.orangesoftware.financisto.utils.MyPreferences;
 import ru.orangesoftware.financisto.utils.Utils;
+import ru.orangesoftware.main.MainActivity;
 import ru.orangesoftware.orb.EntityManager;
 
 import java.util.ArrayList;
