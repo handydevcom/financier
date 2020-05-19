@@ -1,0 +1,15 @@
+package com.handydev.financisto.activity;
+
+import android.content.Context;
+import android.widget.ImageButton;
+
+import com.handydev.financisto.R;
+import com.handydev.financisto.filter.WhereFilter;
+
+public class FilterState {
+    static public void updateFilterColor(Context context, WhereFilter filter, ImageButton button) {
+        int color = filter.isEmpty() ? context.getResources().getColor(R.color.bottom_bar_tint) : context.getResources().getColor(R.color.holo_blue_dark);
+        button.setColorFilter(color);
+    }
+
+}
