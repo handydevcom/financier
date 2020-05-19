@@ -18,29 +18,31 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 
-		<androidx.viewpager.widget.ViewPager
+		<androidx.viewpager2.widget.ViewPager2
 			android:id="@+id/mainViewPager"
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintRight_toRightOf="parent"
 			app:setAdapter="@{viewModel.tabPageAdapter}"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			app:layout_constraintTop_toTopOf="parent" >
-			<com.google.android.material.tabs.TabLayout
-				android:id="@+id/tabLayout"
-				app:layout_constraintLeft_toLeftOf="parent"
-				app:layout_constraintRight_toRightOf="parent"
-				app:layout_constraintTop_toTopOf="parent"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				app:setupWithViewPager="@{mainViewPager}"
-				app:tabMode="fixed"
-				app:tabGravity="center"
-				app:tabIndicatorGravity="bottom"
-				app:tabIndicatorFullWidth="true"
-				app:tabIndicatorColor="@android:color/white"
-				android:background="#1db995"/>
-		</androidx.viewpager.widget.ViewPager>
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			app:layout_constraintBottom_toTopOf="@+id/main_bottom_navigation"
+			app:layout_constraintTop_toTopOf="parent"
+			app:currentTab="@{viewModel.currentTab}"
+			/>
+
+		<com.google.android.material.bottomnavigation.BottomNavigationView
+			android:id="@id/main_bottom_navigation"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			app:itemIconTint="@android:color/white"
+			app:itemTextColor="@android:color/white"
+			android:background="#1db995"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:menu="@menu/main_bottom_navigation_menu"
+			app:onNavigationItemSelected="@{viewModel::onNavigationClick}"
+			/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

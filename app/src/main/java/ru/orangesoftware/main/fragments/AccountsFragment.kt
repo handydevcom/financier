@@ -52,8 +52,8 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
     }
 
     private fun setupUi() {
-        view?.findViewById<View>(R.id.integrity_error)?.setOnClickListener(View.OnClickListener { v: View -> v.visibility = View.GONE })
-        listView.onItemLongClickListener = AdapterView.OnItemLongClickListener { adapterView, view, position, id ->
+        view?.findViewById<View>(R.id.integrity_error)?.setOnClickListener { v: View -> v.visibility = View.GONE }
+        listView.onItemLongClickListener = AdapterView.OnItemLongClickListener { _, view, _, id ->
             selectedId = id
             prepareAccountActionGrid()
             accountActionGrid!!.show(view)
@@ -62,7 +62,7 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
     }
 
     private fun setupMenuButton() {
-        if(activity == null) {
+        if(null == activity) {
             return
         }
         val bMenu = view?.findViewById<ImageButton>(R.id.bMenu)
@@ -83,7 +83,7 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
     }
 
     private fun handlePopupMenu(id: Int) {
-        if(activity == null) {
+        if(null == activity) {
             return
         }
         when (id) {
@@ -287,6 +287,14 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
                     .toIntent(account.title, intent)
             intent.putExtra(BlotterFilterActivity.IS_ACCOUNT_FILTER, true)
             activity!!.startActivityForResult(intent, VIEW_ACCOUNT_REQUEST)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val unmaskedRequestCode = requestCode and 0x0000ffff
+        if (unmaskedRequestCode == NEW_ACCOUNT_REQUEST || unmaskedRequestCode == VIEW_ACCOUNT_REQUEST || unmaskedRequestCode == PURGE_ACCOUNT_REQUEST || unmaskedRequestCode == EDIT_ACCOUNT_REQUEST) {
+            recreateCursor()
         }
     }
 

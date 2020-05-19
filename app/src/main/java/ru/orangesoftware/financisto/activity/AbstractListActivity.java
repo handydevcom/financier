@@ -65,8 +65,6 @@ public abstract class AbstractListActivity extends ListActivity implements Refre
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-
         setContentView(contentId);
 
         db = new DatabaseAdapter(this);

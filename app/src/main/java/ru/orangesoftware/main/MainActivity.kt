@@ -18,22 +18,25 @@ import android.util.Log
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.ViewModelProvider
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import ru.orangesoftware.financisto.R
 import ru.orangesoftware.financisto.bus.GreenRobotBus
 import ru.orangesoftware.financisto.bus.RefreshCurrentTab
 import ru.orangesoftware.financisto.bus.SwitchToMenuTabEvent
+import ru.orangesoftware.financisto.databinding.MainBinding
 import ru.orangesoftware.financisto.db.DatabaseAdapter
 import ru.orangesoftware.financisto.db.DatabaseHelper
 import ru.orangesoftware.financisto.dialog.WebViewDialog
 import ru.orangesoftware.financisto.utils.CurrencyCache
 import ru.orangesoftware.financisto.utils.MyPreferences
 import ru.orangesoftware.financisto.utils.PinProtection
-import androidx.lifecycle.ViewModelProvider
-import ru.orangesoftware.financisto.databinding.MainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : FragmentActivity() {
     private var greenRobotBus: GreenRobotBus? = null
     private lateinit var viewModel: MainViewModel
 
@@ -44,14 +47,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        viewModel = ViewModelProvider(this, MainViewModelFactory(supportFragmentManager, this)).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(this, MainViewModelFactory(this, this)).get(MainViewModel::class.java)
         val binding: MainBinding =  DataBindingUtil.setContentView(this, R.layout.main)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         //viewModel = MainViewModel(this, supportFragmentManager)
         greenRobotBus = GreenRobotBus()
         initialLoad()
-
+        val tabPager = findViewById<ViewPager2>(R.id.mainViewPager)
+        tabPager.isUserInputEnabled = false
         /*final TabHost tabHost = getTabHost();
 
         setupAccountsTab(tabHost);
@@ -71,11 +75,15 @@ class MainActivity : AppCompatActivity() {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onRefreshCurrentTab(e: RefreshCurrentTab?) {
-        //refreshCurrentTab();
+        refreshCurrentTab();
     }
 
     override fun onResume() {
         super.onResume()
+        /*val tabLayout = findViewById<TabLayout>(R.id.tabLayout)
+        for (i in 0 until viewModel.tabCount) {
+            tabLayout.getTabAt(i)?.icon = viewModel.getTabIcon(i)
+        }*/
         greenRobotBus!!.register(this)
         PinProtection.unlock(this)
         if (PinProtection.isUnlocked()) {
@@ -136,7 +144,19 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateFieldInTable(db: SQLiteDatabase, table: String, id: Long, field: String, value: String) {
         db.execSQL("update $table set $field=? where _id=?", arrayOf<Any>(value, id))
-    } /*@Override
+    }
+
+    private fun refreshCurrentTab() {
+        Log.d("", "")
+        /*Activity currentActivity = getLocalActivityManager().getCurrentActivity();
+        if (currentActivity instanceof RefreshSupportedActivity) {
+            RefreshSupportedActivity activity = (RefreshSupportedActivity) currentActivity;
+            activity.recreateCursor();
+            activity.integrityCheck();
+        }*/
+    }
+
+    /*@Override
     public void onTabChanged(String tabId) {
         Log.d("Financisto", "About to update tab " + tabId);
         long t0 = System.currentTimeMillis();
@@ -145,16 +165,7 @@ class MainActivity : AppCompatActivity() {
         Log.d("Financisto", "Tab " + tabId + " updated in " + (t1 - t0) + "ms");
     }
 
-    public void refreshCurrentTab() {
-        Activity currentActivity = getLocalActivityManager().getCurrentActivity();
-        if (currentActivity instanceof RefreshSupportedActivity) {
-            RefreshSupportedActivity activity = (RefreshSupportedActivity) currentActivity;
-            activity.recreateCursor();
-            activity.integrityCheck();
-        }
-    }
-
-    private void setupAccountsTab(TabHost tabHost) {
+     private void setupAccountsTab(TabHost tabHost) {
         tabHost.addTab(tabHost.newTabSpec("accounts")
                 .setIndicator(getString(R.string.accounts), getResources().getDrawable(R.drawable.ic_tab_accounts))
                 .setContent(new Intent(this, AccountListActivity.class)));

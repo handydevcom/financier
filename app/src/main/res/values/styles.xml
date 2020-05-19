@@ -10,7 +10,7 @@
 -->
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat"></style>
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar" />
 
     <style name="CupcakeDialog" parent="android:Theme.Dialog">
         <item name="android:windowAnimationStyle">@null</item>

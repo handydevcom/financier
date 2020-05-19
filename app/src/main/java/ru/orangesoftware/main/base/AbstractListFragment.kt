@@ -65,7 +65,7 @@ abstract class AbstractListFragment protected constructor(private val contentId:
 
     protected abstract fun createCursor(): Cursor?
     protected abstract fun createAdapter(cursor: Cursor?): ListAdapter?
-    protected fun internalOnCreate(savedInstanceState: Bundle?) {
+    open fun internalOnCreate(savedInstanceState: Bundle?) {
         bAdd = view?.findViewById(R.id.bAdd)
         bAdd?.setOnClickListener(View.OnClickListener { arg0: View? -> addItem() })
     }

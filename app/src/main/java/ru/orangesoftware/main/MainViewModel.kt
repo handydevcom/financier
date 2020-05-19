@@ -1,26 +1,33 @@
 package ru.orangesoftware.main
 
 import android.content.Context
+import android.view.MenuItem
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
-import androidx.fragment.app.FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import ru.orangesoftware.financisto.R
 import ru.orangesoftware.main.fragments.*
-import java.lang.Exception
 
 
-class MainViewModelFactory(val fm: FragmentManager, val context: Context) : ViewModelProvider.Factory {
+class MainViewModelFactory(val activity: FragmentActivity, val context: Context) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return MainViewModel(fm, context) as T
+        return MainViewModel(activity, context) as T
     }
 }
 
-class MainViewModel(fm: FragmentManager, val context: Context): ViewModel() {
-    class MainPagerAdapter(fm: FragmentManager, behavior: Int, val context: Context) : FragmentPagerAdapter(fm, behavior) {
-        override fun getItem(position: Int): Fragment {
+class MainViewModel(activity: FragmentActivity, val context: Context): ViewModel() {
+    var currentTab = MutableLiveData(0)
+
+    class MainPagerAdapter(activity: FragmentActivity, val context: Context) : FragmentStateAdapter(activity)
+    {
+        override fun getItemCount(): Int {
+            return 5
+        }
+
+        override fun createFragment(position: Int): Fragment {
             when (position) {
                 0 -> {
                     return AccountsFragment()
@@ -40,35 +47,37 @@ class MainViewModel(fm: FragmentManager, val context: Context): ViewModel() {
             }
             throw Exception("wrong tab!")
         }
-
-        override fun getCount(): Int {
-            return 5
-        }
-
-        override fun getPageTitle(position: Int): CharSequence? {
-            when(position) {
-                0 -> {
-                    return context.getString(R.string.accounts)
-                }
-                1 -> {
-                    return context.getString(R.string.blotter)
-                }
-                2 -> {
-                    return context.getString(R.string.budgets)
-                }
-                3 -> {
-                    return context.getString(R.string.reports)
-                }
-                4 -> {
-                    return context.getString(R.string.menu)
-                }
-            }
-            return super.getPageTitle(position)
-        }
     }
-    var tabPageAdapter: FragmentPagerAdapter
+
+    fun onNavigationClick(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.main_page_accounts -> {
+                currentTab.postValue(0)
+                return true
+            }
+            R.id.main_page_blotter -> {
+                currentTab.postValue(1)
+                return true
+            }
+            R.id.main_page_budgets -> {
+                currentTab.postValue(2)
+                return true
+            }
+            R.id.main_page_reports -> {
+                currentTab.postValue(3)
+                return true
+            }
+            R.id.main_page_menu -> {
+                currentTab.postValue(4)
+                return true
+            }
+        }
+        return false
+    }
+
+    var tabPageAdapter: MainPagerAdapter
 
     init {
-        tabPageAdapter = MainPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, context)
+        tabPageAdapter = MainPagerAdapter(activity, context)
     }
 }
