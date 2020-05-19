@@ -55,7 +55,7 @@ public class DailyAutoBackupScheduler {
     }
 
     private PendingIntent createPendingIntent(Context context) {
-        Intent intent = new Intent("ru.orangesoftware.financisto.SCHEDULED_BACKUP");
+        Intent intent = new Intent("com.handydev.financisto.SCHEDULED_BACKUP");
         intent.setClass(context, ScheduledAlarmReceiver.class);
         return PendingIntent.getBroadcast(context, -100, intent, PendingIntent.FLAG_CANCEL_CURRENT);
     }

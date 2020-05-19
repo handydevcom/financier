@@ -25,7 +25,7 @@ public class ProjectByPeriodReport extends Report2DChart {
     }
 
     /* (non-Javadoc)
-     * @see ru.orangesoftware.financisto.graph.ReportGraphic2D#getFilterName()
+     * @see com.handydev.financisto.graph.ReportGraphic2D#getFilterName()
      */
     @Override
     public String getFilterName() {

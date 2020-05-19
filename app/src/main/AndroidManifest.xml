@@ -103,7 +103,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REPLACED" />
                 <data
-                    android:path="ru.orangesoftware.financisto"
+                    android:path="com.handydev.financisto"
                     android:scheme="package" />
             </intent-filter>
         </receiver>

@@ -46,11 +46,11 @@ public class FinancistoService extends JobIntentService {
     private static final String TAG = "FinancistoService";
     public static final int JOB_ID = 1000;
 
-    public static final String ACTION_SCHEDULE_ALL = "ru.orangesoftware.financisto.SCHEDULE_ALL";
-    public static final String ACTION_SCHEDULE_ONE = "ru.orangesoftware.financisto.SCHEDULE_ONE";
-    public static final String ACTION_SCHEDULE_AUTO_BACKUP = "ru.orangesoftware.financisto.ACTION_SCHEDULE_AUTO_BACKUP";
-    public static final String ACTION_AUTO_BACKUP = "ru.orangesoftware.financisto.ACTION_AUTO_BACKUP";
-    public static final String ACTION_NEW_TRANSACTION_SMS = "ru.orangesoftware.financisto.NEW_TRANSACTON_SMS";
+    public static final String ACTION_SCHEDULE_ALL = "com.handydev.financisto.SCHEDULE_ALL";
+    public static final String ACTION_SCHEDULE_ONE = "com.handydev.financisto.SCHEDULE_ONE";
+    public static final String ACTION_SCHEDULE_AUTO_BACKUP = "com.handydev.financisto.ACTION_SCHEDULE_AUTO_BACKUP";
+    public static final String ACTION_AUTO_BACKUP = "com.handydev.financisto.ACTION_AUTO_BACKUP";
+    public static final String ACTION_NEW_TRANSACTION_SMS = "com.handydev.financisto.NEW_TRANSACTON_SMS";
 
     private static final int RESTORED_NOTIFICATION_ID = 0;
 
@@ -67,7 +67,7 @@ public class FinancistoService extends JobIntentService {
         super.onCreate();
         db = new DatabaseAdapter(this);
         db.open();
-        scheduler = new RecurrenceScheduler(db);
+        scheduler = new RecurrenceScheduCrjkler(db);
         smsProcessor = new SmsTransactionProcessor(db);
     }
 
