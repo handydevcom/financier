@@ -13,10 +13,12 @@ import ru.orangesoftware.financisto.activity.RefreshSupportedActivity
 import ru.orangesoftware.financisto.db.DatabaseAdapter
 import ru.orangesoftware.financisto.utils.MenuItemInfo
 import ru.orangesoftware.financisto.utils.PinProtection
+import ru.orangesoftware.main.protocol.IOnBackPressed
 import java.util.*
+import kotlin.collections.ArrayList
 
-abstract class AbstractListFragment protected constructor(private val contentId: Int) : ListFragment(), RefreshSupportedActivity {
-    protected var inflater: LayoutInflater? = null
+abstract class AbstractListFragment protected constructor(private val contentId: Int) : ListFragment(), IOnBackPressed, RefreshSupportedActivity {
+    protected open var inflater: LayoutInflater? = null
     protected var cursor: Cursor? = null
     protected var adapter: ListAdapter? = null
     protected var db: DatabaseAdapter? = null
@@ -50,6 +52,10 @@ abstract class AbstractListFragment protected constructor(private val contentId:
             popupMenu.show()
             true
         }
+    }
+
+    override fun onBackPressed(): Boolean {
+        return false
     }
 
     override fun onDestroyView() {
@@ -89,8 +95,8 @@ abstract class AbstractListFragment protected constructor(private val contentId:
         }
     }
 
-    protected open fun createContextMenus(id: Long): List<MenuItemInfo> {
-        val menus: MutableList<MenuItemInfo> = LinkedList()
+    protected open fun createContextMenus(id: Long): ArrayList<MenuItemInfo> {
+        val menus = ArrayList<MenuItemInfo>()
         menus.add(MenuItemInfo(MENU_VIEW, R.string.view))
         menus.add(MenuItemInfo(MENU_EDIT, R.string.edit))
         menus.add(MenuItemInfo(MENU_DELETE, R.string.delete))
@@ -153,9 +159,9 @@ abstract class AbstractListFragment protected constructor(private val contentId:
 
     */
     companion object {
-        protected const val MENU_VIEW = Menu.FIRST + 1
-        protected const val MENU_EDIT = Menu.FIRST + 2
-        protected const val MENU_DELETE = Menu.FIRST + 3
-        protected const val MENU_ADD = Menu.FIRST + 4
+        const val MENU_VIEW = Menu.FIRST + 1
+        const val MENU_EDIT = Menu.FIRST + 2
+        const val MENU_DELETE = Menu.FIRST + 3
+        @JvmStatic val MENU_ADD = Menu.FIRST + 4
     }
 }

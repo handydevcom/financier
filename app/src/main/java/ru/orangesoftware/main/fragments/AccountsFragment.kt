@@ -193,8 +193,8 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
         return null
     }
 
-    override fun createContextMenus(id: Long): List<MenuItemInfo> {
-        return ArrayList()
+    override fun createContextMenus(id: Long): ArrayList<MenuItemInfo> {
+        return ArrayList<MenuItemInfo>()
     }
 
     override fun onPopupItemSelected(itemId: Int, view: View?, position: Int, id: Long): Boolean {

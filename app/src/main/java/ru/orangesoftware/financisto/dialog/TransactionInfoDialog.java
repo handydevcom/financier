@@ -10,6 +10,7 @@
  ******************************************************************************/
 package ru.orangesoftware.financisto.dialog;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -41,6 +42,7 @@ import ru.orangesoftware.financisto.recur.Recurrence;
 import ru.orangesoftware.financisto.utils.MyPreferences;
 import ru.orangesoftware.financisto.utils.Utils;
 import ru.orangesoftware.financisto.view.NodeInflater;
+import ru.orangesoftware.main.protocol.IOTransactionDeleteListener;
 
 import static ru.orangesoftware.financisto.utils.Utils.isNotEmpty;
 
@@ -62,10 +64,10 @@ public class TransactionInfoDialog {
         this.u = new Utils(context);
     }
 
-    public void show(BlotterActivity blotterActivity, long transactionId) {
+    public void show(Activity activity, long transactionId, IOTransactionDeleteListener listener) {
         TransactionInfo ti = db.getTransactionInfo(transactionId);
         if (ti == null) {
-            Toast t = Toast.makeText(blotterActivity, R.string.no_transaction_found, Toast.LENGTH_LONG);
+            Toast t = Toast.makeText(activity, R.string.no_transaction_found, Toast.LENGTH_LONG);
             t.show();
             return;
         }
@@ -79,7 +81,7 @@ public class TransactionInfoDialog {
         createMainInfoNodes(ti, layout);
         createAdditionalInfoNodes(ti, layout);
 
-        showDialog(blotterActivity, transactionId, v, titleView);
+        showDialog(activity, transactionId, v, titleView, listener);
     }
 
     private void createMainInfoNodes(TransactionInfo ti, LinearLayout layout) {
@@ -206,8 +208,8 @@ public class TransactionInfoDialog {
         return titleView;
     }
 
-    private void showDialog(final BlotterActivity blotterActivity, final long transactionId, final View v, View titleView) {
-        final Dialog d = new AlertDialog.Builder(blotterActivity)
+    private void showDialog(final Activity activity, final long transactionId, final View v, View titleView, IOTransactionDeleteListener listener) {
+        final Dialog d = new AlertDialog.Builder(activity)
                 .setCustomTitle(titleView)
                 .setView(v)
                 .create();
@@ -216,7 +218,7 @@ public class TransactionInfoDialog {
         Button bEdit = v.findViewById(R.id.bEdit);
         bEdit.setOnClickListener(arg0 -> {
             d.dismiss();
-            new BlotterOperations(blotterActivity, db, transactionId).editTransaction();
+            new BlotterOperations(activity, db, transactionId, listener).editTransaction();
         });
 
         Button bClose = v.findViewById(R.id.bClose);

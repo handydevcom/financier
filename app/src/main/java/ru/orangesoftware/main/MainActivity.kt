@@ -35,6 +35,7 @@ import ru.orangesoftware.financisto.dialog.WebViewDialog
 import ru.orangesoftware.financisto.utils.CurrencyCache
 import ru.orangesoftware.financisto.utils.MyPreferences
 import ru.orangesoftware.financisto.utils.PinProtection
+import ru.orangesoftware.main.protocol.IOnBackPressed
 
 class MainActivity : FragmentActivity() {
     private var greenRobotBus: GreenRobotBus? = null
@@ -66,6 +67,18 @@ class MainActivity : FragmentActivity() {
         val screen = MyPreferences.getStartupScreen(this)
         //tabHost.setCurrentTabByTag(screen.tag);
         //tabHost.setOnTabChangedListener(this);
+    }
+
+    override fun onBackPressed() {
+        val tabPager = findViewById<ViewPager2>(R.id.mainViewPager)
+        if(tabPager != null) {
+            val fragment = supportFragmentManager.findFragmentByTag("f" + tabPager.currentItem)
+            (fragment as? IOnBackPressed)?.onBackPressed()?.not()?.let {
+                super.onBackPressed()
+            }
+        } else {
+            super.onBackPressed()
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

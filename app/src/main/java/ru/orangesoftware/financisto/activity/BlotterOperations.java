@@ -10,29 +10,36 @@ package ru.orangesoftware.financisto.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import ru.orangesoftware.financisto.R;
 import ru.orangesoftware.financisto.db.DatabaseAdapter;
 import ru.orangesoftware.financisto.model.Transaction;
 import ru.orangesoftware.financisto.model.TransactionStatus;
+import ru.orangesoftware.main.protocol.IOTransactionDeleteListener;
 
 public class BlotterOperations {
 
     private static final int EDIT_TRANSACTION_REQUEST = 2;
 	private static final int EDIT_TRANSFER_REQUEST = 4;
 
-    private final BlotterActivity activity;
+    private final Activity activity;
     private final DatabaseAdapter db;
     private final Transaction originalTransaction;
     private final Transaction targetTransaction;
+    private final IOTransactionDeleteListener listener;
 
     private boolean newFromTemplate = false;
 
-    public BlotterOperations(BlotterActivity activity, DatabaseAdapter db, long transactionId) {
+    public BlotterOperations(Activity activity, DatabaseAdapter db, long transactionId, IOTransactionDeleteListener listener) {
         this.activity = activity;
         this.db = db;
         this.originalTransaction = db.getTransaction(transactionId);
+        this.listener = listener;
         if (this.originalTransaction.isSplitChild()) {
             this.targetTransaction = db.getTransaction(this.originalTransaction.parentId);
         } else {
@@ -71,7 +78,7 @@ public class BlotterOperations {
                     public void onClick(DialogInterface arg0, int arg1) {
                         long transactionIdToDelete = targetTransaction.id;
                         db.deleteTransaction(transactionIdToDelete);
-                        activity.afterDeletingTransaction(transactionIdToDelete);
+                        listener.afterDeletingTransaction(transactionIdToDelete);
                     }
                 })
                 .setNegativeButton(R.string.no, null)

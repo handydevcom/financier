@@ -40,10 +40,11 @@ import ru.orangesoftware.financisto.utils.IntegrityCheckRunningBalance;
 import ru.orangesoftware.financisto.utils.MenuItemInfo;
 import ru.orangesoftware.financisto.utils.MyPreferences;
 import ru.orangesoftware.financisto.view.NodeInflater;
+import ru.orangesoftware.main.protocol.IOTransactionDeleteListener;
 
 import static ru.orangesoftware.financisto.utils.MyPreferences.isQuickMenuEnabledForTransaction;
 
-public class BlotterActivity extends AbstractListActivity {
+public class BlotterActivity extends AbstractListActivity implements IOTransactionDeleteListener {
 
     public static final String SAVE_FILTER = "saveFilter";
     public static final String EXTRA_FILTER_ACCOUNTS = "filterAccounts";
@@ -366,12 +367,12 @@ public class BlotterActivity extends AbstractListActivity {
     };
 
     private void clearTransaction(long selectedId) {
-        new BlotterOperations(this, db, selectedId).clearTransaction();
+        new BlotterOperations(this, db, selectedId, this).clearTransaction();
         recreateCursor();
     }
 
     private void reconcileTransaction(long selectedId) {
-        new BlotterOperations(this, db, selectedId).reconcileTransaction();
+        new BlotterOperations(this, db, selectedId, this).reconcileTransaction();
         recreateCursor();
     }
 
@@ -406,7 +407,7 @@ public class BlotterActivity extends AbstractListActivity {
                     duplicateTransaction(id, 1);
                     return true;
                 case MENU_SAVE_AS_TEMPLATE:
-                    new BlotterOperations(this, db, id).duplicateAsTemplate();
+                    new BlotterOperations(this, db, id, this).duplicateAsTemplate();
                     Toast.makeText(this, R.string.save_as_template_success, Toast.LENGTH_SHORT).show();
                     return true;
             }
@@ -415,7 +416,7 @@ public class BlotterActivity extends AbstractListActivity {
     }
 
     private long duplicateTransaction(long id, int multiplier) {
-        long newId = new BlotterOperations(this, db, id).duplicateTransaction(multiplier);
+        long newId = new BlotterOperations(this, db, id, this).duplicateTransaction(multiplier);
         String toastText;
         if (multiplier > 1) {
             toastText = getString(R.string.duplicate_success_with_multiplier, multiplier);
@@ -471,10 +472,10 @@ public class BlotterActivity extends AbstractListActivity {
     }
 
     private void deleteTransaction(long id) {
-        new BlotterOperations(this, db, id).deleteTransaction();
+        new BlotterOperations(this, db, id, this).deleteTransaction();
     }
 
-    protected void afterDeletingTransaction(long id) {
+    public void afterDeletingTransaction(long id) {
         recreateCursor();
         AccountWidget.updateWidgets(this);
     }
@@ -485,7 +486,7 @@ public class BlotterActivity extends AbstractListActivity {
     }
 
     private void editTransaction(long id) {
-        new BlotterOperations(this, db, id).editTransaction();
+        new BlotterOperations(this, db, id, this).editTransaction();
     }
 
     @Override
@@ -517,7 +518,7 @@ public class BlotterActivity extends AbstractListActivity {
             long id = duplicateTransaction(templateId, multiplier);
             Transaction t = db.getTransaction(id);
             if (t.fromAmount == 0 || edit) {
-                new BlotterOperations(this, db, id).asNewFromTemplate().editTransaction();
+                new BlotterOperations(this, db, id, this).asNewFromTemplate().editTransaction();
             }
         }
     }
@@ -567,7 +568,7 @@ public class BlotterActivity extends AbstractListActivity {
 
     private void showTransactionInfo(long id) {
         TransactionInfoDialog transactionInfoView = new TransactionInfoDialog(this, db, inflater);
-        transactionInfoView.show(this, id);
+        transactionInfoView.show(this, id, this);
     }
 
     @Override
