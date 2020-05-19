@@ -228,14 +228,6 @@
             android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
-            android:name=".activity.ReportsListActivity"
-            android:label="@string/reports" />
-
-        <activity
-            android:name=".activity.MenuListActivity_"
-            android:label="@string/menu" />
-
-        <activity
             android:name=".activity.CurrencyListActivity"
             android:label="@string/currencies" />
 
@@ -247,10 +239,6 @@
             android:name=".activity.ExchangeRateActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/exchange_rate" />
-
-        <activity
-            android:name=".activity.AccountListActivity"
-            android:label="@string/accounts" />
 
         <activity
             android:name=".activity.CategoryListActivity2"
@@ -331,10 +319,6 @@
             android:name=".activity.PreferencesActivity"
             android:label="@string/preferences"
             android:theme="@style/Theme.AppCompat" />
-
-        <activity
-            android:name=".activity.BudgetListActivity"
-            android:label="@string/budgets" />
 
         <activity
             android:name=".activity.ProjectActivity"

@@ -14,13 +14,13 @@ import android.content.Context;
 import android.content.Intent;
 
 import ru.orangesoftware.financisto.activity.ReportActivity;
-import ru.orangesoftware.financisto.activity.ReportsListActivity;
 import ru.orangesoftware.financisto.blotter.BlotterFilter;
 import ru.orangesoftware.financisto.db.DatabaseAdapter;
 import ru.orangesoftware.financisto.filter.Criteria;
 import ru.orangesoftware.financisto.filter.WhereFilter;
 import ru.orangesoftware.financisto.model.Category;
 import ru.orangesoftware.financisto.model.Currency;
+import ru.orangesoftware.main.fragments.ReportsListFragment;
 
 import static ru.orangesoftware.financisto.db.DatabaseHelper.V_REPORT_CATEGORY;
 
@@ -42,7 +42,7 @@ public class CategoryReport extends Report {
         WhereFilter filter = createFilterForSubCategory(db, parentFilter, id);
 		Intent intent = new Intent(context, ReportActivity.class);
 		filter.toIntent(intent);
-		intent.putExtra(ReportsListActivity.EXTRA_REPORT_TYPE, ReportType.BY_SUB_CATEGORY.name());
+		intent.putExtra(ReportsListFragment.Companion.getEXTRA_REPORT_TYPE(), ReportType.BY_SUB_CATEGORY.name());
         intent.putExtra(ReportActivity.FILTER_INCOME_EXPENSE, incomeExpense.name());
 		return intent;
 	}

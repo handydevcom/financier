@@ -21,7 +21,15 @@ import ru.orangesoftware.financisto.utils.PinProtection
 import java.util.*
 
 class ReportsListFragment: ListFragment() {
-    val EXTRA_REPORT_TYPE = "reportType"
+    companion object {
+        @JvmStatic fun createReport(context: Context?, em: MyEntityManager, extras: Bundle): Report? {
+            val reportTypeName = extras.getString(EXTRA_REPORT_TYPE)
+            val reportType = ReportType.valueOf(reportTypeName!!)
+            val c = em.homeCurrency
+            return reportType.createReport(context, c)
+        }
+        val EXTRA_REPORT_TYPE = "reportType"
+    }
 
     private lateinit var reports: Array<ReportType>
 
@@ -65,13 +73,6 @@ class ReportsListFragment: ListFragment() {
             intent.putExtra(Report2DChart.REPORT_TYPE, reports[position].name)
             startActivity(intent)
         }
-    }
-
-    fun createReport(context: Context?, em: MyEntityManager, extras: Bundle): Report? {
-        val reportTypeName = extras.getString(EXTRA_REPORT_TYPE)
-        val reportType = ReportType.valueOf(reportTypeName!!)
-        val c = em.homeCurrency
-        return reportType.createReport(context, c)
     }
 
     private fun getReportsList(): Array<ReportType> {

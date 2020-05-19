@@ -36,10 +36,10 @@ import java.util.concurrent.TimeUnit
 
 open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
     companion object {
-        val NEW_ACCOUNT_REQUEST = 1
-        val EDIT_ACCOUNT_REQUEST = 2
-        val VIEW_ACCOUNT_REQUEST = 3
-        val PURGE_ACCOUNT_REQUEST = 4
+        @JvmStatic val NEW_ACCOUNT_REQUEST = 1
+        @JvmStatic val EDIT_ACCOUNT_REQUEST = 2
+        @JvmStatic val VIEW_ACCOUNT_REQUEST = 3
+        @JvmStatic val PURGE_ACCOUNT_REQUEST = 4
     }
     private var accountActionGrid: QuickActionWidget? = null
 
@@ -246,7 +246,7 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
         }
         val intent = Intent(activity!!, AccountActivity::class.java)
         intent.putExtra(AccountActivity.ACCOUNT_ID_EXTRA, id)
-        startActivityForResult(intent, AccountListActivity.EDIT_ACCOUNT_REQUEST)
+        startActivityForResult(intent, EDIT_ACCOUNT_REQUEST)
     }
 
     private var selectedId: Long = -1

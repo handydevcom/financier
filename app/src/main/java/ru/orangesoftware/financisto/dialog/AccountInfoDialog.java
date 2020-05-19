@@ -27,6 +27,7 @@ import ru.orangesoftware.financisto.db.MyEntityManager;
 import ru.orangesoftware.financisto.model.*;
 import ru.orangesoftware.financisto.utils.Utils;
 import ru.orangesoftware.financisto.view.NodeInflater;
+import ru.orangesoftware.main.fragments.AccountsFragment;
 
 import static ru.orangesoftware.financisto.utils.Utils.isNotEmpty;
 
@@ -121,7 +122,7 @@ public class AccountInfoDialog {
                 d.dismiss();
                 Intent intent = new Intent(parentActivity, AccountActivity.class);
                 intent.putExtra(AccountActivity.ACCOUNT_ID_EXTRA, accountId);
-                parentActivity.startActivityForResult(intent, AccountListActivity.EDIT_ACCOUNT_REQUEST);
+                parentActivity.startActivityForResult(intent, AccountsFragment.Companion.getEDIT_ACCOUNT_REQUEST());
             }
         });
 

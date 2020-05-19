@@ -51,6 +51,7 @@ import ru.orangesoftware.financisto.report.ReportData;
 import ru.orangesoftware.financisto.utils.MyPreferences;
 import ru.orangesoftware.financisto.utils.PinProtection;
 import ru.orangesoftware.financisto.utils.Utils;
+import ru.orangesoftware.main.fragments.ReportsListFragment;
 
 public class ReportActivity extends ListActivity implements RefreshSupportedActivity {
 
@@ -99,7 +100,7 @@ public class ReportActivity extends ListActivity implements RefreshSupportedActi
 
 		Intent intent = getIntent();
 		if (intent != null) {
-            currentReport = ReportsListActivity.createReport(this, db, intent.getExtras());
+            currentReport = ReportsListFragment.createReport(this, db, intent.getExtras());
             filter = WhereFilter.fromIntent(intent);
             if (intent.hasExtra(FILTER_INCOME_EXPENSE)) {
                 incomeExpenseState = IncomeExpense.valueOf(intent.getStringExtra(FILTER_INCOME_EXPENSE));
