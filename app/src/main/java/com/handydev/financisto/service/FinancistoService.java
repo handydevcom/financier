@@ -67,7 +67,7 @@ public class FinancistoService extends JobIntentService {
         super.onCreate();
         db = new DatabaseAdapter(this);
         db.open();
-        scheduler = new RecurrenceScheduCrjkler(db);
+        scheduler = new RecurrenceScheduler(db);
         smsProcessor = new SmsTransactionProcessor(db);
     }
 

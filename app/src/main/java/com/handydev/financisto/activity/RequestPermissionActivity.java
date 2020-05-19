@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.widget.SwitchCompat;
@@ -21,7 +22,7 @@ import com.handydev.financisto.R;
 import com.handydev.financisto.utils.MyPreferences;
 
 @EActivity(R.layout.activity_request_permissions)
-public class RequestPermissionActivity extends Activity {
+public class RequestPermissionActivity extends AppCompatActivity {
 
     @Extra("requestedPermission")
     String requestedPermission;
