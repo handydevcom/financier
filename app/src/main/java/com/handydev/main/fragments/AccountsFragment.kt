@@ -4,22 +4,20 @@ import android.content.Context
 import android.content.Intent
 import android.database.Cursor
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.View
 import android.widget.AdapterView
 import android.widget.ImageButton
 import android.widget.ListAdapter
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.PopupMenu
-import greendroid.widget.QuickActionGrid
-import greendroid.widget.QuickActionWidget
-import greendroid.widget.QuickActionWidget.OnQuickActionClickListener
 import com.handydev.financisto.R
 import com.handydev.financisto.activity.*
 import com.handydev.financisto.adapter.AccountListAdapter2
 import com.handydev.financisto.blotter.BlotterFilter
 import com.handydev.financisto.blotter.TotalCalculationTask
-import com.handydev.financisto.bus.GreenRobotBus_
 import com.handydev.financisto.bus.SwitchToMenuTabEvent
 import com.handydev.financisto.db.DatabaseAdapter
 import com.handydev.financisto.dialog.AccountInfoDialog
@@ -31,6 +29,10 @@ import com.handydev.financisto.utils.MenuItemInfo
 import com.handydev.financisto.utils.MyPreferences
 import com.handydev.financisto.view.NodeInflater
 import com.handydev.main.base.AbstractListFragment
+import greendroid.widget.QuickActionGrid
+import greendroid.widget.QuickActionWidget
+import greendroid.widget.QuickActionWidget.OnQuickActionClickListener
+import org.greenrobot.eventbus.EventBus
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -88,7 +90,7 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
         }
         when (id) {
             R.id.backup -> MenuListItem.MENU_BACKUP.call(activity!!)
-            R.id.go_to_menu -> GreenRobotBus_.getInstance_(activity!!).post(SwitchToMenuTabEvent())
+            R.id.go_to_menu -> EventBus.getDefault().post(SwitchToMenuTabEvent())
         }
     }
 

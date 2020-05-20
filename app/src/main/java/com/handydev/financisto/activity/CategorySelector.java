@@ -234,7 +234,7 @@ public class CategorySelector<A extends AbstractActivity> {
 
     private void addCategory() {
         Intent intent = new Intent(activity, CategoryActivity.class);
-        activity.startActivityForResult(intent, R.id.category_add);
+        activity.startActivityForResult(intent, CategorySelectorActivity.CATEGORY_ADD);
     }
 
     private void pickCategory() {
@@ -379,7 +379,7 @@ public class CategorySelector<A extends AbstractActivity> {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
-                case R.id.category_add: {
+                case CategorySelectorActivity.CATEGORY_ADD: {
                     categoryCursor.requery();
                     long categoryId = data.getLongExtra(DatabaseHelper.CategoryColumns._id.name(), -1);
                     if (categoryId != -1) {
@@ -387,7 +387,7 @@ public class CategorySelector<A extends AbstractActivity> {
                     }
                     break;
                 }
-                case R.id.category_pick: {
+                case CategorySelectorActivity.CATEGORY_PICK: {
                     long categoryId = data.getLongExtra(CategorySelectorActivity.SELECTED_CATEGORY_ID, 0);
                     selectCategory(categoryId);
                     break;

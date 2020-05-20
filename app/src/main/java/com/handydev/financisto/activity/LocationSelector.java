@@ -22,7 +22,7 @@ public class LocationSelector<A extends AbstractActivity> extends MyEntitySelect
     public LocationSelector(A activity, DatabaseAdapter db, ActivityLayout x, int emptyId) {
         super(MyLocation.class, activity, db, x, MyPreferences.isShowLocation(activity),
                 R.id.location, R.id.location_add, R.id.location_clear, R.string.location, emptyId,
-                R.id.location_show_list, R.id.location_close_filter, R.id.location_show_filter);
+                R.id.location_show_list, R.id.location_close_filter, R.id.location_show_filter, MyEntitySelector.REQUEST_LOCATION);
     }
 
     @Override

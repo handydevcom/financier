@@ -27,7 +27,7 @@ public class ProjectSelector<A extends AbstractActivity> extends MyEntitySelecto
     public ProjectSelector(A activity, DatabaseAdapter db, ActivityLayout x, int emptyId) {
         super(Project.class, activity, db, x, MyPreferences.isShowProject(activity),
                 R.id.project, R.id.project_add, R.id.project_clear, R.string.project, emptyId,
-                R.id.project_show_list, R.id.project_close_filter, R.id.project_show_filter);
+                R.id.project_show_list, R.id.project_close_filter, R.id.project_show_filter, MyEntitySelector.REQUEST_PROJECT);
     }
 
     @Override

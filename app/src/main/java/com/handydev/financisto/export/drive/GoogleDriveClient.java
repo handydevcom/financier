@@ -26,11 +26,19 @@ import com.google.android.gms.drive.MetadataChangeSet;
 import com.google.android.gms.drive.query.Filters;
 import com.google.android.gms.drive.query.Query;
 import com.google.android.gms.drive.query.SearchableField;
+import com.handydev.financisto.R;
+import com.handydev.financisto.backup.DatabaseExport;
+import com.handydev.financisto.backup.DatabaseImport;
+import com.handydev.financisto.db.DatabaseAdapter;
+import com.handydev.financisto.export.Export;
+import com.handydev.financisto.export.ImportExportException;
+import com.handydev.financisto.utils.MyPreferences;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
 import org.apache.commons.io.IOUtils;
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -43,22 +51,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import com.handydev.financisto.R;
-import com.handydev.financisto.backup.DatabaseExport;
-import com.handydev.financisto.backup.DatabaseImport;
-import com.handydev.financisto.bus.GreenRobotBus;
-import com.handydev.financisto.db.DatabaseAdapter;
-import com.handydev.financisto.export.Export;
-import com.handydev.financisto.export.ImportExportException;
-import com.handydev.financisto.utils.MyPreferences;
-
 @EBean(scope = EBean.Scope.Singleton)
 public class GoogleDriveClient {
 
     private final Context context;
 
-    @Bean
-    GreenRobotBus bus;
+    EventBus bus;
 
     @Bean
     DatabaseAdapter db;
@@ -71,6 +69,7 @@ public class GoogleDriveClient {
 
     @AfterInject
     public void init() {
+        bus = EventBus.getDefault();
         bus.register(this);
     }
 

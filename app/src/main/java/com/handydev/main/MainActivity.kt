@@ -23,7 +23,6 @@ import androidx.viewpager2.widget.ViewPager2
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import com.handydev.financisto.R
-import com.handydev.financisto.bus.GreenRobotBus
 import com.handydev.financisto.bus.RefreshCurrentTab
 import com.handydev.financisto.bus.SwitchToMenuTabEvent
 import com.handydev.financisto.databinding.MainBinding
@@ -34,9 +33,10 @@ import com.handydev.financisto.utils.CurrencyCache
 import com.handydev.financisto.utils.MyPreferences
 import com.handydev.financisto.utils.PinProtection
 import com.handydev.main.protocol.IOnBackPressed
+import org.greenrobot.eventbus.EventBus
 
 class MainActivity : FragmentActivity() {
-    private var greenRobotBus: GreenRobotBus? = null
+    private var eventBus: EventBus? = null
     private lateinit var viewModel: MainViewModel
 
     override fun attachBaseContext(base: Context) {
@@ -51,7 +51,7 @@ class MainActivity : FragmentActivity() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         //viewModel = MainViewModel(this, supportFragmentManager)
-        greenRobotBus = GreenRobotBus()
+        eventBus = EventBus.getDefault()
         initialLoad()
         val tabPager = findViewById<ViewPager2>(R.id.mainViewPager)
         tabPager.isUserInputEnabled = false
@@ -95,7 +95,7 @@ class MainActivity : FragmentActivity() {
         for (i in 0 until viewModel.tabCount) {
             tabLayout.getTabAt(i)?.icon = viewModel.getTabIcon(i)
         }*/
-        greenRobotBus!!.register(this)
+        eventBus!!.register(this)
         PinProtection.unlock(this)
         if (PinProtection.isUnlocked()) {
             WebViewDialog.checkVersionAndShowWhatsNewIfNeeded(this)
@@ -104,7 +104,7 @@ class MainActivity : FragmentActivity() {
 
     override fun onPause() {
         super.onPause()
-        greenRobotBus!!.unregister(this)
+        eventBus!!.unregister(this)
         PinProtection.lock(this)
     }
 

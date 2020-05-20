@@ -19,10 +19,11 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.handydev.financisto.R;
-import com.handydev.financisto.bus.GreenRobotBus_;
 import com.handydev.financisto.bus.RefreshCurrentTab;
 import com.handydev.financisto.db.DatabaseAdapter;
 import com.handydev.financisto.utils.MyPreferences;
+
+import org.greenrobot.eventbus.EventBus;
 
 import static com.handydev.financisto.export.Export.uploadBackupFileToDropbox;
 import static com.handydev.financisto.export.Export.uploadBackupFileToGoogleDrive;
@@ -135,7 +136,7 @@ public abstract class ImportExportAsyncTask extends AsyncTask<String, String, Ob
     }
 
     private void refreshMainActivity() {
-        GreenRobotBus_.getInstance_(context).post(new RefreshCurrentTab());
+        EventBus.getDefault().post(new RefreshCurrentTab());
     }
 
 }

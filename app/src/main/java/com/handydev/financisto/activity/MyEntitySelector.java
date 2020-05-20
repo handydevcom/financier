@@ -46,6 +46,11 @@ public abstract class MyEntitySelector<T extends MyEntity, A extends AbstractAct
     private boolean initAutoComplete = true;
     private long selectedEntityId = 0;
 
+    static final int REQUEST_LOCATION = 3001;
+    static final int REQUEST_PAYEE = 3002;
+    static final int REQUEST_PROJECT = 3003;
+    private int requestCode;
+
     MyEntitySelector(
             Class<T> entityClass,
             A activity,
@@ -59,7 +64,8 @@ public abstract class MyEntitySelector<T extends MyEntity, A extends AbstractAct
             int defaultValueResId,
             int showListId,
             int closeFilterId,
-            int showFilterId) {
+            int showFilterId,
+            int requestCode) {
         this.entityClass = entityClass;
         this.activity = activity;
         this.em = em;
@@ -73,6 +79,7 @@ public abstract class MyEntitySelector<T extends MyEntity, A extends AbstractAct
         this.showListId = showListId;
         this.closeFilterId = closeFilterId;
         this.showFilterId = showFilterId;
+        this.requestCode = requestCode;
     }
 
     protected abstract Class getEditActivityClass();
@@ -148,7 +155,7 @@ public abstract class MyEntitySelector<T extends MyEntity, A extends AbstractAct
 
     private void createEntity() {
         Intent intent = new Intent(activity, getEditActivityClass());
-        activity.startActivityForResult(intent, actBtnId);
+        activity.startActivityForResult(intent, requestCode);
     }
 
     private void showFilter() {

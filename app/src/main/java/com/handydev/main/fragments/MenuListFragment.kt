@@ -12,12 +12,9 @@ import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.ListFragment
 import com.google.android.gms.common.GooglePlayServicesUtil
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import com.handydev.financisto.R
 import com.handydev.financisto.activity.MenuListItem
 import com.handydev.financisto.adapter.SummaryEntityListAdapter
-import com.handydev.financisto.bus.GreenRobotBus
 import com.handydev.financisto.export.csv.CsvExportOptions
 import com.handydev.financisto.export.csv.CsvImportOptions
 import com.handydev.financisto.export.drive.*
@@ -28,19 +25,22 @@ import com.handydev.financisto.export.qif.QifExportOptions
 import com.handydev.financisto.export.qif.QifImportOptions
 import com.handydev.financisto.service.DailyAutoBackupScheduler
 import com.handydev.financisto.utils.PinProtection
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class MenuListFragment: ListFragment() {
     companion object {
         private const val RESOLVE_CONNECTION_REQUEST_CODE = 1
     }
 
-    var bus: GreenRobotBus? = null
+    var bus: EventBus? = null
 
     protected fun init() {
         if(activity == null) {
             return
         }
-        bus = GreenRobotBus()
+        bus = EventBus.getDefault()
         listAdapter = SummaryEntityListAdapter(activity!!, MenuListItem.values())
     }
 
@@ -56,6 +56,57 @@ class MenuListFragment: ListFragment() {
         }
         MenuListItem.values()[position].call(activity!!)
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when(requestCode) {
+            2 -> onCsvExportResult(resultCode, data)
+            3 -> onQifExportResult(resultCode, data)
+            4 -> onCsvImportResult(resultCode, data)
+            5 -> onQifImportResult(resultCode, data)
+            6 -> onChangePreferences()
+            1 -> onConnectionRequest(resultCode)
+        }
+    }
+
+    /*
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case  2 :
+            {
+                MenuListActivity_.this.onCsvExportResult(resultCode, data);
+                break;
+            }
+            case  3 :
+            {
+                MenuListActivity_.this.onQifExportResult(resultCode, data);
+                break;
+            }
+            case  4 :
+            {
+                MenuListActivity_.this.onCsvImportResult(resultCode, data);
+                break;
+            }
+            case  5 :
+            {
+                MenuListActivity_.this.onQifImportResult(resultCode, data);
+                break;
+            }
+            case  6 :
+            {
+                MenuListActivity_.this.onChangePreferences();
+                break;
+            }
+            case  1 :
+            {
+                MenuListActivity_.this.onConnectionRequest(resultCode);
+                break;
+            }
+        }
+    }
+     */
 
     //@OnActivityResult(MenuListItem.ACTIVITY_CSV_EXPORT)
     fun onCsvExportResult(resultCode: Int, data: Intent?) {
@@ -296,42 +347,5 @@ class MenuListFragment: ListFragment() {
 
     class StartDriveRestore
 
-    /*
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case  2 :
-            {
-                MenuListActivity_.this.onCsvExportResult(resultCode, data);
-                break;
-            }
-            case  3 :
-            {
-                MenuListActivity_.this.onQifExportResult(resultCode, data);
-                break;
-            }
-            case  4 :
-            {
-                MenuListActivity_.this.onCsvImportResult(resultCode, data);
-                break;
-            }
-            case  5 :
-            {
-                MenuListActivity_.this.onQifImportResult(resultCode, data);
-                break;
-            }
-            case  6 :
-            {
-                MenuListActivity_.this.onChangePreferences();
-                break;
-            }
-            case  1 :
-            {
-                MenuListActivity_.this.onConnectionRequest(resultCode);
-                break;
-            }
-        }
-    }
-     */
+
 }

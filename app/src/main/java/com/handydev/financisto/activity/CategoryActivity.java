@@ -390,7 +390,7 @@ public class CategoryActivity extends AbstractActivity implements CategorySelect
                     }
                 }
                 break;
-                case R.id.category_pick: {
+                case CategorySelectorActivity.CATEGORY_PICK: {
                     parentCatSelector.onActivityResult(requestCode, resultCode, data);
                 }
                 break;

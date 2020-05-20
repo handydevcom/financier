@@ -1,23 +1,19 @@
 package com.handydev.financisto.activity;
 
 import android.Manifest;
-import static android.Manifest.permission.RECEIVE_SMS;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
-import androidx.core.content.FileProvider;
 import android.widget.ListAdapter;
-import android.widget.Toast;
-import java.io.File;
+
+import androidx.core.content.FileProvider;
+
 import com.handydev.financisto.BuildConfig;
 import com.handydev.financisto.R;
-import static com.handydev.financisto.activity.RequestPermission.isRequestingPermission;
-import static com.handydev.financisto.activity.RequestPermission.isRequestingPermissions;
 import com.handydev.financisto.backup.Backup;
-import com.handydev.financisto.bus.GreenRobotBus_;
 import com.handydev.financisto.db.DatabaseAdapter;
 import com.handydev.financisto.export.BackupExportTask;
 import com.handydev.financisto.export.BackupImportTask;
@@ -32,12 +28,20 @@ import com.handydev.financisto.export.qif.QifImportOptions;
 import com.handydev.financisto.export.qif.QifImportTask;
 import com.handydev.financisto.utils.EntityEnum;
 import com.handydev.financisto.utils.EnumUtils;
-import static com.handydev.financisto.utils.EnumUtils.showPickOneDialog;
 import com.handydev.financisto.utils.ExecutableEntityEnum;
 import com.handydev.financisto.utils.IntegrityFix;
 import com.handydev.financisto.utils.SummaryEntityEnum;
 import com.handydev.main.MainActivity;
 import com.handydev.main.fragments.MenuListFragment;
+
+import org.greenrobot.eventbus.EventBus;
+
+import java.io.File;
+
+import static android.Manifest.permission.RECEIVE_SMS;
+import static com.handydev.financisto.activity.RequestPermission.isRequestingPermission;
+import static com.handydev.financisto.activity.RequestPermission.isRequestingPermissions;
+import static com.handydev.financisto.utils.EnumUtils.showPickOneDialog;
 
 public enum MenuListItem implements SummaryEntityEnum {
 
@@ -106,7 +110,7 @@ public enum MenuListItem implements SummaryEntityEnum {
             if (isRequestingPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                 return;
             }
-            GreenRobotBus_.getInstance_(activity).post(new MenuListFragment.StartDriveBackup());
+            EventBus.getDefault().post(new MenuListFragment.StartDriveBackup());
         }
     },
     GOOGLE_DRIVE_RESTORE(R.string.restore_database_online_google_drive, R.string.restore_database_online_google_drive_summary, R.drawable.actionbar_google_drive) {
@@ -115,7 +119,7 @@ public enum MenuListItem implements SummaryEntityEnum {
             if (isRequestingPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                 return;
             }
-            GreenRobotBus_.getInstance_(activity).post(new MenuListFragment.StartDriveRestore());
+            EventBus.getDefault().post(new MenuListFragment.StartDriveRestore());
         }
     },
     DROPBOX_BACKUP(R.string.backup_database_online_dropbox, R.string.backup_database_online_dropbox_summary, R.drawable.actionbar_dropbox) {
@@ -124,7 +128,7 @@ public enum MenuListItem implements SummaryEntityEnum {
             if (isRequestingPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                 return;
             }
-            GreenRobotBus_.getInstance_(activity).post(new MenuListFragment.StartDropboxBackup());
+            EventBus.getDefault().post(new MenuListFragment.StartDropboxBackup());
         }
     },
     DROPBOX_RESTORE(R.string.restore_database_online_dropbox, R.string.restore_database_online_dropbox_summary, R.drawable.actionbar_dropbox) {
@@ -133,7 +137,7 @@ public enum MenuListItem implements SummaryEntityEnum {
             if (isRequestingPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                 return;
             }
-            GreenRobotBus_.getInstance_(activity).post(new MenuListFragment.StartDropboxRestore());
+            EventBus.getDefault().post(new MenuListFragment.StartDropboxRestore());
         }
     },
     MENU_BACKUP_TO(R.string.backup_database_to, R.string.backup_database_to_summary, R.drawable.actionbar_share) {
@@ -196,7 +200,7 @@ public enum MenuListItem implements SummaryEntityEnum {
             new IntegrityFixTask(activity).execute();
         }
     },
-    MENU_DONATE(R.string.donate, R.string.donate_summary, R.drawable.actionbar_donate) {
+    /*MENU_DONATE(R.string.donate, R.string.donate_summary, R.drawable.actionbar_donate) {
         @Override
         public void call(Activity activity) {
             try {
@@ -209,7 +213,7 @@ public enum MenuListItem implements SummaryEntityEnum {
             }
         }
 
-    },
+    },*/
     MENU_ABOUT(R.string.about, R.string.about_summary, R.drawable.ic_action_info) {
         @Override
         public void call(Activity activity) {

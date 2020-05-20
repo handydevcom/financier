@@ -13,12 +13,13 @@ import android.app.ProgressDialog;
 import android.content.Context;
 
 import com.handydev.financisto.R;
-import com.handydev.financisto.bus.GreenRobotBus_;
 import com.handydev.financisto.db.DatabaseAdapter;
 import com.handydev.financisto.export.ImportExportAsyncTask;
 import com.handydev.financisto.export.ImportExportAsyncTaskListener;
 import com.handydev.financisto.export.ImportExportException;
 import com.handydev.financisto.export.drive.DropboxFileList;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class DropboxListFilesTask extends ImportExportAsyncTask {
         setListener(new ImportExportAsyncTaskListener() {
             @Override
             public void onCompleted(Object result) {
-                GreenRobotBus_.getInstance_(context).post(new DropboxFileList((String[]) result));
+                EventBus.getDefault().post(new DropboxFileList((String[]) result));
             }
         });
     }

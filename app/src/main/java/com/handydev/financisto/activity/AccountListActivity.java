@@ -33,7 +33,6 @@ import com.handydev.financisto.R;
 import com.handydev.financisto.adapter.AccountListAdapter2;
 import com.handydev.financisto.blotter.BlotterFilter;
 import com.handydev.financisto.blotter.TotalCalculationTask;
-import com.handydev.financisto.bus.GreenRobotBus_;
 import com.handydev.financisto.bus.SwitchToMenuTabEvent;
 import com.handydev.financisto.db.DatabaseAdapter;
 import com.handydev.financisto.filter.Criteria;
@@ -43,6 +42,8 @@ import com.handydev.financisto.utils.IntegrityCheckAutobackup;
 import com.handydev.financisto.utils.MenuItemInfo;
 import com.handydev.financisto.utils.MyPreferences;
 import com.handydev.financisto.view.NodeInflater;
+
+import org.greenrobot.eventbus.EventBus;
 
 import static com.handydev.financisto.utils.MyPreferences.isQuickMenuEnabledForAccount;
 
@@ -103,7 +104,7 @@ public class AccountListActivity extends AbstractListActivity {
                 MenuListItem.MENU_BACKUP.call(this);
                 break;
             case R.id.go_to_menu:
-                GreenRobotBus_.getInstance_(this).post(new SwitchToMenuTabEvent());
+                EventBus.getDefault().post(new SwitchToMenuTabEvent());
                 break;
         }
     }

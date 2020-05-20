@@ -46,7 +46,7 @@ public class EntityEnumAdapter<T extends EntityEnum> extends BaseAdapter {
         T v = values[position];
         holder.icon.setImageResource(v.getIconId());
         if (tint) {
-            holder.icon.setColorFilter(ContextCompat.getColor(context, R.color.colorPrimary));
+            holder.icon.setColorFilter(ContextCompat.getColor(context, R.color.entityColorPrimary));
         }
         holder.title.setText(v.getTitleId());
         return view;

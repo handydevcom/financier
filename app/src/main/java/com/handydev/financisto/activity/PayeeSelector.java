@@ -21,7 +21,7 @@ public class PayeeSelector<A extends AbstractActivity> extends MyEntitySelector<
     public PayeeSelector(A activity, MyEntityManager em, ActivityLayout x, int emptyId) {
         super(Payee.class, activity, em, x, MyPreferences.isShowPayee(activity),
                 R.id.payee, R.id.payee_add, R.id.payee_clear, R.string.payee, emptyId,
-                R.id.payee_show_list, R.id.payee_close_filter, R.id.payee_show_filter);
+                R.id.payee_show_list, R.id.payee_close_filter, R.id.payee_show_filter, MyEntitySelector.REQUEST_PAYEE);
     }
 
     @Override
