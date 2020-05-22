@@ -354,7 +354,7 @@
             android:summary="@string/google_drive_backup_full_readonly_summary"
             android:title="@string/google_drive_backup_full_readonly" />
         <EditTextPreference
-            android:defaultValue="financisto"
+            android:defaultValue="financier"
             android:key="backup_folder"
             android:summary="@string/backup_folder_summary"
             android:title="@string/backup_folder" />

@@ -18,11 +18,11 @@ android {
     buildToolsVersion '28.0.3'
 
     defaultConfig {
-        applicationId "com.handydev.financisto"
+        applicationId "com.handydev.financier"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 122
-        versionName "1.8.3"
+        versionCode 200
+        versionName "2.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         javaCompileOptions {
@@ -132,6 +132,6 @@ dependencies {
 
 kapt {
     arguments {
-        arg('eventBusIndex', 'com.handydev.financisto.MyEventBusIndex')
+        arg('eventBusIndex', 'com.handydev.financier.MyEventBusIndex')
     }
 }

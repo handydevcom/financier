@@ -1816,7 +1816,7 @@ public class DatabaseAdapter extends MyEntityManager {
             restoreLocations();
             db.setTransactionSuccessful();
         } catch (Exception e) {
-            Log.e("Financisto", "Unable to restore system entities", e);
+            Log.e("Financier", "Unable to restore system entities", e);
         } finally {
             db.endTransaction();
         }

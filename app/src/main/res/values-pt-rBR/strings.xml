@@ -467,7 +467,7 @@
   <string name="expired">(expirada)</string>
   <string name="pending">(pendente)</string>
   <string name="system_attribute_delete_after_expired">Apagar depois de expirada</string>
-  <string name="no_transaction_found">Sem fundos para a transação, por favor, reinicie o Financisto..</string>
+  <string name="no_transaction_found">Sem fundos para a transação, por favor, reinicie o Financier…</string>
   <string name="include_credit">Adicionar créditos</string>
   <string name="include_credit_summary">Adicionar créditos (entrada ou retorno) na totalização do orçamento</string>
   <string name="enable_widget">Habilitar widget</string>
@@ -607,8 +607,8 @@
   <string name="database_backup">Backup de banco de dados</string>
   <string name="database_backup_folder">Pasta de backup</string>
   <string name="database_backup_folder_summary">Pasta de backup de banco de dados atual: %s</string>
-  <string name="backup_database_to">Enviar Backup para...</string>
-  <string name="backup_database_to_title">Enviar Backup de banco de dados para...</string>
+  <string name="backup_database_to">Enviar Backup para…</string>
+  <string name="backup_database_to_title">Enviar Backup de banco de dados para…</string>
   <string name="license">Licença</string>
   <string name="quick_menu_account_enabled">Menu rápido de contas</string>
   <string name="quick_menu_account_enabled_summary">Habilitar menu de um toque nas Contas</string>
@@ -616,14 +616,14 @@
   <string name="quick_menu_transaction_enabled_summary">Habilitar menu de um toque nos Registros</string>
   <string name="dropbox">Dropbox</string>
   <string name="dropbox_authorize">Autorizar</string>
-  <string name="dropbox_authorize_summary">Permitir Financisto fazer upload de arquivos para o seu Dropbox</string>
+  <string name="dropbox_authorize_summary">Permitir Financier fazer upload de arquivos para o seu Dropbox</string>
   <string name="dropbox_unlink">Desvincular</string>
-  <string name="dropbox_unlink_summary">Impedir Financisto de fazer upload de arquivos para o seu Dropbox</string>
+  <string name="dropbox_unlink_summary">Impedir Financier de fazer upload de arquivos para o seu Dropbox</string>
   <string name="dropbox_upload_backup">Upload de Backups</string>
   <string name="dropbox_upload_backup_summary">Upload de backups de banco de dados para Dropbox</string>
   <string name="dropbox_upload_autobackup">Upload de backups automáticos</string>
   <string name="dropbox_upload_autobackup_summary">Upload de backups automáticos de banco de dados para o Dropbox</string>
-  <string name="dropbox_uploading_file">Upload de arquivo para Dropbox...</string>
+  <string name="dropbox_uploading_file">Upload de arquivo para Dropbox…</string>
   <string name="exchange_rates">Taxas de câmbio</string>
   <string name="no_exchange_rates">Sem taxas de câmbio</string>
   <string name="exchange_rate">Taxa de câmbio</string>

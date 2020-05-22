@@ -210,7 +210,7 @@ public class CsvImportTest extends AbstractImportExportTest {
         FileWriter w = new FileWriter(tmp);
         w.write(csv);
         w.close();
-        Log.d("Financisto", "Created a temporary backup file: " + tmp.getAbsolutePath());
+        Log.d("Financier", "Created a temporary backup file: " + tmp.getAbsolutePath());
         options = new CsvImportOptions(options.currency, options.dateFormat.toPattern(),
                 options.selectedAccountId, options.filter, tmp.getAbsolutePath(), options.fieldSeparator, options.useHeaderFromFile);
         csvImport = new CsvImport(db, options);

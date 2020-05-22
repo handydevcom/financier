@@ -18,7 +18,6 @@ import com.handydev.financier.activity.*
 import com.handydev.financier.adapter.AccountListAdapter2
 import com.handydev.financier.blotter.BlotterFilter
 import com.handydev.financier.blotter.TotalCalculationTask
-import com.handydev.financier.bus.SwitchToMenuTabEvent
 import com.handydev.financier.db.DatabaseAdapter
 import com.handydev.financier.dialog.AccountInfoDialog
 import com.handydev.financier.filter.Criteria
@@ -32,7 +31,6 @@ import com.handydev.main.base.AbstractListFragment
 import greendroid.widget.QuickActionGrid
 import greendroid.widget.QuickActionWidget
 import greendroid.widget.QuickActionWidget.OnQuickActionClickListener
-import org.greenrobot.eventbus.EventBus
 import java.util.*
 import java.util.concurrent.TimeUnit
 

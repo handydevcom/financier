@@ -14,7 +14,7 @@ import org.androidannotations.annotations.EApplication;
 import org.greenrobot.eventbus.EventBus;
 
 @EApplication
-public class FinancistoApp extends MultiDexApplication {
+public class FinancierApp extends MultiDexApplication {
 
     public EventBus bus;
 
@@ -37,4 +37,10 @@ public class FinancistoApp extends MultiDexApplication {
         super.onConfigurationChanged(newConfig);
         MyPreferences.switchLocale(this);
     }
+
+    /*@Override
+    public void onCreate() {
+        //val eventBus: EventBus = EventBus.builder().addIndex(MyEventBusIndex()).build()
+        //        EventBus.builder().addIndex(MyEventBusIndex()).installDefaultEventBus()
+    }*/
 }

@@ -14,7 +14,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import com.handydev.financier.service.FinancistoService;
+import com.handydev.financier.service.FinancierService;
 
 public class PackageReplaceReceiver extends BroadcastReceiver {
 
@@ -35,13 +35,13 @@ public class PackageReplaceReceiver extends BroadcastReceiver {
 	}
 
     protected void requestScheduleAll(Context context) {
-        Intent serviceIntent = new Intent(FinancistoService.ACTION_SCHEDULE_ALL, null, context, FinancistoService.class);
-        FinancistoService.enqueueWork(context, serviceIntent);
+        Intent serviceIntent = new Intent(FinancierService.ACTION_SCHEDULE_ALL, null, context, FinancierService.class);
+        FinancierService.enqueueWork(context, serviceIntent);
     }
 
     protected void requestScheduleAutoBackup(Context context) {
-        Intent serviceIntent = new Intent(FinancistoService.ACTION_SCHEDULE_AUTO_BACKUP, null, context, FinancistoService.class);
-        FinancistoService.enqueueWork(context, serviceIntent);
+        Intent serviceIntent = new Intent(FinancierService.ACTION_SCHEDULE_AUTO_BACKUP, null, context, FinancierService.class);
+        FinancierService.enqueueWork(context, serviceIntent);
     }
     
 }

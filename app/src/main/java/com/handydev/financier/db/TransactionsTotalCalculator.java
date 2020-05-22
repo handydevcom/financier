@@ -108,7 +108,7 @@ public class TransactionsTotalCalculator {
     }
 
     private Total getBalanceInHomeCurrency(String view, Currency toCurrency, WhereFilter filter) {
-        Log.d("Financisto", "Query balance: "+filter.getSelection()+" => "+ Arrays.toString(filter.getSelectionArgs()));
+        Log.d("Financier", "Query balance: "+filter.getSelection()+" => "+ Arrays.toString(filter.getSelectionArgs()));
         Cursor c = db.db().query(view, HOME_CURRENCY_PROJECTION,
                 filter.getSelection(), filter.getSelectionArgs(),
                 null, null, null);

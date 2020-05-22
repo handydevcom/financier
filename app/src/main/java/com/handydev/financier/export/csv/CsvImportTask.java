@@ -45,7 +45,7 @@ public class CsvImportTask extends ImportExportAsyncTask {
             });
             return csvimport.doImport();
         } catch (Exception e) {
-            Log.e("Financisto", "Csv import error", e);
+            Log.e("Financier", "Csv import error", e);
             if (e instanceof ImportExportException)
                 throw e;
             String message = e.getMessage();

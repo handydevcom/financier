@@ -545,7 +545,7 @@
     <string name="expired">(expired)</string>
     <string name="pending">(pending)</string>
     <string name="system_attribute_delete_after_expired">Delete after expired</string>
-    <string name="no_transaction_found">No transaction found, please restart Financisto…</string>
+    <string name="no_transaction_found">No transaction found, please restart Financier…</string>
     <string name="include_credit">Include credits</string>
     <string name="include_credit_summary">Include credits (income or returns) into budget total</string>
     <string name="enable_widget">Enable widget</string>
@@ -739,9 +739,9 @@
 
     <string name="dropbox">Dropbox</string>
     <string name="dropbox_authorize">Authorize</string>
-    <string name="dropbox_authorize_summary">Allow Financisto to upload files to your Dropbox</string>
+    <string name="dropbox_authorize_summary">Allow Financier to upload files to your Dropbox</string>
     <string name="dropbox_unlink">Unlink</string>
-    <string name="dropbox_unlink_summary">Prevent Financisto from uploading files to your Dropbox</string>
+    <string name="dropbox_unlink_summary">Prevent Financier from uploading files to your Dropbox</string>
     <string name="dropbox_upload_backup">Upload Backups</string>
     <string name="dropbox_upload_backup_summary">Upload database backups to Dropbox</string>
     <string name="dropbox_upload_autobackup">Upload Auto-backups</string>
@@ -846,7 +846,7 @@
     <string name="open_calculator_for_template_transactions">Open Calculator</string>
     <string name="open_calculator_for_template_transactions_summary">Open Calculator for transactions created from template</string>
 
-    <string name="installed_on_sd_card_warning">Scheduled transactions might NOT work as expected when Financisto installed on SD card. Please move it to phone memory.</string>
+    <string name="installed_on_sd_card_warning">Scheduled transactions might NOT work as expected when Financier installed on SD card. Please move it to phone memory.</string>
 
     <string name="planner">Planner</string>
 
@@ -880,7 +880,7 @@
     <string name="google_drive_backup_account_summary">Choose your Google Drive account</string>
     <string name="google_drive_permission_requested">Permission requested</string>
     <string name="google_drive_permission_requested_for_account">for account %s</string>
-    <string name="google_drive_permission_required">Please authorize Financisto to access your Google Drive then try again…</string>
+    <string name="google_drive_permission_required">Please authorize Financier to access your Google Drive then try again…</string>
     <string name="google_drive_loading_files">Loading files from Google Drive…</string>
     <string name="google_drive_account_required">Please specify your Google Drive account in the Preferences then try again…</string>
     <string name="google_drive_backup_success">Backup success on Google Drive: %s</string>
@@ -903,7 +903,7 @@
     <string name="restore_database_online_dropbox">Dropbox Restore</string>
     <string name="backup_database_dropbox_inprogress">Backing up database…</string>
 
-    <string name="request_permissions_title">Financisto requires a few permissions to be granted manually.</string>
+    <string name="request_permissions_title">Financier requires a few permissions to be granted manually.</string>
     <string name="request_permissions_description">Please grant the required permissions below, then return back to the previous screen and repeat the operation. Permissions can be revoked in the system Settings -> App Permissions.</string>
     <string name="request_permissions_storage_title">Storage</string>
     <string name="request_permissions_storage_description">Required to read and write backup files from/to the external storage.</string>

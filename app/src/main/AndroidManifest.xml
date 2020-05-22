@@ -47,7 +47,7 @@
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
 
     <application
-        android:name="com.handydev.financier.app.FinancistoApp_"
+        android:name="com.handydev.financier.app.FinancierApp_"
         android:allowBackup="true"
         android:description="@string/app_description"
         android:hardwareAccelerated="true"
@@ -103,7 +103,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REPLACED" />
                 <data
-                    android:path="com.handydev.financisto"
+                    android:path="com.handydev.financier"
                     android:scheme="package" />
             </intent-filter>
         </receiver>
@@ -118,7 +118,7 @@
         </receiver>
 
         <service
-            android:name="com.handydev.financier.service.FinancistoService"
+            android:name="com.handydev.financier.service.FinancierService"
             android:exported="true"
             android:enabled="true"
             android:permission="android.permission.BIND_JOB_SERVICE">

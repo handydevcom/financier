@@ -24,7 +24,7 @@ import com.handydev.financier.utils.StringUtil;
 
 public class SmsDragListActivity extends AppCompatActivity {
 
-    private static final String TAG = "Financisto." + SmsDragListActivity.class.getSimpleName();
+    private static final String TAG = "Financier." + SmsDragListActivity.class.getSimpleName();
     private static final String LIST_STATE_KEY = "LIST_STATE";
 
     public static final int NEW_REQUEST_CODE = 1;

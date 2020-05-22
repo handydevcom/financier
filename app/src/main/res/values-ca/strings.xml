@@ -467,7 +467,7 @@
   <string name="expired">(vençut)</string>
   <string name="pending">(pendent)</string>
   <string name="system_attribute_delete_after_expired">Eliminar al venciment</string>
-  <string name="no_transaction_found">Cap transacció localitzada. Si us plau, reinicialitza Financisto...</string>
+  <string name="no_transaction_found">Cap transacció localitzada. Si us plau, reinicialitza Financier…</string>
   <string name="include_credit">Incloure Abonaments</string>
   <string name="include_credit_summary">Incloure els abonaments (ingressos o retorns) al còmput de la dotació pressupostària</string>
   <string name="enable_widget">Activar Widget</string>
@@ -607,8 +607,8 @@
   <string name="database_backup">Còpia de seguretat de base de dades</string>
   <string name="database_backup_folder">Carpeta de còpia de seguretat</string>
   <string name="database_backup_folder_summary">Carpeta de còpia de seguretat de base de  dades actual: %s</string>
-  <string name="backup_database_to">Enviar còpia de seguretat a...</string>
-  <string name="backup_database_to_title">Enviar còpia de seguretat per a...</string>
+  <string name="backup_database_to">Enviar còpia de seguretat a…</string>
+  <string name="backup_database_to_title">Enviar còpia de seguretat per a…</string>
   <string name="license">Llicència</string>
   <string name="quick_menu_account_enabled">Menú ràpid a Comptes</string>
   <string name="quick_menu_account_enabled_summary">Activar menú d\'un toc a Comptes</string>
@@ -616,14 +616,14 @@
   <string name="quick_menu_transaction_enabled_summary">Activar menú d\'un toc a Registres</string>
   <string name="dropbox">Dropbox</string>
   <string name="dropbox_authorize">Autoritzar</string>
-  <string name="dropbox_authorize_summary">Permet Financisto carregar arxius al seu Dropbox</string>
+  <string name="dropbox_authorize_summary">Permet Financier carregar arxius al seu Dropbox</string>
   <string name="dropbox_unlink">Desenllaça</string>
-  <string name="dropbox_unlink_summary">Impedir Financisto de carregar arxius al seu Dropbox</string>
+  <string name="dropbox_unlink_summary">Impedir Financier de carregar arxius al seu Dropbox</string>
   <string name="dropbox_upload_backup">Carregar còpies de seguretat</string>
   <string name="dropbox_upload_backup_summary">Carregar còpies de seguretat de base de dades a Dropbox</string>
   <string name="dropbox_upload_autobackup">Carregar còpies de seguretat automàtica</string>
   <string name="dropbox_upload_autobackup_summary">Carregar còpies de seguretat automáticas de base de dades a Dropbox</string>
-  <string name="dropbox_uploading_file">Carregar l\'arxiu a Dropbox...</string>
+  <string name="dropbox_uploading_file">Carregar l\'arxiu a Dropbox…</string>
   <string name="exchange_rates">Taxes de canvi</string>
   <string name="no_exchange_rates">Sense taxes de canvi</string>
   <string name="exchange_rate">Taxa de canvi</string>

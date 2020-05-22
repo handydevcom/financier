@@ -515,11 +515,11 @@ public class MyPreferences {
             try {
                 return (Boolean) hasSystemFeatureMethod.invoke(pm, feature);
             } catch (Exception e) {
-                Log.w("Financisto", "Some problems executing PackageManager.hasSystemFeature(" + feature + ")", e);
+                Log.w("Financier", "Some problems executing PackageManager.hasSystemFeature(" + feature + ")", e);
                 return false;
             }
         }
-        Log.i("Financisto", "It's an old device - no PackageManager.hasSystemFeature");
+        Log.i("Financier", "It's an old device - no PackageManager.hasSystemFeature");
         return true;
     }
 

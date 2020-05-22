@@ -205,7 +205,7 @@ public class RecurrenceScheduler {
     }
 
     private PendingIntent createPendingIntentForScheduledAlarm(Context context, long transactionId) {
-        Intent intent = new Intent("com.handydev.financisto.SCHEDULED_ALARM");
+        Intent intent = new Intent("com.handydev.financier.SCHEDULED_ALARM");
         intent.setClass(context, ScheduledAlarmReceiver.class);
         intent.putExtra(SCHEDULED_TRANSACTION_ID, transactionId);
         return PendingIntent.getBroadcast(context, (int)transactionId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -274,7 +274,7 @@ public class RecurrenceScheduler {
                 return ri.next();
             }
         } catch (Exception ex) {
-            Log.e("Financisto", "Unable to calculate next date for "+recurrence+" at "+now);
+            Log.e("Financier", "Unable to calculate next date for "+recurrence+" at "+now);
         }
         return null;
 	}

@@ -39,7 +39,7 @@ public class QifImportTask extends ImportExportAsyncTask {
             qifImport.importDatabase();
             return null;
         } catch (Exception e) {
-            Log.e("Financisto", "Qif import error", e);
+            Log.e("Financier", "Qif import error", e);
             throw new ImportExportException(R.string.qif_import_error);
         }
     }

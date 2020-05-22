@@ -25,7 +25,7 @@ public class AccountByPeriodReport extends Report2DChart {
     }
 
     /* (non-Javadoc)
-     * @see com.handydev.financisto.graph.ReportGraphic2D#getFilterName()
+     * @see com.handydev.financier.graph.ReportGraphic2D#getFilterName()
      */
     @Override
     public String getFilterName() {
@@ -44,7 +44,7 @@ public class AccountByPeriodReport extends Report2DChart {
     }
 
     /* (non-Javadoc)
-     * @see com.handydev.financisto.graph.ReportGraphic2D#setFilterIds()
+     * @see com.handydev.financier.graph.ReportGraphic2D#setFilterIds()
      */
     @Override
     public void setFilterIds() {

@@ -56,7 +56,7 @@ public class Dropbox {
                 try {
                     MyPreferences.storeDropboxKeys(context, authToken);
                 } catch (IllegalStateException e) {
-                    Log.i("Financisto", "Error authenticating Dropbox", e);
+                    Log.i("Financier", "Error authenticating Dropbox", e);
                 }
             }
         } finally {
@@ -70,7 +70,7 @@ public class Dropbox {
             try {
                 dropboxClient.auth().tokenRevoke();
             } catch (DbxException e) {
-                Log.e("Financisto", "Unable to unlink Dropbox", e);
+                Log.e("Financier", "Unable to unlink Dropbox", e);
             }
         }
     }
@@ -79,7 +79,7 @@ public class Dropbox {
         String accessToken = MyPreferences.getDropboxAuthToken(context);
         if (accessToken != null) {
             if (dropboxClient == null) {
-                DbxRequestConfig requestConfig = DbxRequestConfig.newBuilder("financisto")
+                DbxRequestConfig requestConfig = DbxRequestConfig.newBuilder("Financier")
                         .withHttpRequestor(new OkHttp3Requestor(OkHttp3Requestor.defaultOkHttpClient()))
                         .build();
                 dropboxClient = new DbxClientV2(requestConfig, accessToken);
@@ -95,13 +95,13 @@ public class Dropbox {
                 InputStream is = new FileInputStream(file);
                 try {
                     FileMetadata fileMetadata = dropboxClient.files().uploadBuilder("/" + file.getName()).withMode(WriteMode.ADD).uploadAndFinish(is);
-                    Log.i("Financisto", "Dropbox: The uploaded file's rev is: " + fileMetadata.getRev());
+                    Log.i("Financier", "Dropbox: The uploaded file's rev is: " + fileMetadata.getRev());
                     return fileMetadata;
                 } finally {
                     IOUtil.closeInput(is);
                 }
             } catch (Exception e) {
-                Log.e("Financisto", "Dropbox: Something wrong", e);
+                Log.e("Financier", "Dropbox: Something wrong", e);
                 throw new ImportExportException(R.string.dropbox_error, e);
             }
         } else {
@@ -128,7 +128,7 @@ public class Dropbox {
                 });
                 return files;
             } catch (Exception e) {
-                Log.e("Financisto", "Dropbox: Something wrong", e);
+                Log.e("Financier", "Dropbox: Something wrong", e);
                 throw new ImportExportException(R.string.dropbox_error, e);
             }
         } else {
@@ -141,7 +141,7 @@ public class Dropbox {
             try {
                 return dropboxClient.files().downloadBuilder("/" + backupFile).start().getInputStream();
             } catch (Exception e) {
-                Log.e("Financisto", "Dropbox: Something wrong", e);
+                Log.e("Financier", "Dropbox: Something wrong", e);
                 throw new ImportExportException(R.string.dropbox_error, e);
             }
         } else {

@@ -22,8 +22,6 @@ import com.handydev.financier.R;
 import com.handydev.financier.db.DatabaseAdapter;
 import com.handydev.financier.utils.MyPreferences;
 
-import org.greenrobot.eventbus.EventBus;
-
 import static com.handydev.financier.export.Export.uploadBackupFileToDropbox;
 import static com.handydev.financier.export.Export.uploadBackupFileToGoogleDrive;
 
@@ -55,7 +53,7 @@ public abstract class ImportExportAsyncTask extends AsyncTask<String, String, Ob
         try {
             return work(context, db, params);
         } catch (Exception ex) {
-            Log.e("Financisto", "Unable to do import/export", ex);
+            Log.e("Financier", "Unable to do import/export", ex);
             return ex;
         } finally {
             db.close();

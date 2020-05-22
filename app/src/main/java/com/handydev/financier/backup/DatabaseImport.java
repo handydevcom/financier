@@ -159,7 +159,7 @@ public class DatabaseImport extends FullDatabaseImport {
         // remove system entities
         Integer id = values.getAsInteger("_id");
         if (id != null && id <= 0) {
-            Log.w("Financisto", "Removing system entity: " + values);
+            Log.w("Financier", "Removing system entity: " + values);
             values.clear();
             return;
         }
@@ -201,7 +201,7 @@ public class DatabaseImport extends FullDatabaseImport {
         for (String key : keys) {
             if (!possibleKeys.contains(key)) {
                 values.remove(key);
-                Log.i("Financisto", "Removing "+key+" from backup values for "+tableName);
+                Log.i("Financier", "Removing "+key+" from backup values for "+tableName);
             }
         }
     }

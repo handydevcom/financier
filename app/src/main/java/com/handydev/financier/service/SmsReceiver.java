@@ -9,12 +9,12 @@ import android.util.Log;
 import static java.lang.String.format;
 import java.util.Set;
 import com.handydev.financier.db.DatabaseAdapter;
-import static com.handydev.financier.service.FinancistoService.ACTION_NEW_TRANSACTION_SMS;
+import static com.handydev.financier.service.FinancierService.ACTION_NEW_TRANSACTION_SMS;
 
 public class SmsReceiver extends BroadcastReceiver {
 
     public static final String PDUS_NAME = "pdus";
-    public static final String FTAG = "Financisto";
+    public static final String FTAG = "Financier";
     public static final String SMS_RECEIVED_ACTION = "android.provider.Telephony.SMS_RECEIVED";
     public static final String SMS_TRANSACTION_NUMBER = "SMS_TRANSACTION_NUMBER";
     public static final String SMS_TRANSACTION_BODY = "SMS_TRANSACTION_BODY";
@@ -48,10 +48,10 @@ public class SmsReceiver extends BroadcastReceiver {
             if (!fullSmsBody.isEmpty()) {
                 Log.d(FTAG, format("%s sms from %s: `%s`", msg.getTimestampMillis(), addr, fullSmsBody));
 
-                Intent serviceIntent = new Intent(ACTION_NEW_TRANSACTION_SMS, null, context, FinancistoService.class);
+                Intent serviceIntent = new Intent(ACTION_NEW_TRANSACTION_SMS, null, context, FinancierService.class);
                 serviceIntent.putExtra(SMS_TRANSACTION_NUMBER, addr);
                 serviceIntent.putExtra(SMS_TRANSACTION_BODY, fullSmsBody);
-                FinancistoService.enqueueWork(context, serviceIntent);
+                FinancierService.enqueueWork(context, serviceIntent);
             }
                 // Display SMS message
                 //                Toast.makeText(context, String.format("%s:%s", addr, body), Toast.LENGTH_SHORT).show();

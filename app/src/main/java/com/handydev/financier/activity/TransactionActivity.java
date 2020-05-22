@@ -492,10 +492,10 @@ public class TransactionActivity extends AbstractTransactionActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        Log.d("Financisto", "onSaveInstanceState");
+        Log.d("Financier", "onSaveInstanceState");
         try {
             if (categorySelector.isSplitCategorySelected()) {
-                Log.d("Financisto", "Saving splits...");
+                Log.d("Financier", "Saving splits...");
                 ActivityState state = new ActivityState();
                 state.categoryId = categorySelector.getSelectedCategoryId();
                 state.idSequence = idSequence;
@@ -507,14 +507,14 @@ public class TransactionActivity extends AbstractTransactionActivity {
                 }
             }
         } catch (IOException e) {
-            Log.e("Financisto", "Unable to save state", e);
+            Log.e("Financier", "Unable to save state", e);
         }
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        Log.d("Financisto", "onRestoreInstanceState");
+        Log.d("Financier", "onRestoreInstanceState");
         byte[] bytes = savedInstanceState.getByteArray(ACTIVITY_STATE);
         if (bytes != null) {
             try {
@@ -522,7 +522,7 @@ public class TransactionActivity extends AbstractTransactionActivity {
                     ObjectInputStream in = new ObjectInputStream(s);
                     ActivityState state = (ActivityState) in.readObject();
                     if (state.categoryId == Category.SPLIT_CATEGORY_ID) {
-                        Log.d("Financisto", "Restoring splits...");
+                        Log.d("Financier", "Restoring splits...");
                         viewToSplitMap.clear();
                         splitsLayout.removeAllViews();
                         idSequence = state.idSequence;
@@ -533,7 +533,7 @@ public class TransactionActivity extends AbstractTransactionActivity {
                     }
                 }
             } catch (Exception e) {
-                Log.e("Financisto", "Unable to restore state", e);
+                Log.e("Financier", "Unable to restore state", e);
             }
         }
     }

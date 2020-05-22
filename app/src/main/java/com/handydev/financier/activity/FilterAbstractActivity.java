@@ -227,7 +227,7 @@ public abstract class FilterAbstractActivity extends AbstractActivity implements
         Criteria c = filter.get(CATEGORY_LEFT);
         if (c != null) {
             if (c.operation != BTW) { // todo.mb: only for backward compatibility, just remove in next releases
-                Log.i("Financisto", "Found category filter with deprecated op: " + c.operation);
+                Log.i("Financier", "Found category filter with deprecated op: " + c.operation);
                 filter.remove(CATEGORY_LEFT);
                 return;
             }

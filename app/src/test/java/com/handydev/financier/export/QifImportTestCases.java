@@ -210,7 +210,7 @@ public class QifImportTestCases extends AbstractDbTest {
         FileWriter w = new FileWriter(tmp);
         w.write(qif);
         w.close();
-        Log.d("Financisto", "Created a temporary backup file: "+tmp.getAbsolutePath());
+        Log.d("Financier", "Created a temporary backup file: "+tmp.getAbsolutePath());
         QifImportOptions options = new QifImportOptions(tmp.getAbsolutePath(), EU_FORMAT, Currency.EMPTY);
         qifImport = new QifImport(getContext(), db, options);
         qifImport.importDatabase();

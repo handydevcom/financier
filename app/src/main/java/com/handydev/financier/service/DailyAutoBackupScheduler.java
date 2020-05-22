@@ -51,11 +51,11 @@ public class DailyAutoBackupScheduler {
         PendingIntent pendingIntent = createPendingIntent(context);
         Date scheduledTime = getScheduledTime();
         service.set(AlarmManager.RTC_WAKEUP, scheduledTime.getTime(), pendingIntent);
-        Log.i("Financisto", "Next auto-backup scheduled at "+scheduledTime);
+        Log.i("Financier", "Next auto-backup scheduled at "+scheduledTime);
     }
 
     private PendingIntent createPendingIntent(Context context) {
-        Intent intent = new Intent("com.handydev.financisto.SCHEDULED_BACKUP");
+        Intent intent = new Intent("com.handydev.financier.SCHEDULED_BACKUP");
         intent.setClass(context, ScheduledAlarmReceiver.class);
         return PendingIntent.getBroadcast(context, -100, intent, PendingIntent.FLAG_CANCEL_CURRENT);
     }

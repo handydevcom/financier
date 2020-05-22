@@ -36,7 +36,7 @@ import com.handydev.financier.utils.MyPreferences;
 
 public abstract class Export {
 
-    public static final File DEFAULT_EXPORT_PATH = Environment.getExternalStoragePublicDirectory("financisto");
+    public static final File DEFAULT_EXPORT_PATH = Environment.getExternalStoragePublicDirectory("financier");
     public static final String BACKUP_MIME_TYPE = "application/x-gzip";
 
     private final Context context;

@@ -127,7 +127,7 @@ public class CurrencySelector {
                 r.close();
             }
         } catch (IOException e) {
-            Log.e("Financisto", "IO error while reading currencies", e);
+            Log.e("Financier", "IO error while reading currencies", e);
             Toast.makeText(context, e.getClass() + ":" + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         return Collections.emptyList();

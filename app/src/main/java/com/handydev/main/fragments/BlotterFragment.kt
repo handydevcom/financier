@@ -38,13 +38,13 @@ import com.handydev.main.protocol.IOTransactionDeleteListener
 
 open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactionDeleteListener {
     companion object {
-        val SAVE_FILTER = "saveFilter"
-        private val NEW_TRANSACTION_REQUEST = 1
-        private val NEW_TRANSFER_REQUEST = 3
-        private val NEW_TRANSACTION_FROM_TEMPLATE_REQUEST = 5
-        private val MONTHLY_VIEW_REQUEST = 6
-        private val BILL_PREVIEW_REQUEST = 7
-        protected val FILTER_REQUEST = 6
+        const val SAVE_FILTER = "saveFilter"
+        private const val NEW_TRANSACTION_REQUEST = 1
+        private const val NEW_TRANSFER_REQUEST = 3
+        private const val NEW_TRANSACTION_FROM_TEMPLATE_REQUEST = 5
+        private const val MONTHLY_VIEW_REQUEST = 6
+        private const val BILL_PREVIEW_REQUEST = 7
+        protected const val FILTER_REQUEST = 6
     }
 
     private val MENU_DUPLICATE = MENU_ADD + 1
@@ -505,10 +505,16 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         }
         val title = blotterFilter.title
         if (title != null) {
-            //setTitle(getString(R.string.blotter) + " : " + title)
+            //setScreenTitle(getString(R.string.blotter) + " : " + title)
         }
         updateFilterImage()
     }
+
+    /*private fun setScreenTitle(title: String) {
+        val container = view?.findViewById<LinearLayout>(R.id.title_view)
+        container?.visibility = if(title.isEmpty()) View.GONE else View.VISIBLE
+        view?.findViewById<TextView>(R.id.title_view_text)?.text = title
+    }*/
 
     private fun updateFilterImage() {
         if(activity == null) {

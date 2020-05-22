@@ -80,7 +80,7 @@ public class MassOpActivity extends BlotterActivity {
 				public void onClick(DialogInterface arg0, int arg1) {
 					BlotterListAdapter adapter = ((BlotterListAdapter)getListAdapter()); 
 					long[] ids = adapter.getAllCheckedIds();
-					Log.d("Financisto", "Will apply "+op+" on "+Arrays.toString(ids));
+					Log.d("Financier", "Will apply "+op+" on "+Arrays.toString(ids));
 					op.apply(db, ids);
 					adapter.uncheckAll();
 					adapter.changeCursor(createCursor());

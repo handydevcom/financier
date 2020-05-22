@@ -12,7 +12,7 @@ package com.handydev.financier.db;
 
 public interface Database {
 	
-	String DATABASE_NAME = "financisto.db";
+	String DATABASE_NAME = "financier.db";
 
 	int DATABASE_VERSION = 217;
 

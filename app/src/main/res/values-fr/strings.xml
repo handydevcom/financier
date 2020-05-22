@@ -466,7 +466,7 @@
   <string name="expired">(expiré)</string>
   <string name="pending">(en cours)</string>
   <string name="system_attribute_delete_after_expired">Supprimer après expiration</string>
-  <string name="no_transaction_found">Aucune opération trouvée, veuillez redémarrer Financisto..</string>
+  <string name="no_transaction_found">Aucune opération trouvée, veuillez redémarrer Financier…</string>
   <string name="include_credit">Inclure les crédits</string>
   <string name="include_credit_summary">Inclure les crédits (revenus ou remboursements) dans le budget total</string>
   <string name="enable_widget">Activer le widget</string>

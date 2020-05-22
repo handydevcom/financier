@@ -39,7 +39,7 @@ import static com.handydev.financier.db.DatabaseHelper.SmsTemplateColumns._id;
  */
 public class SmsTemplateListAsyncAdapter extends AsyncAdapter<SmsTemplate, SmsTemplateListAsyncAdapter.LocalViewHolder> 
         implements ItemTouchHelperAdapter {
-    public static final String TAG = "Financisto." + SmsTemplateListAsyncAdapter.class.getSimpleName();
+    public static final String TAG = "Financier." + SmsTemplateListAsyncAdapter.class.getSimpleName();
 
     static final int MENU_EDIT = Menu.FIRST + 1;
     static final int MENU_DUPLICATE = Menu.FIRST + 2;

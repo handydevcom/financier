@@ -80,7 +80,7 @@
   <string name="transaction">Transacción</string>
   <string name="transaction_title">Nueva Transacción</string>
   <string name="transfer_title">Nuevo Traspaso</string>
-  <string name="about">Sobre Financisto</string>
+  <string name="about">Sobre Financier</string>
   <string name="about_copyright2">Todos los derechos reservados</string>
   <string name="menu">Menú</string>
   <string name="location">Ubicación</string>
@@ -467,7 +467,7 @@
   <string name="expired">(vencido)</string>
   <string name="pending">(pendiente)</string>
   <string name="system_attribute_delete_after_expired">Eliminar al vencimiento</string>
-  <string name="no_transaction_found">Ninguna transacción localizada. Por favor, reinicie Financisto...</string>
+  <string name="no_transaction_found">Ninguna transacción localizada. Por favor, reinicie Financier...</string>
   <string name="include_credit">Incluir Abonos</string>
   <string name="include_credit_summary">Incluye los abonos (ingresos o retornos) en el cómputo de la dotación presupuestaria</string>
   <string name="enable_widget">Activar Widget</string>
@@ -616,9 +616,9 @@
   <string name="quick_menu_transaction_enabled_summary">Activar menú de un toque en Registros</string>
   <string name="dropbox">Dropbox</string>
   <string name="dropbox_authorize">Autorizar</string>
-  <string name="dropbox_authorize_summary">Permitir Financisto cargar archivos en su Dropbox</string>
+  <string name="dropbox_authorize_summary">Permitir Financier cargar archivos en su Dropbox</string>
   <string name="dropbox_unlink">Desvincular</string>
-  <string name="dropbox_unlink_summary">Impedir Financisto cargar archivos en su Dropbox</string>
+  <string name="dropbox_unlink_summary">Impedir Financier cargar archivos en su Dropbox</string>
   <string name="dropbox_upload_backup">Cargar backups</string>
   <string name="dropbox_upload_backup_summary">Cargar backup de base de datos en Dropbox</string>
   <string name="dropbox_upload_autobackup">Cargar backups automáticas</string>

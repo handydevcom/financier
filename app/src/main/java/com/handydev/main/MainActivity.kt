@@ -20,8 +20,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import com.handydev.financier.R
 import com.handydev.financier.databinding.MainBinding
 import com.handydev.financier.db.DatabaseAdapter
@@ -121,7 +119,7 @@ class MainActivity : FragmentActivity() {
             db.close()
         }
         val t4 = System.currentTimeMillis()
-        Log.d("Financisto", "Load time = " + (t4 - t0) + "ms = " + (t2 - t1) + "ms+" + (t3 - t2) + "ms+" + (t4 - t3) + "ms")
+        Log.d("Financier", "Load time = " + (t4 - t0) + "ms = " + (t2 - t1) + "ms+" + (t3 - t2) + "ms+" + (t4 - t3) + "ms")
     }
 
     private fun updateFieldInTable(db: SQLiteDatabase, table: String, id: Long, field: String, value: String) {

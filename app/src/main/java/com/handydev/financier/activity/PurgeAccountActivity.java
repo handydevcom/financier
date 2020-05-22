@@ -180,7 +180,7 @@ public class PurgeAccountActivity extends AbstractActivity {
                 try {
                     export.export();
                 } catch (Exception e) {
-                    Log.e("Financisto", "Unexpected error", e);
+                    Log.e("Financier", "Unexpected error", e);
                     return e;
                 }
             }

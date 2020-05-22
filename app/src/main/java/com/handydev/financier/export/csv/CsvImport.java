@@ -52,23 +52,23 @@ public class CsvImport {
         long t0 = System.currentTimeMillis();
         List<CsvTransaction> transactions = parseTransactions();
         long t1 = System.currentTimeMillis();
-        Log.i("Financisto", "Parsing transactions =" + (t1 - t0) + "ms");
+        Log.i("Financier", "Parsing transactions =" + (t1 - t0) + "ms");
         Map<String, Category> categories = collectAndInsertCategories(transactions);
         long t2 = System.currentTimeMillis();
-        Log.i("Financisto", "Collecting categories =" + (t2 - t1) + "ms");
+        Log.i("Financier", "Collecting categories =" + (t2 - t1) + "ms");
         Map<String, Project> projects = collectAndInsertProjects(transactions);
         long t3 = System.currentTimeMillis();
-        Log.i("Financisto", "Collecting projects =" + (t3 - t2) + "ms");
+        Log.i("Financier", "Collecting projects =" + (t3 - t2) + "ms");
         Map<String, Payee> payees = collectAndInsertPayees(transactions);
         long t4 = System.currentTimeMillis();
-        Log.i("Financisto", "Collecting payees =" + (t4 - t3) + "ms");
+        Log.i("Financier", "Collecting payees =" + (t4 - t3) + "ms");
         Map<String, Currency> currencies = collectAndInsertCurrencies(transactions);
         long t5 = System.currentTimeMillis();
-        Log.i("Financisto", "Collecting currencies =" + (t5 - t4) + "ms");
+        Log.i("Financier", "Collecting currencies =" + (t5 - t4) + "ms");
         importTransactions(transactions, currencies, categories, projects, payees);
         long t6 = System.currentTimeMillis();
-        Log.i("Financisto", "Inserting transactions =" + (t6 - t5) + "ms");
-        Log.i("Financisto", "Overall csv import =" + ((t6 - t0) / 1000) + "s");
+        Log.i("Financier", "Inserting transactions =" + (t6 - t5) + "ms");
+        Log.i("Financier", "Overall csv import =" + ((t6 - t0) / 1000) + "s");
         return options.filename + " imported!";
     }
 
@@ -151,13 +151,13 @@ public class CsvImport {
                 Transaction t = transaction.createTransaction(currencies, categories, projects, payees);
                 db.insertOrUpdateInTransaction(t, emptyAttributes);
                 if (++count % 100 == 0) {
-                    Log.i("Financisto", "Inserted " + count + " out of " + totalCount);
+                    Log.i("Financier", "Inserted " + count + " out of " + totalCount);
                     if (progressListener != null) {
                         progressListener.onProgress((int) (100f * count / totalCount));
                     }
                 }
             }
-            Log.i("Financisto", "Total transactions inserted: " + count);
+            Log.i("Financier", "Total transactions inserted: " + count);
             database.setTransactionSuccessful();
         } finally {
             database.endTransaction();

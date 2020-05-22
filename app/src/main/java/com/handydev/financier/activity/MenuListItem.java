@@ -205,7 +205,7 @@ public enum MenuListItem implements SummaryEntityEnum {
         public void call(Activity activity) {
             try {
                 Intent browserIntent = new Intent("android.intent.action.VIEW",
-                        Uri.parse("market://search?q=pname:com.handydev.financisto.support"));
+                        Uri.parse("market://search?q=pname:com.handydev.financier.support"));
                 activity.startActivity(browserIntent);
             } catch (Exception ex) {
                 //eventually market is not available

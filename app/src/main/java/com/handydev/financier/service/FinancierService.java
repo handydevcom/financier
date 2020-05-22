@@ -41,16 +41,16 @@ import com.handydev.financier.utils.MyPreferences;
 import static com.handydev.financier.utils.MyPreferences.getSmsTransactionStatus;
 import static com.handydev.financier.utils.MyPreferences.shouldSaveSmsToTransactionNote;
 
-public class FinancistoService extends JobIntentService {
+public class FinancierService extends JobIntentService {
 
-    private static final String TAG = "FinancistoService";
+    private static final String TAG = "FinancierService";
     public static final int JOB_ID = 1000;
 
-    public static final String ACTION_SCHEDULE_ALL = "com.handydev.financisto.SCHEDULE_ALL";
-    public static final String ACTION_SCHEDULE_ONE = "com.handydev.financisto.SCHEDULE_ONE";
-    public static final String ACTION_SCHEDULE_AUTO_BACKUP = "com.handydev.financisto.ACTION_SCHEDULE_AUTO_BACKUP";
-    public static final String ACTION_AUTO_BACKUP = "com.handydev.financisto.ACTION_AUTO_BACKUP";
-    public static final String ACTION_NEW_TRANSACTION_SMS = "com.handydev.financisto.NEW_TRANSACTON_SMS";
+    public static final String ACTION_SCHEDULE_ALL = "com.handydev.financier.SCHEDULE_ALL";
+    public static final String ACTION_SCHEDULE_ONE = "com.handydev.financier.SCHEDULE_ONE";
+    public static final String ACTION_SCHEDULE_AUTO_BACKUP = "com.handydev.financier.ACTION_SCHEDULE_AUTO_BACKUP";
+    public static final String ACTION_AUTO_BACKUP = "com.handydev.financier.ACTION_AUTO_BACKUP";
+    public static final String ACTION_NEW_TRANSACTION_SMS = "com.handydev.financier.NEW_TRANSACTON_SMS";
 
     private static final int RESTORED_NOTIFICATION_ID = 0;
 
@@ -59,7 +59,7 @@ public class FinancistoService extends JobIntentService {
     private SmsTransactionProcessor smsProcessor;
 
     public static void enqueueWork(Context context, Intent work) {
-        enqueueWork(context, FinancistoService.class, JOB_ID, work);
+        enqueueWork(context, FinancierService.class, JOB_ID, work);
     }
 
     @Override
@@ -116,7 +116,7 @@ public class FinancistoService extends JobIntentService {
                     notifyUser(notification, (int) t.id);
                     AccountWidget.updateWidgets(this);
                 } else {
-                    Log.e("Financisto", "Transaction info does not exist for "+t.id);
+                    Log.e("Financier", "Transaction info does not exist for "+t.id);
                 }
             }
         }
