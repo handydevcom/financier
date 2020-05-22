@@ -1,6 +1,6 @@
 package com.handydev.financier.export.drive;
 
-public class DoDriveRestore {
+/*public class DoDriveRestore {
 
     public final DriveFileInfo selectedDriveFile;
 
@@ -8,4 +8,4 @@ public class DoDriveRestore {
         this.selectedDriveFile = selectedDriveFile;
     }
 
-}
+}*/

@@ -11,7 +11,7 @@ import android.view.View
 import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.ListFragment
-import com.google.android.gms.common.GooglePlayServicesUtil
+//import com.google.android.gms.common.GooglePlayServicesUtil
 import com.handydev.financier.R
 import com.handydev.financier.activity.MenuListItem
 import com.handydev.financier.adapter.SummaryEntityListAdapter
@@ -175,7 +175,7 @@ class MenuListFragment: ListFragment() {
     // google drive
 
     // google drive
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    /*@Subscribe(threadMode = ThreadMode.MAIN)
     fun doGoogleDriveBackup(e: StartDriveBackup?) {
         if(activity == null) {
             return
@@ -191,9 +191,9 @@ class MenuListFragment: ListFragment() {
         }
         progressDialog = ProgressDialog.show(activity!!, null, getString(R.string.google_drive_loading_files), true)
         bus!!.post(DoDriveListFiles())
-    }
+    }*/
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    /*@Subscribe(threadMode = ThreadMode.MAIN)
     fun onDriveList(event: DriveFileList) {
         if(activity == null) {
             return
@@ -224,9 +224,9 @@ class MenuListFragment: ListFragment() {
             names[i] = files[i].title
         }
         return names
-    }
+    }*/
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    /*@Subscribe(threadMode = ThreadMode.MAIN)
     fun onDriveConnectionFailed(event: DriveConnectionFailed) {
         if(activity == null) {
             return
@@ -243,9 +243,9 @@ class MenuListFragment: ListFragment() {
         } else {
             GooglePlayServicesUtil.getErrorDialog(connectionResult.errorCode, activity!!, 0).show()
         }
-    }
+    }*/
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    /*@Subscribe(threadMode = ThreadMode.MAIN)
     fun onDriveBackupFailed(event: DriveBackupFailure) {
         if(activity == null) {
             return
@@ -262,9 +262,9 @@ class MenuListFragment: ListFragment() {
         } else {
             GooglePlayServicesUtil.getErrorDialog(status.statusCode, activity!!, 0).show()
         }
-    }
+    }*/
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    /*@Subscribe(threadMode = ThreadMode.MAIN)
     fun onDriveBackupSuccess(event: DriveBackupSuccess) {
         dismissProgressDialog()
         if(activity == null) {
@@ -289,7 +289,7 @@ class MenuListFragment: ListFragment() {
             return
         }
         Toast.makeText(activity!!, getString(R.string.google_drive_connection_failed, event.message), Toast.LENGTH_LONG).show()
-    }
+    }*/
 
     //@OnActivityResult(RESOLVE_CONNECTION_REQUEST_CODE)
     fun onConnectionRequest(resultCode: Int) {

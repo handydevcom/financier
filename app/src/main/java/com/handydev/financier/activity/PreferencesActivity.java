@@ -26,7 +26,7 @@ import android.preference.PreferenceScreen;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.google.android.gms.common.AccountPicker;
+//import com.google.android.gms.common.AccountPicker;
 
 import com.handydev.financier.R;
 import com.handydev.financier.dialog.FolderBrowser;
@@ -107,11 +107,11 @@ public class PreferencesActivity extends PreferenceActivity {
                 return ExchangeRateProviderFactory.openexchangerates.name().equals(provider);
             }
         });
-        Preference pDriveAccount = preferenceScreen.findPreference("google_drive_backup_account");
+        /*Preference pDriveAccount = preferenceScreen.findPreference("google_drive_backup_account");
         pDriveAccount.setOnPreferenceClickListener(arg0 -> {
             chooseAccount();
             return true;
-        });
+        });*/
         Preference useFingerprint = preferenceScreen.findPreference("pin_protection_use_fingerprint");
         if (fingerprintUnavailable(this)) {
             useFingerprint.setSummary(getString(R.string.fingerprint_unavailable, reasonWhyFingerprintUnavailable(this)));
@@ -123,7 +123,7 @@ public class PreferencesActivity extends PreferenceActivity {
         selectAccount();
     }
 
-    private void chooseAccount() {
+    /*private void chooseAccount() {
         try {
             if (isRequestingPermissions(this, GET_ACCOUNTS, "android.permission.USE_CREDENTIALS")) {
                 return;
@@ -135,7 +135,7 @@ public class PreferencesActivity extends PreferenceActivity {
         } catch (ActivityNotFoundException e) {
             Toast.makeText(this, R.string.google_drive_account_select_error, Toast.LENGTH_LONG).show();
         }
-    }
+    }*/
 
     private Account getSelectedAccount() {
         String accountName = MyPreferences.getGoogleDriveAccount(this);

@@ -21,8 +21,8 @@ android {
         applicationId "com.handydev.financier"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 200
-        versionName "2.0.0"
+        versionCode 201
+        versionName "2.0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         javaCompileOptions {
@@ -96,9 +96,9 @@ dependencies {
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
-    implementation "com.google.android.gms:play-services-base:11.0.2"
-    implementation "com.google.android.gms:play-services-drive:11.0.2"
-    implementation "com.google.android.gms:play-services-plus:11.0.2"
+    //implementation "com.google.android.gms:play-services-base:11.0.2"
+    //implementation "com.google.android.gms:play-services-drive:11.0.2"
+    //implementation "com.google.android.gms:play-services-plus:11.0.2"
 
     kapt "org.androidannotations:androidannotations:$AAVersion"
     annotationProcessor "org.androidannotations:androidannotations:$AAVersion"
