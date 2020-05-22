@@ -467,7 +467,7 @@
   <string name="expired">(lejárt)</string>
   <string name="pending">(függő)</string>
   <string name="system_attribute_delete_after_expired">Lejárat után törölje</string>
-  <string name="no_transaction_found">Nem található tranzakció, kérjük, indítsa újra a Financistot...</string>
+  <string name="no_transaction_found">Nem található tranzakció, kérjük, indítsa újra a Financier…</string>
   <string name="include_credit">Hitelekkel együtt</string>
   <string name="include_credit_summary">Számítsa bele a hiteleket (jövedelmeket vagy hozamokat) a költségvetés összesenjébe</string>
   <string name="enable_widget">Widget engedélyezése</string>
@@ -607,8 +607,8 @@
   <string name="database_backup">Az adatbázis biztonsági mentése</string>
   <string name="database_backup_folder">Biztonsági mentés mappája</string>
   <string name="database_backup_folder_summary">A jelenlegi adatbázis biztonsági mentés mappája: %s</string>
-  <string name="backup_database_to">Biztonsági mentés küldése...</string>
-  <string name="backup_database_to_title">Az adatbázis biztonsági mentésének küldése...</string>
+  <string name="backup_database_to">Biztonsági mentés küldése…</string>
+  <string name="backup_database_to_title">Az adatbázis biztonsági mentésének küldése…</string>
   <string name="license">Licensz</string>
   <string name="quick_menu_account_enabled">Számlák gyorsmenüje</string>
   <string name="quick_menu_account_enabled_summary">Egy tappintásos menü engedélyezése a \'Számlák\' fül alatt</string>
@@ -616,14 +616,14 @@
   <string name="quick_menu_transaction_enabled_summary">Egy tappintásos menü engedélyezése a \'Napló\' fül alatt</string>
   <string name="dropbox">Dropbox</string>
   <string name="dropbox_authorize">Engedélyezés</string>
-  <string name="dropbox_authorize_summary">Engedje a Financistonak, hogy fájlokat töltsön fel a Dropboxára</string>
+  <string name="dropbox_authorize_summary">Engedje a Financiernak, hogy fájlokat töltsön fel a Dropboxára</string>
   <string name="dropbox_unlink">Engedély megvonása</string>
-  <string name="dropbox_unlink_summary">Ne engedélyezze a Financistonak, hogy fájlokat töltsön fel a Dropboxára</string>
+  <string name="dropbox_unlink_summary">Ne engedélyezze a Financiernak, hogy fájlokat töltsön fel a Dropboxára</string>
   <string name="dropbox_upload_backup">Biztonsági mentések feltöltése</string>
   <string name="dropbox_upload_backup_summary">Az adatbázis biztonsági mentések feltöltése Dropboxra</string>
   <string name="dropbox_upload_autobackup">Automatikus biztonsági mentések feltöltése</string>
   <string name="dropbox_upload_autobackup_summary">Az adatbázis automatikus biztonsági mentéseinek feltöltése Dropboxra</string>
-  <string name="dropbox_uploading_file">Fájl feltöltése Dropboxra...</string>
+  <string name="dropbox_uploading_file">Fájl feltöltése Dropboxra…</string>
   <string name="exchange_rates">Átváltási árfolyamok</string>
   <string name="no_exchange_rates">Nincs még átváltási árfolyam megadva</string>
   <string name="exchange_rate">Átváltási árfolyam</string>

@@ -10,7 +10,7 @@
 	  Denis Solonenko - initial API and implementation
 -->
 <resources>
-	<string name="app_name" translatable="false">Financisto</string>
+	<string name="app_name" translatable="false">Financier</string>
 	<string name="app_description">Open-source personal finance tracker</string>
 	<string name="about_copyright1">Released under GNU GPL v2</string>
 	<color name="scheduled">#7cc623</color>
@@ -155,9 +155,9 @@
 		<item>3</item>
 		<item>6</item>
 	</string-array>
-	<string name="widget_2x1" translatable="false">Financisto 2x1</string>
-    <string name="widget_3x1" translatable="false">Financisto 3x1</string>
-    <string name="widget_4x1" translatable="false">Financisto 4x1</string>
+	<string name="widget_2x1" translatable="false">Financier 2x1</string>
+    <string name="widget_3x1" translatable="false">Financier 3x1</string>
+    <string name="widget_4x1" translatable="false">Financier 4x1</string>
 	<string name="currency_symbol_hint" translatable="false">$ £ ¥ π</string>
    	<string name="card_issuer_visa" translatable="false">Visa</string>
 	<string name="card_issuer_electron" translatable="false">Visa Electron</string>

@@ -10,7 +10,7 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="ru.orangesoftware.financisto"
+    package="com.handydev.financier"
     android:installLocation="internalOnly">
 
     <supports-screens
@@ -47,16 +47,16 @@
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
 
     <application
-        android:name=".app.FinancistoApp_"
+        android:name="com.handydev.financier.app.FinancierApp_"
         android:allowBackup="true"
         android:description="@string/app_description"
         android:hardwareAccelerated="true"
-        android:icon="@drawable/icon"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
 
         <receiver
-            android:name=".activity.AccountWidget"
+            android:name="com.handydev.financier.activity.AccountWidget"
             android:label="@string/widget_2x1">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -68,7 +68,7 @@
         </receiver>
 
         <receiver
-            android:name=".activity.AccountWidget3x1"
+            android:name="com.handydev.financier.activity.AccountWidget3x1"
             android:label="@string/widget_3x1">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -80,7 +80,7 @@
         </receiver>
 
         <receiver
-            android:name=".activity.AccountWidget4x1"
+            android:name="com.handydev.financier.activity.AccountWidget4x1"
             android:label="@string/widget_4x1">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -91,7 +91,7 @@
                 android:resource="@xml/widget_4x1" />
         </receiver>
 
-        <receiver android:name=".activity.ScheduledAlarmReceiver">
+        <receiver android:name="com.handydev.financier.activity.ScheduledAlarmReceiver">
             <intent-filter>
                 <action android:name=".SCHEDULED_ALARM" />
                 <action android:name=".SCHEDULED_BACKUP" />
@@ -99,17 +99,17 @@
             </intent-filter>
         </receiver>
 
-        <receiver android:name=".activity.PackageReplaceReceiver">
+        <receiver android:name="com.handydev.financier.activity.PackageReplaceReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REPLACED" />
                 <data
-                    android:path="ru.orangesoftware.financisto"
+                    android:path="com.handydev.financier"
                     android:scheme="package" />
             </intent-filter>
         </receiver>
 
         <receiver
-            android:name=".service.SmsReceiver"
+            android:name="com.handydev.financier.service.SmsReceiver"
             android:exported="true"
             android:permission="android.permission.BROADCAST_SMS">
             <intent-filter android:priority="1000"> <!-- https://stackoverflow.com/a/23732410/365675 -->
@@ -118,7 +118,7 @@
         </receiver>
 
         <service
-            android:name=".service.FinancistoService"
+            android:name="com.handydev.financier.service.FinancierService"
             android:exported="true"
             android:enabled="true"
             android:permission="android.permission.BIND_JOB_SERVICE">
@@ -143,10 +143,9 @@
         </provider>
 
         <activity
-            android:name=".activity.MainActivity"
+            android:name="com.handydev.main.MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:label="@string/app_name"
-            android:taskAffinity=".MainActivity">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -154,11 +153,10 @@
         </activity>
 
         <activity
-            android:name=".activity.TransactionActivity"
+            android:name="com.handydev.financier.activity.TransactionActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:icon="@drawable/icon_transaction"
             android:label="@string/transaction"
-            android:taskAffinity=".TransactionActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -169,11 +167,10 @@
         </activity>
 
         <activity
-            android:name=".activity.TransferActivity"
+            android:name="com.handydev.financier.activity.TransferActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:icon="@drawable/icon_transfer"
             android:label="@string/transfer"
-            android:taskAffinity=".TransferActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -184,278 +181,262 @@
         </activity>
 
         <activity
-            android:name=".activity.PinActivity"
+            android:name="com.handydev.financier.activity.PinActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop" />
 
         <activity
-            android:name=".activity.BlotterActivity"
+            android:name="com.handydev.financier.activity.BlotterActivity"
             android:label="@string/blotter" />
 
         <activity
-            android:name=".activity.PlannerActivity"
+            android:name="com.handydev.financier.activity.PlannerActivity"
             android:label="@string/planner" />
 
         <activity
-            android:name=".activity.MassOpActivity"
+            android:name="com.handydev.financier.activity.MassOpActivity"
             android:label="@string/mass_operations" />
 
         <activity
-            android:name=".activity.BudgetBlotterActivity"
+            android:name="com.handydev.financier.activity.BudgetBlotterActivity"
             android:label="@string/budget" />
 
         <activity
-            android:name=".activity.SplitsBlotterActivity"
+            android:name="com.handydev.financier.activity.SplitsBlotterActivity"
             android:label="@string/report" />
 
         <activity
-            android:name=".activity.RecurActivity"
+            android:name="com.handydev.financier.activity.RecurActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:icon="@drawable/icon_transfer"
             android:label="@string/recur"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
-            android:name=".activity.RecurrenceActivity"
+            android:name="com.handydev.financier.activity.RecurrenceActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/recur"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
-            android:name=".activity.NotificationOptionsActivity"
+            android:name="com.handydev.financier.activity.NotificationOptionsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/notification"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
-            android:name=".activity.ReportsListActivity"
-            android:label="@string/reports" />
-
-        <activity
-            android:name=".activity.MenuListActivity_"
-            android:label="@string/menu" />
-
-        <activity
-            android:name=".activity.CurrencyListActivity"
+            android:name="com.handydev.financier.activity.CurrencyListActivity"
             android:label="@string/currencies" />
 
         <activity
-            android:name=".activity.ExchangeRatesListActivity"
+            android:name="com.handydev.financier.activity.ExchangeRatesListActivity"
             android:label="@string/exchange_rates" />
 
         <activity
-            android:name=".activity.ExchangeRateActivity"
+            android:name="com.handydev.financier.activity.ExchangeRateActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/exchange_rate" />
 
         <activity
-            android:name=".activity.AccountListActivity"
-            android:label="@string/accounts" />
-
-        <activity
-            android:name=".activity.CategoryListActivity2"
+            android:name="com.handydev.financier.activity.CategoryListActivity2"
             android:label="@string/categories" />
 
         <activity
-            android:name=".activity.AttributeListActivity"
+            android:name="com.handydev.financier.activity.AttributeListActivity"
             android:label="@string/attributes" />
 
         <activity
-            android:name=".activity.AccountActivity"
+            android:name="com.handydev.financier.activity.AccountActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/account" />
 
         <activity
-            android:name=".activity.ReportActivity"
+            android:name="com.handydev.financier.activity.ReportActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/report" />
 
         <activity
-            android:name=".activity.CurrencyActivity"
+            android:name="com.handydev.financier.activity.CurrencyActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/currency" />
 
         <activity
-            android:name=".activity.AttributeActivity"
+            android:name="com.handydev.financier.activity.AttributeActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/attribute"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
-            android:name=".activity.SmsTemplateActivity"
+            android:name="com.handydev.financier.activity.SmsTemplateActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/sms_tpl"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
-            android:name=".activity.SmsDragListActivity"
+            android:name="com.handydev.financier.activity.SmsDragListActivity"
             android:label="@string/sms_templates"
             android:theme="@style/Theme.AppCompat"
         />
 
         <activity
-            android:name=".activity.DateFilterActivity"
+            android:name="com.handydev.financier.activity.DateFilterActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/filter"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
-            android:name=".activity.NoteFilterActivity"
+            android:name="com.handydev.financier.activity.NoteFilterActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/filter"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
-            android:name=".activity.BlotterFilterActivity"
+            android:name="com.handydev.financier.activity.BlotterFilterActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/filter"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
-            android:name=".activity.ReportFilterActivity"
+            android:name="com.handydev.financier.activity.ReportFilterActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/filter"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
-            android:name=".activity.CategoryActivity"
+            android:name="com.handydev.financier.activity.CategoryActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/category" />
 
         <activity
-            android:name=".activity.BudgetActivity"
+            android:name="com.handydev.financier.activity.BudgetActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/budgets" />
 
         <activity
-            android:name=".activity.PreferencesActivity"
+            android:name="com.handydev.financier.activity.PreferencesActivity"
             android:label="@string/preferences"
             android:theme="@style/Theme.AppCompat" />
 
         <activity
-            android:name=".activity.BudgetListActivity"
-            android:label="@string/budgets" />
-
-        <activity
-            android:name=".activity.ProjectActivity"
+            android:name="com.handydev.financier.activity.ProjectActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/project"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
-            android:name=".activity.ProjectListActivity"
+            android:name="com.handydev.financier.activity.ProjectListActivity"
             android:label="@string/projects"/>
 
         <activity
-            android:name=".activity.PayeeActivity"
+            android:name="com.handydev.financier.activity.PayeeActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/payee"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
-            android:name=".activity.PayeeListActivity"
+            android:name="com.handydev.financier.activity.PayeeListActivity"
             android:label="@string/payees" />
 
         <activity
-            android:name=".activity.LocationActivity"
+            android:name="com.handydev.financier.activity.LocationActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/location"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
-            android:name=".activity.LocationsListActivity"
+            android:name="com.handydev.financier.activity.LocationsListActivity"
             android:label="@string/locations" />
 
         <activity
-            android:name=".activity.TemplatesListActivity"
+            android:name="com.handydev.financier.activity.TemplatesListActivity"
             android:label="@string/transaction_templates" />
 
         <activity
-            android:name=".activity.ScheduledListActivity"
+            android:name="com.handydev.financier.activity.ScheduledListActivity"
             android:label="@string/scheduled_transactions" />
 
         <activity
-            android:name=".activity.SelectTemplateActivity"
+            android:name="com.handydev.financier.activity.SelectTemplateActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/transaction_templates"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
-            android:name=".activity.CsvExportActivity"
+            android:name="com.handydev.financier.activity.CsvExportActivity"
             android:label="@string/csv_export" />
         <activity
-            android:name=".activity.CsvImportActivity"
+            android:name="com.handydev.financier.activity.CsvImportActivity"
             android:label="@string/csv_import" />
 
         <activity
-            android:name=".activity.QifExportActivity"
+            android:name="com.handydev.financier.activity.QifExportActivity"
             android:label="@string/qif_export" />
         <activity
-            android:name=".activity.QifImportActivity"
+            android:name="com.handydev.financier.activity.QifImportActivity"
             android:label="@string/qif_import" />
 
         <activity
-            android:name=".activity.MonthlyViewActivity"
+            android:name="com.handydev.financier.activity.MonthlyViewActivity"
             android:label="@string/monthly_view" />
         <activity
-            android:name=".activity.CCardStatementClosingDayActivity"
+            android:name="com.handydev.financier.activity.CCardStatementClosingDayActivity"
             android:label="@string/closing_day" />
 
         <activity
-            android:name=".activity.Report2DChartActivity"
+            android:name="com.handydev.financier.activity.Report2DChartActivity"
             android:label="@string/report" />
         <activity
-            android:name=".activity.ReportPreferencesActivity"
+            android:name="com.handydev.financier.activity.ReportPreferencesActivity"
             android:label="@string/report_preferences" />
         <activity
-            android:name=".activity.AboutActivity"
+            android:name="com.handydev.financier.activity.AboutActivity"
             android:label="@string/about" />
         <activity
-            android:name=".activity.WebViewActivity"
+            android:name="com.handydev.financier.activity.WebViewActivity"
             android:label="@string/about" />
 
         <activity
-            android:name=".activity.SplitTransactionActivity"
+            android:name="com.handydev.financier.activity.SplitTransactionActivity"
             android:label="@string/split_transaction" />
         <activity
-            android:name=".activity.SplitTransferActivity"
+            android:name="com.handydev.financier.activity.SplitTransferActivity"
             android:label="@string/split_transfer" />
 
         <activity
-            android:name=".dialog.FolderBrowser"
+            android:name="com.handydev.financier.dialog.FolderBrowser"
             android:label="@string/select_folder" />
         <activity
-            android:name=".activity.CategorySelectorActivity"
+            android:name="com.handydev.financier.activity.CategorySelectorActivity"
             android:label="@string/select_category" />
 
         <activity
-            android:name=".activity.AccountListTotalsDetailsActivity"
+            android:name="com.handydev.financier.activity.AccountListTotalsDetailsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/totals"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
-            android:name=".activity.BlotterTotalsDetailsActivity"
+            android:name="com.handydev.financier.activity.BlotterTotalsDetailsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/totals"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
-            android:name=".activity.BudgetListTotalsDetailsActivity"
+            android:name="com.handydev.financier.activity.BudgetListTotalsDetailsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/totals"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
-            android:name=".activity.PurgeAccountActivity"
+            android:name="com.handydev.financier.activity.PurgeAccountActivity"
             android:label="@string/delete_old_transactions" />
 
         <activity android:name="org.achartengine.GraphicalActivity" />
 
         <activity
-            android:name=".activity.RequestPermissionActivity_"
+            android:name="com.handydev.financier.activity.RequestPermissionActivity_"
             android:label="@string/permissions"
-            android:theme="@style/Theme.AppCompat" />
+            android:theme="@style/Theme.AppCompat.Dialog" />
 
         <activity
             android:name="com.dropbox.core.android.AuthActivity"
@@ -464,7 +445,7 @@
             <intent-filter>
 
                 <!-- Change this to be db- followed by your app key -->
-                <data android:scheme="db-INSERT-APP-KEY-HERE" />
+                <data android:scheme="db-q3dzb75sef27mso" />
 
                 <action android:name="android.intent.action.VIEW" />
 

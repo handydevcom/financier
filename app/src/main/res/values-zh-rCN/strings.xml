@@ -467,7 +467,7 @@
   <string name="expired">(过期)</string>
   <string name="pending">(搁置)</string>
   <string name="system_attribute_delete_after_expired">过期后自动删除</string>
-  <string name="no_transaction_found">查无交易，请重新启动 Financisto</string>
+  <string name="no_transaction_found">查无交易，请重新启动 Financier</string>
   <string name="include_credit">包含增额</string>
   <string name="include_credit_summary">将增额(收入或退款)加入预算总额</string>
   <string name="enable_widget">启用小工具</string>
@@ -616,9 +616,9 @@
   <string name="quick_menu_transaction_enabled_summary">在明细列表中启用一键菜单</string>
   <string name="dropbox">Dropbox</string>
   <string name="dropbox_authorize">授权</string>
-  <string name="dropbox_authorize_summary">允许 Financisto 将文件上传到您的 Dropbox</string>
+  <string name="dropbox_authorize_summary">允许 Financier 将文件上传到您的 Dropbox</string>
   <string name="dropbox_unlink">删除</string>
-  <string name="dropbox_unlink_summary">阻止 Financisto 将文件上传到您的 Dropbox</string>
+  <string name="dropbox_unlink_summary">阻止 Financier 将文件上传到您的 Dropbox</string>
   <string name="dropbox_upload_backup">上传备份</string>
   <string name="dropbox_upload_backup_summary">将数据库的备份上传到 Dropbox</string>
   <string name="dropbox_upload_autobackup">上传自动备份</string>

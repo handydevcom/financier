@@ -466,7 +466,7 @@
   <string name="expired">(마감됨)</string>
   <string name="pending">(지연됨)</string>
   <string name="system_attribute_delete_after_expired">마감 후 삭제</string>
-  <string name="no_transaction_found">거래를 찾지 못했습니다. Financisto를 다시 시작하세요..</string>
+  <string name="no_transaction_found">거래를 찾지 못했습니다. Financier를 다시 시작하세요..</string>
   <string name="include_credit">신용 포함</string>
   <string name="include_credit_summary">예산 총 계에 신용 거래(수입 또는 취소)를 포함</string>
   <string name="enable_widget">위젯 활성화</string>
@@ -606,8 +606,8 @@
   <string name="database_backup">Database Backup</string>
   <string name="database_backup_folder">Backup Folder</string>
   <string name="database_backup_folder_summary">Current database backup folder: %s</string>
-  <string name="backup_database_to">Send Backup To...</string>
-  <string name="backup_database_to_title">Send Database Backup to...</string>
+  <string name="backup_database_to">Send Backup To…</string>
+  <string name="backup_database_to_title">Send Database Backup to…</string>
   <string name="license">License</string>
   <string name="quick_menu_account_enabled">Accounts quick-menu</string>
   <string name="quick_menu_account_enabled_summary">Enable one-tap menu in the Accounts</string>
@@ -615,14 +615,14 @@
   <string name="quick_menu_transaction_enabled_summary">Enable one-tap menu in the Blotter</string>
   <string name="dropbox">Dropbox</string>
   <string name="dropbox_authorize">Authorize</string>
-  <string name="dropbox_authorize_summary">Allow Financisto to upload files to your Dropbox</string>
+  <string name="dropbox_authorize_summary">Allow Financier to upload files to your Dropbox</string>
   <string name="dropbox_unlink">Unlink</string>
-  <string name="dropbox_unlink_summary">Prevent Financisto from uploading files to your Dropbox</string>
+  <string name="dropbox_unlink_summary">Prevent Financier from uploading files to your Dropbox</string>
   <string name="dropbox_upload_backup">Upload Backups</string>
   <string name="dropbox_upload_backup_summary">Upload database backups to Dropbox</string>
   <string name="dropbox_upload_autobackup">Upload Auto-backups</string>
   <string name="dropbox_upload_autobackup_summary">Upload database auto-backups to Dropbox</string>
-  <string name="dropbox_uploading_file">Uploading file to Dropbox...</string>
+  <string name="dropbox_uploading_file">Uploading file to Dropbox…</string>
   <string name="exchange_rates">Exchange rates</string>
   <string name="no_exchange_rates">No exchange rates</string>
   <string name="exchange_rate">Exchange rate</string>

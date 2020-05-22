@@ -467,7 +467,7 @@
   <string name="expired">(scaduto)</string>
   <string name="pending">(in attesa)</string>
   <string name="system_attribute_delete_after_expired">Elimina dopo la scadenza</string>
-  <string name="no_transaction_found">Nessuna transazione trovata, riavvia Financisto...</string>
+  <string name="no_transaction_found">Nessuna transazione trovata, riavvia Financier…</string>
   <string name="include_credit">Includi crediti</string>
   <string name="include_credit_summary">Includi crediti (entranti o di ritorno) nel budget totale</string>
   <string name="enable_widget">Abilita widget</string>
@@ -607,8 +607,8 @@
   <string name="database_backup">Backup del database</string>
   <string name="database_backup_folder">Cartella backup</string>
   <string name="database_backup_folder_summary">Cartella corrente di backup del database: %s</string>
-  <string name="backup_database_to">Invia il backup a...</string>
-  <string name="backup_database_to_title">Invia il backup del database a...</string>
+  <string name="backup_database_to">Invia il backup a…</string>
+  <string name="backup_database_to_title">Invia il backup del database a…</string>
   <string name="license">Licenza</string>
   <string name="quick_menu_account_enabled">Menu rapido dei conti</string>
   <string name="quick_menu_account_enabled_summary">Enable one-tap menu in the Accounts</string>
@@ -616,14 +616,14 @@
   <string name="quick_menu_transaction_enabled_summary">Enable one-tap menu in the Blotter</string>
   <string name="dropbox">Dropbox</string>
   <string name="dropbox_authorize">Autorizzare</string>
-  <string name="dropbox_authorize_summary">Permetti a Financisto di caricare i file sul tuo Dropbox</string>
+  <string name="dropbox_authorize_summary">Permetti a Financier di caricare i file sul tuo Dropbox</string>
   <string name="dropbox_unlink">Scollegare</string>
-  <string name="dropbox_unlink_summary">Impedisci a Financisto di caricare i file sul tuo Dropbox</string>
+  <string name="dropbox_unlink_summary">Impedisci a Financier di caricare i file sul tuo Dropbox</string>
   <string name="dropbox_upload_backup">Carica i backup</string>
   <string name="dropbox_upload_backup_summary">Carica i backup dei database su Dropbox</string>
   <string name="dropbox_upload_autobackup">Carica i backup automatici</string>
   <string name="dropbox_upload_autobackup_summary">Carica i backup automatici del database su Dropbox</string>
-  <string name="dropbox_uploading_file">Caricamento del file su Dropbox...</string>
+  <string name="dropbox_uploading_file">Caricamento del file su Dropbox…</string>
   <string name="exchange_rates">Tassi di cambio</string>
   <string name="no_exchange_rates">Nessun tasso di cambio</string>
   <string name="exchange_rate">Tasso di cambio</string>

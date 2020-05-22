@@ -467,7 +467,7 @@
   <string name="expired">(expirat)</string>
   <string name="pending">(în aşteptare)</string>
   <string name="system_attribute_delete_after_expired">Şterge după expirare</string>
-  <string name="no_transaction_found">Nu s-a găsit nici o tranzacţie, reporniţi Financisto...</string>
+  <string name="no_transaction_found">Nu s-a găsit nici o tranzacţie, reporniţi Financier…</string>
   <string name="include_credit">Include credite</string>
   <string name="include_credit_summary">Include credite (venituri sau returnări) în totalul bugetului</string>
   <string name="enable_widget">Activează widget-ul</string>
@@ -607,8 +607,8 @@
   <string name="database_backup">Backup bază de date</string>
   <string name="database_backup_folder">Director backup</string>
   <string name="database_backup_folder_summary">Director backup curent: %s</string>
-  <string name="backup_database_to">Trimite backup în...</string>
-  <string name="backup_database_to_title">Trimite backup-ul bazei de date în...</string>
+  <string name="backup_database_to">Trimite backup în…</string>
+  <string name="backup_database_to_title">Trimite backup-ul bazei de date în…</string>
   <string name="license">Licenţă</string>
   <string name="quick_menu_account_enabled">Meniu-rapid conturi</string>
   <string name="quick_menu_account_enabled_summary">Enable one-tap menu in the Accounts</string>
@@ -616,14 +616,14 @@
   <string name="quick_menu_transaction_enabled_summary">Activare meniu o-apasare în Operaţiuni</string>
   <string name="dropbox">Dropbox</string>
   <string name="dropbox_authorize">Autorizare</string>
-  <string name="dropbox_authorize_summary">Allow Financisto to upload files to your Dropbox</string>
+  <string name="dropbox_authorize_summary">Allow Financier to upload files to your Dropbox</string>
   <string name="dropbox_unlink">Anulare legătură</string>
-  <string name="dropbox_unlink_summary">Prevent Financisto from uploading files to your Dropbox</string>
+  <string name="dropbox_unlink_summary">Prevent Financier from uploading files to your Dropbox</string>
   <string name="dropbox_upload_backup">Încarcă backup-uri</string>
   <string name="dropbox_upload_backup_summary">Upload database backups to Dropbox</string>
   <string name="dropbox_upload_autobackup">Upload Auto-backups</string>
   <string name="dropbox_upload_autobackup_summary">Upload database auto-backups to Dropbox</string>
-  <string name="dropbox_uploading_file">Încarcă fișierul în Dropbox...</string>
+  <string name="dropbox_uploading_file">Încarcă fișierul în Dropbox…</string>
   <string name="exchange_rates">Cursuri de schimb</string>
   <string name="no_exchange_rates">Fără rate de schimb</string>
   <string name="exchange_rate">Curs de schimb</string>

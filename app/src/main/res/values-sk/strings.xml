@@ -467,7 +467,7 @@
   <string name="expired">(neplatné)</string>
   <string name="pending">(čakajúce)</string>
   <string name="system_attribute_delete_after_expired">Odstrániť po vypršaní</string>
-  <string name="no_transaction_found">Nebola nájdená žiadna transakcia, prosím reštartujte Financisto...</string>
+  <string name="no_transaction_found">Nebola nájdená žiadna transakcia, prosím reštartujte Financier…</string>
   <string name="include_credit">Vrátane príjmov</string>
   <string name="include_credit_summary">Zahrnúť príjmy (príjmy alebo výnosy) do zostatku rozpočtu</string>
   <string name="enable_widget">Povoliť widget</string>

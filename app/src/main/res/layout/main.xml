@@ -1,18 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   Copyright (c) 2010 Denis Solonenko.
   All rights reserved. This program and the accompanying materials
   are made available under the terms of the GNU Public License v2.0
   which accompanies this distribution, and is available at
   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-  
+
   Contributors:
       Denis Solonenko - initial API and implementation
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_height="fill_parent" android:layout_width="fill_parent"
-	android:orientation="vertical">
-	
-	<FrameLayout android:layout_height="wrap_content"
-		android:id="@+id/view" android:layout_width="fill_parent"
-		android:layout_weight="1"/>
-</LinearLayout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+	<data>
+		<variable name="viewModel" type="com.handydev.main.MainViewModel"/>
+	</data>
+	<androidx.constraintlayout.widget.ConstraintLayout
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+		<androidx.viewpager2.widget.ViewPager2
+			android:id="@+id/mainViewPager"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:setAdapter="@{viewModel.tabPageAdapter}"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			app:layout_constraintBottom_toTopOf="@+id/main_bottom_navigation"
+			app:layout_constraintTop_toTopOf="parent"
+			app:currentTab="@{viewModel.currentTab}"
+			/>
+
+		<com.google.android.material.bottomnavigation.BottomNavigationView
+			android:id="@id/main_bottom_navigation"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			app:itemIconTint="@android:color/white"
+			app:itemTextColor="@android:color/white"
+			android:background="#01b0bb"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:menu="@menu/main_bottom_navigation_menu"
+			app:selectedItemPosition="@{viewModel.bottomNavigationSelectedItem}"
+			app:onNavigationItemSelected="@{viewModel::onNavigationClick}"
+			/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

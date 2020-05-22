@@ -249,7 +249,7 @@
             android:key="pin_protection"
             android:summary="@string/pin_protection_summary"
             android:title="@string/pin_protection" />
-        <ru.orangesoftware.financisto.dialog.PinDialogPreference
+        <com.handydev.financier.dialog.PinDialogPreference
             android:dependency="pin_protection"
             android:dialogLayout="@layout/lock"
             android:key="pin"
@@ -309,7 +309,7 @@
             android:key="auto_backup_enabled"
             android:summary="@string/auto_backup_enabled_summary"
             android:title="@string/auto_backup_enabled" />
-        <ru.orangesoftware.financisto.dialog.TimePreference
+        <com.handydev.financier.dialog.TimePreference
             android:dependency="auto_backup_enabled"
             android:key="auto_backup_time"
             android:summary="@string/auto_backup_time_summary"
@@ -354,7 +354,7 @@
             android:summary="@string/google_drive_backup_full_readonly_summary"
             android:title="@string/google_drive_backup_full_readonly" />
         <EditTextPreference
-            android:defaultValue="financisto"
+            android:defaultValue="financier"
             android:key="backup_folder"
             android:summary="@string/backup_folder_summary"
             android:title="@string/backup_folder" />

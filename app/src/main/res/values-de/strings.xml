@@ -467,7 +467,7 @@
   <string name="expired">(abgelaufen)</string>
   <string name="pending">(bevorstehend)</string>
   <string name="system_attribute_delete_after_expired">nach Ablauf löschen</string>
-  <string name="no_transaction_found">Keine Transaktion gefunden, bitte Financisto neustarten...</string>
+  <string name="no_transaction_found">Keine Transaktion gefunden, bitte Financier neustarten...</string>
   <string name="include_credit">Kredite miteinbeziehen</string>
   <string name="include_credit_summary">Bezieht die Überziehungen des Budgets mit in das Gesamtbudget</string>
   <string name="enable_widget">Widget aktivieren</string>
@@ -618,7 +618,7 @@
   <string name="quick_menu_transaction_enabled_summary">Schnellauswahl-Menü für Protokoll aktivieren</string>
   <string name="dropbox">Dropbox</string>
   <string name="dropbox_authorize">Autorisieren</string>
-  <string name="dropbox_authorize_summary">Financisto das Hochladen von Dateien auf Dropbox erlauben</string>
+  <string name="dropbox_authorize_summary">Financier das Hochladen von Dateien auf Dropbox erlauben</string>
   <string name="dropbox_unlink">Verknüpfung aufheben</string>
   <string name="dropbox_unlink_summary">Hochladen von Dateien auf Dropbox verhindern</string>
   <string name="dropbox_upload_backup">Backups hochladen</string>
