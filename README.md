@@ -1,7 +1,5 @@
 # Financier
 
-[![Build Status](https://app.bitrise.io/app/a4284a64a52e1063/status.svg?token=-JUe6I0K_79mxYjxLGp9BA&branch=master)](https://app.bitrise.io/app/a4284a64a52e1063)
-
 ## About
 
 Financier is a fork of the great Financisto app.
