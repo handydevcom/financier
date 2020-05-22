@@ -33,7 +33,7 @@ import java.util.*;
 
 public class Dropbox {
 
-    private static final String APP_KEY = "q3dzb75sef27mso";
+    private static final String APP_KEY = "APP-KEY-HERE";
 
     private final Context context;
 
