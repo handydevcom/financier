@@ -132,23 +132,23 @@ public class BudgetListAdapter extends BaseAdapter {
 
     private static class Holder {
 
-		public TextView topView;
-		public TextView centerView;
-		public TextView bottomView;
-		public TextView rightView1;
-		public TextView rightView2;
-		public TextView rightCenterView;
-		public ProgressBar progressBar;
+		TextView topView;
+		TextView centerView;
+		TextView bottomView;
+		TextView rightView1;
+		TextView rightView2;
+		TextView rightCenterView;
+		ProgressBar progressBar;
 		
 		public static Holder create(View view) {
 			Holder v = new Holder();
-			v.topView = (TextView)view.findViewById(R.id.top);
-			v.centerView = (TextView)view.findViewById(R.id.center);		
-			v.bottomView = (TextView)view.findViewById(R.id.bottom);
-			v.rightView1 = (TextView)view.findViewById(R.id.right1);
-			v.rightView2 = (TextView)view.findViewById(R.id.right2);
-			v.rightCenterView = (TextView)view.findViewById(R.id.right_center);
-			v.progressBar = (ProgressBar)view.findViewById(R.id.progress);
+			v.topView = view.findViewById(R.id.top);
+			v.centerView = view.findViewById(R.id.center);
+			v.bottomView = view.findViewById(R.id.bottom);
+			v.rightView1 = view.findViewById(R.id.right1);
+			v.rightView2 = view.findViewById(R.id.right2);
+			v.rightCenterView = view.findViewById(R.id.right_center);
+			v.progressBar = view.findViewById(R.id.progress);
 			view.setTag(v);
 			return v;
 		}

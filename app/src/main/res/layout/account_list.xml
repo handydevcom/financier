@@ -47,6 +47,7 @@
         <ImageButton
             android:id="@+id/bMenu"
             style="@style/BottomBarButton"
+            android:visibility="gone"
             android:src="@drawable/actionbar_dot_menu" />
 
         <include layout="@layout/total_text" />
