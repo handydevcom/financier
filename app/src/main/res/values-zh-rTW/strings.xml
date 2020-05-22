@@ -469,7 +469,7 @@
   <string name="expired">(過期)</string>
   <string name="pending">(擱置)</string>
   <string name="system_attribute_delete_after_expired">過期後自動刪除</string>
-  <string name="no_transaction_found">查無交易，請重新啟動 Financisto</string>
+  <string name="no_transaction_found">查無交易，請重新啟動 Financier</string>
   <string name="include_credit">包含增額</string>
   <string name="include_credit_summary">將增額(收入或退款)加入預算總額</string>
   <string name="enable_widget">啟用小工具</string>
@@ -618,9 +618,9 @@
   <string name="quick_menu_transaction_enabled_summary">在明細畫面啟用單按選單</string>
   <string name="dropbox">Dropbox</string>
   <string name="dropbox_authorize">授權</string>
-  <string name="dropbox_authorize_summary">允許 Financisto 上傳檔案到您的 Dropbox</string>
+  <string name="dropbox_authorize_summary">允許 Financier 上傳檔案到您的 Dropbox</string>
   <string name="dropbox_unlink">解除連結</string>
-  <string name="dropbox_unlink_summary">防止 Financisto 上傳檔案到您的 Dropbox</string>
+  <string name="dropbox_unlink_summary">防止 Financier 上傳檔案到您的 Dropbox</string>
   <string name="dropbox_upload_backup">上傳備份</string>
   <string name="dropbox_upload_backup_summary">將資料庫備份檔上傳到 Dropbox</string>
   <string name="dropbox_upload_autobackup">上傳自動備份</string>
@@ -780,7 +780,7 @@
   <string name="google_drive_loading_files">正在從 Google Drive 載入檔案…</string>
   <string name="google_drive_permission_requested">要求權限：</string>
   <string name="google_drive_permission_requested_for_account">帳戶 %s</string>
-  <string name="google_drive_permission_required">請授權 Financisto 操作您的 Google Drive 然後再試一次…</string>
+  <string name="google_drive_permission_required">請授權 Financier 操作您的 Google Drive 然後再試一次…</string>
   <string name="google_drive_restore_in_progress">正在從 Google Drive 回復資料庫…</string>
   <string name="google_drive_upload_autobackup">上傳自動備份</string>
   <string name="google_drive_upload_autobackup_summary">把資料庫自動備份檔上傳到 Google Drive</string>
@@ -793,7 +793,7 @@
   <string name="googledrive_folder_summary">選擇在 Google Drive 儲存上傳照片的資料夾</string>
   <string name="googledrive_upload">上傳照片</string>
   <string name="googledrive_upload_summary">將附加照片上傳到 Google Drive</string>
-  <string name="installed_on_sd_card_warning">若把 Financisto 移到 SD 卡，定期交易有可能無法自動執行。請把它移回手機內部儲存空間。</string>
+  <string name="installed_on_sd_card_warning">若把 Financier 移到 SD 卡，定期交易有可能無法自動執行。請把它移回手機內部儲存空間。</string>
   <string name="no_payees">無受款人</string>
   <string name="offline_rate">無網路連線，將採用最後一次下載的匯率…</string>
   <string name="open_calculator_for_template_transactions">打開計算機</string>
@@ -817,7 +817,7 @@
   <string name="request_permissions_not_granted">無權限</string>
   <string name="request_permissions_storage_description">需要此權限以讀寫記憶卡上的備份檔。</string>
   <string name="request_permissions_storage_title">寫入外部儲存裝置</string>
-  <string name="request_permissions_title">Financisto 需要您手動允許一些權限。</string>
+  <string name="request_permissions_title">Financier 需要您手動允許一些權限。</string>
   <string name="restore_database_inprogress_dropbox">正在匯回資料庫…</string>
   <string name="restore_database_online_dropbox">Dropbox 復原</string>
   <string name="restore_database_online_google_drive">Google Drive 復原</string>

@@ -467,7 +467,7 @@
   <string name="expired">(vypršelo)</string>
   <string name="pending">(nevyřešeno)</string>
   <string name="system_attribute_delete_after_expired">Po dokončení smazat</string>
-  <string name="no_transaction_found">Nenalezena žádná operace, prosím restartujte Financisto..</string>
+  <string name="no_transaction_found">Nenalezena žádná operace, prosím restartujte Financier..</string>
   <string name="include_credit">Včetně přípisů</string>
   <string name="include_credit_summary">Přípisy (příjmy nebo výnosy) započítat do zůstatku rozpočtu</string>
   <string name="enable_widget">Povolit widget</string>

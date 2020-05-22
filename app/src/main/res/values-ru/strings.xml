@@ -473,7 +473,7 @@
     <string name="expired">(просроченно)</string>
     <string name="pending">(в ожидании)</string>
     <string name="system_attribute_delete_after_expired">Удалить после истечения</string>
-    <string name="no_transaction_found">Транзакия не найдена, перезагрузите Financisto..</string>
+    <string name="no_transaction_found">Транзакция не найдена, перезагрузите Financier…</string>
     <string name="include_credit">Включить приход</string>
     <string name="include_credit_summary">Включить приход в общую сумму бюджета</string>
     <string name="enable_widget">Разрешить виджет</string>
@@ -626,9 +626,9 @@
     <string name="quick_menu_transaction_enabled_summary">Включить быстрое меню в Журнале</string>
     <string name="dropbox">Dropbox</string>
     <string name="dropbox_authorize">Авторизация</string>
-    <string name="dropbox_authorize_summary">Разрешить Financisto загружать файлы в ваш Dropbox</string>
+    <string name="dropbox_authorize_summary">Разрешить Financier загружать файлы в ваш Dropbox</string>
     <string name="dropbox_unlink">Отключить</string>
-    <string name="dropbox_unlink_summary">Запретить Financisto загружать файлы в ваш Dropbox</string>
+    <string name="dropbox_unlink_summary">Запретить Financier загружать файлы в ваш Dropbox</string>
     <string name="dropbox_upload_backup">Выгружать копии базы</string>
     <string name="dropbox_upload_backup_summary">Выгружать копии базы в Dropbox</string>
     <string name="dropbox_upload_autobackup">Выгружать авт. копии</string>
@@ -709,7 +709,7 @@
     <string name="planner">Планировщик</string>
     <string name="privacy_policy">Политика конфиденциальности</string>
 
-    <string name="request_permissions_title">Для корректной работы, Financisto требует чтобы некоторые разрешения были выданы вручную.</string>
+    <string name="request_permissions_title">Для корректной работы, Financier требует чтобы некоторые разрешения были выданы вручную.</string>
     <string name="request_permissions_description">Пожалуйста выдайте нужное разрешение внизу, потом перейдите на предыдущий экран и повторите операцию. Разрешения могут быть отозваны в системных Настройки -> Разрешения Приложений.</string>
     <string name="request_permissions_storage_title">Память</string>
     <string name="request_permissions_storage_description">Требуется для чтения и записи файлов бэкапа базы на внешний носитель.</string>
@@ -724,7 +724,6 @@
 
     <string name="show_menu_button_on_accounts_screen">Показывать Меню</string>
     <string name="show_menu_button_on_accounts_screen_summary">Показывать кнопку меню на экране Счетов</string>
-    <string name="go_to_menu_tab">Перейти к меню</string>
 
     <string-array name="attribute_types">
         <item>Текст</item>
@@ -897,7 +896,7 @@
     <string name="account_by_currency">Все %s аккаунты</string>
     <string name="show_payee_in_transfer_summary">Показывать поле получателя в окне перевода</string>
     <string name="google_drive_account_select_error">Невозможно выбрать учетную запись Google для использования. Похоже ваше устройство не поддерживает Google Play сервисы.</string>
-    <string name="google_drive_connection_failed">Невозможно подключиться к Google Диску:[...]</string>
+    <string name="google_drive_connection_failed">Невозможно подключиться к Google Диску:\n%s</string>
     <string name="google_drive_loading_files">Загрузка файлов из Google Диска...</string>
     <string name="google_drive_restore_in_progress">Восстановление базы данных из Google Диска...</string>
     <string name="google_drive_uploading_file">Загрузка файл в Google Диск...</string>
@@ -916,17 +915,17 @@
     <string name="googledrive_authorize">Включить синхронизацию с Google Диском</string>
     <string name="googledrive_folder">Папка на Google Диске</string>
     <string name="googledrive_folder_summary">Выберите папку на Google Диске для сохранения прикрепленных изображений</string>
-    <string name="offline_rate">Отсутствует соединение с интернетом. Применены последние загруженные курсы валют...</string>
-    <string name="google_drive_account_required">Пожалуйста выберите аккаунт на Google Диске в настройках и попробуйте снова...</string>
+    <string name="offline_rate">Отсутствует соединение с интернетом. Применены последние загруженные курсы валют…</string>
+    <string name="google_drive_account_required">Пожалуйста выберите аккаунт на Google Диске в настройках и попробуйте снова…</string>
     <string name="backup_database_online_google_drive">Резервная копия на Google Диск</string>
     <string name="backup_database_online_dropbox">Резервная копия на Dropbox</string>
     <string name="openexchangerates_app_id_summary">Пожалуйста зарегистрируйте бесплатный аккаунт в сервисе OpenExchangeRates и введите ваш App ID</string>
     <string name="google_drive_permission_requested_for_account">для аккаунта %s</string>
     <string name="google_drive_permission_requested">Запрос разрешения</string>
     <string name="dropbox_auth_error">Нет разрешения для загрузки на Dropbox. Пожалуйста проверьте ваши настройки.</string>
-    <string name="backup_database_dropbox_inprogress">Создание резервной копии базы данных...</string>
-    <string name="google_drive_permission_required">Пожалуйста разрешите Financisto доступ к вашему Google Диску и повторите попытку...</string>
-    <string name="installed_on_sd_card_warning">Запланированные транзакции могут неработать как ожидается если Financisto установлен на карту памяти. Пожалуйста перенесите приложение во внутреннюю память телефона.</string>
+    <string name="backup_database_dropbox_inprogress">Создание резервной копии базы данных…</string>
+    <string name="google_drive_permission_required">Пожалуйста разрешите Financier доступ к вашему Google Диску и повторите попытку…</string>
+    <string name="installed_on_sd_card_warning">Запланированные транзакции могут не работать как ожидается если Financier установлен на карту памяти. Пожалуйста перенесите приложение во внутреннюю память телефона.</string>
     <string name="set_focus_on_amount_field_summary">Автоматически устанавливать фокус в поле ввода суммы для новых транзакций</string>
     <string name="set_focus_on_amount_field">Устанавливать фокус в поле суммы</string>
     <string name="inactive">Неактивные</string>
