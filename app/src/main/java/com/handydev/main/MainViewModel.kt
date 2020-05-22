@@ -1,6 +1,7 @@
 package com.handydev.main
 
 import android.content.Context
+import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -9,6 +10,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.handydev.financisto.R
+import com.handydev.financisto.utils.MyPreferences
 import com.handydev.main.fragments.*
 
 
@@ -20,6 +22,7 @@ class MainViewModelFactory(val activity: FragmentActivity, val context: Context)
 
 class MainViewModel(activity: FragmentActivity, val context: Context): ViewModel() {
     var currentTab = MutableLiveData(0)
+    var bottomNavigationSelectedItem = MutableLiveData(0)
 
     class MainPagerAdapter(activity: FragmentActivity, val context: Context) : FragmentStateAdapter(activity)
     {
@@ -33,7 +36,11 @@ class MainViewModel(activity: FragmentActivity, val context: Context): ViewModel
                     return AccountsFragment()
                 }
                 1 -> {
-                    return BlotterFragment()
+                    val blotter = BlotterFragment()
+                    val bundle = Bundle()
+                    bundle.putBoolean(BlotterFragment.SAVE_FILTER, true)
+                    blotter.arguments = bundle
+                    return blotter
                 }
                 2 -> {
                     return BudgetListFragment()
@@ -79,5 +86,20 @@ class MainViewModel(activity: FragmentActivity, val context: Context): ViewModel
 
     init {
         tabPageAdapter = MainPagerAdapter(activity, context)
+        when (MyPreferences.getStartupScreen(context)) {
+            MyPreferences.StartupScreen.ACCOUNTS -> { }
+            MyPreferences.StartupScreen.BLOTTER -> {
+                currentTab.value = 1
+                bottomNavigationSelectedItem.value = R.id.main_page_blotter
+            }
+            MyPreferences.StartupScreen.BUDGETS -> {
+                currentTab.value = 2
+                bottomNavigationSelectedItem.value = R.id.main_page_budgets
+            }
+            MyPreferences.StartupScreen.REPORTS -> {
+                currentTab.value = 3
+                bottomNavigationSelectedItem.value = R.id.main_page_reports
+            }
+        }
     }
 }

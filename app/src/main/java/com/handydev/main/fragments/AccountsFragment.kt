@@ -90,7 +90,6 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
         }
         when (id) {
             R.id.backup -> MenuListItem.MENU_BACKUP.call(activity!!)
-            R.id.go_to_menu -> EventBus.getDefault().post(SwitchToMenuTabEvent())
         }
     }
 

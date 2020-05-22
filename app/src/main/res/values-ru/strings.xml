@@ -724,7 +724,6 @@
 
     <string name="show_menu_button_on_accounts_screen">Показывать Меню</string>
     <string name="show_menu_button_on_accounts_screen_summary">Показывать кнопку меню на экране Счетов</string>
-    <string name="go_to_menu_tab">Перейти к меню</string>
 
     <string-array name="attribute_types">
         <item>Текст</item>

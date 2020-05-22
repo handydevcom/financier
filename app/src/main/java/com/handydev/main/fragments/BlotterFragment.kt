@@ -39,7 +39,6 @@ import com.handydev.main.protocol.IOTransactionDeleteListener
 open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactionDeleteListener {
     companion object {
         val SAVE_FILTER = "saveFilter"
-        val EXTRA_FILTER_ACCOUNTS = "filterAccounts"
         private val NEW_TRANSACTION_REQUEST = 1
         private val NEW_TRANSFER_REQUEST = 3
         private val NEW_TRANSACTION_FROM_TEMPLATE_REQUEST = 5
@@ -109,7 +108,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         totalText!!.setOnClickListener { showTotals() }
         val intent: Intent = activity!!.intent
         blotterFilter = WhereFilter.fromIntent(intent)
-        saveFilter = intent.getBooleanExtra(SAVE_FILTER, false)
+        saveFilter = arguments?.getBoolean(SAVE_FILTER) ?: false
         isAccountBlotter = intent.getBooleanExtra(BlotterFilterActivity.IS_ACCOUNT_FILTER, false)
         if (savedInstanceState != null) {
             blotterFilter = WhereFilter.fromBundle(savedInstanceState)

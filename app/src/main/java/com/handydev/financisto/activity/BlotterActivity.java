@@ -47,7 +47,6 @@ import static com.handydev.financisto.utils.MyPreferences.isQuickMenuEnabledForT
 public class BlotterActivity extends AbstractListActivity implements IOTransactionDeleteListener {
 
     public static final String SAVE_FILTER = "saveFilter";
-    public static final String EXTRA_FILTER_ACCOUNTS = "filterAccounts";
 
     private static final int NEW_TRANSACTION_REQUEST = 1;
     private static final int NEW_TRANSFER_REQUEST = 3;

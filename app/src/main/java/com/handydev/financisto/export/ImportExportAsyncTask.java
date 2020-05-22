@@ -19,7 +19,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.handydev.financisto.R;
-import com.handydev.financisto.bus.RefreshCurrentTab;
 import com.handydev.financisto.db.DatabaseAdapter;
 import com.handydev.financisto.utils.MyPreferences;
 
@@ -125,7 +124,6 @@ public abstract class ImportExportAsyncTask extends AsyncTask<String, String, Ob
 
         String message = getSuccessMessage(result);
 
-        refreshMainActivity();
         if (listener != null) {
             listener.onCompleted(result);
         }
@@ -134,10 +132,5 @@ public abstract class ImportExportAsyncTask extends AsyncTask<String, String, Ob
             Toast.makeText(context, context.getString(R.string.success, message), Toast.LENGTH_LONG).show();
         }
     }
-
-    private void refreshMainActivity() {
-        EventBus.getDefault().post(new RefreshCurrentTab());
-    }
-
 }
 

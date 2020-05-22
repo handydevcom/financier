@@ -11,6 +11,12 @@ fun setOnNavigationItemSelectedListener(
     view.setOnNavigationItemSelectedListener(listener)
 }
 
+@BindingAdapter("selectedItemPosition")
+fun setSelectedItemPosition(
+        view: BottomNavigationView, position: Int) {
+    view.selectedItemId = position
+}
+
 @BindingAdapter("currentTab")
 fun setNewTab(pager: ViewPager2, newTab: MutableLiveData<Int>) {
     newTab.value?.let {
