@@ -21,7 +21,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.view.*;
 import android.widget.PopupWindow;
-import com.handydev.financisto.R;
+import com.handydev.financier.R;
 
 import java.util.ArrayList;
 import java.util.List;

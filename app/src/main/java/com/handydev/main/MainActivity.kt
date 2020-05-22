@@ -22,14 +22,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import com.handydev.financisto.R
-import com.handydev.financisto.databinding.MainBinding
-import com.handydev.financisto.db.DatabaseAdapter
-import com.handydev.financisto.db.DatabaseHelper
-import com.handydev.financisto.dialog.WebViewDialog
-import com.handydev.financisto.utils.CurrencyCache
-import com.handydev.financisto.utils.MyPreferences
-import com.handydev.financisto.utils.PinProtection
+import com.handydev.financier.R
+import com.handydev.financier.databinding.MainBinding
+import com.handydev.financier.db.DatabaseAdapter
+import com.handydev.financier.db.DatabaseHelper
+import com.handydev.financier.dialog.WebViewDialog
+import com.handydev.financier.utils.CurrencyCache
+import com.handydev.financier.utils.MyPreferences
+import com.handydev.financier.utils.PinProtection
 import com.handydev.main.protocol.IOnBackPressed
 import org.greenrobot.eventbus.EventBus
 

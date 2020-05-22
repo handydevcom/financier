@@ -8,16 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import androidx.fragment.app.ListFragment
-import com.handydev.financisto.R
-import com.handydev.financisto.activity.Report2DChartActivity
-import com.handydev.financisto.activity.ReportActivity
-import com.handydev.financisto.adapter.SummaryEntityListAdapter
-import com.handydev.financisto.db.MyEntityManager
-import com.handydev.financisto.graph.Report2DChart
-import com.handydev.financisto.report.Report
-import com.handydev.financisto.report.ReportType
-import com.handydev.financisto.utils.MyPreferences
-import com.handydev.financisto.utils.PinProtection
+import com.handydev.financier.R
+import com.handydev.financier.activity.Report2DChartActivity
+import com.handydev.financier.activity.ReportActivity
+import com.handydev.financier.adapter.SummaryEntityListAdapter
+import com.handydev.financier.db.MyEntityManager
+import com.handydev.financier.graph.Report2DChart
+import com.handydev.financier.report.Report
+import com.handydev.financier.report.ReportType
+import com.handydev.financier.utils.MyPreferences
+import com.handydev.financier.utils.PinProtection
 import java.util.*
 
 class ReportsListFragment: ListFragment() {

@@ -11,7 +11,7 @@
 -->
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <com.handydev.financisto.widget.NumberPickerButton
+    <com.handydev.financier.widget.NumberPickerButton
         android:id="@+id/increment"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
         android:textSize="30sp"
         android:background="@drawable/timepicker_input" />
 
-    <com.handydev.financisto.widget.NumberPickerButton
+    <com.handydev.financier.widget.NumberPickerButton
         android:id="@+id/decrement"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

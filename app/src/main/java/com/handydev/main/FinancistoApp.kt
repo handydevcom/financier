@@ -1,7 +1,7 @@
 package com.handydev.main
 
-import com.handydev.financisto.MyEventBusIndex
-import com.handydev.financisto.app.FinancistoApp
+import com.handydev.financier.MyEventBusIndex
+import com.handydev.financier.app.FinancistoApp
 import org.greenrobot.eventbus.EventBus
 
 class FinancistoApp: FinancistoApp() {

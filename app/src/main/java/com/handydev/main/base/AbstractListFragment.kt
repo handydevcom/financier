@@ -8,11 +8,11 @@ import android.view.*
 import android.widget.*
 import android.widget.AdapterView.OnItemLongClickListener
 import androidx.fragment.app.ListFragment
-import com.handydev.financisto.R
-import com.handydev.financisto.activity.RefreshSupportedActivity
-import com.handydev.financisto.db.DatabaseAdapter
-import com.handydev.financisto.utils.MenuItemInfo
-import com.handydev.financisto.utils.PinProtection
+import com.handydev.financier.R
+import com.handydev.financier.activity.RefreshSupportedActivity
+import com.handydev.financier.db.DatabaseAdapter
+import com.handydev.financier.utils.MenuItemInfo
+import com.handydev.financier.utils.PinProtection
 import com.handydev.main.protocol.IOnBackPressed
 import kotlin.collections.ArrayList
 

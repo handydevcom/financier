@@ -9,8 +9,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.handydev.financisto.R
-import com.handydev.financisto.utils.MyPreferences
+import com.handydev.financier.R
+import com.handydev.financier.utils.MyPreferences
 import com.handydev.main.fragments.*
 
 

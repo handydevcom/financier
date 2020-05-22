@@ -26,7 +26,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
-import com.handydev.financisto.R;
+import com.handydev.financier.R;
 
 import java.util.List;
 

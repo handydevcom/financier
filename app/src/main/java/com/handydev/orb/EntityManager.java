@@ -32,11 +32,11 @@ import javax.persistence.PersistenceException;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.handydev.financisto.db.DatabaseUtils;
-import com.handydev.financisto.model.MyEntity;
-import com.handydev.financisto.model.SortableEntity;
+import com.handydev.financier.db.DatabaseUtils;
+import com.handydev.financier.model.MyEntity;
+import com.handydev.financier.model.SortableEntity;
 
-import static com.handydev.financisto.db.DatabaseHelper.SmsTemplateColumns.sort_order;
+import static com.handydev.financier.db.DatabaseHelper.SmsTemplateColumns.sort_order;
 
 public abstract class EntityManager {
 
