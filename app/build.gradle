@@ -18,6 +18,8 @@ android {
     buildToolsVersion '28.0.3'
 
     defaultConfig {
+        resValue "string", "dropbox_key_manifest", DROPBOX_MANIFEST_DB_KEY
+        buildConfigField "String", "DROPBOXKEY", DROPBOX_DB_KEY
         applicationId "com.handydev.financier"
         minSdkVersion 21
         targetSdkVersion 29

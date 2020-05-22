@@ -22,6 +22,7 @@ import com.dropbox.core.v2.files.ListFolderResult;
 import com.dropbox.core.v2.files.Metadata;
 import com.dropbox.core.v2.files.WriteMode;
 
+import com.handydev.financier.BuildConfig;
 import com.handydev.financier.R;
 import com.handydev.financier.export.ImportExportException;
 import com.handydev.financier.utils.MyPreferences;
@@ -33,7 +34,7 @@ import java.util.*;
 
 public class Dropbox {
 
-    private static final String APP_KEY = "APP-KEY-HERE";
+    private static final String APP_KEY = BuildConfig.DROPBOXKEY;
 
     private final Context context;
 
