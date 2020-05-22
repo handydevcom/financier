@@ -34,7 +34,7 @@ import java.util.*;
 
 public class Dropbox {
 
-    private static final String APP_KEY = BuildConfig.DROPBOXKEY;
+    private static final String APP_KEY = "30hmhyk6llupt3j";
 
     private final Context context;
 

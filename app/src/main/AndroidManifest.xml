@@ -445,7 +445,7 @@
             <intent-filter>
 
                 <!-- Change this to be db- followed by your app key -->
-                <data android:scheme="@string/dropbox_key_manifest" />
+                <data android:scheme="db-30hmhyk6llupt3j" />
 
                 <action android:name="android.intent.action.VIEW" />
 
