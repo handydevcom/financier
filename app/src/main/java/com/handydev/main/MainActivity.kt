@@ -11,6 +11,7 @@
  */
 package com.handydev.main
 
+import android.app.Activity
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
@@ -21,6 +22,8 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.handydev.financier.R
+import com.handydev.financier.activity.RefreshSupportedActivity
+import com.handydev.financier.bus.RefreshData
 import com.handydev.financier.databinding.MainBinding
 import com.handydev.financier.db.DatabaseAdapter
 import com.handydev.financier.db.DatabaseHelper
@@ -28,8 +31,12 @@ import com.handydev.financier.dialog.WebViewDialog
 import com.handydev.financier.utils.CurrencyCache
 import com.handydev.financier.utils.MyPreferences
 import com.handydev.financier.utils.PinProtection
+import com.handydev.main.base.AbstractListFragment
 import com.handydev.main.protocol.IOnBackPressed
 import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
+
 
 class MainActivity : FragmentActivity() {
     private var eventBus: EventBus? = null
@@ -70,16 +77,41 @@ class MainActivity : FragmentActivity() {
         if (PinProtection.isUnlocked()) {
             WebViewDialog.checkVersionAndShowWhatsNewIfNeeded(this)
         }
+        EventBus.getDefault().register(this)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun doRefresh(data: RefreshData) {
+        val tabPager = findViewById<ViewPager2>(R.id.mainViewPager)
+        if(tabPager != null) {
+            for(i in 0 until tabPager.childCount) {
+                val fragment = supportFragmentManager.findFragmentByTag("f$i") as? AbstractListFragment
+                if(fragment != null) {
+                    fragment.recreateCursor()
+                    fragment.integrityCheck()
+                }
+            }
+        }
     }
 
     override fun onPause() {
         super.onPause()
         PinProtection.lock(this)
+        EventBus.getDefault().unregister(this)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         PinProtection.immediateLock(this)
+    }
+
+    fun refreshCurrentTab() {
+        /*val currentActivity: Activity = getLocalActivityManager().getCurrentActivity()
+        if (currentActivity is RefreshSupportedActivity) {
+            val activity = currentActivity as RefreshSupportedActivity
+            activity.recreateCursor()
+            activity.integrityCheck()
+        }*/
     }
 
     private fun initialLoad() {

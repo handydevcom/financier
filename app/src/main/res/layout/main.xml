@@ -36,7 +36,7 @@
 			android:layout_height="wrap_content"
 			app:itemIconTint="@android:color/white"
 			app:itemTextColor="@android:color/white"
-			android:background="#01b0bb"
+			android:background="#7e442e"
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintRight_toRightOf="parent"
 			app:layout_constraintBottom_toBottomOf="parent"

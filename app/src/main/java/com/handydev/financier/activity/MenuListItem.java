@@ -388,7 +388,7 @@ public enum MenuListItem implements SummaryEntityEnum {
         @Override
         protected void onPostExecute(Void o) {
             if (context instanceof MainActivity) {
-                //((MainActivity) context).refreshCurrentTab();//TODO MainActivity refactoring
+                ((MainActivity) context).refreshCurrentTab();//TODO MainActivity refactoring
             }
             progressDialog.dismiss();
         }

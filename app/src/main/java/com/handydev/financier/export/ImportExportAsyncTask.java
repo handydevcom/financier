@@ -19,8 +19,11 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.handydev.financier.R;
+import com.handydev.financier.bus.RefreshData;
 import com.handydev.financier.db.DatabaseAdapter;
 import com.handydev.financier.utils.MyPreferences;
+
+import org.greenrobot.eventbus.EventBus;
 
 import static com.handydev.financier.export.Export.uploadBackupFileToDropbox;
 import static com.handydev.financier.export.Export.uploadBackupFileToGoogleDrive;
@@ -121,6 +124,7 @@ public abstract class ImportExportAsyncTask extends AsyncTask<String, String, Ob
             return;
 
         String message = getSuccessMessage(result);
+        refreshMainActivity();
 
         if (listener != null) {
             listener.onCompleted(result);
@@ -129,6 +133,10 @@ public abstract class ImportExportAsyncTask extends AsyncTask<String, String, Ob
         if (showResultMessage) {
             Toast.makeText(context, context.getString(R.string.success, message), Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void refreshMainActivity() {
+        EventBus.getDefault().post(new RefreshData());
     }
 }
 
