@@ -410,6 +410,7 @@ public abstract class MyEntityManager extends EntityManager {
                 Budget b = MyEntityManager.loadFromCursor(cursor, Budget.class);
                 list.add(b);
             }
+            cursor.close();
             return list;
         }
     }

@@ -34,10 +34,10 @@ import java.util.*
 
 class BudgetListFragment: AbstractListFragment(R.layout.budget_list) {
     companion object {
-        val NEW_BUDGET_REQUEST = 1
-        val EDIT_BUDGET_REQUEST = 2
-        val VIEW_BUDGET_REQUEST = 3
-        val FILTER_BUDGET_REQUEST = 4
+        const val NEW_BUDGET_REQUEST = 1
+        const val EDIT_BUDGET_REQUEST = 2
+        const val VIEW_BUDGET_REQUEST = 3
+        const val FILTER_BUDGET_REQUEST = 4
     }
 
     private var bFilter: ImageButton? = null

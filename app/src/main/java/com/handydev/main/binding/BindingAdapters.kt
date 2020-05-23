@@ -22,7 +22,7 @@ fun setNewTab(pager: ViewPager2, newTab: MutableLiveData<Int>) {
     newTab.value?.let {
         //don't forget to break possible infinite loops!
         if (pager.currentItem != newTab.value && newTab.value != null) {
-            pager.setCurrentItem(newTab.value!!, true)
+            pager.setCurrentItem(newTab.value!!, false)
         }
     }
 }
