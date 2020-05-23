@@ -79,7 +79,7 @@
                 android:summary="@string/show_running_balance_summary"
                 android:title="@string/show_running_balance" />
             <CheckBoxPreference
-                android:defaultValue="true
+                android:defaultValue="true"
                 android:key="alternate_blotter_rows"
                 android:summary="@string/alternate_blotter_row_colors"
                 android:title="@string/alternate_blotter_row_colors_summary" />
