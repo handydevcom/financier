@@ -12,9 +12,12 @@ import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.ListFragment
 import com.google.android.gms.common.GooglePlayServicesUtil
+import com.google.api.services.drive.model.File
+import com.google.api.services.drive.model.FileList
 import com.handydev.financier.R
 import com.handydev.financier.activity.MenuListItem
 import com.handydev.financier.adapter.SummaryEntityListAdapter
+import com.handydev.financier.app.FinancierApp
 import com.handydev.financier.export.csv.CsvExportOptions
 import com.handydev.financier.export.csv.CsvImportOptions
 import com.handydev.financier.export.drive.*
@@ -25,6 +28,8 @@ import com.handydev.financier.export.qif.QifExportOptions
 import com.handydev.financier.export.qif.QifImportOptions
 import com.handydev.financier.service.DailyAutoBackupScheduler
 import com.handydev.financier.utils.PinProtection
+import com.handydev.main.MainActivity
+import com.handydev.main.googledrive.GoogleDriveClient
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -180,13 +185,48 @@ class MenuListFragment: ListFragment() {
         if(activity == null) {
             return
         }
+        if(FinancierApp.driveClient.account == null) {
+            resumeGoogleDriveBackupAction = true
+            resumeGoogleDriveRestoreAction = false
+            (activity as? MainActivity)?.googleDriveLogin()
+            return
+        }
+
         progressDialog = ProgressDialog.show(activity!!, null, getString(R.string.backup_database_gdocs_inprogress), true)
         bus!!.post(DoDriveBackup())
+    }
+
+    var resumeGoogleDriveBackupAction = false
+    var resumeGoogleDriveRestoreAction = false
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun resumeDriveAction(e: ResumeDriveAction?) {
+        if(activity == null) {
+            return
+        }
+        if(FinancierApp.driveClient.account == null) {
+            resumeGoogleDriveBackupAction = false
+            resumeGoogleDriveRestoreAction = false
+            return
+        }
+        if(resumeGoogleDriveBackupAction) {
+            bus!!.post(DoDriveBackup())
+        } else if(resumeGoogleDriveRestoreAction) {
+            bus!!.post(StartDriveRestore())
+        }
+        resumeGoogleDriveBackupAction = false
+        resumeGoogleDriveRestoreAction = false
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun doGoogleDriveRestore(e: StartDriveRestore?) {
         if(activity == null) {
+            return
+        }
+        if(FinancierApp.driveClient.account == null) {
+            resumeGoogleDriveBackupAction = false
+            resumeGoogleDriveRestoreAction = true
+            (activity as? MainActivity)?.googleDriveLogin()
             return
         }
         progressDialog = ProgressDialog.show(activity!!, null, getString(R.string.google_drive_loading_files), true)
@@ -200,30 +240,39 @@ class MenuListFragment: ListFragment() {
         }
         dismissProgressDialog()
         val files = event.files
-        val fileNames = getFileNames(files)
-        val selectedDriveFile = arrayOfNulls<DriveFileInfo>(1)
+        var filteredFiles = ArrayList<File>()
+        for (file in files.files) {
+            if(file.mimeType == "application/vnd.google-apps.folder") {
+                continue
+            }
+            filteredFiles.add(file)
+        }
+        val fileNames = getFileNames(filteredFiles)
+        var selectedDriveFile : File? = null
         AlertDialog.Builder(activity)
                 .setTitle(R.string.restore_database_online_google_drive)
                 .setPositiveButton(R.string.restore) { _, _ ->
-                    if (selectedDriveFile[0] != null) {
+                    if (selectedDriveFile != null) {
                         progressDialog = ProgressDialog.show(context, null, getString(R.string.google_drive_restore_in_progress), true)
-                        bus!!.post(DoDriveRestore(selectedDriveFile[0]))
+                        bus!!.post(DoDriveRestore(selectedDriveFile))
                     }
                 }
-                .setSingleChoiceItems(fileNames, -1, DialogInterface.OnClickListener { dialog: DialogInterface?, which: Int ->
+                .setSingleChoiceItems(fileNames, -1, DialogInterface.OnClickListener { _: DialogInterface?, which: Int ->
                     if (which >= 0 && which < files.size) {
-                        selectedDriveFile[0] = files[which]
+                        selectedDriveFile = filteredFiles[which]
                     }
                 })
                 .show()
     }
 
-    private fun getFileNames(files: List<DriveFileInfo>): Array<String?> {
-        val names = arrayOfNulls<String>(files.size)
-        for (i in files.indices) {
-            names[i] = files[i].title
+    private fun getFileNames(files: ArrayList<File>): Array<String?> {
+        var res = arrayOfNulls<String>(files.count())
+        var added = 0
+        for (file in files) {
+            res[added] = file.name
+            added += 1
         }
-        return names
+        return res
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -251,7 +300,8 @@ class MenuListFragment: ListFragment() {
             return
         }
         dismissProgressDialog()
-        val status = event.status
+        onDriveBackupError(DriveBackupError(getString(R.string.gdocs_connection_failed)))
+       /* val status = event.status
         if (status.hasResolution()) {
             try {
                 status.startResolutionForResult(activity!!, RESOLVE_CONNECTION_REQUEST_CODE)
@@ -261,7 +311,7 @@ class MenuListFragment: ListFragment() {
             }
         } else {
             GooglePlayServicesUtil.getErrorDialog(status.statusCode, activity!!, 0).show()
-        }
+        }*/
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -344,6 +394,8 @@ class MenuListFragment: ListFragment() {
     class StartDropboxRestore
 
     class StartDriveBackup
+
+    class ResumeDriveAction
 
     class StartDriveRestore
 

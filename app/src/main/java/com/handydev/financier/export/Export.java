@@ -29,10 +29,10 @@ import java.util.zip.GZIPOutputStream;
 
 import com.handydev.financier.R;
 import com.handydev.financier.activity.RequestPermission;
-import com.handydev.financier.export.drive.GoogleDriveClient;
-import com.handydev.financier.export.drive.GoogleDriveClient_;
+import com.handydev.financier.app.FinancierApp;
 import com.handydev.financier.export.dropbox.Dropbox;
 import com.handydev.financier.utils.MyPreferences;
+import com.handydev.main.googledrive.GoogleDriveClient;
 
 public abstract class Export {
 
@@ -126,8 +126,7 @@ public abstract class Export {
 
     public static void uploadBackupFileToGoogleDrive(Context context, String backupFileName) throws Exception {
         File file = getBackupFile(context, backupFileName);
-        GoogleDriveClient driveClient = GoogleDriveClient_.getInstance_(context);
-        driveClient.uploadFile(file);
+        //GoogleDriveClient client = new GoogleDriveClient(context);
+        FinancierApp.driveClient.uploadFile(file);
     }
-
 }

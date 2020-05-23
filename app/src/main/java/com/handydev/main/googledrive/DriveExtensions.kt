@@ -37,7 +37,7 @@ suspend fun <T> DriveRequest<T>.executeWithCoroutines(): T {
  *
  * @return the fetched folderId if existed or the newly created folderId
  */
-suspend fun Drive.fetchOrCreateAppFolder(folderName: String): String {
+fun Drive.fetchOrCreateAppFolder(folderName: String): String {
     val folderList = getAppFolder()
 
     return if (folderList.files.isEmpty()) {
@@ -47,7 +47,7 @@ suspend fun Drive.fetchOrCreateAppFolder(folderName: String): String {
         }
         files().create(fileMetadata)
                 .setFields("id")
-                .executeWithCoroutines()
+                .execute()
                 .id
     } else {
         folderList.getFirst().id
@@ -60,7 +60,7 @@ suspend fun Drive.fetchOrCreateAppFolder(folderName: String): String {
  *
  * @return newly created fileId
  */
-suspend fun Drive.createFile(folderId: String, fileName: String): String {
+fun Drive.createFile(folderId: String, fileName: String): String {
     val metadata = File().apply {
         parents = listOf(folderId)
         mimeType = ContentType.TEXT_PLAIN.mimeType
@@ -68,26 +68,23 @@ suspend fun Drive.createFile(folderId: String, fileName: String): String {
     }
     return files()
             .create(metadata)
-            .executeWithCoroutines()
+            .execute()
             .id
 }
 
 /**
  * Opens the file identified by the given [fileId] and returns a [Pair] of its name and contents.
  */
-suspend fun Drive.readFile(fileId: String): Pair<String, String> {
+fun Drive.readFile(fileId: String): ByteArray? {
     // Retrieve the metadata as a File object.
     val metadata = files().get(fileId).execute()
     val name = metadata.name
 
     // Stream the file contents to a String.
-    return withContext(Dispatchers.IO) {
-        val content = files().get(fileId).executeMediaAsInputStream()
-                ?.bufferedReader()
-                ?.use { it.readText() }
-                ?: ""
-        name to content
-    }
+
+    val content = files().get(fileId).executeMediaAsInputStream()
+            ?.readBytes()
+    return content
 }
 
 /**
@@ -103,14 +100,24 @@ suspend fun Drive.saveFile(fileId: String, name: String, content: String) {
     files().update(fileId, metadata, contentStream).executeWithCoroutines()
 }
 
+fun Drive.saveFile(fileId: String, name: String, content: ByteArray) {
+    // Create a File containing any metadata changes.
+    val metadata = File().setName(name)
+
+    val contentStream = ByteArrayContent(null, content)
+
+    // Update the metadata and contents.
+    files().update(fileId, metadata, contentStream).execute()
+}
+
 /**
  * Returns a [FileList] containing all the visible files in the user's My Drive.
  *
  * The returned list will only contain files visible to this app, i.e. those which were
  * created by this app.
  */
-suspend fun Drive.getAllFiles(): FileList {
-    return files().list().setSpaces("drive").executeWithCoroutines()
+fun Drive.getAllFiles(): FileList {
+    return files().list().setSpaces("drive").execute()
 }
 
 /**
@@ -119,11 +126,11 @@ suspend fun Drive.getAllFiles(): FileList {
  * The returned list will only contain folders created by the app, which in best practice should
  * only be 1 unless you need nested folders.
  */
-suspend fun Drive.getAppFolder(): FileList {
+fun Drive.getAppFolder(): FileList {
     return files().list()
             .setSpaces("drive")
             .setQ("mimeType = '${DriveContentType.DRIVE_FOLDER.mimeType}'")//Special Drive folder mimeType
-            .executeWithCoroutines()
+            .execute()
 }
 
 fun FileList.getFirst(): File = files[0]

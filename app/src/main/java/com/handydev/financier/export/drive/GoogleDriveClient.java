@@ -14,7 +14,13 @@ import com.dropbox.core.util.IOUtil;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Status;
+import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
+import com.google.api.client.json.gson.GsonFactory;
+import com.google.api.services.drive.Drive;
+import com.google.api.services.drive.DriveScopes;
 import com.handydev.financier.R;
+import com.handydev.financier.activity.PreferencesActivity;
 import com.handydev.financier.backup.DatabaseExport;
 import com.handydev.financier.backup.DatabaseImport;
 import com.handydev.financier.db.DatabaseAdapter;
@@ -35,10 +41,15 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+
+
+
+/*
 @EBean(scope = EBean.Scope.Singleton)
 public class GoogleDriveClient {
 
@@ -49,7 +60,8 @@ public class GoogleDriveClient {
     @Bean
     DatabaseAdapter db;
 
-    private GoogleApiClient googleApiClient;
+    private Drive googleApiClient;
+    private String appFolderId;
 
     GoogleDriveClient(Context context) {
         this.context = context.getApplicationContext();
@@ -61,37 +73,46 @@ public class GoogleDriveClient {
         bus.register(this);
     }
 
-    private ConnectionResult connect() throws ImportExportException {
+    private Boolean connect() throws ImportExportException {
         if (googleApiClient == null) {
             String googleDriveAccount = MyPreferences.getGoogleDriveAccount(context);
             if (googleDriveAccount == null) {
                 throw new ImportExportException(R.string.google_drive_account_required);
             }
-            /*googleApiClient = new GoogleApiClient.Builder(context)
+            Collection<String> scopes = new ArrayList<String>() {{
+                add(DriveScopes.DRIVE_FILE);
+                add(DriveScopes.DRIVE_APPDATA);
+            }};
+            GoogleAccountCredential credential = GoogleAccountCredential.usingOAuth2(context, scopes);
+            googleApiClient = new Drive.Builder(AndroidHttp.newCompatibleTransport(), new GsonFactory(),
+                    credential).setApplicationName("Financier").build();
+
+            googleApiClient = new GoogleApiClient.Builder(context)
                     .addApi(Drive.API)
                     .addScope(Drive.SCOPE_FILE)
                     .setAccountName(googleDriveAccount)
                     //.addConnectionCallbacks(this)
                     //.addOnConnectionFailedListener(this)
-                    .build();*/
+                    .build();
         }
-        return googleApiClient.blockingConnect(1, TimeUnit.MINUTES);
+        return googleApiClient != null;
+        //return googleApiClient.blockingConnect(1, TimeUnit.MINUTES);
     }
 
     public void disconnect() {
         if (googleApiClient != null) {
-            googleApiClient.disconnect();
+            googleApiClient = null;
         }
     }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void doBackup(DoDriveBackup event) {
-        /*DatabaseExport export = new DatabaseExport(context, db.db(), true);
+        DatabaseExport export = new DatabaseExport(context, db.db(), true);
         try {
-            String targetFolder = getDriveFolderName();
-            ConnectionResult connectionResult = connect();
-            if (connectionResult.isSuccess()) {
-                DriveFolder folder = getDriveFolder(targetFolder);
+            //String targetFolder = getDriveFolderName();
+            if (connect()) {
+                googleApiClient.fet
+                //DriveFolder folder = getDriveFolder(targetFolder);
                 String fileName = export.generateFilename();
                 byte[] bytes = export.generateBackupBytes();
                 Status status = createFile(folder, fileName, bytes);
@@ -101,16 +122,16 @@ public class GoogleDriveClient {
                     handleFailure(status);
                 }
             } else {
-                handleConnectionResult(connectionResult);
+                //handleConnectionResult(connectionResult);
             }
         } catch (Exception e) {
             handleError(e);
-        }*/
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void listFiles(DoDriveListFiles event) {
-        /*try {
+        try {
             String targetFolder = getDriveFolderName();
             ConnectionResult connectionResult = connect();
             if (connectionResult.isSuccess()) {
@@ -133,15 +154,14 @@ public class GoogleDriveClient {
             }
         } catch (Exception e) {
             handleError(e);
-        }*/
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void doRestore(DoDriveRestore event) {
         try {
-            ConnectionResult connectionResult = connect();
-            if (connectionResult.isSuccess()) {
-                /*DriveFile file = Drive.DriveApi.fetchDriveId(googleApiClient) .getFile(googleApiClient, event.selectedDriveFile.driveId);
+            if (connect()) {
+                DriveFile file = Drive.DriveApi.fetchDriveId(googleApiClient) .getFile(googleApiClient, event.selectedDriveFile.driveId);
                 DriveApi.DriveContentsResult contentsResult = file.open(googleApiClient, DriveFile.MODE_READ_ONLY, null).await();
                 if (contentsResult.getStatus().isSuccess()) {
                     DriveContents contents = contentsResult.getDriveContents();
@@ -153,16 +173,16 @@ public class GoogleDriveClient {
                     }
                 } else {
                     handleFailure(contentsResult.getStatus());
-                }*/
+                }
             } else {
-                handleConnectionResult(connectionResult);
+                //handleConnectionResult(connectionResult);
             }
         } catch (Exception e) {
             handleError(e);
         }
     }
 
-    /*private List<DriveFileInfo> fetchFiles(DriveApi.MetadataBufferResult metadataBufferResult) {
+    private List<DriveFileInfo> fetchFiles(DriveApi.MetadataBufferResult metadataBufferResult) {
         List<DriveFileInfo> files = new ArrayList<DriveFileInfo>();
         MetadataBuffer metadataBuffer = metadataBufferResult.getMetadataBuffer();
         if (metadataBuffer == null) return files;
@@ -178,7 +198,7 @@ public class GoogleDriveClient {
         }
         Collections.sort(files);
         return files;
-    }*/
+    }
 
     private String getDriveFolderName() throws ImportExportException {
         String folder = MyPreferences.getBackupFolder(context);
@@ -188,8 +208,7 @@ public class GoogleDriveClient {
         }
         return folder;
     }
-
-    /*private DriveFolder getDriveFolder(String targetFolder) throws IOException, ImportExportException {
+    private DriveFolder getDriveFolder(String targetFolder) throws IOException, ImportExportException {
         DriveFolder folder = getOrCreateDriveFolder(targetFolder);
         if (folder == null) {
             throw new ImportExportException(R.string.gdocs_folder_not_found);
@@ -253,7 +272,7 @@ public class GoogleDriveClient {
         } else {
             return contentsResultStatus;
         }
-    }*/
+    }
 
     private void handleConnectionResult(ConnectionResult connectionResult) {
         bus.post(new DriveConnectionFailed(connectionResult));
@@ -281,7 +300,7 @@ public class GoogleDriveClient {
     }
 
     public void uploadFile(File file) throws ImportExportException {
-       /* try {
+        try {
             String targetFolder = getDriveFolderName();
             ConnectionResult connectionResult = connect();
             if (connectionResult.isSuccess()) {
@@ -296,7 +315,7 @@ public class GoogleDriveClient {
             }
         } catch (Exception e) {
             throw new ImportExportException(R.string.google_drive_connection_failed, e);
-        }*/
+        }
     }
 
-}
+}*/

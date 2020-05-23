@@ -13,6 +13,7 @@ package com.handydev.main
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.util.Log
@@ -21,17 +22,25 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.Scope
+import com.google.api.services.drive.DriveScopes
 import com.handydev.financier.R
-import com.handydev.financier.activity.RefreshSupportedActivity
+import com.handydev.financier.activity.PreferencesActivity.CHOOSE_ACCOUNT
+import com.handydev.financier.app.FinancierApp
 import com.handydev.financier.bus.RefreshData
 import com.handydev.financier.databinding.MainBinding
 import com.handydev.financier.db.DatabaseAdapter
 import com.handydev.financier.db.DatabaseHelper
 import com.handydev.financier.dialog.WebViewDialog
+import com.handydev.financier.export.drive.DriveBackupError
 import com.handydev.financier.utils.CurrencyCache
 import com.handydev.financier.utils.MyPreferences
 import com.handydev.financier.utils.PinProtection
 import com.handydev.main.base.AbstractListFragment
+import com.handydev.main.fragments.MenuListFragment
 import com.handydev.main.protocol.IOnBackPressed
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -156,5 +165,31 @@ class MainActivity : FragmentActivity() {
 
     private fun updateFieldInTable(db: SQLiteDatabase, table: String, id: Long, field: String, value: String) {
         db.execSQL("update $table set $field=? where _id=?", arrayOf<Any>(value, id))
+    }
+
+    // Google Drive Region
+
+    fun googleDriveLogin() {
+        val signInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .requestScopes(Scope(DriveScopes.DRIVE_FILE), Scope(DriveScopes.DRIVE_APPDATA))
+                .build()
+        val client = GoogleSignIn.getClient(this, signInOptions)
+        startActivityForResult(client.signInIntent, CHOOSE_ACCOUNT)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == CHOOSE_ACCOUNT && data != null) {
+            handleSignInResult(data)
+        }
+    }
+
+    private fun handleSignInResult(intent: Intent) {
+        GoogleSignIn.getSignedInAccountFromIntent(intent).addOnSuccessListener { googleSignInAccount: GoogleSignInAccount ->
+            MyPreferences.setGoogleDriveAccount(this, googleSignInAccount.email)
+            FinancierApp.driveClient.account = googleSignInAccount.account
+            EventBus.getDefault().post(MenuListFragment.ResumeDriveAction())
+        }.addOnFailureListener { e: Exception -> EventBus.getDefault().post(DriveBackupError(e.message)) }
     }
 }

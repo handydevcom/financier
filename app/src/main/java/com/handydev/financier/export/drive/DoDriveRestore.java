@@ -1,11 +1,13 @@
 package com.handydev.financier.export.drive;
 
+import com.google.api.services.drive.model.File;
+
 public class DoDriveRestore {
 
-    public final DriveFileInfo selectedDriveFile;
+    public final File file;
 
-    public DoDriveRestore(DriveFileInfo selectedDriveFile) {
-        this.selectedDriveFile = selectedDriveFile;
+    public DoDriveRestore(File file) {
+        this.file = file;
     }
 
 }

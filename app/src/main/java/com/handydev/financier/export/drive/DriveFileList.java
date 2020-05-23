@@ -1,12 +1,12 @@
 package com.handydev.financier.export.drive;
 
-import java.util.List;
+import com.google.api.services.drive.model.FileList;
 
 public class DriveFileList {
 
-    public final List<DriveFileInfo> files;
+    public final FileList files;
 
-    public DriveFileList(List<DriveFileInfo> files) {
+    public DriveFileList(FileList files) {
         this.files = files;
     }
 

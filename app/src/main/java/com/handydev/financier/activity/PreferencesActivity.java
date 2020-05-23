@@ -26,15 +26,37 @@ import android.preference.PreferenceScreen;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.common.api.Scope;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.AccountPicker;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
+import com.google.api.client.json.gson.GsonFactory;
+import com.google.api.services.drive.Drive;
+import com.google.api.services.drive.DriveScopes;
 import com.handydev.financier.R;
+import com.handydev.financier.app.FinancierApp;
 import com.handydev.financier.dialog.FolderBrowser;
 import com.handydev.financier.export.Export;
+import com.handydev.financier.export.drive.DriveBackupError;
 import com.handydev.financier.export.dropbox.Dropbox;
 import com.handydev.financier.rates.ExchangeRateProviderFactory;
 import com.handydev.financier.utils.MyPreferences;
 import com.handydev.financier.utils.PinProtection;
+
+import org.greenrobot.eventbus.EventBus;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 import static android.Manifest.permission.GET_ACCOUNTS;
 import static com.handydev.financier.activity.RequestPermission.isRequestingPermission;
@@ -45,7 +67,7 @@ import static com.handydev.financier.utils.FingerprintUtils.reasonWhyFingerprint
 public class PreferencesActivity extends PreferenceActivity {
 
     private static final int SELECT_DATABASE_FOLDER = 100;
-    private static final int CHOOSE_ACCOUNT = 101;
+    public static final int CHOOSE_ACCOUNT = 101;
 
     Preference pOpenExchangeRatesAppId;
 
@@ -124,17 +146,15 @@ public class PreferencesActivity extends PreferenceActivity {
     }
 
     private void chooseAccount() {
-        try {
-            if (isRequestingPermissions(this, GET_ACCOUNTS, "android.permission.USE_CREDENTIALS")) {
-                return;
-            }
-            Account selectedAccount = getSelectedAccount();
-            Intent intent = AccountPicker.newChooseAccountIntent(selectedAccount, null,
-                    new String[]{"com.google"}, true, null, null, null, null);
-            startActivityForResult(intent, CHOOSE_ACCOUNT);
-        } catch (ActivityNotFoundException e) {
-            Toast.makeText(this, R.string.google_drive_account_select_error, Toast.LENGTH_LONG).show();
-        }
+        GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .requestScopes(new Scope(DriveScopes.DRIVE_FILE), new Scope(DriveScopes.DRIVE_APPDATA))
+                .build();
+        GoogleSignInClient client = GoogleSignIn.getClient(this, signInOptions);
+        client.signOut().addOnSuccessListener(aVoid -> {
+            MyPreferences.setGoogleDriveAccount(PreferencesActivity.this, "");
+            startActivityForResult(client.getSignInIntent(), CHOOSE_ACCOUNT);
+        });
     }
 
     private Account getSelectedAccount() {
@@ -190,18 +210,18 @@ public class PreferencesActivity extends PreferenceActivity {
                     setCurrentDatabaseBackupFolder();
                     break;
                 case CHOOSE_ACCOUNT:
-                    if (data != null) {
-                        Bundle b = data.getExtras();
-                        String accountName = b.getString(AccountManager.KEY_ACCOUNT_NAME);
-                        Log.d("Preferences", "Selected account: " + accountName);
-                        if (accountName != null && accountName.length() > 0) {
-                            MyPreferences.setGoogleDriveAccount(this, accountName);
-                            selectAccount();
-                        }
-                    }
+                    handleSignInResult(data);
                     break;
             }
         }
+    }
+
+    private void handleSignInResult(Intent intent) {
+        GoogleSignIn.getSignedInAccountFromIntent(intent).addOnSuccessListener(googleSignInAccount -> {
+            MyPreferences.setGoogleDriveAccount(this, googleSignInAccount.getEmail());
+            FinancierApp.driveClient.setAccount(googleSignInAccount.getAccount());
+            selectAccount();
+        }).addOnFailureListener(e -> EventBus.getDefault().post(new DriveBackupError(e.getMessage())));
     }
 
     private void selectAccount() {

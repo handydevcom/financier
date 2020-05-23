@@ -97,6 +97,8 @@ dependencies {
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
     //googledrive
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0'
     implementation 'com.google.android.gms:play-services-auth:18.0.0'
     implementation 'com.google.http-client:google-http-client-gson:1.26.0'
     implementation 'com.google.api-client:google-api-client-android:1.26.0'

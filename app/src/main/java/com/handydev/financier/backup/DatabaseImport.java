@@ -67,7 +67,7 @@ public class DatabaseImport extends FullDatabaseImport {
         return new DatabaseImport(context, dbAdapter, in);
     }
 
-    private DatabaseImport(Context context, DatabaseAdapter dbAdapter, InputStream backupStream) {
+    public DatabaseImport(Context context, DatabaseAdapter dbAdapter, InputStream backupStream) {
         super(context, dbAdapter);
         this.schemaEvolution = new DatabaseSchemaEvolution(context, Database.DATABASE_NAME, null, Database.DATABASE_VERSION);
         this.backupStream = backupStream;
