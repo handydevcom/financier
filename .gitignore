@@ -9,3 +9,4 @@
 *.apk
 _prepare_dropbox_keys.sh
 app/release/app-release.aab
+app/release/output.json

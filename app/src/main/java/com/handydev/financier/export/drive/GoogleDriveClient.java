@@ -14,18 +14,6 @@ import com.dropbox.core.util.IOUtil;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.drive.Drive;
-import com.google.android.gms.drive.DriveApi;
-import com.google.android.gms.drive.DriveContents;
-import com.google.android.gms.drive.DriveFile;
-import com.google.android.gms.drive.DriveFolder;
-import com.google.android.gms.drive.DriveId;
-import com.google.android.gms.drive.Metadata;
-import com.google.android.gms.drive.MetadataBuffer;
-import com.google.android.gms.drive.MetadataChangeSet;
-import com.google.android.gms.drive.query.Filters;
-import com.google.android.gms.drive.query.Query;
-import com.google.android.gms.drive.query.SearchableField;
 import com.handydev.financier.R;
 import com.handydev.financier.backup.DatabaseExport;
 import com.handydev.financier.backup.DatabaseImport;
@@ -79,13 +67,13 @@ public class GoogleDriveClient {
             if (googleDriveAccount == null) {
                 throw new ImportExportException(R.string.google_drive_account_required);
             }
-            googleApiClient = new GoogleApiClient.Builder(context)
+            /*googleApiClient = new GoogleApiClient.Builder(context)
                     .addApi(Drive.API)
                     .addScope(Drive.SCOPE_FILE)
                     .setAccountName(googleDriveAccount)
                     //.addConnectionCallbacks(this)
                     //.addOnConnectionFailedListener(this)
-                    .build();
+                    .build();*/
         }
         return googleApiClient.blockingConnect(1, TimeUnit.MINUTES);
     }
@@ -98,7 +86,7 @@ public class GoogleDriveClient {
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void doBackup(DoDriveBackup event) {
-        DatabaseExport export = new DatabaseExport(context, db.db(), true);
+        /*DatabaseExport export = new DatabaseExport(context, db.db(), true);
         try {
             String targetFolder = getDriveFolderName();
             ConnectionResult connectionResult = connect();
@@ -117,12 +105,12 @@ public class GoogleDriveClient {
             }
         } catch (Exception e) {
             handleError(e);
-        }
+        }*/
     }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void listFiles(DoDriveListFiles event) {
-        try {
+        /*try {
             String targetFolder = getDriveFolderName();
             ConnectionResult connectionResult = connect();
             if (connectionResult.isSuccess()) {
@@ -145,7 +133,7 @@ public class GoogleDriveClient {
             }
         } catch (Exception e) {
             handleError(e);
-        }
+        }*/
     }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
@@ -153,7 +141,7 @@ public class GoogleDriveClient {
         try {
             ConnectionResult connectionResult = connect();
             if (connectionResult.isSuccess()) {
-                DriveFile file = Drive.DriveApi.getFile(googleApiClient, event.selectedDriveFile.driveId);
+                /*DriveFile file = Drive.DriveApi.fetchDriveId(googleApiClient) .getFile(googleApiClient, event.selectedDriveFile.driveId);
                 DriveApi.DriveContentsResult contentsResult = file.open(googleApiClient, DriveFile.MODE_READ_ONLY, null).await();
                 if (contentsResult.getStatus().isSuccess()) {
                     DriveContents contents = contentsResult.getDriveContents();
@@ -165,7 +153,7 @@ public class GoogleDriveClient {
                     }
                 } else {
                     handleFailure(contentsResult.getStatus());
-                }
+                }*/
             } else {
                 handleConnectionResult(connectionResult);
             }
@@ -174,7 +162,7 @@ public class GoogleDriveClient {
         }
     }
 
-    private List<DriveFileInfo> fetchFiles(DriveApi.MetadataBufferResult metadataBufferResult) {
+    /*private List<DriveFileInfo> fetchFiles(DriveApi.MetadataBufferResult metadataBufferResult) {
         List<DriveFileInfo> files = new ArrayList<DriveFileInfo>();
         MetadataBuffer metadataBuffer = metadataBufferResult.getMetadataBuffer();
         if (metadataBuffer == null) return files;
@@ -190,7 +178,7 @@ public class GoogleDriveClient {
         }
         Collections.sort(files);
         return files;
-    }
+    }*/
 
     private String getDriveFolderName() throws ImportExportException {
         String folder = MyPreferences.getBackupFolder(context);
@@ -201,7 +189,7 @@ public class GoogleDriveClient {
         return folder;
     }
 
-    private DriveFolder getDriveFolder(String targetFolder) throws IOException, ImportExportException {
+    /*private DriveFolder getDriveFolder(String targetFolder) throws IOException, ImportExportException {
         DriveFolder folder = getOrCreateDriveFolder(targetFolder);
         if (folder == null) {
             throw new ImportExportException(R.string.gdocs_folder_not_found);
@@ -219,7 +207,8 @@ public class GoogleDriveClient {
         if (result.getStatus().isSuccess()) {
             DriveId driveId = fetchDriveId(result);
             if (driveId != null) {
-                return Drive.DriveApi.getFolder(googleApiClient, driveId);
+                return Drive.DriveApi.getAppFolder(googleApiClient);
+//                return Drive.DriveApi.getFolder(googleApiClient, driveId);
             }
         }
         return createDriveFolder(targetFolder);
@@ -264,7 +253,7 @@ public class GoogleDriveClient {
         } else {
             return contentsResultStatus;
         }
-    }
+    }*/
 
     private void handleConnectionResult(ConnectionResult connectionResult) {
         bus.post(new DriveConnectionFailed(connectionResult));
@@ -292,7 +281,7 @@ public class GoogleDriveClient {
     }
 
     public void uploadFile(File file) throws ImportExportException {
-        try {
+       /* try {
             String targetFolder = getDriveFolderName();
             ConnectionResult connectionResult = connect();
             if (connectionResult.isSuccess()) {
@@ -307,7 +296,7 @@ public class GoogleDriveClient {
             }
         } catch (Exception e) {
             throw new ImportExportException(R.string.google_drive_connection_failed, e);
-        }
+        }*/
     }
 
 }
