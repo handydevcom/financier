@@ -23,7 +23,7 @@ import com.handydev.financier.db.DatabaseAdapter;
 import com.handydev.financier.utils.MyPreferences;
 
 import static com.handydev.financier.export.Export.uploadBackupFileToDropbox;
-//import static com.handydev.financier.export.Export.uploadBackupFileToGoogleDrive;
+import static com.handydev.financier.export.Export.uploadBackupFileToGoogleDrive;
 
 public abstract class ImportExportAsyncTask extends AsyncTask<String, String, Object> {
 
@@ -75,16 +75,16 @@ public abstract class ImportExportAsyncTask extends AsyncTask<String, String, Ob
         uploadBackupFileToDropbox(context, backupFileName);
     }
 
-    /*void doUploadToGoogleDrive(Context context, String backupFileName) throws Exception {
+    void doUploadToGoogleDrive(Context context, String backupFileName) throws Exception {
         if (MyPreferences.isGoogleDriveUploadBackups(context)) {
             doForceUploadToGoogleDrive(context, backupFileName);
         }
-    }*/
+    }
 
-    /*private void doForceUploadToGoogleDrive(Context context, String backupFileName) throws Exception {
+    private void doForceUploadToGoogleDrive(Context context, String backupFileName) throws Exception {
         publishProgress(context.getString(R.string.google_drive_uploading_file));
         uploadBackupFileToGoogleDrive(context, backupFileName);
-    }*/
+    }
 
 
     @Override

@@ -683,7 +683,7 @@ public class MyPreferences {
         sharedPreferences.edit().putString("google_drive_backup_account", accountName).apply();
     }
 
-    /*public static boolean isGoogleDriveFullReadonly(Context context) {
+    public static boolean isGoogleDriveFullReadonly(Context context) {
         return getBoolean(context, "google_drive_backup_full_readonly", false);
     }
 
@@ -693,7 +693,7 @@ public class MyPreferences {
 
     public static boolean isGoogleDriveUploadAutoBackups(Context context) {
         return getBoolean(context, "google_drive_upload_autobackup", false);
-    }*/
+    }
 
     public static TransactionStatus getSmsTransactionStatus(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);

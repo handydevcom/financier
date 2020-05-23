@@ -157,7 +157,7 @@ public class FinancierService extends JobIntentService {
                         successful = false;
                     }
                 }
-                /*if (MyPreferences.isGoogleDriveUploadAutoBackups(this)) {
+                if (MyPreferences.isGoogleDriveUploadAutoBackups(this)) {
                     try {
                         Export.uploadBackupFileToGoogleDrive(this, fileName);
                     } catch (Exception e) {
@@ -165,7 +165,7 @@ public class FinancierService extends JobIntentService {
                         MyPreferences.notifyAutobackupFailed(this, e);
                         successful = false;
                     }
-                }*/
+                }
                 Log.e(TAG, "Auto-backup completed in " + (System.currentTimeMillis() - t0) + "ms");
                 if (successful) {
                     MyPreferences.notifyAutobackupSucceeded(this);

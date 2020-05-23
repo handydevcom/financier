@@ -104,7 +104,7 @@ public enum MenuListItem implements SummaryEntityEnum {
                     .show();
         }
     },
-    /*GOOGLE_DRIVE_BACKUP(R.string.backup_database_online_google_drive, R.string.backup_database_online_google_drive_summary, R.drawable.actionbar_google_drive) {
+    GOOGLE_DRIVE_BACKUP(R.string.backup_database_online_google_drive, R.string.backup_database_online_google_drive_summary, R.drawable.actionbar_google_drive) {
         @Override
         public void call(Activity activity) {
             if (isRequestingPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
@@ -121,7 +121,7 @@ public enum MenuListItem implements SummaryEntityEnum {
             }
             EventBus.getDefault().post(new MenuListFragment.StartDriveRestore());
         }
-    },*/
+    },
     DROPBOX_BACKUP(R.string.backup_database_online_dropbox, R.string.backup_database_online_dropbox_summary, R.drawable.actionbar_dropbox) {
         @Override
         public void call(Activity activity) {
