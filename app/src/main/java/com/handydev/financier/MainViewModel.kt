@@ -81,7 +81,30 @@ class MainViewModel(activity: FragmentActivity, val context: Context): ViewModel
         return false
     }
 
+    fun navigateDirectional(left: Boolean) {
+        if(bottomNavigationSelectedItem.value == null) {
+            return
+        }
+        var activePage: Int = currentTab.value!!
+        activePage += (if (left) -1 else 1)
+        if(activePage < 0 || activePage > 4) {
+            return
+        }
+        currentTab.postValue(activePage)
+        updateBottomNavigationPosition(activePage)
+    }
+
     var tabPageAdapter: MainPagerAdapter
+
+    fun updateBottomNavigationPosition(page: Int) {
+        when(page) {
+            0 -> bottomNavigationSelectedItem.value = R.id.main_page_accounts
+            1 -> bottomNavigationSelectedItem.value = R.id.main_page_blotter
+            2 -> bottomNavigationSelectedItem.value = R.id.main_page_budgets
+            3 -> bottomNavigationSelectedItem.value = R.id.main_page_reports
+            4 -> bottomNavigationSelectedItem.value = R.id.main_page_menu
+        }
+    }
 
     init {
         tabPageAdapter = MainPagerAdapter(activity, context)
@@ -89,15 +112,15 @@ class MainViewModel(activity: FragmentActivity, val context: Context): ViewModel
             MyPreferences.StartupScreen.ACCOUNTS -> { }
             MyPreferences.StartupScreen.BLOTTER -> {
                 currentTab.value = 1
-                bottomNavigationSelectedItem.value = R.id.main_page_blotter
+                updateBottomNavigationPosition(1)
             }
             MyPreferences.StartupScreen.BUDGETS -> {
                 currentTab.value = 2
-                bottomNavigationSelectedItem.value = R.id.main_page_budgets
+                updateBottomNavigationPosition(2)
             }
             MyPreferences.StartupScreen.REPORTS -> {
                 currentTab.value = 3
-                bottomNavigationSelectedItem.value = R.id.main_page_reports
+                updateBottomNavigationPosition(3)
             }
         }
     }

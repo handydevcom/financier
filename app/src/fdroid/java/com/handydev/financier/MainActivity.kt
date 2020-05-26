@@ -15,6 +15,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import android.view.Window
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
@@ -66,6 +67,22 @@ class MainActivity : FragmentActivity() {
         } else {
             super.onBackPressed()
         }
+    }
+
+    override fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
+        if (event?.action == KeyEvent.ACTION_UP) {
+            when (keyCode) {
+                KeyEvent.KEYCODE_DPAD_LEFT -> {
+                    viewModel.navigateDirectional(true)
+                    return true
+                }
+                KeyEvent.KEYCODE_DPAD_RIGHT -> {
+                    viewModel.navigateDirectional(false)
+                    return true
+                }
+            }
+        }
+        return super.onKeyUp(keyCode, event)
     }
 
     override fun onResume() {
