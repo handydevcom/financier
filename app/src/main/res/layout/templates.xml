@@ -9,6 +9,7 @@
 	-->
 <LinearLayout xmlns:a="http://schemas.android.com/apk/res/android"
 	a:layout_height="fill_parent" a:layout_width="fill_parent"
+	a:background="?android:colorBackground"
 	a:orientation="vertical">
 	<EditText a:layout_width="match_parent" a:layout_height="wrap_content" a:id="@+id/searchFilter" a:hint="Type template..."/> <!-- todo.mb move to res -->
 	
@@ -21,9 +22,13 @@
 
 	<LinearLayout a:layout_height="wrap_content"
 		a:layout_width="fill_parent" style="@style/ButtonBar">
-		<Button a:layout_height="wrap_content" a:id="@+id/bEditTemplates"
-			a:layout_width="wrap_content" a:layout_weight="1"
-			a:text="@string/edit"></Button>
+
+		<Button
+			a:id="@+id/bEditTemplates"
+			a:layout_width="wrap_content"
+			a:layout_height="wrap_content"
+			a:layout_weight="1"
+			a:text="@string/edit" />
 		<ImageButton a:layout_width="wrap_content"
 			a:layout_height="wrap_content" style="@style/MinusButton"
 			a:id="@+id/bMinus" a:layout_marginLeft="10dp" />

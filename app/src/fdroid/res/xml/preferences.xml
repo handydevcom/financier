@@ -1,0 +1,427 @@
+<!--
+  Copyright (c) 2010 Denis Solonenko.
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the GNU Public License v2.0
+  which accompanies this distribution, and is available at
+  http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+  
+  Contributors:
+      Denis Solonenko - initial API and implementation
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/user_interface">
+        <ListPreference
+            android:defaultValue="default"
+            android:entries="@array/ui_language_entities"
+            android:entryValues="@array/ui_language_values"
+            android:key="ui_language"
+            android:summary="@string/ui_language_summary"
+            android:title="@string/ui_language" />
+        <ListPreference
+            android:defaultValue="ACCOUNTS"
+            android:entries="@array/startup_screen_entities"
+            android:entryValues="@array/startup_screen_values"
+            android:key="startup_screen"
+            android:summary="@string/startup_screen_summary"
+            android:title="@string/startup_screen" />
+        <PreferenceScreen
+            android:summary="@string/accounts_list_screen_summary"
+            android:title="@string/accounts_list_screen">
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:key="quick_menu_account_enabled"
+                android:summary="@string/quick_menu_account_enabled_summary"
+                android:title="@string/quick_menu_account_enabled" />
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:key="show_account_last_transaction_date"
+                android:summary="@string/show_account_last_transaction_date_summary"
+                android:title="@string/show_account_last_transaction_date" />
+            <ListPreference
+                android:defaultValue="SORT_ORDER_DESC"
+                android:entries="@array/sort_accounts_entities"
+                android:entryValues="@array/sort_accounts_values"
+                android:key="sort_accounts"
+                android:summary="@string/sort_accounts_summary"
+                android:title="@string/sort_accounts" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="hide_closed_accounts"
+                android:summary="@string/hide_closed_accounts_summary"
+                android:title="@string/hide_closed_accounts" />
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:key="show_menu_button_on_accounts_screen"
+                android:summary="@string/show_menu_button_on_accounts_screen_summary"
+                android:title="@string/show_menu_button_on_accounts_screen" />
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:key="alternate_account_rows"
+                android:summary="@string/alternate_account_row_colors"
+                android:title="@string/alternate_account_row_colors_summary" />
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:summary="@string/blotter_screen_summary"
+            android:title="@string/blotter_screen">
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:key="quick_menu_transaction_enabled"
+                android:summary="@string/quick_menu_transaction_enabled_summary"
+                android:title="@string/quick_menu_transaction_enabled" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="collapse_blotter_buttons"
+                android:summary="@string/collapse_blotter_buttons_summary"
+                android:title="@string/collapse_blotter_buttons" />
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:key="show_running_balance"
+                android:summary="@string/show_running_balance_summary"
+                android:title="@string/show_running_balance" />
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:key="alternate_blotter_rows"
+                android:summary="@string/alternate_blotter_row_colors"
+                android:title="@string/alternate_blotter_row_colors_summary" />
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:summary="@string/transaction_screen_summary"
+            android:title="@string/transaction_screen">
+            <PreferenceCategory android:title="@string/category_selector">
+                <!-- todo.mb: remove it as not used really >> -->
+                <CheckBoxPreference 
+                    android:defaultValue="true"
+                    android:key="use_hierarchical_category_selector"
+                    android:summary="@string/use_hierarchical_category_selector_summary"
+                    android:title="@string/use_hierarchical_category_selector" />
+                <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:key="hierarchical_category_selector_select_child_immediately"
+                    android:summary="@string/hierarchical_category_selector_select_child_immediately_summary"
+                    android:title="@string/hierarchical_category_selector_select_child_immediately" />
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="hierarchical_category_selector_income_expense"
+                    android:summary="@string/hierarchical_category_selector_income_expense_summary"
+                    android:title="@string/hierarchical_category_selector_income_expense" />
+            </PreferenceCategory>
+            <PreferenceCategory android:title="@string/remember_selection">
+                <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:key="remember_last_account"
+                    android:summary="@string/remember_last_account_summary"
+                    android:title="@string/remember_last_account" />
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="remember_last_category"
+                    android:summary="@string/remember_last_category_for_payee_summary"
+                    android:title="@string/remember_last_category_for_payee" />
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:dependency="remember_last_category"
+                    android:key="remember_last_location"
+                    android:summary="@string/remember_last_location_summary"
+                    android:title="@string/remember_last_location" />
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:dependency="remember_last_category"
+                    android:key="remember_last_project"
+                    android:summary="@string/remember_last_project_summary"
+                    android:title="@string/remember_last_project" />
+            </PreferenceCategory>
+            <PreferenceCategory android:title="@string/screen_layout">
+                <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:key="ntsl_use_fixed_layout"
+                    android:summary="@string/use_fixed_layout_summary"
+                    android:title="@string/use_fixed_layout" />
+                <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:key="ntsl_show_currency"
+                    android:summary="@string/show_currency_summary"
+                    android:title="@string/show_currency" />
+                <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:key="ntsl_enter_currency_decimal_places"
+                    android:summary="@string/enter_currency_decimal_places_summary"
+                    android:title="@string/enter_currency_decimal_places" />
+                <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:key="ntsl_show_payee"
+                    android:summary="@string/show_payee_summary"
+                    android:title="@string/show_payee" />
+                <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:key="ntsl_show_location"
+                    android:summary="@string/show_location_summary"
+                    android:title="@string/show_location" />
+                <ListPreference
+                    android:defaultValue="1"
+                    android:dependency="ntsl_show_location"
+                    android:entries="@array/sort_order_entities"
+                    android:entryValues="@array/sort_order_entities"
+                    android:key="ntsl_show_location_order"
+                    android:summary="@string/show_location_order_summary"
+                    android:title="@string/show_location_order" />
+                <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:key="ntsl_show_note"
+                    android:summary="@string/show_note_summary"
+                    android:title="@string/show_note" />
+                <ListPreference
+                    android:defaultValue="2"
+                    android:dependency="ntsl_show_note"
+                    android:entries="@array/sort_order_entities"
+                    android:entryValues="@array/sort_order_entities"
+                    android:key="ntsl_show_note_order"
+                    android:summary="@string/show_note_order_summary"
+                    android:title="@string/show_note_order" />
+                <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:key="ntsl_show_project"
+                    android:summary="@string/show_project_summary"
+                    android:title="@string/show_project" />
+                <ListPreference
+                    android:defaultValue="3"
+                    android:dependency="ntsl_show_project"
+                    android:entries="@array/sort_order_entities"
+                    android:entryValues="@array/sort_order_entities"
+                    android:key="ntsl_show_project_order"
+                    android:summary="@string/show_project_order_summary"
+                    android:title="@string/show_project_order" />
+                <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:key="ntsl_show_picture"
+                    android:summary="@string/show_picture_summary"
+                    android:title="@string/show_picture" />
+                <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:key="ntsl_show_is_ccard_payment"
+                    android:summary="@string/show_is_ccard_payment_summary"
+                    android:title="@string/show_is_ccard_payment" />
+                <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:key="ntsl_show_category_in_transfer"
+                    android:summary="@string/show_category_in_transfer_summary"
+                    android:title="@string/show_category_in_transfer" />
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="ntsl_show_payee_in_transfers"
+                    android:summary="@string/show_payee_in_transfer_summary"
+                    android:title="@string/show_payee_in_transfer" />
+                <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:key="ntsl_open_calculator_for_template_transactions"
+                    android:summary="@string/open_calculator_for_template_transactions_summary"
+                    android:title="@string/open_calculator_for_template_transactions" />
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="ntsl_set_focus_on_amount_field"
+                    android:summary="@string/set_focus_on_amount_field_summary"
+                    android:title="@string/set_focus_on_amount_field" />
+            </PreferenceCategory>
+        </PreferenceScreen>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_sms">
+        <ListPreference
+            android:defaultValue="PN"
+            android:entries="@array/pref_sms_transaction_statuses"
+            android:entryValues="@array/pref_sms_transaction_status_values"
+            android:key="sms_transaction_status"
+            android:summary="@string/pref_sms_transaction_status"
+            android:title="@string/pref_sms_transaction_status_title" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="sms_transaction_note"
+            android:summary="@string/pref_sms_adding_to_note"
+            android:title="@string/pref_sms_adding_to_note_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/protection">
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="enable_widget"
+            android:summary="@string/enable_widget_summary"
+            android:title="@string/enable_widget" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="pin_protection"
+            android:summary="@string/pin_protection_summary"
+            android:title="@string/pin_protection" />
+        <com.handydev.financier.dialog.PinDialogPreference
+            android:dependency="pin_protection"
+            android:dialogLayout="@layout/lock"
+            android:key="pin"
+            android:summary="@string/pin_warning"
+            android:title="@string/change_pin" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:dependency="pin_protection"
+            android:key="pin_protection_use_fingerprint"
+            android:summary="@string/pin_protection_use_fingerprint_summary"
+            android:title="@string/pin_protection_use_fingerprint" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:dependency="pin_protection_use_fingerprint"
+            android:key="pin_protection_use_fingerprint_fallback_to_pin"
+            android:summary="@string/pin_protection_use_fingerprint_fallback_to_pin"
+            android:title="@string/pin_protection_use_fingerprint_fallback_to_pin_summary" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:dependency="pin_protection"
+            android:key="pin_protection_lock_transaction"
+            android:summary="@string/pin_protection_lock_transaction_summary"
+            android:title="@string/pin_protection_lock_transaction" />
+        <ListPreference
+            android:defaultValue="5"
+            android:dependency="pin_protection"
+            android:entries="@array/lock_time_entities"
+            android:entryValues="@array/lock_time_values"
+            android:key="pin_protection_lock_time"
+            android:summary="@string/lock_time_summary"
+            android:title="@string/lock_time" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/home_screen">
+        <Preference
+            android:key="shortcut_new_transaction"
+            android:summary="@string/shortcut_summary"
+            android:title="@string/shortcut_new_transaction" />
+        <Preference
+            android:key="shortcut_new_transfer"
+            android:summary="@string/shortcut_summary"
+            android:title="@string/shortcut_new_transfer" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/database_backup">
+        <Preference
+            android:key="database_backup_folder"
+            android:summary="@string/database_backup_folder_summary"
+            android:title="@string/database_backup_folder" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="auto_backup_reminder_enabled"
+            android:summary="@string/auto_backup_reminder_enabled_summary"
+            android:title="@string/auto_backup_reminder_enabled" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="auto_backup_enabled"
+            android:summary="@string/auto_backup_enabled_summary"
+            android:title="@string/auto_backup_enabled" />
+        <com.handydev.financier.dialog.TimePreference
+            android:dependency="auto_backup_enabled"
+            android:key="auto_backup_time"
+            android:summary="@string/auto_backup_time_summary"
+            android:title="@string/auto_backup_time" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:dependency="auto_backup_enabled"
+            android:key="auto_backup_warning_enabled"
+            android:summary="@string/auto_backup_warning_summary"
+            android:title="@string/auto_backup_warning_enabled" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/dropbox">
+        <Preference
+            android:key="dropbox_authorize"
+            android:summary="@string/dropbox_authorize_summary"
+            android:title="@string/dropbox_authorize" />
+        <Preference
+            android:key="dropbox_unlink"
+            android:summary="@string/dropbox_unlink_summary"
+            android:title="@string/dropbox_unlink" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="dropbox_upload_backup"
+            android:summary="@string/dropbox_upload_backup_summary"
+            android:title="@string/dropbox_upload_backup" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="dropbox_upload_autobackup"
+            android:summary="@string/dropbox_upload_autobackup_summary"
+            android:title="@string/dropbox_upload_autobackup" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/exchange_rates">
+        <ListPreference
+            android:defaultValue="freeCurrency"
+            android:entries="@array/exchange_rate_provider_entities"
+            android:entryValues="@array/exchange_rate_provider_values"
+            android:key="exchange_rate_provider"
+            android:summary="@string/exchange_rate_provider_summary"
+            android:title="@string/exchange_rate_provider" />
+        <EditTextPreference
+            android:enabled="false"
+            android:key="openexchangerates_app_id"
+            android:summary="@string/openexchangerates_app_id_summary"
+            android:title="@string/openexchangerates_app_id" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/entity_selector">
+        <ListPreference
+            android:defaultValue="filter"
+            android:entries="@array/entity_selector_entities"
+            android:entryValues="@array/entity_selector_values"
+            android:key="payee_selector"
+            android:summary="@string/entity_selector_summary"
+            android:title="@string/payee_selector_title" />
+        <ListPreference
+            android:defaultValue="filter"
+            android:entries="@array/entity_selector_entities"
+            android:entryValues="@array/entity_selector_values"
+            android:key="location_selector"
+            android:summary="@string/entity_selector_summary"
+            android:title="@string/location_selector_title" />
+        <ListPreference
+            android:defaultValue="filter"
+            android:entries="@array/entity_selector_entities"
+            android:entryValues="@array/entity_selector_values"
+            android:key="project_selector"
+            android:summary="@string/entity_selector_summary"
+            android:title="@string/project_selector_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/sort_order">
+        <ListPreference
+            android:defaultValue="NAME"
+            android:entries="@array/sort_locations_entities"
+            android:entryValues="@array/sort_locations_values"
+            android:key="sort_locations"
+            android:summary="@string/sort_locations_summary"
+            android:title="@string/sort_locations" />
+        <ListPreference
+            android:defaultValue="DATE"
+            android:entries="@array/sort_templates_entities"
+            android:entryValues="@array/sort_templates_values"
+            android:key="sort_templates"
+            android:summary="@string/sort_templates_summary"
+            android:title="@string/sort_templates" />
+        <ListPreference
+            android:defaultValue="DATE"
+            android:entries="@array/sort_budgets_entities"
+            android:entryValues="@array/sort_budgets_values"
+            android:key="sort_budgets"
+            android:summary="@string/sort_budgets_summary"
+            android:title="@string/sort_budgets" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/other">
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="pin_protection_haptic_feedback"
+            android:summary="@string/pin_protection_haptic_feedback_summary"
+            android:title="@string/pin_protection_haptic_feedback" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="include_transfers_into_reports"
+            android:summary="@string/include_transfers_into_reports_summary"
+            android:title="@string/include_transfers_into_reports" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="restore_missed_scheduled_transactions"
+            android:summary="@string/restore_missed_scheduled_transactions_summary"
+            android:title="@string/restore_missed_scheduled_transactions" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

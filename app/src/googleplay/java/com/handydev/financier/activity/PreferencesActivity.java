@@ -10,6 +10,7 @@
  ******************************************************************************/
 package com.handydev.financier.activity;
 
+import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.ComponentName;
@@ -41,6 +42,7 @@ import com.handydev.financier.utils.PinProtection;
 
 import org.greenrobot.eventbus.EventBus;
 
+import static com.handydev.financier.activity.RequestPermission.isRequestingPermission;
 import static com.handydev.financier.utils.FingerprintUtils.fingerprintUnavailable;
 import static com.handydev.financier.utils.FingerprintUtils.reasonWhyFingerprintUnavailable;
 
@@ -85,6 +87,13 @@ public class PreferencesActivity extends PreferenceActivity implements SharedPre
             return true;
         });
         Preference pDatabaseBackupFolder = preferenceScreen.findPreference("database_backup_folder");
+        pDatabaseBackupFolder.setOnPreferenceClickListener(arg0 -> {
+            if (isRequestingPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                return false;
+            }
+            selectDatabaseBackupFolder();
+            return true;
+        });
 
         Preference pGDriveBackupFolder = preferenceScreen.findPreference("backup_folder");
         pGDriveBackupFolder.setOnPreferenceChangeListener((preference, o) -> {
