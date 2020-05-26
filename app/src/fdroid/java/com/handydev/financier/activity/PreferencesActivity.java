@@ -10,6 +10,7 @@
  ******************************************************************************/
 package com.handydev.financier.activity;
 
+import android.Manifest;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -31,6 +32,7 @@ import com.handydev.financier.rates.ExchangeRateProviderFactory;
 import com.handydev.financier.utils.MyPreferences;
 import com.handydev.financier.utils.PinProtection;
 
+import static com.handydev.financier.activity.RequestPermission.isRequestingPermission;
 import static com.handydev.financier.utils.FingerprintUtils.fingerprintUnavailable;
 import static com.handydev.financier.utils.FingerprintUtils.reasonWhyFingerprintUnavailable;
 

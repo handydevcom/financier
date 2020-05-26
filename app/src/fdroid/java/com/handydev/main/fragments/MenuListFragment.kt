@@ -43,7 +43,9 @@ class MenuListFragment: ListFragment() {
             return
         }
         bus = EventBus.getDefault()
-        listAdapter = SummaryEntityListAdapter(activity!!, MenuListItem.values())
+        var menuItems = MenuListItem.values()
+        menuItems = menuItems.filter { it != MenuListItem.GOOGLE_DRIVE_BACKUP && it != MenuListItem.GOOGLE_DRIVE_RESTORE }.toTypedArray()
+        listAdapter = SummaryEntityListAdapter(activity!!, menuItems)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
