@@ -30,22 +30,6 @@
         android:name="android.hardware.fingerprint"
         android:required="false" />
 
-    <!-- Custom permissions -->
-    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
-
-    <!-- System permissions -->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
-    <uses-permission android:name="android.permission.RECEIVE_SMS" />
-    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
-
     <application
         android:name="com.handydev.financier.app.FinancierApp_"
         android:allowBackup="true"

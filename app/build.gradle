@@ -16,6 +16,19 @@ android {
     compileSdkVersion 29
     buildToolsVersion '28.0.3'
 
+    flavorDimensions "channel"
+    productFlavors {
+        untied {
+            dimension "channel"
+        }
+        googleplay {
+            dimension "channel"
+        }
+        fdroid {
+            dimension "channel"
+        }
+    }
+
     defaultConfig {
         applicationId "com.handydev.financier"
         minSdkVersion 21
@@ -24,7 +37,6 @@ android {
         versionName "2.0.5"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
-        setProperty("archivesBaseName", "Financier_Full_$versionName")
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [
@@ -38,6 +50,19 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            applicationVariants.all { variant ->
+                variant.outputs.all { output ->
+                    //def appId = variant.applicationId// com.exampleFree.app OR com.examplePaid.app
+                    def versionName = variant.versionName
+                    //def versionCode = variant.versionCode // e.g 1.0
+                    //def flavorName = variant.flavorName // e. g. Free
+                    //def buildType = variant.buildType.name // e. g. debug
+                    def variantName = variant.name // e. g. FreeDebug
+
+                    //customize your app name by using variables
+                    outputFileName = "Financier_${variantName}_${versionName}.apk"
+                }
+            }
         }
     }
 

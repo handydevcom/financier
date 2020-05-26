@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.widget.SwitchCompat;
+
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 
@@ -17,6 +19,7 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
 
+import com.handydev.financier.BuildConfig;
 import com.handydev.financier.R;
 import com.handydev.financier.utils.MyPreferences;
 
@@ -58,13 +61,18 @@ public class RequestPermissionActivity extends AppCompatActivity {
     @AfterViews
     public void initViews() {
         checkPermissions();
+        if (BuildConfig.FLAVOR.equals("googleplay")) {
+            toggleSmsWrap.setVisibility(View.GONE);
+        }
     }
 
     private void checkPermissions() {
         disableToggleIfGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE, toggleWriteStorage, toggleWriteStorageWrap);
         disableToggleIfGranted(Manifest.permission.GET_ACCOUNTS, toggleGetAccounts, toggleGetAccountsWrap);
         disableToggleIfGranted(Manifest.permission.CAMERA, toggleCamera, toggleCameraWrap);
-        disableToggleIfGranted(Manifest.permission.RECEIVE_SMS, toggleSms, toggleSmsWrap);
+        if(!BuildConfig.FLAVOR.equals("googleplay")) {
+            disableToggleIfGranted(Manifest.permission.RECEIVE_SMS, toggleSms, toggleSmsWrap);
+        }
     }
 
     private void disableToggleIfGranted(String permission, CompoundButton toggleButton, ViewGroup wrapLayout) {
@@ -94,7 +102,9 @@ public class RequestPermissionActivity extends AppCompatActivity {
 
     @Click(R.id.toggleSms)
     public void onGrantSms() {
-        requestPermission(Manifest.permission.RECEIVE_SMS, toggleSms);
+        if (!BuildConfig.FLAVOR.equals("googleplay")) {
+            requestPermission(Manifest.permission.RECEIVE_SMS, toggleSms);
+        }
     }
 
     private void requestPermission(String permission, CompoundButton toggleButton) {
