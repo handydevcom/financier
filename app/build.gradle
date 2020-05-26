@@ -122,16 +122,32 @@ dependencies {
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
     //googledrive
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.4'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.4'
-    implementation 'com.google.android.gms:play-services-auth:18.0.0'
-    implementation 'com.google.http-client:google-http-client-gson:1.26.0'
-    implementation 'com.google.api-client:google-api-client-android:1.26.0'
-    implementation 'com.google.apis:google-api-services-drive:v3-rev136-1.25.0'
-    //dependent by google drive sample
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha03'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation ('androidx.work:work-runtime-ktx:2.3.4'){
+    googleplayImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.4'
+    googleplayImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.4'
+    googleplayImplementation 'com.google.android.gms:play-services-auth:18.0.0'
+    googleplayImplementation 'com.google.http-client:google-http-client-gson:1.26.0'
+    googleplayImplementation 'com.google.api-client:google-api-client-android:1.26.0'
+    googleplayImplementation 'com.google.apis:google-api-services-drive:v3-rev136-1.25.0'
+        //googledrive misc
+    googleplayImplementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha03'
+    googleplayImplementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    googleplayImplementation ('androidx.work:work-runtime-ktx:2.3.4'){
+        //Needed due to a transitive dependency clash with the google api client dep
+        exclude group: 'com.google.guava', module:'listenablefuture'
+    }
+    //googledrive
+
+    //untied - SAME AS ABOVE
+    untiedImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.4'
+    untiedImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.4'
+    untiedImplementation 'com.google.android.gms:play-services-auth:18.0.0'
+    untiedImplementation 'com.google.http-client:google-http-client-gson:1.26.0'
+    untiedImplementation 'com.google.api-client:google-api-client-android:1.26.0'
+    untiedImplementation 'com.google.apis:google-api-services-drive:v3-rev136-1.25.0'
+    //googledrive misc
+    untiedImplementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha03'
+    untiedImplementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    untiedImplementation ('androidx.work:work-runtime-ktx:2.3.4'){
         //Needed due to a transitive dependency clash with the google api client dep
         exclude group: 'com.google.guava', module:'listenablefuture'
     }

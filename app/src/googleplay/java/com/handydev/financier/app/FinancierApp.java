@@ -17,8 +17,6 @@ public class FinancierApp extends MultiDexApplication {
 
     public EventBus bus;
 
-    //@Bean
-
     public static GoogleDriveClient driveClient;
 
     @AfterInject
@@ -39,10 +37,4 @@ public class FinancierApp extends MultiDexApplication {
         super.onConfigurationChanged(newConfig);
         MyPreferences.switchLocale(this);
     }
-
-    /*@Override
-    public void onCreate() {
-        //val eventBus: EventBus = EventBus.builder().addIndex(MyEventBusIndex()).build()
-        //        EventBus.builder().addIndex(MyEventBusIndex()).installDefaultEventBus()
-    }*/
 }

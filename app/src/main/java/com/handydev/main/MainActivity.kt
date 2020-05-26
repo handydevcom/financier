@@ -169,6 +169,13 @@ class MainActivity : FragmentActivity() {
 
     // Google Drive Region
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == CHOOSE_ACCOUNT && data != null) {
+            handleSignInResult(data)
+        }
+    }
+
     fun googleDriveLogin() {
         val signInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -176,13 +183,6 @@ class MainActivity : FragmentActivity() {
                 .build()
         val client = GoogleSignIn.getClient(this, signInOptions)
         startActivityForResult(client.signInIntent, CHOOSE_ACCOUNT)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && requestCode == CHOOSE_ACCOUNT && data != null) {
-            handleSignInResult(data)
-        }
     }
 
     private fun handleSignInResult(intent: Intent) {
