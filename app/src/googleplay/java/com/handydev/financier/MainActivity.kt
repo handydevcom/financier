@@ -9,7 +9,7 @@
  * Contributors:
  * Denis Solonenko - initial API and implementation
  */
-package com.handydev.main
+package com.handydev.financier
 
 import android.app.Activity
 import android.content.Context
@@ -27,7 +27,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.Scope
 import com.google.api.services.drive.DriveScopes
-import com.handydev.financier.R
 import com.handydev.financier.activity.PreferencesActivity.CHOOSE_ACCOUNT
 import com.handydev.financier.app.FinancierApp
 import com.handydev.financier.bus.RefreshData

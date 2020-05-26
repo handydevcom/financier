@@ -1,4 +1,4 @@
-package com.handydev.main.protocol
+package com.handydev.financier.protocol
 
 interface IOnBackPressed {
     fun onBackPressed(): Boolean

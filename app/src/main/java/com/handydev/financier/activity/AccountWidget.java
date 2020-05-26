@@ -29,7 +29,7 @@ import com.handydev.financier.model.CardIssuer;
 import com.handydev.financier.model.ElectronicPaymentType;
 import com.handydev.financier.utils.MyPreferences;
 import com.handydev.financier.utils.Utils;
-import com.handydev.main.MainActivity;
+import com.handydev.financier.MainActivity;
 import com.handydev.orb.EntityManager;
 
 import java.util.ArrayList;

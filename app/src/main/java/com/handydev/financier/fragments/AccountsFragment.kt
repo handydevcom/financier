@@ -1,4 +1,4 @@
-package com.handydev.main.fragments
+package com.handydev.financier.fragments
 
 import android.content.Context
 import android.content.Intent
@@ -27,7 +27,7 @@ import com.handydev.financier.utils.IntegrityCheckAutobackup
 import com.handydev.financier.utils.MenuItemInfo
 import com.handydev.financier.utils.MyPreferences
 import com.handydev.financier.view.NodeInflater
-import com.handydev.main.base.AbstractListFragment
+import com.handydev.financier.base.AbstractListFragment
 import greendroid.widget.QuickActionGrid
 import greendroid.widget.QuickActionWidget
 import greendroid.widget.QuickActionWidget.OnQuickActionClickListener

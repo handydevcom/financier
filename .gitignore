@@ -12,3 +12,4 @@ app/release/app-release.aab
 app/release/output.json
 *.aab
 app/untied/release/output.json
+app/fdroid/release/output.json

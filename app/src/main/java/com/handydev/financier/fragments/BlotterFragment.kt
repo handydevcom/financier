@@ -1,4 +1,4 @@
-package com.handydev.main.fragments
+package com.handydev.financier.fragments
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -33,8 +33,8 @@ import com.handydev.financier.utils.IntegrityCheckRunningBalance
 import com.handydev.financier.utils.MenuItemInfo
 import com.handydev.financier.utils.MyPreferences
 import com.handydev.financier.view.NodeInflater
-import com.handydev.main.base.AbstractListFragment
-import com.handydev.main.protocol.IOTransactionDeleteListener
+import com.handydev.financier.base.AbstractListFragment
+import com.handydev.financier.protocol.IOTransactionDeleteListener
 
 open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactionDeleteListener {
     companion object {

@@ -1,4 +1,4 @@
-package com.handydev.main.fragments
+package com.handydev.financier.fragments
 
 import android.content.Context
 import android.content.Intent

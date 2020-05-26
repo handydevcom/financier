@@ -20,7 +20,7 @@ import com.handydev.financier.filter.Criteria;
 import com.handydev.financier.filter.WhereFilter;
 import com.handydev.financier.model.Category;
 import com.handydev.financier.model.Currency;
-import com.handydev.main.fragments.ReportsListFragment;
+import com.handydev.financier.fragments.ReportsListFragment;
 
 import static com.handydev.financier.db.DatabaseHelper.V_REPORT_CATEGORY;
 

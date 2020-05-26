@@ -1,4 +1,4 @@
-package com.handydev.main.fragments
+package com.handydev.financier.fragments
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -29,7 +29,7 @@ import com.handydev.financier.model.Total
 import com.handydev.financier.utils.RecurUtils
 import com.handydev.financier.utils.RecurUtils.RecurInterval
 import com.handydev.financier.utils.Utils
-import com.handydev.main.base.AbstractListFragment
+import com.handydev.financier.base.AbstractListFragment
 import java.util.*
 
 class BudgetListFragment: AbstractListFragment(R.layout.budget_list) {

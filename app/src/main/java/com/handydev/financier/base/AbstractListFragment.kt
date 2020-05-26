@@ -1,4 +1,4 @@
-package com.handydev.main.base
+package com.handydev.financier.base
 
 import android.content.Context
 import android.database.Cursor
@@ -10,14 +10,10 @@ import android.widget.AdapterView.OnItemLongClickListener
 import androidx.fragment.app.ListFragment
 import com.handydev.financier.R
 import com.handydev.financier.activity.RefreshSupportedActivity
-import com.handydev.financier.bus.RefreshData
 import com.handydev.financier.db.DatabaseAdapter
 import com.handydev.financier.utils.MenuItemInfo
 import com.handydev.financier.utils.PinProtection
-import com.handydev.main.protocol.IOnBackPressed
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
+import com.handydev.financier.protocol.IOnBackPressed
 import kotlin.collections.ArrayList
 
 abstract class AbstractListFragment protected constructor(private val contentId: Int) : ListFragment(), IOnBackPressed, RefreshSupportedActivity {

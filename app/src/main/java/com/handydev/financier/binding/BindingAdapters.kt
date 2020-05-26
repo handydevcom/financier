@@ -1,4 +1,4 @@
-package com.handydev.main.binding
+package com.handydev.financier.binding
 
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData

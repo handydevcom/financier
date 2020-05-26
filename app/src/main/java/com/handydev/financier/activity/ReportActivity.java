@@ -51,7 +51,7 @@ import com.handydev.financier.report.ReportData;
 import com.handydev.financier.utils.MyPreferences;
 import com.handydev.financier.utils.PinProtection;
 import com.handydev.financier.utils.Utils;
-import com.handydev.main.fragments.ReportsListFragment;
+import com.handydev.financier.fragments.ReportsListFragment;
 
 public class ReportActivity extends ListActivity implements RefreshSupportedActivity {
 

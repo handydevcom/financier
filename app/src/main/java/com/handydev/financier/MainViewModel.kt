@@ -1,4 +1,4 @@
-package com.handydev.main
+package com.handydev.financier
 
 import android.content.Context
 import android.os.Bundle
@@ -9,9 +9,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.handydev.financier.R
 import com.handydev.financier.utils.MyPreferences
-import com.handydev.main.fragments.*
+import com.handydev.financier.fragments.*
 
 
 class MainViewModelFactory(val activity: FragmentActivity, val context: Context) : ViewModelProvider.Factory {

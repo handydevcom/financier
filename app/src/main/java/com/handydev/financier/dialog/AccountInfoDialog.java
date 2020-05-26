@@ -24,7 +24,7 @@ import com.handydev.financier.db.DatabaseAdapter;
 import com.handydev.financier.model.*;
 import com.handydev.financier.utils.Utils;
 import com.handydev.financier.view.NodeInflater;
-import com.handydev.main.fragments.AccountsFragment;
+import com.handydev.financier.fragments.AccountsFragment;
 
 import static com.handydev.financier.utils.Utils.isNotEmpty;
 

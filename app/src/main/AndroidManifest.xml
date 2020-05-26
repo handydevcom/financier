@@ -128,7 +128,7 @@
         </provider>
 
         <activity
-            android:name="com.handydev.main.MainActivity"
+            android:name=".MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/app_name">
             <intent-filter>

@@ -9,7 +9,7 @@
  * Contributors:
  * Denis Solonenko - initial API and implementation
  */
-package com.handydev.main
+package com.handydev.financier
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -20,7 +20,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
-import com.handydev.financier.R
 import com.handydev.financier.bus.RefreshData
 import com.handydev.financier.databinding.MainBinding
 import com.handydev.financier.db.DatabaseAdapter
@@ -29,8 +28,8 @@ import com.handydev.financier.dialog.WebViewDialog
 import com.handydev.financier.utils.CurrencyCache
 import com.handydev.financier.utils.MyPreferences
 import com.handydev.financier.utils.PinProtection
-import com.handydev.main.base.AbstractListFragment
-import com.handydev.main.protocol.IOnBackPressed
+import com.handydev.financier.base.AbstractListFragment
+import com.handydev.financier.protocol.IOnBackPressed
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode

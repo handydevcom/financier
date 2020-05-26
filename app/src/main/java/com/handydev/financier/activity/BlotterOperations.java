@@ -17,7 +17,7 @@ import com.handydev.financier.R;
 import com.handydev.financier.db.DatabaseAdapter;
 import com.handydev.financier.model.Transaction;
 import com.handydev.financier.model.TransactionStatus;
-import com.handydev.main.protocol.IOTransactionDeleteListener;
+import com.handydev.financier.protocol.IOTransactionDeleteListener;
 
 public class BlotterOperations {
 

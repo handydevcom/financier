@@ -41,7 +41,7 @@ import com.handydev.financier.recur.Recurrence;
 import com.handydev.financier.utils.MyPreferences;
 import com.handydev.financier.utils.Utils;
 import com.handydev.financier.view.NodeInflater;
-import com.handydev.main.protocol.IOTransactionDeleteListener;
+import com.handydev.financier.protocol.IOTransactionDeleteListener;
 
 import static com.handydev.financier.utils.Utils.isNotEmpty;
 

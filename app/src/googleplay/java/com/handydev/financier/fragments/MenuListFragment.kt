@@ -28,7 +28,7 @@ import com.handydev.financier.export.qif.QifExportOptions
 import com.handydev.financier.export.qif.QifImportOptions
 import com.handydev.financier.service.DailyAutoBackupScheduler
 import com.handydev.financier.utils.PinProtection
-import com.handydev.main.MainActivity
+import com.handydev.financier.MainActivity
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode

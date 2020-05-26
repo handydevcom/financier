@@ -31,8 +31,8 @@ import com.handydev.financier.utils.EnumUtils;
 import com.handydev.financier.utils.ExecutableEntityEnum;
 import com.handydev.financier.utils.IntegrityFix;
 import com.handydev.financier.utils.SummaryEntityEnum;
-import com.handydev.main.MainActivity;
-import com.handydev.main.fragments.MenuListFragment;
+import com.handydev.financier.MainActivity;
+import com.handydev.financier.fragments.MenuListFragment;
 
 import org.greenrobot.eventbus.EventBus;
 
