@@ -5,7 +5,6 @@ import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.IntentSender.SendIntentException
 import android.os.Bundle
 import android.view.View
 import android.widget.ListView
@@ -14,10 +13,8 @@ import androidx.fragment.app.ListFragment
 import com.handydev.financier.R
 import com.handydev.financier.activity.MenuListItem
 import com.handydev.financier.adapter.SummaryEntityListAdapter
-import com.handydev.financier.app.FinancierApp
 import com.handydev.financier.export.csv.CsvExportOptions
 import com.handydev.financier.export.csv.CsvImportOptions
-import com.handydev.financier.export.drive.*
 import com.handydev.financier.export.dropbox.DropboxBackupTask
 import com.handydev.financier.export.dropbox.DropboxFileList
 import com.handydev.financier.export.dropbox.DropboxListFilesTask
@@ -26,7 +23,6 @@ import com.handydev.financier.export.qif.QifExportOptions
 import com.handydev.financier.export.qif.QifImportOptions
 import com.handydev.financier.service.DailyAutoBackupScheduler
 import com.handydev.financier.utils.PinProtection
-import com.handydev.main.MainActivity
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -37,13 +33,13 @@ class MenuListFragment: ListFragment() {
     }
 
     var bus: EventBus? = null
-
+    lateinit var menuItems: Array<MenuListItem>
     protected fun init() {
         if(activity == null) {
             return
         }
         bus = EventBus.getDefault()
-        var menuItems = MenuListItem.values()
+        menuItems = MenuListItem.values()
         menuItems = menuItems.filter { it != MenuListItem.GOOGLE_DRIVE_BACKUP && it != MenuListItem.GOOGLE_DRIVE_RESTORE }.toTypedArray()
         listAdapter = SummaryEntityListAdapter(activity!!, menuItems)
     }
@@ -58,7 +54,7 @@ class MenuListFragment: ListFragment() {
         if(activity == null) {
             return
         }
-        MenuListItem.values()[position].call(activity!!)
+        menuItems[position].call(activity!!)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -54,7 +54,10 @@ class GoogleDriveClient(var context: Context) {
             }
             appFolderId = driveService!!.fetchOrCreateAppFolder(getDriveFolderName())
         }
-        return driveService != null;
+        if (driveService != null && appFolderId == null) {
+            appFolderId = driveService!!.fetchOrCreateAppFolder(getDriveFolderName())
+        }
+        return driveService != null && appFolderId != null
     }
 
     private fun getDriveFolderName(): String {
