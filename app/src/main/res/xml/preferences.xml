@@ -353,11 +353,11 @@
             android:key="google_drive_backup_full_readonly"
             android:summary="@string/google_drive_backup_full_readonly_summary"
             android:title="@string/google_drive_backup_full_readonly" /-->
-        <!--EditTextPreference
-            android:defaultValue="financier"
+        <EditTextPreference
+            android:defaultValue="Financier Backups"
             android:key="backup_folder"
             android:summary="@string/backup_folder_summary"
-            android:title="@string/backup_folder" /-->
+            android:title="@string/backup_folder" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="google_drive_upload_backup"

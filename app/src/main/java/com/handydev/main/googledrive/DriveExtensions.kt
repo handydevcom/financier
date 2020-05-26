@@ -40,7 +40,17 @@ suspend fun <T> DriveRequest<T>.executeWithCoroutines(): T {
 fun Drive.fetchOrCreateAppFolder(folderName: String): String {
     val folderList = getAppFolder()
 
-    return if (folderList.files.isEmpty()) {
+    var folderExists = false
+    if(folderList.files.isNotEmpty()) {
+        for(folder in folderList) {
+            if((folder as? File)?.name == folderName) {
+                folderExists = true
+                break
+            }
+        }
+    }
+
+    return if (!folderExists) {
         val fileMetadata = File().apply {
             name = folderName
             mimeType = DriveContentType.DRIVE_FOLDER.mimeType

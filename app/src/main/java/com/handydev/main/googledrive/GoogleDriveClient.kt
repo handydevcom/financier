@@ -13,7 +13,9 @@ import com.handydev.financier.backup.DatabaseExport
 import com.handydev.financier.backup.DatabaseImport
 import com.handydev.financier.db.DatabaseAdapter
 import com.handydev.financier.db.DatabaseAdapter_
+import com.handydev.financier.export.ImportExportException
 import com.handydev.financier.export.drive.*
+import com.handydev.financier.utils.MyPreferences
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -25,10 +27,9 @@ class GoogleDriveClient(var context: Context) {
     private var driveService: Drive? = null
     private var appFolderId: String? = null
 
-    var db: DatabaseAdapter
+    var db: DatabaseAdapter = DatabaseAdapter_.getInstance_(context)
 
     init {
-        db = DatabaseAdapter_.getInstance_(context)
         EventBus.getDefault().register(this)
     }
 
@@ -51,30 +52,19 @@ class GoogleDriveClient(var context: Context) {
             if(driveService == null) {
                 return false
             }
-            appFolderId = driveService!!.fetchOrCreateAppFolder(
-                            context.getString(R.string.application_folder)
-                    )
-
-            /*
-            Collection<String> scopes = new ArrayList<String>() {{
-                add(DriveScopes.DRIVE_FILE);
-                add(DriveScopes.DRIVE_APPDATA);
-            }};
-            GoogleAccountCredential credential = GoogleAccountCredential.usingOAuth2(context, scopes);
-            googleApiClient = new Drive.Builder(AndroidHttp.newCompatibleTransport(), new GsonFactory(),
-            credential).setApplicationName("Financier").build();
-
-            googleApiClient = new GoogleApiClient.Builder(context)
-                    .addApi(Drive.API)
-                    .addScope(Drive.SCOPE_FILE)
-                    .setAccountName(googleDriveAccount)
-                    //.addConnectionCallbacks(this)
-                    //.addOnConnectionFailedListener(this)
-                    .build();*/
+            appFolderId = driveService!!.fetchOrCreateAppFolder(getDriveFolderName())
         }
         return driveService != null;
-        //return googleApiClient.blockingConnect(1, TimeUnit.MINUTES);
     }
+
+    private fun getDriveFolderName(): String {
+        val folder = MyPreferences.getBackupFolder(context)
+        if(!(folder != null && folder.isNotEmpty())) {
+            throw ImportExportException(R.string.gdocs_folder_not_configured)
+        }
+        return folder
+    }
+
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     fun doBackup(event: DoDriveBackup) {

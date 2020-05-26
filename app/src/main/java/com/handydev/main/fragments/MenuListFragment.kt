@@ -114,7 +114,7 @@ class MenuListFragment: ListFragment() {
      */
 
     //@OnActivityResult(MenuListItem.ACTIVITY_CSV_EXPORT)
-    fun onCsvExportResult(resultCode: Int, data: Intent?) {
+    private fun onCsvExportResult(resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK && activity != null) {
             val options = CsvExportOptions.fromIntent(data)
             MenuListItem.doCsvExport(activity!!, options)
@@ -122,7 +122,7 @@ class MenuListFragment: ListFragment() {
     }
 
    // @OnActivityResult(MenuListItem.ACTIVITY_QIF_EXPORT)
-    fun onQifExportResult(resultCode: Int, data: Intent?) {
+   private fun onQifExportResult(resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK && activity != null) {
             val options = QifExportOptions.fromIntent(data)
             MenuListItem.doQifExport(activity!!, options)
@@ -130,7 +130,7 @@ class MenuListFragment: ListFragment() {
     }
 
     //@OnActivityResult(MenuListItem.ACTIVITY_CSV_IMPORT)
-    fun onCsvImportResult(resultCode: Int, data: Intent?) {
+    private fun onCsvImportResult(resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK && activity != null) {
             val options = CsvImportOptions.fromIntent(data)
             MenuListItem.doCsvImport(activity!!, options)
@@ -138,7 +138,7 @@ class MenuListFragment: ListFragment() {
     }
 
     //@OnActivityResult(MenuListItem.ACTIVITY_QIF_IMPORT)
-    fun onQifImportResult(resultCode: Int, data: Intent?) {
+    private fun onQifImportResult(resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK && activity != null) {
             val options = QifImportOptions.fromIntent(data)
             MenuListItem.doQifImport(activity!!, options)
@@ -146,7 +146,7 @@ class MenuListFragment: ListFragment() {
     }
 
     //@OnActivityResult(MenuListItem.ACTIVITY_CHANGE_PREFERENCES)
-    fun onChangePreferences() {
+    private fun onChangePreferences() {
         if(activity != null) {
             DailyAutoBackupScheduler.scheduleNextAutoBackup(activity!!)
         }
@@ -196,8 +196,8 @@ class MenuListFragment: ListFragment() {
         bus!!.post(DoDriveBackup())
     }
 
-    var resumeGoogleDriveBackupAction = false
-    var resumeGoogleDriveRestoreAction = false
+    private var resumeGoogleDriveBackupAction = false
+    private var resumeGoogleDriveRestoreAction = false
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun resumeDriveAction(e: ResumeDriveAction?) {
@@ -210,7 +210,7 @@ class MenuListFragment: ListFragment() {
             return
         }
         if(resumeGoogleDriveBackupAction) {
-            bus!!.post(DoDriveBackup())
+            bus!!.post(StartDriveBackup())
         } else if(resumeGoogleDriveRestoreAction) {
             bus!!.post(StartDriveRestore())
         }
@@ -342,7 +342,7 @@ class MenuListFragment: ListFragment() {
     }
 
     //@OnActivityResult(RESOLVE_CONNECTION_REQUEST_CODE)
-    fun onConnectionRequest(resultCode: Int) {
+    private fun onConnectionRequest(resultCode: Int) {
         if (resultCode == Activity.RESULT_OK && activity != null) {
             Toast.makeText(activity!!, R.string.google_drive_connection_resolved, Toast.LENGTH_LONG).show()
         }

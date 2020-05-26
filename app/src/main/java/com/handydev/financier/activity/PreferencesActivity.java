@@ -10,38 +10,24 @@
  ******************************************************************************/
 package com.handydev.financier.activity;
 
-import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Intent.ShortcutIconResource;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
-import android.util.Log;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.common.api.Scope;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.AccountPicker;
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.api.client.extensions.android.http.AndroidHttp;
-import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
-import com.google.api.client.json.gson.GsonFactory;
-import com.google.api.services.drive.Drive;
+import com.google.android.gms.common.api.Scope;
 import com.google.api.services.drive.DriveScopes;
 import com.handydev.financier.R;
 import com.handydev.financier.app.FinancierApp;
@@ -55,21 +41,21 @@ import com.handydev.financier.utils.PinProtection;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import static android.Manifest.permission.GET_ACCOUNTS;
-import static com.handydev.financier.activity.RequestPermission.isRequestingPermission;
-import static com.handydev.financier.activity.RequestPermission.isRequestingPermissions;
 import static com.handydev.financier.utils.FingerprintUtils.fingerprintUnavailable;
 import static com.handydev.financier.utils.FingerprintUtils.reasonWhyFingerprintUnavailable;
 
-public class PreferencesActivity extends PreferenceActivity {
+public class PreferencesActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final int SELECT_DATABASE_FOLDER = 100;
     public static final int CHOOSE_ACCOUNT = 101;
 
     Preference pOpenExchangeRatesAppId;
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        setGDriveBackupFolder();
+    }
+
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -80,8 +66,8 @@ public class PreferencesActivity extends PreferenceActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
-
         PreferenceScreen preferenceScreen = getPreferenceScreen();
+        setGDriveBackupFolder();
         Preference pLocale = preferenceScreen.findPreference("ui_language");
         pLocale.setOnPreferenceChangeListener((preference, newValue) -> {
             String locale = (String) newValue;
@@ -99,13 +85,13 @@ public class PreferencesActivity extends PreferenceActivity {
             return true;
         });
         Preference pDatabaseBackupFolder = preferenceScreen.findPreference("database_backup_folder");
-        pDatabaseBackupFolder.setOnPreferenceClickListener(arg0 -> {
-            if (isRequestingPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                return false;
-            }
-            selectDatabaseBackupFolder();
+
+        Preference pGDriveBackupFolder = preferenceScreen.findPreference("backup_folder");
+        pGDriveBackupFolder.setOnPreferenceChangeListener((preference, o) -> {
+            setGDriveBackupFolder();
             return true;
         });
+
         Preference pAuthDropbox = preferenceScreen.findPreference("dropbox_authorize");
         pAuthDropbox.setOnPreferenceClickListener(arg0 -> {
             authDropbox();
@@ -199,6 +185,11 @@ public class PreferencesActivity extends PreferenceActivity {
         pDatabaseBackupFolder.setSummary(summary);
     }
 
+    private void setGDriveBackupFolder() {
+        Preference pGDriveBackupFolder = getPreferenceScreen().findPreference("backup_folder");
+        pGDriveBackupFolder.setSummary(MyPreferences.getBackupFolder(this));
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -265,15 +256,16 @@ public class PreferencesActivity extends PreferenceActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
         PinProtection.lock(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
         PinProtection.unlock(this);
         dropbox.completeAuth();
         linkToDropbox();
     }
-
 }
