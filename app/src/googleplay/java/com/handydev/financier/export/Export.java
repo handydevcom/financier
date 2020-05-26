@@ -104,13 +104,13 @@ public abstract class Export {
     public static File getBackupFolder(Context context) {
         String path = MyPreferences.getDatabaseBackupFolder(context);
         File file = new File(path);
-        file.mkdirs();
         if (file.isDirectory() && file.canWrite()) {
             return file;
+        } else {
+            file = Export.DEFAULT_EXPORT_PATH;
+            file.mkdirs();
+            return file;
         }
-        file = Export.DEFAULT_EXPORT_PATH;
-        file.mkdirs();
-        return file;
     }
 
     public static File getBackupFile(Context context, String backupFileName) {
