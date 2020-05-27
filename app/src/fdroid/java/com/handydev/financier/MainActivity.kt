@@ -12,6 +12,7 @@
 package com.handydev.financier
 
 import android.content.Context
+import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.util.Log
@@ -30,6 +31,7 @@ import com.handydev.financier.utils.CurrencyCache
 import com.handydev.financier.utils.MyPreferences
 import com.handydev.financier.utils.PinProtection
 import com.handydev.financier.base.AbstractListFragment
+import com.handydev.financier.fragments.MenuListFragment
 import com.handydev.financier.protocol.IOnBackPressed
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -83,6 +85,12 @@ class MainActivity : FragmentActivity() {
             }
         }
         return super.onKeyUp(keyCode, event)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        val fragment = supportFragmentManager.findFragmentByTag("f" + 4) as? MenuListFragment
+        fragment?.redirectedActivityResult(requestCode, resultCode, data)
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     override fun onResume() {

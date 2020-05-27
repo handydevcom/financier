@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.handydev.financier.utils.MyPreferences
 import com.handydev.financier.fragments.*
+import com.handydev.main.fragments.MenuListFragment
 
 
 class MainViewModelFactory(val activity: FragmentActivity, val context: Context) : ViewModelProvider.Factory {

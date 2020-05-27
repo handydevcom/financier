@@ -61,8 +61,7 @@ class MenuListFragment: ListFragment() {
         MenuListItem.values()[position].call(activity!!)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+    fun redirectedActivityResult(requestCode: Int, resultCode: Int, data:Intent?) {
         when(requestCode) {
             2 -> onCsvExportResult(resultCode, data)
             3 -> onQifExportResult(resultCode, data)

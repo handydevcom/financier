@@ -17,6 +17,7 @@ import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import android.view.Window
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
@@ -29,18 +30,18 @@ import com.google.android.gms.common.api.Scope
 import com.google.api.services.drive.DriveScopes
 import com.handydev.financier.activity.PreferencesActivity.CHOOSE_ACCOUNT
 import com.handydev.financier.app.FinancierApp
+import com.handydev.financier.base.AbstractListFragment
 import com.handydev.financier.bus.RefreshData
 import com.handydev.financier.databinding.MainBinding
 import com.handydev.financier.db.DatabaseAdapter
 import com.handydev.financier.db.DatabaseHelper
 import com.handydev.financier.dialog.WebViewDialog
 import com.handydev.financier.export.drive.DriveBackupError
+import com.handydev.financier.protocol.IOnBackPressed
 import com.handydev.financier.utils.CurrencyCache
 import com.handydev.financier.utils.MyPreferences
 import com.handydev.financier.utils.PinProtection
-import com.handydev.main.base.AbstractListFragment
 import com.handydev.main.fragments.MenuListFragment
-import com.handydev.main.protocol.IOnBackPressed
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -188,6 +189,9 @@ class MainActivity : FragmentActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == CHOOSE_ACCOUNT && data != null) {
             handleSignInResult(data)
+        } else {
+            val fragment = supportFragmentManager.findFragmentByTag("f" + 4) as? MenuListFragment
+            fragment?.redirectedActivityResult(requestCode, resultCode, data)
         }
     }
 
