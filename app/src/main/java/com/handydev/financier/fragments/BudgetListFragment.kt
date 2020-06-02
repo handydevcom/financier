@@ -173,7 +173,7 @@ class BudgetListFragment: AbstractListFragment(R.layout.budget_list) {
                         db!!.deleteBudgetOneEntry(id)
                         recreateCursor()
                     }
-                    .setNeutralButton(R.string.delete_budget_all_entries) { arg0, arg1 ->
+                    .setNeutralButton(R.string.delete_budget_all_entries) { _, _ ->
                         db!!.deleteBudget(b.parentBudgetId)
                         recreateCursor()
                     }

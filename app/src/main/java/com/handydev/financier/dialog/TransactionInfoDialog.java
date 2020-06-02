@@ -23,6 +23,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+
 import java.util.List;
 
 import com.handydev.financier.R;
@@ -49,13 +51,15 @@ public class TransactionInfoDialog {
 
     private final Context context;
     private final DatabaseAdapter db;
+    private final Fragment fragment;
     private final NodeInflater inflater;
     private final LayoutInflater layoutInflater;
     private final int splitPadding;
     private final Utils u;
 
-    public TransactionInfoDialog(Context context, DatabaseAdapter db, NodeInflater inflater) {
+    public TransactionInfoDialog(Context context, Fragment fragment, DatabaseAdapter db, NodeInflater inflater) {
         this.context = context;
+        this.fragment = fragment;
         this.db = db;
         this.inflater = inflater;
         this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -217,7 +221,7 @@ public class TransactionInfoDialog {
         Button bEdit = v.findViewById(R.id.bEdit);
         bEdit.setOnClickListener(arg0 -> {
             d.dismiss();
-            new BlotterOperations(activity, db, transactionId, listener).editTransaction();
+            new BlotterOperations(activity, fragment, db, transactionId, listener).editTransaction();
         });
 
         Button bClose = v.findViewById(R.id.bClose);

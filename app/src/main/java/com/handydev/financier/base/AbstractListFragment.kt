@@ -37,7 +37,7 @@ abstract class AbstractListFragment protected constructor(private val contentId:
         internalOnCreate(savedInstanceState)
         cursor = createCursor()
         recreateAdapter()
-        listView.onItemLongClickListener = OnItemLongClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long ->
+        listView.onItemLongClickListener = OnItemLongClickListener { _: AdapterView<*>?, view: View?, position: Int, id: Long ->
             val popupMenu = PopupMenu(activity!!, view)
             val menu = popupMenu.menu
             val menus = createContextMenus(id)

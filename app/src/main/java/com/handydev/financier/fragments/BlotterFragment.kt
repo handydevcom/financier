@@ -307,7 +307,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         if(activity == null) {
             return
         }
-        BlotterOperations(activity!!, db, selectedId, this).clearTransaction()
+        BlotterOperations(activity!!, this, db, selectedId, this).clearTransaction()
         recreateCursor()
     }
 
@@ -315,7 +315,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         if(activity == null) {
             return
         }
-        BlotterOperations(activity!!, db, selectedId, this).reconcileTransaction()
+        BlotterOperations(activity!!, this, db, selectedId, this).reconcileTransaction()
         recreateCursor()
     }
 
@@ -354,7 +354,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
                     return true
                 }
                 MENU_SAVE_AS_TEMPLATE -> {
-                    BlotterOperations(activity!!, db, id, this).duplicateAsTemplate()
+                    BlotterOperations(activity!!, this, db, id, this).duplicateAsTemplate()
                     Toast.makeText(activity!!, R.string.save_as_template_success, Toast.LENGTH_SHORT).show()
                     return true
                 }
@@ -367,7 +367,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         if(activity == null) {
             return 0
         }
-        val newId = BlotterOperations(activity!!, db, id, this).duplicateTransaction(multiplier)
+        val newId = BlotterOperations(activity!!, this, db, id, this).duplicateTransaction(multiplier)
         val toastText: String = if (multiplier > 1) {
             getString(R.string.duplicate_success_with_multiplier, multiplier)
         } else {
@@ -427,7 +427,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         if(activity == null) {
             return
         }
-        BlotterOperations(activity!!, db, id, this).deleteTransaction()
+        BlotterOperations(activity!!, this, db, id, this).deleteTransaction()
     }
 
     override fun afterDeletingTransaction(id: Long) {
@@ -446,13 +446,13 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         if(activity == null) {
             return
         }
-        BlotterOperations(activity!!, db, id, this).editTransaction()
+        BlotterOperations(activity!!, this, db, id, this).editTransaction()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val unmaskedRequestCode = requestCode and 0x0000ffff
         if (unmaskedRequestCode == FILTER_REQUEST) {
-            if (unmaskedRequestCode == Activity.RESULT_FIRST_USER) {
+            if (resultCode == Activity.RESULT_FIRST_USER) {
                 blotterFilter.clear()
             } else if (resultCode == Activity.RESULT_OK) {
                 blotterFilter = WhereFilter.fromIntent(data)
@@ -462,10 +462,11 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
             }
             applyFilter()
             recreateCursor()
-        } else if (unmaskedRequestCode == Activity.RESULT_OK && unmaskedRequestCode == NEW_TRANSACTION_FROM_TEMPLATE_REQUEST && data != null) {
+        } else if (resultCode == Activity.RESULT_OK && unmaskedRequestCode == NEW_TRANSACTION_FROM_TEMPLATE_REQUEST && data != null) {
             createTransactionFromTemplate(data)
         }
-        if (unmaskedRequestCode == Activity.RESULT_OK || unmaskedRequestCode == Activity.RESULT_FIRST_USER) {
+        if (resultCode == Activity.RESULT_OK || resultCode == Activity.RESULT_FIRST_USER) {
+            recreateCursor()
             calculateTotals()
         }
     }
@@ -481,7 +482,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
             val id = duplicateTransaction(templateId, multiplier)
             val t = db!!.getTransaction(id)
             if (t.fromAmount == 0L || edit) {
-                BlotterOperations(activity!!, db, id, this).asNewFromTemplate().editTransaction()
+                BlotterOperations(activity!!, this, db, id, this).asNewFromTemplate().editTransaction()
             }
         }
     }
@@ -545,7 +546,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         if(activity == null || inflater == null) {
             return
         }
-        val transactionInfoView = TransactionInfoDialog(activity!!, db, NodeInflater(inflater!!))
+        val transactionInfoView = TransactionInfoDialog(activity!!, this, db, NodeInflater(inflater!!))
         transactionInfoView.show(activity!!, id, this)
     }
 

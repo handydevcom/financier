@@ -190,8 +190,11 @@ class MainActivity : FragmentActivity() {
         if (resultCode == Activity.RESULT_OK && requestCode == CHOOSE_ACCOUNT && data != null) {
             handleSignInResult(data)
         } else {
-            val fragment = supportFragmentManager.findFragmentByTag("f" + 4) as? MenuListFragment
-            fragment?.redirectedActivityResult(requestCode, resultCode, data)
+            for(fragment in supportFragmentManager.fragments) {
+                if(fragment.isVisible && fragment is MenuListFragment) {
+                    fragment.redirectedActivityResult(requestCode, resultCode, data)
+                }
+            }
         }
     }
 

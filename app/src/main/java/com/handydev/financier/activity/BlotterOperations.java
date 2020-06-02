@@ -13,6 +13,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 
+import androidx.fragment.app.Fragment;
+
 import com.handydev.financier.R;
 import com.handydev.financier.db.DatabaseAdapter;
 import com.handydev.financier.model.Transaction;
@@ -29,11 +31,13 @@ public class BlotterOperations {
     private final Transaction originalTransaction;
     private final Transaction targetTransaction;
     private final IOTransactionDeleteListener listener;
+    private final Fragment fragment;
 
     private boolean newFromTemplate = false;
 
-    public BlotterOperations(Activity activity, DatabaseAdapter db, long transactionId, IOTransactionDeleteListener listener) {
+    public BlotterOperations(Activity activity, Fragment fragment, DatabaseAdapter db, long transactionId, IOTransactionDeleteListener listener) {
         this.activity = activity;
+        this.fragment = fragment;
         this.db = db;
         this.originalTransaction = db.getTransaction(transactionId);
         this.listener = listener;
@@ -62,7 +66,11 @@ public class BlotterOperations {
         intent.putExtra(AbstractTransactionActivity.TRAN_ID_EXTRA, targetTransaction.id);
         intent.putExtra(AbstractTransactionActivity.DUPLICATE_EXTRA, false);
         intent.putExtra(AbstractTransactionActivity.NEW_FROM_TEMPLATE_EXTRA, newFromTemplate);
-        activity.startActivityForResult(intent, requestCode);
+        if(fragment != null) {
+            fragment.startActivityForResult(intent, requestCode);
+        } else {
+            activity.startActivityForResult(intent, requestCode);
+        }
     }
 
     public void deleteTransaction() {

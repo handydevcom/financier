@@ -97,7 +97,7 @@ class MainViewModel(activity: FragmentActivity, val context: Context): ViewModel
 
     var tabPageAdapter: MainPagerAdapter
 
-    fun updateBottomNavigationPosition(page: Int) {
+    private fun updateBottomNavigationPosition(page: Int) {
         when(page) {
             0 -> bottomNavigationSelectedItem.value = R.id.main_page_accounts
             1 -> bottomNavigationSelectedItem.value = R.id.main_page_blotter
@@ -123,6 +123,7 @@ class MainViewModel(activity: FragmentActivity, val context: Context): ViewModel
                 currentTab.value = 3
                 updateBottomNavigationPosition(3)
             }
+            null -> { }
         }
     }
 }

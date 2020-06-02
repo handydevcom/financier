@@ -367,12 +367,12 @@ public class BlotterActivity extends AbstractListActivity implements IOTransacti
     };
 
     private void clearTransaction(long selectedId) {
-        new BlotterOperations(this, db, selectedId, this).clearTransaction();
+        new BlotterOperations(this, null, db, selectedId, this).clearTransaction();
         recreateCursor();
     }
 
     private void reconcileTransaction(long selectedId) {
-        new BlotterOperations(this, db, selectedId, this).reconcileTransaction();
+        new BlotterOperations(this, null, db, selectedId, this).reconcileTransaction();
         recreateCursor();
     }
 
@@ -407,7 +407,7 @@ public class BlotterActivity extends AbstractListActivity implements IOTransacti
                     duplicateTransaction(id, 1);
                     return true;
                 case MENU_SAVE_AS_TEMPLATE:
-                    new BlotterOperations(this, db, id, this).duplicateAsTemplate();
+                    new BlotterOperations(this, null, db, id, this).duplicateAsTemplate();
                     Toast.makeText(this, R.string.save_as_template_success, Toast.LENGTH_SHORT).show();
                     return true;
             }
@@ -416,7 +416,7 @@ public class BlotterActivity extends AbstractListActivity implements IOTransacti
     }
 
     private long duplicateTransaction(long id, int multiplier) {
-        long newId = new BlotterOperations(this, db, id, this).duplicateTransaction(multiplier);
+        long newId = new BlotterOperations(this, null, db, id, this).duplicateTransaction(multiplier);
         String toastText;
         if (multiplier > 1) {
             toastText = getString(R.string.duplicate_success_with_multiplier, multiplier);
@@ -472,7 +472,7 @@ public class BlotterActivity extends AbstractListActivity implements IOTransacti
     }
 
     private void deleteTransaction(long id) {
-        new BlotterOperations(this, db, id, this).deleteTransaction();
+        new BlotterOperations(this, null, db, id, this).deleteTransaction();
     }
 
     public void afterDeletingTransaction(long id) {
@@ -486,7 +486,7 @@ public class BlotterActivity extends AbstractListActivity implements IOTransacti
     }
 
     private void editTransaction(long id) {
-        new BlotterOperations(this, db, id, this).editTransaction();
+        new BlotterOperations(this, null, db, id, this).editTransaction();
     }
 
     @Override
@@ -518,7 +518,7 @@ public class BlotterActivity extends AbstractListActivity implements IOTransacti
             long id = duplicateTransaction(templateId, multiplier);
             Transaction t = db.getTransaction(id);
             if (t.fromAmount == 0 || edit) {
-                new BlotterOperations(this, db, id, this).asNewFromTemplate().editTransaction();
+                new BlotterOperations(this, null, db, id, this).asNewFromTemplate().editTransaction();
             }
         }
     }
@@ -572,7 +572,7 @@ public class BlotterActivity extends AbstractListActivity implements IOTransacti
     }
 
     private void showTransactionInfo(long id) {
-        TransactionInfoDialog transactionInfoView = new TransactionInfoDialog(this, db, inflater);
+        TransactionInfoDialog transactionInfoView = new TransactionInfoDialog(this, null, db, inflater);
         transactionInfoView.show(this, id, this);
     }
 
