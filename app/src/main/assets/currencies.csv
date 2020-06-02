@@ -115,7 +115,7 @@ PYG,Paraguayan guaraní,Gs,0,PERIOD,COMMA
 QAR,Qatari rial,﷼,2,PERIOD,COMMA
 RON,Romanian new leu,lei,2,COMMA,SPACE
 RSD,Serbian dinar,Дин.,2,PERIOD,COMMA
-RUB,Russian rouble,руб,2,PERIOD,NONE
+RUB,Russian rouble,₽,2,PERIOD,NONE
 RWF,Rwandan franc,RF,0,PERIOD,COMMA
 SAR,Saudi riyal,﷼,2,PERIOD,COMMA
 SBD,Solomon Islands dollar,$,2,PERIOD,COMMA
