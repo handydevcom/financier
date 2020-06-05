@@ -29,6 +29,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.Scope
 import com.google.api.services.drive.DriveScopes
 import com.handydev.financier.activity.PreferencesActivity.CHOOSE_ACCOUNT
+import com.handydev.financier.activity.RefreshSupportedActivity
 import com.handydev.financier.app.FinancierApp
 import com.handydev.financier.base.AbstractListFragment
 import com.handydev.financier.bus.RefreshData
@@ -72,7 +73,11 @@ class MainActivity : FragmentActivity() {
         val tabPager = findViewById<ViewPager2>(R.id.mainViewPager)
         if(tabPager != null) {
             val fragment = supportFragmentManager.findFragmentByTag("f" + tabPager.currentItem)
-            (fragment as? IOnBackPressed)?.onBackPressed()?.not()?.let {
+            var handled = false
+            if(fragment is IOnBackPressed) {
+                handled = fragment.onBackPressed()
+            }
+            if(!handled) {
                 super.onBackPressed()
             }
         } else {
@@ -131,12 +136,12 @@ class MainActivity : FragmentActivity() {
     }
 
     fun refreshCurrentTab() {
-        /*val currentActivity: Activity = getLocalActivityManager().getCurrentActivity()
-        if (currentActivity is RefreshSupportedActivity) {
-            val activity = currentActivity as RefreshSupportedActivity
-            activity.recreateCursor()
-            activity.integrityCheck()
-        }*/
+        for(fragment in supportFragmentManager.fragments) {
+            if(fragment.isVisible && fragment is RefreshSupportedActivity) {
+                fragment.recreateCursor()
+                fragment.integrityCheck()
+            }
+        }
     }
 
     private fun initialLoad() {

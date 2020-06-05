@@ -51,6 +51,11 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
         integrityCheck()
     }
 
+    override fun onResume() {
+        super.onResume()
+        recreateCursor()
+    }
+
     private fun setupUi() {
         view?.findViewById<View>(R.id.integrity_error)?.setOnClickListener { v: View -> v.visibility = View.GONE }
         listView.onItemLongClickListener = AdapterView.OnItemLongClickListener { _, view, _, id ->

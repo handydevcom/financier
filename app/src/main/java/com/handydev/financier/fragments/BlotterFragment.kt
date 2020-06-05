@@ -564,9 +564,9 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         val searchLayout = view?.findViewById<FrameLayout>(R.id.search_text_frame)
         return if (searchLayout != null && searchLayout.visibility == View.VISIBLE) {
             searchLayout.visibility = View.GONE
-            false
-        } else {
             true
+        } else {
+            false
         }
     }
 }
