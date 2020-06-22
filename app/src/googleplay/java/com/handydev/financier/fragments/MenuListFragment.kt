@@ -208,7 +208,7 @@ class MenuListFragment: ListFragment() {
         }
         val fileNames = getFileNames(filteredFiles)
         var selectedDriveFile : File? = null
-        /*AlertDialog.Builder(activity)
+        AlertDialog.Builder(activity!!)
                 .setTitle(R.string.restore_database_online_google_drive)
                 .setPositiveButton(R.string.restore) { _, _ ->
                     if (selectedDriveFile != null) {
@@ -221,7 +221,7 @@ class MenuListFragment: ListFragment() {
                         selectedDriveFile = filteredFiles[which]
                     }
                 })
-                .show()*/
+                .show()
     }
 
     private fun getFileNames(files: ArrayList<File>): Array<String?> {
