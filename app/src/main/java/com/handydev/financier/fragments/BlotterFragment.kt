@@ -1,7 +1,6 @@
 package com.handydev.financier.fragments
 
 import android.app.Activity
-import androidx.appcompat.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -15,13 +14,12 @@ import android.view.View
 import android.view.View.OnFocusChangeListener
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
-import greendroid.widget.QuickActionGrid
-import greendroid.widget.QuickActionWidget
-import greendroid.widget.QuickActionWidget.OnQuickActionClickListener
+import androidx.appcompat.app.AlertDialog
 import com.handydev.financier.R
 import com.handydev.financier.activity.*
 import com.handydev.financier.adapter.BlotterListAdapter
 import com.handydev.financier.adapter.TransactionsListAdapter
+import com.handydev.financier.base.AbstractListFragment
 import com.handydev.financier.blotter.AccountTotalCalculationTask
 import com.handydev.financier.blotter.BlotterFilter
 import com.handydev.financier.blotter.BlotterTotalCalculationTask
@@ -29,12 +27,14 @@ import com.handydev.financier.blotter.TotalCalculationTask
 import com.handydev.financier.dialog.TransactionInfoDialog
 import com.handydev.financier.filter.WhereFilter
 import com.handydev.financier.model.AccountType
+import com.handydev.financier.protocol.IOTransactionDeleteListener
 import com.handydev.financier.utils.IntegrityCheckRunningBalance
 import com.handydev.financier.utils.MenuItemInfo
 import com.handydev.financier.utils.MyPreferences
 import com.handydev.financier.view.NodeInflater
-import com.handydev.financier.base.AbstractListFragment
-import com.handydev.financier.protocol.IOTransactionDeleteListener
+import greendroid.widget.QuickActionGrid
+import greendroid.widget.QuickActionWidget
+import greendroid.widget.QuickActionWidget.OnQuickActionClickListener
 
 open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactionDeleteListener {
     companion object {
@@ -104,7 +104,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
             intent.putExtra(BlotterFilterActivity.IS_ACCOUNT_FILTER, isAccountBlotter && blotterFilter.accountId > 0)
             startActivityForResult(intent, FILTER_REQUEST)
         }
-        totalText = view?.findViewById<TextView>(R.id.total)
+        totalText = view?.findViewById(R.id.total)
         totalText!!.setOnClickListener { showTotals() }
         val intent: Intent = activity!!.intent
         blotterFilter = WhereFilter.fromIntent(intent)
@@ -125,7 +125,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
             bTemplate!!.visibility = View.VISIBLE
             bTemplate!!.setOnClickListener { createFromTemplate() }
         }
-        bSearch = view?.findViewById<ImageButton>(R.id.bSearch)
+        bSearch = view?.findViewById(R.id.bSearch)
         bSearch!!.setOnClickListener {
             val searchText = view?.findViewById<EditText>(R.id.search_text)
             val searchLayout = view?.findViewById<FrameLayout>(R.id.search_text_frame)
@@ -207,6 +207,11 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         } else {
             bMenu!!.visibility = View.GONE
         }
+    }
+
+    private fun setScreenTitle(title: String) {
+        view?.findViewById<LinearLayout>(R.id.title_view)?.visibility = View.VISIBLE
+        view?.findViewById<TextView>(R.id.title_view_text)?.text = title
     }
 
     private fun onPopupMenuSelected(id: Int) {
@@ -506,13 +511,13 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         }
         val title = blotterFilter.title
         if (title != null) {
-            //setScreenTitle(getString(R.string.blotter) + " : " + title)
+            setScreenTitle(getString(R.string.blotter) + " : " + title)
         }
         updateFilterImage()
     }
 
     /*private fun setScreenTitle(title: String) {
-        val container = view?.findViewById<LinearLayout>(R.id.title_view)
+        val lcontainer = view?.findViewById<LinearLayout>(R.id.title_view)
         container?.visibility = if(title.isEmpty()) View.GONE else View.VISIBLE
         view?.findViewById<TextView>(R.id.title_view_text)?.text = title
     }*/

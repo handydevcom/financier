@@ -286,7 +286,7 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
     private fun showAccountTransactions(id: Long) {
         val account = db?.getAccount(id)
         if (account != null && activity != null) {
-            val intent = Intent(activity!!, BlotterActivity::class.java)
+            val intent = Intent(activity!!, BlotterActivity2::class.java)
             Criteria.eq(BlotterFilter.FROM_ACCOUNT_ID, id.toString())
                     .toIntent(account.title, intent)
             intent.putExtra(BlotterFilterActivity.IS_ACCOUNT_FILTER, true)
@@ -301,13 +301,6 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
             recreateCursor()
         }
     }
-
-   /* protected override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == AccountListActivity.VIEW_ACCOUNT_REQUEST || requestCode == AccountListActivity.PURGE_ACCOUNT_REQUEST) {
-            recreateCursor()
-        }
-    }*/
 
     private fun purgeAccount() {
         if(activity == null) {

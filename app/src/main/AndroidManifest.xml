@@ -173,6 +173,9 @@
         <activity
             android:name="com.handydev.financier.activity.BlotterActivity"
             android:label="@string/blotter" />
+        <activity
+            android:name="com.handydev.financier.activity.BlotterActivity2"
+            android:label="@string/blotter" />
 
         <activity
             android:name="com.handydev.financier.activity.PlannerActivity"

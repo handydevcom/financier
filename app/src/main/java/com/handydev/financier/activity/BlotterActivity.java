@@ -15,7 +15,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -545,7 +544,7 @@ public class BlotterActivity extends AbstractListActivity implements IOTransacti
     }
 
     private void setScreenTitle(String title) {
-        ((LinearLayout)findViewById(R.id.title_view)).setVisibility(View.VISIBLE);
+        findViewById(R.id.title_view).setVisibility(View.VISIBLE);
         ((TextView)findViewById(R.id.title_view_text)).setText(title);
     }
 
