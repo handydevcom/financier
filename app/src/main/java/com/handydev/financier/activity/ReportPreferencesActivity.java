@@ -19,7 +19,7 @@ import com.handydev.financier.model.Currency;
 import com.handydev.financier.utils.CurrencyCache;
 import com.handydev.financier.utils.MyPreferences;
 import com.handydev.financier.utils.PinProtection;
-import android.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;

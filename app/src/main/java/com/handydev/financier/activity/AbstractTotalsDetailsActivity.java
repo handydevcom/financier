@@ -55,7 +55,7 @@ public abstract class AbstractTotalsDetailsActivity extends AbstractActivity {
 
         u = new Utils(this);
         layout = (LinearLayout)findViewById(R.id.list);
-        calculatingNode = x.addTitleNodeNoDivider(layout, R.string.calculating);
+        calculatingNode = activityLayout.addTitleNodeNoDivider(layout, R.string.calculating);
 
         Button bOk = (Button)findViewById(R.id.bOK);
         bOk.setOnClickListener(new View.OnClickListener() {
@@ -119,7 +119,7 @@ public abstract class AbstractTotalsDetailsActivity extends AbstractActivity {
         }
 
         private void addAmountNode(Total total, String title) {
-            x.addTitleNodeNoDivider(layout, title);
+            activityLayout.addTitleNodeNoDivider(layout, title);
             if (total.isError()) {
                 addAmountAndErrorNode(total);
             } else {
@@ -128,7 +128,7 @@ public abstract class AbstractTotalsDetailsActivity extends AbstractActivity {
         }
 
         private void addAmountAndErrorNode(Total total) {
-            TextView data = x.addInfoNode(layout, -1, R.string.not_available, "");
+            TextView data = activityLayout.addInfoNode(layout, -1, R.string.not_available, "");
             Drawable dr = getResources().getDrawable(R.drawable.total_error);
             dr.setBounds(0, 0, dr.getIntrinsicWidth(), dr.getIntrinsicHeight());
             if (total.currency == Currency.EMPTY) {
@@ -140,7 +140,7 @@ public abstract class AbstractTotalsDetailsActivity extends AbstractActivity {
         }
 
         private void addSingleAmountNode(Total total) {
-            TextView label = x.addInfoNodeSingle(layout, -1, "");
+            TextView label = activityLayout.addInfoNodeSingle(layout, -1, "");
             u.setAmountText(label, total);
         }
 

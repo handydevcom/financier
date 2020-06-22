@@ -12,10 +12,6 @@
 
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar" />
 
-    <style name="CupcakeDialog" parent="android:Theme.Dialog">
-        <item name="android:windowAnimationStyle">@null</item>
-    </style>
-
     <style name="TextAppearance" parent="android:TextAppearance.Small">
         <item name="android:textStyle">normal</item>
         <item name="android:antialias">true</item>

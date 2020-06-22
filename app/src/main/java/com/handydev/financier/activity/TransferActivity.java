@@ -46,8 +46,8 @@ public class TransferActivity extends AbstractTransactionActivity {
 
     @Override
     protected void createListNodes(LinearLayout layout) {
-        accountFromText = x.addListNode(layout, R.id.account_from, R.string.account_from, R.string.select_account);
-        accountToText = x.addListNode(layout, R.id.account_to, R.string.account_to, R.string.select_account);
+        accountFromText = activityLayout.addListNode(layout, R.id.account_from, R.string.account_from, R.string.select_account);
+        accountToText = activityLayout.addListNode(layout, R.id.account_to, R.string.account_to, R.string.select_account);
         // amounts
         rateView.createTransferUI();
         // payee
@@ -117,11 +117,11 @@ public class TransferActivity extends AbstractTransactionActivity {
         super.onClick(v, id);
         switch (id) {
             case R.id.account_from:
-                x.select(this, R.id.account_from, R.string.account, accountCursor, accountAdapter,
+                activityLayout.select(this, R.id.account_from, R.string.account, accountCursor, accountAdapter,
                         AccountColumns.ID, selectedAccountFromId);
                 break;
             case R.id.account_to:
-                x.select(this, R.id.account_to, R.string.account, accountCursor, accountAdapter,
+                activityLayout.select(this, R.id.account_to, R.string.account, accountCursor, accountAdapter,
                         AccountColumns.ID, selectedAccountToId);
                 break;
         }

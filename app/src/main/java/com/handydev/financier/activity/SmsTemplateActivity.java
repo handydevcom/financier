@@ -128,7 +128,7 @@ public class SmsTemplateActivity extends AbstractActivity {
 
     private void initCategorySelector() {
         if (categoryId == -1) {
-            categorySelector = new CategorySelector<>(this, db, x);
+            categorySelector = new CategorySelector<>(this, db, activityLayout);
             categorySelector.setEmptyResId(R.string.no_category);
             categorySelector.doNotShowSplitCategory();
             categorySelector.fetchCategories(false);

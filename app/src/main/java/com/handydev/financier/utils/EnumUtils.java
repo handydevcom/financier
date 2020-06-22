@@ -10,7 +10,7 @@
  ******************************************************************************/
 package com.handydev.financier.utils;
 
-import android.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.content.Context;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;

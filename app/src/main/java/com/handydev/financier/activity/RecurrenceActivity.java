@@ -10,7 +10,7 @@
  ******************************************************************************/
 package com.handydev.financier.activity;
 
-import android.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -130,20 +130,20 @@ public class RecurrenceActivity extends AbstractActivity {
 
     public void createNodes() {
         layout.removeAllViews();
-        x.addListNode(layout, R.id.recurrence_pattern, R.string.recurrence_pattern, getString(recurrence.pattern.frequency.titleId));
+        activityLayout.addListNode(layout, R.id.recurrence_pattern, R.string.recurrence_pattern, getString(recurrence.pattern.frequency.titleId));
         if (recurrencePatternView != null) {
             recurrencePatternView.createNodes(layout);
-            startDateView = x.addInfoNode(layout, R.id.start_date, R.string.recurrence_period_starts_on_date,
+            startDateView = activityLayout.addInfoNode(layout, R.id.start_date, R.string.recurrence_period_starts_on_date,
                     DateUtils.getShortDateFormat(this).format(recurrence.getStartDate().getTime()));
-            startTimeView = x.addInfoNode(layout, R.id.start_time, R.string.recurrence_period_starts_on_time,
+            startTimeView = activityLayout.addInfoNode(layout, R.id.start_time, R.string.recurrence_period_starts_on_time,
                     DateUtils.getTimeFormat(this).format(recurrence.getStartDate().getTime()));
             if (recurrence.pattern.frequency != RecurrenceFrequency.GEEKY) {
-                x.addListNode(layout, R.id.recurrence_period, R.string.recurrence_period, getString(recurrence.period.until.titleId));
+                activityLayout.addListNode(layout, R.id.recurrence_period, R.string.recurrence_period, getString(recurrence.period.until.titleId));
                 if (recurrencePeriodView != null) {
                     recurrencePeriodView.createNodes(layout);
                 }
             }
-            x.addInfoNodeSingle(layout, R.id.result, R.string.recurrence_evaluate);
+            activityLayout.addInfoNodeSingle(layout, R.id.result, R.string.recurrence_evaluate);
         }
     }
 
@@ -152,12 +152,12 @@ public class RecurrenceActivity extends AbstractActivity {
         switch (id) {
             case R.id.recurrence_pattern: {
                 ArrayAdapter<String> adapter = EnumUtils.createDropDownAdapter(this, frequencies);
-                x.selectPosition(this, R.id.recurrence_pattern, R.string.recurrence_pattern, adapter, recurrence.pattern.frequency.ordinal());
+                activityLayout.selectPosition(this, R.id.recurrence_pattern, R.string.recurrence_pattern, adapter, recurrence.pattern.frequency.ordinal());
             }
             break;
             case R.id.recurrence_period: {
                 ArrayAdapter<String> adapter = EnumUtils.createDropDownAdapter(this, until);
-                x.selectPosition(this, R.id.recurrence_period, R.string.recurrence_period, adapter, recurrence.period.until.ordinal());
+                activityLayout.selectPosition(this, R.id.recurrence_period, R.string.recurrence_period, adapter, recurrence.period.until.ordinal());
             }
             break;
             case R.id.start_date: {

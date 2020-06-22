@@ -12,7 +12,7 @@ package com.handydev.financier.dialog;
 
 import com.handydev.financier.R;
 import com.handydev.financier.view.PinView;
-import android.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;

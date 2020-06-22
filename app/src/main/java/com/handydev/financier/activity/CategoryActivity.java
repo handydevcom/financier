@@ -1,6 +1,6 @@
 package com.handydev.financier.activity;
 
-import android.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -94,16 +94,16 @@ public class CategoryActivity extends AbstractActivity implements CategorySelect
         incomeExpenseButton = titleLayout.findViewById(R.id.toggle);
         categoryTitle = titleLayout.findViewById(R.id.primary);
         LinearLayout layout = findViewById(R.id.layout);
-        x.addEditNode(layout, R.string.title, titleLayout);
+        activityLayout.addEditNode(layout, R.string.title, titleLayout);
 
-        smsTemplatesLayout = x.addTitleNodeNoDivider(layout, R.string.sms_templates).findViewById(R.id.layout);
-        x.addInfoNodePlus(smsTemplatesLayout, R.id.new_sms_template, R.id.new_sms_template, R.string.add_sms_template);
+        smsTemplatesLayout = activityLayout.addTitleNodeNoDivider(layout, R.string.sms_templates).findViewById(R.id.layout);
+        activityLayout.addInfoNodePlus(smsTemplatesLayout, R.id.new_sms_template, R.id.new_sms_template, R.string.add_sms_template);
         addSmsTemplates();
 
-        attributesLayout = x.addTitleNodeNoDivider(layout, R.string.attributes).findViewById(R.id.layout);
-        x.addInfoNodePlus(attributesLayout, R.id.new_attribute, R.id.add_attribute, R.string.add_attribute);
+        attributesLayout = activityLayout.addTitleNodeNoDivider(layout, R.string.attributes).findViewById(R.id.layout);
+        activityLayout.addInfoNodePlus(attributesLayout, R.id.new_attribute, R.id.add_attribute, R.string.add_attribute);
         addAttributes();
-        parentAttributesLayout = x.addTitleNodeNoDivider(layout, R.string.parent_attributes).findViewById(R.id.layout);
+        parentAttributesLayout = activityLayout.addTitleNodeNoDivider(layout, R.string.parent_attributes).findViewById(R.id.layout);
         addParentAttributes();
 
         Button bOk = findViewById(R.id.bOK);
@@ -138,7 +138,7 @@ public class CategoryActivity extends AbstractActivity implements CategorySelect
     }
 
     private CategorySelector initParentCategorySelector() {
-        final CategorySelector res = new CategorySelector<>(this, db, x, category.id);
+        final CategorySelector res = new CategorySelector<>(this, db, activityLayout, category.id);
         LinearLayout layout = findViewById(R.id.layout);
         res.createNode(layout, PARENT);
         res.setListener(this);
@@ -190,7 +190,7 @@ public class CategoryActivity extends AbstractActivity implements CategorySelect
      * todo.mb: consider refactoring to common logic with attributes and so on.
      */
     private void addSmsTemplate(SmsTemplate t) {
-        View v = x.inflater.new Builder(smsTemplatesLayout, R.layout.select_entry_simple_minus).withId(R.id.edit_sms_template, this).create();
+        View v = activityLayout.inflater.new Builder(smsTemplatesLayout, R.layout.select_entry_simple_minus).withId(R.id.edit_sms_template, this).create();
         setSmsTemplateData(v, t);
         ImageView minusImageView = v.findViewById(R.id.plus_minus);
         minusImageView.setId(R.id.remove_sms_template);
@@ -223,17 +223,17 @@ public class CategoryActivity extends AbstractActivity implements CategorySelect
         ArrayList<Attribute> attributes = db.getAllAttributesForCategory(categoryId);
         if (attributes.size() > 0) {
             for (Attribute a : attributes) {
-                View v = x.inflater.new Builder(parentAttributesLayout, R.layout.select_entry_simple).create();
+                View v = activityLayout.inflater.new Builder(parentAttributesLayout, R.layout.select_entry_simple).create();
                 v.setTag(a);
                 setAttributeData(v, a);
             }
         } else {
-            x.addInfoNodeSingle(parentAttributesLayout, -1, R.string.no_attributes);
+            activityLayout.addInfoNodeSingle(parentAttributesLayout, -1, R.string.no_attributes);
         }
     }
 
     private void addAttribute(Attribute a) {
-        View v = x.inflater.new Builder(attributesLayout, R.layout.select_entry_simple_minus).withId(R.id.edit_attribute, this).create();
+        View v = activityLayout.inflater.new Builder(attributesLayout, R.layout.select_entry_simple_minus).withId(R.id.edit_attribute, this).create();
         setAttributeData(v, a);
         ImageView plusImageView = v.findViewById(R.id.plus_minus);
         plusImageView.setId(R.id.remove_attribute);
@@ -254,15 +254,19 @@ public class CategoryActivity extends AbstractActivity implements CategorySelect
     protected void onClick(final View v, final int id) {
         switch (id) {
             case R.id.category:
-            case R.id.category_show_filter:
-            case R.id.category_close_filter:
-            case R.id.category_show_list:
                 parentCatSelector.onClick(R.id.category);
                 break;
-
-            // Attributes >>
+            case R.id.category_show_filter:
+                parentCatSelector.onClick(R.id.category_show_filter);
+                break;
+            case R.id.category_close_filter:
+                parentCatSelector.onClick(R.id.category_close_filter);
+                break;
+            case R.id.category_show_list:
+                parentCatSelector.onClick(R.id.category_show_list);
+                break;
             case R.id.new_attribute:
-                x.select(this, R.id.new_attribute, R.string.attribute, attributeCursor, attributeAdapter,
+                activityLayout.select(this, R.id.new_attribute, R.string.attribute, attributeCursor, attributeAdapter,
                         AttributeColumns.ID, -1);
                 break;
             case R.id.add_attribute: {

@@ -50,14 +50,14 @@ public class ReportFilterActivity extends FilterAbstractActivity {
         df = DateUtils.getShortDateFormat(this);
 
         LinearLayout layout = findViewById(R.id.layout);
-        period = x.addFilterNodeMinus(layout, R.id.period, R.id.period_clear, R.string.period, R.string.no_filter);
-        account = x.addFilterNodeMinus(layout, R.id.account, R.id.account_clear, R.string.account, R.string.no_filter);
-        currency = x.addFilterNodeMinus(layout, R.id.currency, R.id.currency_clear, R.string.currency, R.string.no_filter);
+        period = activityLayout.addFilterNodeMinus(layout, R.id.period, R.id.period_clear, R.string.period, R.string.no_filter);
+        account = activityLayout.addFilterNodeMinus(layout, R.id.account, R.id.account_clear, R.string.account, R.string.no_filter);
+        currency = activityLayout.addFilterNodeMinus(layout, R.id.currency, R.id.currency_clear, R.string.currency, R.string.no_filter);
         initCategorySelector(layout);
         initPayeeSelector(layout);
         initProjectSelector(layout);
         initLocationSelector(layout);
-        status = x.addFilterNodeMinus(layout, R.id.status, R.id.status_clear, R.string.transaction_status, R.string.no_filter);
+        status = activityLayout.addFilterNodeMinus(layout, R.id.status, R.id.status_clear, R.string.transaction_status, R.string.no_filter);
 
         Button bOk = findViewById(R.id.bOK);
         bOk.setOnClickListener(v -> {
@@ -149,7 +149,7 @@ public class ReportFilterActivity extends FilterAbstractActivity {
                 ListAdapter adapter = TransactionUtils.createAccountAdapter(this, cursor);
                 Criteria c = filter.get(BlotterFilter.FROM_ACCOUNT_ID);
                 long selectedId = c != null ? c.getLongValue1() : -1;
-                x.select(this, R.id.account, R.string.account, cursor, adapter, "_id", selectedId);
+                activityLayout.select(this, R.id.account, R.string.account, cursor, adapter, "_id", selectedId);
             }
             break;
             case R.id.account_clear:
@@ -161,7 +161,7 @@ public class ReportFilterActivity extends FilterAbstractActivity {
                 ListAdapter adapter = TransactionUtils.createCurrencyAdapter(this, cursor);
                 Criteria c = filter.get(BlotterFilter.FROM_ACCOUNT_CURRENCY_ID);
                 long selectedId = c != null ? c.getLongValue1() : -1;
-                x.select(this, R.id.currency, R.string.currency, cursor, adapter, "_id", selectedId);
+                activityLayout.select(this, R.id.currency, R.string.currency, cursor, adapter, "_id", selectedId);
             }
             break;
             case R.id.currency_clear:
@@ -171,7 +171,7 @@ public class ReportFilterActivity extends FilterAbstractActivity {
                 ArrayAdapter<String> adapter = EnumUtils.createDropDownAdapter(this, statuses);
                 Criteria c = filter.get(BlotterFilter.STATUS);
                 int selectedPos = c != null ? TransactionStatus.valueOf(c.getStringValue()).ordinal() : -1;
-                x.selectPosition(this, R.id.status, R.string.transaction_status, adapter, selectedPos);
+                activityLayout.selectPosition(this, R.id.status, R.string.transaction_status, adapter, selectedPos);
             }
             break;
             case R.id.status_clear:

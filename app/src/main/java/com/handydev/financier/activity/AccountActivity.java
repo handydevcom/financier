@@ -119,40 +119,40 @@ public class AccountActivity extends AbstractActivity {
         LinearLayout layout = findViewById(R.id.layout);
 
         accountTypeAdapter = new EntityEnumAdapter<>(this, AccountType.values(), false);
-        accountTypeNode = x.addListNodeIcon(layout, R.id.account_type, R.string.account_type, R.string.account_type);
+        accountTypeNode = activityLayout.addListNodeIcon(layout, R.id.account_type, R.string.account_type, R.string.account_type);
         ImageView icon = accountTypeNode.findViewById(R.id.icon);
         icon.setColorFilter(ContextCompat.getColor(this, R.color.holo_gray_light));
 
         cardIssuerAdapter = new EntityEnumAdapter<>(this, CardIssuer.values(), false);
-        cardIssuerNode = x.addListNodeIcon(layout, R.id.card_issuer, R.string.card_issuer, R.string.card_issuer);
+        cardIssuerNode = activityLayout.addListNodeIcon(layout, R.id.card_issuer, R.string.card_issuer, R.string.card_issuer);
         setVisibility(cardIssuerNode, View.GONE);
 
         electronicPaymentAdapter = new EntityEnumAdapter<>(this, ElectronicPaymentType.values(), false);
-        electronicPaymentNode = x.addListNodeIcon(layout, R.id.electronic_payment_type, R.string.electronic_payment_type, R.string.card_issuer);
+        electronicPaymentNode = activityLayout.addListNodeIcon(layout, R.id.electronic_payment_type, R.string.electronic_payment_type, R.string.card_issuer);
         setVisibility(electronicPaymentNode, View.GONE);
 
-        issuerNode = x.addEditNode(layout, R.string.issuer, issuerName);
+        issuerNode = activityLayout.addEditNode(layout, R.string.issuer, issuerName);
         setVisibility(issuerNode, View.GONE);
 
-        numberNode = x.addEditNode(layout, R.string.card_number, numberText);
+        numberNode = activityLayout.addEditNode(layout, R.string.card_number, numberText);
         setVisibility(numberNode, View.GONE);
 
-        closingDayNode = x.addEditNode(layout, R.string.closing_day, closingDayText);
+        closingDayNode = activityLayout.addEditNode(layout, R.string.closing_day, closingDayText);
         setVisibility(closingDayNode, View.GONE);
 
-        paymentDayNode = x.addEditNode(layout, R.string.payment_day, paymentDayText);
+        paymentDayNode = activityLayout.addEditNode(layout, R.string.payment_day, paymentDayText);
         setVisibility(paymentDayNode, View.GONE);
 
         currencyCursor = db.getAllCurrencies("name");
         startManagingCursor(currencyCursor);
         currencyAdapter = TransactionUtils.createCurrencyAdapter(this, currencyCursor);
 
-        x.addEditNode(layout, R.string.title, accountTitle);
-        currencyText = x.addListNodePlus(layout, R.id.currency, R.id.currency_add, R.string.currency, R.string.select_currency);
+        activityLayout.addEditNode(layout, R.string.title, accountTitle);
+        currencyText = activityLayout.addListNodePlus(layout, R.id.currency, R.id.currency_add, R.string.currency, R.string.select_currency);
 
         limitInput.setExpense();
         limitInput.disableIncomeExpenseButton();
-        limitAmountView = x.addEditNode(layout, R.string.limit_amount, limitInput);
+        limitAmountView = activityLayout.addEditNode(layout, R.string.limit_amount, limitInput);
         setVisibility(limitAmountView, View.GONE);
 
         Intent intent = getIntent();
@@ -169,17 +169,17 @@ public class AccountActivity extends AbstractActivity {
         }
 
         if (account.id == -1) {
-            x.addEditNode(layout, R.string.opening_amount, amountInput);
+            activityLayout.addEditNode(layout, R.string.opening_amount, amountInput);
             amountInput.setIncome();
         }
 
         noteText = new EditText(this);
         noteText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         noteText.setLines(2);
-        x.addEditNode(layout, R.string.note, noteText);
+        activityLayout.addEditNode(layout, R.string.note, noteText);
 
-        x.addEditNode(layout, R.string.sort_order, sortOrderText);
-        isIncludedIntoTotals = x.addCheckboxNode(layout,
+        activityLayout.addEditNode(layout, R.string.sort_order, sortOrderText);
+        isIncludedIntoTotals = activityLayout.addCheckboxNode(layout,
                 R.id.is_included_into_totals, R.string.is_included_into_totals,
                 R.string.is_included_into_totals_summary, true);
 
@@ -266,18 +266,18 @@ public class AccountActivity extends AbstractActivity {
                 isIncludedIntoTotals.performClick();
                 break;
             case R.id.account_type:
-                x.selectPosition(this, R.id.account_type, R.string.account_type, accountTypeAdapter, AccountType.valueOf(account.type).ordinal());
+                activityLayout.selectPosition(this, R.id.account_type, R.string.account_type, accountTypeAdapter, AccountType.valueOf(account.type).ordinal());
                 break;
             case R.id.card_issuer:
-                x.selectPosition(this, R.id.card_issuer, R.string.card_issuer, cardIssuerAdapter,
+                activityLayout.selectPosition(this, R.id.card_issuer, R.string.card_issuer, cardIssuerAdapter,
                         account.cardIssuer != null ? CardIssuer.valueOf(account.cardIssuer).ordinal() : 0);
                 break;
             case R.id.electronic_payment_type:
-                x.selectPosition(this, R.id.electronic_payment_type, R.string.electronic_payment_type, electronicPaymentAdapter,
+                activityLayout.selectPosition(this, R.id.electronic_payment_type, R.string.electronic_payment_type, electronicPaymentAdapter,
                         selectEnum(ElectronicPaymentType.class, account.cardIssuer, ElectronicPaymentType.PAYPAL).ordinal());
                 break;
             case R.id.currency:
-                x.select(this, R.id.currency, R.string.currency, currencyCursor, currencyAdapter,
+                activityLayout.select(this, R.id.currency, R.string.currency, currencyCursor, currencyAdapter,
                         "_id", account.currency != null ? account.currency.id : -1);
                 break;
             case R.id.currency_add:

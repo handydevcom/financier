@@ -51,7 +51,7 @@ public abstract class AbstractSplitActivity extends AbstractActivity {
 
         fetchData();
         // todo.mb: check selector here
-        projectSelector = new ProjectSelector<>(this, db, x);
+        projectSelector = new ProjectSelector<>(this, db, activityLayout);
         projectSelector.fetchEntities();
 
         utils  = new Utils(this);
@@ -71,10 +71,10 @@ public abstract class AbstractSplitActivity extends AbstractActivity {
     }
 
     private void createCommonUI(LinearLayout layout) {
-        unsplitAmountText = x.addInfoNode(layout, R.id.add_split, R.string.unsplit_amount, "0");
+        unsplitAmountText = activityLayout.addInfoNode(layout, R.id.add_split, R.string.unsplit_amount, "0");
 
         noteText = new EditText(this);
-        x.addEditNode(layout, R.string.note, noteText);
+        activityLayout.addEditNode(layout, R.string.note, noteText);
 
         projectSelector.createNode(layout);
 

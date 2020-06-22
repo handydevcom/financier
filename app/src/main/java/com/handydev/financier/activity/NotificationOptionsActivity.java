@@ -86,11 +86,11 @@ public class NotificationOptionsActivity extends AbstractActivity {
 
 	public void createNodes() {
 		layout.removeAllViews();
-		soundText = x.addListNode(layout, R.id.notification_sound, R.string.notification_sound, options.getSoundName(this));
-		vibraText = x.addListNode(layout, R.id.notification_vibra, R.string.notification_vibra, options.vibration.titleId);
-		ledText = x.addListNode(layout, R.id.notification_led, R.string.notification_led, options.ledColor.titleId);
-		x.addInfoNodeSingle(layout, R.id.result1, R.string.notification_options_default);			
-		x.addInfoNodeSingle(layout, R.id.result2, R.string.notification_options_off);			
+		soundText = activityLayout.addListNode(layout, R.id.notification_sound, R.string.notification_sound, options.getSoundName(this));
+		vibraText = activityLayout.addListNode(layout, R.id.notification_vibra, R.string.notification_vibra, options.vibration.titleId);
+		ledText = activityLayout.addListNode(layout, R.id.notification_led, R.string.notification_led, options.ledColor.titleId);
+		activityLayout.addInfoNodeSingle(layout, R.id.result1, R.string.notification_options_default);
+		activityLayout.addInfoNodeSingle(layout, R.id.result2, R.string.notification_options_off);
 	}
 
 	@Override
@@ -106,11 +106,11 @@ public class NotificationOptionsActivity extends AbstractActivity {
 			} break;
 			case R.id.notification_vibra: {
 				ArrayAdapter<String> adapter = EnumUtils.createDropDownAdapter(this, patterns);
-				x.selectPosition(this, R.id.notification_vibra, R.string.notification_vibra, adapter, options.vibration.ordinal());
+				activityLayout.selectPosition(this, R.id.notification_vibra, R.string.notification_vibra, adapter, options.vibration.ordinal());
 			} break;
 			case R.id.notification_led:  {
 				ArrayAdapter<String> adapter = EnumUtils.createDropDownAdapter(this, colors);
-				x.selectPosition(this, R.id.notification_led, R.string.notification_led, adapter, options.ledColor.ordinal());
+				activityLayout.selectPosition(this, R.id.notification_led, R.string.notification_led, adapter, options.ledColor.ordinal());
 			} break;
 			case R.id.result1: {
 				options = NotificationOptions.createDefault();

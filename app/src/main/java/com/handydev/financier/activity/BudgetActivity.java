@@ -54,35 +54,35 @@ public class BudgetActivity extends AbstractActivity {
         accountOptions = createAccountsList();
         accountAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, accountOptions);
 
-        categorySelector = new CategorySelector<>(this, db, x);
+        categorySelector = new CategorySelector<>(this, db, activityLayout);
         categorySelector.setEmptyResId(R.string.no_categories);
         categorySelector.initMultiSelect();
         categorySelector.setUseMultiChoicePlainSelector();
 
-        projectSelector = new ProjectSelector<>(this, db, x, R.string.no_projects);
+        projectSelector = new ProjectSelector<>(this, db, activityLayout, R.string.no_projects);
         projectSelector.initMultiSelect();
 
         LinearLayout layout = findViewById(R.id.list);
 
         titleText = new EditText(this);
         titleText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
-        x.addEditNode(layout, R.string.title, titleText);
+        activityLayout.addEditNode(layout, R.string.title, titleText);
 
-        accountText = x.addListNode(layout, R.id.account,
+        accountText = activityLayout.addListNode(layout, R.id.account,
                 R.string.account, R.string.select_account);
 
         categorySelector.createNode(layout, FILTER);
 
         projectSelector.createNode(layout);
-        cbIncludeSubCategories = x.addCheckboxNode(layout,
+        cbIncludeSubCategories = activityLayout.addCheckboxNode(layout,
                 R.id.include_subcategories, R.string.include_subcategories,
                 R.string.include_subcategories_summary, true);
-        cbMode = x.addCheckboxNode(layout, R.id.budget_mode, R.string.budget_mode,
+        cbMode = activityLayout.addCheckboxNode(layout, R.id.budget_mode, R.string.budget_mode,
                 R.string.budget_mode_summary, false);
-        cbIncludeCredit = x.addCheckboxNode(layout,
+        cbIncludeCredit = activityLayout.addCheckboxNode(layout,
                 R.id.include_credit, R.string.include_credit,
                 R.string.include_credit_summary, true);
-        cbSavingBudget = x.addCheckboxNode(layout,
+        cbSavingBudget = activityLayout.addCheckboxNode(layout,
                 R.id.type, R.string.budget_type_saving,
                 R.string.budget_type_saving_summary, true);
 
@@ -90,9 +90,9 @@ public class BudgetActivity extends AbstractActivity {
         amountInput.setOwner(this);
         amountInput.setIncome();
         amountInput.disableIncomeExpenseButton();
-        x.addEditNode(layout, R.string.amount, amountInput);
+        activityLayout.addEditNode(layout, R.string.amount, amountInput);
 
-        periodRecurText = x.addListNode(layout, R.id.period_recur, R.string.period_recur, R.string.no_recur);
+        periodRecurText = activityLayout.addListNode(layout, R.id.period_recur, R.string.period_recur, R.string.no_recur);
 
         Button bOK = findViewById(R.id.bOK);
         bOK.setOnClickListener(arg0 -> {
@@ -197,7 +197,7 @@ public class BudgetActivity extends AbstractActivity {
                 projectSelector.onClick(id);
                 break;
             case R.id.account:
-                x.selectPosition(this, R.id.account, R.string.account, accountAdapter, selectedAccountOption);
+                activityLayout.selectPosition(this, R.id.account, R.string.account, accountAdapter, selectedAccountOption);
                 break;
             case R.id.period_recur: {
                 Intent intent = new Intent(this, RecurActivity.class);

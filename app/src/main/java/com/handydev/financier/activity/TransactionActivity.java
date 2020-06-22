@@ -164,7 +164,7 @@ public class TransactionActivity extends AbstractTransactionActivity {
     @Override
     protected void createListNodes(LinearLayout layout) {
         //account
-        accountText = x.addListNode(layout, R.id.account, R.string.account, R.string.select_account);
+        accountText = activityLayout.addListNode(layout, R.id.account, R.string.account, R.string.select_account);
         //payee
         isShowPayee = MyPreferences.isShowPayee(this);
         if (isShowPayee) {
@@ -174,14 +174,14 @@ public class TransactionActivity extends AbstractTransactionActivity {
         categorySelector.createNode(layout, TRANSACTION);
         //amount
         if (!isUpdateBalanceMode && MyPreferences.isShowCurrency(this)) {
-            currencyText = x.addListNode(layout, R.id.original_currency, R.string.currency, R.string.original_currency_as_account);
+            currencyText = activityLayout.addListNode(layout, R.id.original_currency, R.string.currency, R.string.original_currency_as_account);
         } else {
             currencyText = new TextView(this);
         }
         rateView.createTransactionUI();
         // difference
         if (isUpdateBalanceMode) {
-            differenceText = x.addInfoNode(layout, -1, R.string.difference, "0");
+            differenceText = activityLayout.addInfoNode(layout, -1, R.string.difference, "0");
             rateView.setFromAmount(currentBalance);
             rateView.setAmountFromChangeListener((oldAmount, newAmount) -> {
                 long balanceDifference = newAmount - currentBalance;
@@ -222,7 +222,7 @@ public class TransactionActivity extends AbstractTransactionActivity {
             return;
         }
         if (categorySelector.isSplitCategorySelected()) {
-            View v = x.addNodeUnsplit(splitsLayout);
+            View v = activityLayout.addNodeUnsplit(splitsLayout);
             unsplitAmountText = v.findViewById(R.id.data);
             updateUnsplitAmount();
         } else {
@@ -394,7 +394,7 @@ public class TransactionActivity extends AbstractTransactionActivity {
                 currencies.add(0, currencyAsAccount);
                 ListAdapter adapter = TransactionUtils.createCurrencyAdapter(this, currencies);
                 int selectedPos = MyEntity.indexOf(currencies, selectedOriginCurrencyId);
-                x.selectItemId(this, R.id.currency, R.string.currency, adapter, selectedPos);
+                activityLayout.selectItemId(this, R.id.currency, R.string.currency, adapter, selectedPos);
                 break;
         }
         Transaction split = viewToSplitMap.get(v);
@@ -541,7 +541,7 @@ public class TransactionActivity extends AbstractTransactionActivity {
     private void addOrEditSplit(Transaction split) {
         View v = findView(split);
         if (v == null) {
-            v = x.addSplitNodeMinus(splitsLayout, R.id.edit_aplit, R.id.delete_split, R.string.split, "");
+            v = activityLayout.addSplitNodeMinus(splitsLayout, R.id.edit_aplit, R.id.delete_split, R.string.split, "");
         }
         setSplitData(v, split);
         viewToSplitMap.put(v, split);

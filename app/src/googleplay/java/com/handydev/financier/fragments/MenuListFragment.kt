@@ -1,7 +1,7 @@
 package com.handydev.main.fragments
 
 import android.app.Activity
-import android.app.AlertDialog
+import androidx.appcompat.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.DialogInterface
 import android.content.Intent
@@ -71,45 +71,6 @@ class MenuListFragment: ListFragment() {
             1 -> onConnectionRequest(resultCode)
         }
     }
-
-    /*
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case  2 :
-            {
-                MenuListActivity_.this.onCsvExportResult(resultCode, data);
-                break;
-            }
-            case  3 :
-            {
-                MenuListActivity_.this.onQifExportResult(resultCode, data);
-                break;
-            }
-            case  4 :
-            {
-                MenuListActivity_.this.onCsvImportResult(resultCode, data);
-                break;
-            }
-            case  5 :
-            {
-                MenuListActivity_.this.onQifImportResult(resultCode, data);
-                break;
-            }
-            case  6 :
-            {
-                MenuListActivity_.this.onChangePreferences();
-                break;
-            }
-            case  1 :
-            {
-                MenuListActivity_.this.onConnectionRequest(resultCode);
-                break;
-            }
-        }
-    }
-     */
 
     //@OnActivityResult(MenuListItem.ACTIVITY_CSV_EXPORT)
     private fun onCsvExportResult(resultCode: Int, data: Intent?) {
@@ -247,7 +208,7 @@ class MenuListFragment: ListFragment() {
         }
         val fileNames = getFileNames(filteredFiles)
         var selectedDriveFile : File? = null
-        AlertDialog.Builder(activity)
+        /*AlertDialog.Builder(activity)
                 .setTitle(R.string.restore_database_online_google_drive)
                 .setPositiveButton(R.string.restore) { _, _ ->
                     if (selectedDriveFile != null) {
@@ -260,7 +221,7 @@ class MenuListFragment: ListFragment() {
                         selectedDriveFile = filteredFiles[which]
                     }
                 })
-                .show()
+                .show()*/
     }
 
     private fun getFileNames(files: ArrayList<File>): Array<String?> {

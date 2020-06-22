@@ -29,7 +29,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements Acti
 
 	protected DatabaseAdapter db;
 
-	protected ActivityLayout x;
+	protected ActivityLayout activityLayout;
 
 	@Override
 	protected void attachBaseContext(Context base) {
@@ -42,7 +42,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements Acti
 
 		LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		NodeInflater nodeInflater = new NodeInflater(layoutInflater);
-		x = new ActivityLayout(nodeInflater, this);
+		activityLayout = new ActivityLayout(nodeInflater, this);
 		db = new DatabaseAdapter(this);
 		db.open();
 	}

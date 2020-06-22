@@ -8,7 +8,7 @@
 
 package com.handydev.financier.activity;
 
-import android.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -110,10 +110,10 @@ public class PurgeAccountActivity extends AbstractActivity {
     }
 
     private void createNodes() {
-        x.addInfoNode(layout, 0, R.string.account, account.title);
-        x.addInfoNode(layout, 0, R.string.warning, R.string.purge_account_date_summary);
-        dateText = x.addInfoNode(layout, R.id.date, R.string.date, "?");
-        databaseBackup = x.addCheckboxNode(layout, R.id.backup, R.string.database_backup, R.string.purge_account_backup_database, true);
+        activityLayout.addInfoNode(layout, 0, R.string.account, account.title);
+        activityLayout.addInfoNode(layout, 0, R.string.warning, R.string.purge_account_date_summary);
+        dateText = activityLayout.addInfoNode(layout, R.id.date, R.string.date, "?");
+        databaseBackup = activityLayout.addCheckboxNode(layout, R.id.backup, R.string.database_backup, R.string.purge_account_backup_database, true);
     }
 
     @Override

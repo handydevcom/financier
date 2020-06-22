@@ -32,8 +32,8 @@ public class SplitTransferActivity extends AbstractSplitActivity {
 
     @Override
     protected void createUI(LinearLayout layout) {
-        accountText = x.addListNode(layout, R.id.account, R.string.account, R.string.select_to_account);
-        rateView = new RateLayoutView(this, x, layout);
+        accountText = activityLayout.addListNode(layout, R.id.account, R.string.account, R.string.select_to_account);
+        rateView = new RateLayoutView(this, activityLayout, layout);
         rateView.createTransferUI();
         rateView.setAmountFromChangeListener((oldAmount, newAmount) -> setUnsplitAmount(split.unsplitAmount - newAmount));
     }
@@ -94,7 +94,7 @@ public class SplitTransferActivity extends AbstractSplitActivity {
     protected void onClick(View v, int id) {
         super.onClick(v, id);
         if (id == R.id.account) {
-            x.select(this, R.id.account, R.string.account_to, accountCursor, accountAdapter,
+            activityLayout.select(this, R.id.account, R.string.account_to, accountCursor, accountAdapter,
                     DatabaseHelper.AccountColumns.ID, split.toAccountId);
         }
     }

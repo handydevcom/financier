@@ -9,7 +9,7 @@ import com.handydev.financier.db.DatabaseAdapter;
 import com.handydev.financier.utils.MyPreferences;
 
 import android.app.Activity;
-import android.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;

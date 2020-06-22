@@ -65,16 +65,16 @@ public class BlotterFilterActivity extends FilterAbstractActivity {
         noFilterValue = getString(R.string.no_filter);
         
 		LinearLayout layout = findViewById(R.id.layout);
-		period = x.addFilterNodeMinus(layout, R.id.period, R.id.period_clear, R.string.period, R.string.no_filter);
-		account = x.addFilterNodeMinus(layout, R.id.account, R.id.account_clear, R.string.account, R.string.no_filter);
-		currency = x.addFilterNodeMinus(layout, R.id.currency, R.id.currency_clear, R.string.currency, R.string.no_filter);
+		period = activityLayout.addFilterNodeMinus(layout, R.id.period, R.id.period_clear, R.string.period, R.string.no_filter);
+		account = activityLayout.addFilterNodeMinus(layout, R.id.account, R.id.account_clear, R.string.account, R.string.no_filter);
+		currency = activityLayout.addFilterNodeMinus(layout, R.id.currency, R.id.currency_clear, R.string.currency, R.string.no_filter);
 		initCategorySelector(layout);
 		initPayeeSelector(layout);
 		initProjectSelector(layout);
 		initLocationSelector(layout);
-		note = x.addFilterNodeMinus(layout, R.id.note, R.id.note_clear, R.string.note, R.string.no_filter);
-		status = x.addFilterNodeMinus(layout, R.id.status, R.id.status_clear, R.string.transaction_status, R.string.no_filter);
-		sortOrder = x.addFilterNodeMinus(layout, R.id.sort_order, R.id.sort_order_clear, R.string.sort_order, 0, sortBlotterEntries[0]);
+		note = activityLayout.addFilterNodeMinus(layout, R.id.note, R.id.note_clear, R.string.note, R.string.no_filter);
+		status = activityLayout.addFilterNodeMinus(layout, R.id.status, R.id.status_clear, R.string.transaction_status, R.string.no_filter);
+		sortOrder = activityLayout.addFilterNodeMinus(layout, R.id.sort_order, R.id.sort_order_clear, R.string.sort_order, 0, sortBlotterEntries[0]);
 
 		Button bOk = findViewById(R.id.bOK);
 		bOk.setOnClickListener(v -> {
@@ -217,7 +217,7 @@ public class BlotterFilterActivity extends FilterAbstractActivity {
 				ListAdapter adapter = TransactionUtils.createAccountAdapter(this, cursor);
 				Criteria c = filter.get(FROM_ACCOUNT_ID);
 				long selectedId = c != null ? c.getLongValue1() : -1;
-				x.select(this, R.id.account, R.string.account, cursor, adapter, "_id", selectedId);
+				activityLayout.select(this, R.id.account, R.string.account, cursor, adapter, "_id", selectedId);
 			} break;
 			case R.id.account_clear:
 				if (isAccountFilter()) {
@@ -231,7 +231,7 @@ public class BlotterFilterActivity extends FilterAbstractActivity {
 				ListAdapter adapter = TransactionUtils.createCurrencyAdapter(this, cursor);
 				Criteria c = filter.get(BlotterFilter.FROM_ACCOUNT_CURRENCY_ID);
 				long selectedId = c != null ? c.getLongValue1() : -1;
-				x.select(this, R.id.currency, R.string.currency, cursor, adapter, "_id", selectedId);
+				activityLayout.select(this, R.id.currency, R.string.currency, cursor, adapter, "_id", selectedId);
 			} break;
 			case R.id.currency_clear:
 				clear(BlotterFilter.FROM_ACCOUNT_CURRENCY_ID, currency);
@@ -247,7 +247,7 @@ public class BlotterFilterActivity extends FilterAbstractActivity {
 			case R.id.sort_order: {
 				ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, sortBlotterEntries);
 				int selectedId = BlotterFilter.SORT_OLDER_TO_NEWER.equals(filter.getSortOrder()) ? 1 : 0;
-				x.selectPosition(this, R.id.sort_order, R.string.sort_order, adapter, selectedId);
+				activityLayout.selectPosition(this, R.id.sort_order, R.string.sort_order, adapter, selectedId);
 			} break;
 			case R.id.sort_order_clear:
 				filter.resetSort();
@@ -258,7 +258,7 @@ public class BlotterFilterActivity extends FilterAbstractActivity {
 				ArrayAdapter<String> adapter = EnumUtils.createDropDownAdapter(this, statuses);
 				Criteria c = filter.get(BlotterFilter.STATUS);
 				int selectedPos = c != null ? TransactionStatus.valueOf(c.getStringValue()).ordinal() : -1;
-				x.selectPosition(this, R.id.status, R.string.transaction_status, adapter, selectedPos);
+				activityLayout.selectPosition(this, R.id.status, R.string.transaction_status, adapter, selectedPos);
 			} break;
 			case R.id.status_clear:
 				clear(BlotterFilter.STATUS, status);

@@ -141,7 +141,7 @@ public abstract class AbstractTransactionActivity extends AbstractActivity imple
         isShowIsCCardPayment = MyPreferences.isShowIsCCardPayment(this);
         isOpenCalculatorForTemplates = MyPreferences.isOpenCalculatorForTemplates(this);
 
-        categorySelector = new CategorySelector<>(this, db, x);
+        categorySelector = new CategorySelector<>(this, db, activityLayout);
         categorySelector.setListener(this);
         fetchCategories();
 
@@ -180,7 +180,7 @@ public abstract class AbstractTransactionActivity extends AbstractActivity imple
         status = findViewById(R.id.status);
         status.setOnClickListener(v -> {
             ArrayAdapter<String> adapter = EnumUtils.createDropDownAdapter(AbstractTransactionActivity.this, statuses);
-            x.selectPosition(AbstractTransactionActivity.this, R.id.status, R.string.transaction_status, adapter, transaction.status.ordinal());
+            activityLayout.selectPosition(AbstractTransactionActivity.this, R.id.status, R.string.transaction_status, adapter, transaction.status.ordinal());
         });
 
         dateText = findViewById(R.id.date);
@@ -221,15 +221,15 @@ public abstract class AbstractTransactionActivity extends AbstractActivity imple
 
         this.templateName = new EditText(this);
         if (transaction.isTemplate()) {
-            x.addEditNode(layout, R.string.template_name, templateName);
+            activityLayout.addEditNode(layout, R.string.template_name, templateName);
         }
 
-        rateView = new RateLayoutView(this, x, layout);
+        rateView = new RateLayoutView(this, activityLayout, layout);
 
-        locationSelector = new LocationSelector<>(this, db, x);
+        locationSelector = new LocationSelector<>(this, db, activityLayout);
         locationSelector.fetchEntities();
 
-        projectSelector = new ProjectSelector<>(this, db, x);
+        projectSelector = new ProjectSelector<>(this, db, activityLayout);
         projectSelector.fetchEntities();
 
         createListNodes(layout);
@@ -237,8 +237,8 @@ public abstract class AbstractTransactionActivity extends AbstractActivity imple
         createCommonNodes(layout);
 
         if (transaction.isScheduled()) {
-            recurText = x.addListNode(layout, R.id.recurrence_pattern, R.string.recur, R.string.recur_interval_no_recur);
-            notificationText = x.addListNode(layout, R.id.notification, R.string.notification, R.string.notification_options_default);
+            recurText = activityLayout.addListNode(layout, R.id.recurrence_pattern, R.string.recur, R.string.recur_interval_no_recur);
+            notificationText = activityLayout.addListNode(layout, R.id.notification, R.string.notification, R.string.notification_options_default);
             Attribute sa = db.getSystemAttribute(SystemAttribute.DELETE_AFTER_EXPIRED);
             deleteAfterExpired = AttributeViewFactory.createViewForAttribute(this, sa);
             String value = transaction.getSystemAttribute(SystemAttribute.DELETE_AFTER_EXPIRED);
@@ -323,7 +323,7 @@ public abstract class AbstractTransactionActivity extends AbstractActivity imple
     }
 
     protected void createPayeeNode(LinearLayout layout) {
-        payeeSelector = new PayeeSelector<>(this, db, x);
+        payeeSelector = new PayeeSelector<>(this, db, activityLayout);
         payeeSelector.fetchEntities();
         payeeSelector.createNode(layout);
     }
@@ -384,7 +384,7 @@ public abstract class AbstractTransactionActivity extends AbstractActivity imple
                     //note
                     noteText = new EditText(this);
                     noteText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
-                    x.addEditNode(layout, R.string.note, noteText);
+                    activityLayout.addEditNode(layout, R.string.note, noteText);
                 }
             }
             if (i == projectOrder) {
@@ -392,12 +392,12 @@ public abstract class AbstractTransactionActivity extends AbstractActivity imple
             }
         }
         if (isShowTakePicture && transaction.isNotTemplateLike()) {
-            pictureView = x.addPictureNodeMinus(this, layout, R.id.attach_picture, R.id.delete_picture, R.string.attach_picture, R.string.new_picture);
+            pictureView = activityLayout.addPictureNodeMinus(this, layout, R.id.attach_picture, R.id.delete_picture, R.string.attach_picture, R.string.new_picture);
         }
         if (isShowIsCCardPayment) {
             // checkbox to register if the transaction is a credit card payment.
             // this will be used to exclude from totals in bill preview
-            ccardPayment = x.addCheckboxNode(layout, R.id.is_ccard_payment,
+            ccardPayment = activityLayout.addCheckboxNode(layout, R.id.is_ccard_payment,
                     R.string.is_ccard_payment, R.string.is_ccard_payment_summary, false);
         }
     }
@@ -414,7 +414,7 @@ public abstract class AbstractTransactionActivity extends AbstractActivity imple
         locationSelector.onClick(id);
         switch (id) {
             case R.id.account:
-                x.select(this, R.id.account, R.string.account, accountCursor, accountAdapter,
+                activityLayout.select(this, R.id.account, R.string.account, accountCursor, accountAdapter,
                         AccountColumns.ID, getSelectedAccountId());
                 break;
             case R.id.recurrence_pattern: {

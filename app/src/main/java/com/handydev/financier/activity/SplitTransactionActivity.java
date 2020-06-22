@@ -35,14 +35,14 @@ public class SplitTransactionActivity extends AbstractSplitActivity implements C
         amountInput = AmountInput_.build(this);
         amountInput.setOwner(this);
         amountInput.setOnAmountChangedListener((oldAmount, newAmount) -> setUnsplitAmount(split.unsplitAmount - newAmount));
-        View v = x.addEditNode(layout, R.string.amount, amountInput);
+        View v = activityLayout.addEditNode(layout, R.string.amount, amountInput);
         amountTitle = v.findViewById(R.id.label);
         categorySelector.createAttributesLayout(layout);
     }
 
     @Override
     protected void fetchData() {
-        categorySelector = new CategorySelector<>(this, db, x);
+        categorySelector = new CategorySelector<>(this, db, activityLayout);
         categorySelector.setListener(this);
         categorySelector.doNotShowSplitCategory();
         categorySelector.fetchCategories(false);

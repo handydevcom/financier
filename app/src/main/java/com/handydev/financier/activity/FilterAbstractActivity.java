@@ -40,25 +40,25 @@ public abstract class FilterAbstractActivity extends AbstractActivity implements
     protected String noFilterValue;
 
     protected void initPayeeSelector(LinearLayout layout) {
-        payeeSelector = new PayeeSelector<>(this, db, x, R.string.no_filter);
+        payeeSelector = new PayeeSelector<>(this, db, activityLayout, R.string.no_filter);
         payeeSelector.initMultiSelect();
         payeeSelector.createNode(layout);
     }
 
     protected void initProjectSelector(LinearLayout layout) {
-        projectSelector = new ProjectSelector<>(this, db, x, R.string.no_filter);
+        projectSelector = new ProjectSelector<>(this, db, activityLayout, R.string.no_filter);
         projectSelector.initMultiSelect();
         projectSelector.createNode(layout);
     }
 
     protected void initLocationSelector(LinearLayout layout) {
-        locationSelector = new LocationSelector<>(this, db, x, R.string.no_filter);
+        locationSelector = new LocationSelector<>(this, db, activityLayout, R.string.no_filter);
         locationSelector.initMultiSelect();
         locationSelector.createNode(layout);
     }
 
     protected void initCategorySelector(LinearLayout layout) {
-        categorySelector = new CategorySelector<>(this, db, x);
+        categorySelector = new CategorySelector<>(this, db, activityLayout);
         categorySelector.setListener(this);
         categorySelector.initMultiSelect();
         categorySelector.createNode(layout, FILTER);
