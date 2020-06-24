@@ -12,8 +12,11 @@
 	android:orientation="vertical" android:layout_width="wrap_content"
 	android:layout_height="wrap_content">
 	<DatePicker android:layout_width="wrap_content"
+		android:datePickerMode="spinner"
+		android:spinnersShown="false"
 		android:layout_height="wrap_content" android:id="@+id/date"/>
 	<TimePicker android:layout_width="wrap_content"
+		android:timePickerMode="spinner"
 		android:layout_height="wrap_content" android:layout_gravity="center"
 		android:id="@+id/time" />
 	<include layout="@layout/ok_cancel_buttons" />

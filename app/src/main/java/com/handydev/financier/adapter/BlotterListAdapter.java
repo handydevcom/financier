@@ -222,14 +222,10 @@ public class BlotterListAdapter extends ResourceCursorAdapter {
     }
 
     protected void alternateColorIfNeeded(BlotterViewHolder v, Context context, Cursor cursor) {
-        if(MyPreferences.isBlotterAlternateColors(context)) {
-            if(cursor.getPosition() %2 == 1) {
-                v.layout.setBackgroundColor(Color.argb(255, 31, 31, 31));
-            } else {
-                v.layout.setBackgroundColor(Color.TRANSPARENT);
-            }
+        if(MyPreferences.isAccountAlternateColors(context) && cursor.getPosition() % 2 == 1) {
+            v.layout.setBackgroundColor(context.getResources().getColor(R.color.alternate_row));
         } else {
-            v.layout.setBackgroundColor(Color.TRANSPARENT);
+            v.layout.setBackgroundColor(context.getResources().getColor(R.color.global_background));
         }
     }
 

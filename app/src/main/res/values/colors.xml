@@ -22,4 +22,6 @@
     <color name="material_cyan">#00BCD4</color>
     <color name="material_brown">#795548</color>
     <color name="calculator_background">#424242</color>
+    <color name="global_background">#000000</color>
+    <color name="alternate_row">#1F1F1F</color>
 </resources>
