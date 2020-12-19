@@ -37,7 +37,7 @@ public class AboutActivity extends TabActivity {
         setTitle("Financier ("+getAppVersion(this)+")");
 
         addTabForFile("whatsnew", R.string.whats_new);
-        addTabForUrl("http://handydev.com/financier/privacy", R.string.privacy_policy);
+        addTabForUrl("https://handydev.com/financier/privacy", R.string.privacy_policy);
         addTabForFile("gpl-2.0-standalone", R.string.license);
         addTabForFile("about", R.string.about);
     }

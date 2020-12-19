@@ -29,7 +29,7 @@ import java.util.HashMap;
 import com.handydev.financier.R;
 import com.handydev.financier.db.DatabaseAdapter;
 import com.handydev.financier.db.DatabaseHelper.BlotterColumns;
-import static com.handydev.financier.model.Category.isSplit;
+import com.handydev.financier.model.Category;
 import com.handydev.financier.model.CategoryEntity;
 import com.handydev.financier.model.Currency;
 import com.handydev.financier.model.TransactionStatus;
@@ -156,7 +156,7 @@ public class BlotterListAdapter extends ResourceCursorAdapter {
                 u.setAmountText(sb, v.rightCenterView, fromCurrency, amount, true);
             }
             long categoryId = cursor.getLong(BlotterColumns.category_id.ordinal());
-            if (isSplit(categoryId)) {
+            if (Category.Companion.isSplit(categoryId)) {
                 v.iconView.setImageDrawable(icBlotterSplit);
                 v.iconView.setColorFilter(u.splitColor);
             } else if (amount == 0) {
@@ -310,15 +310,15 @@ public class BlotterListAdapter extends ResourceCursorAdapter {
         public final CheckBox checkBox;
 
         public BlotterViewHolder(View view) {
-            layout = (RelativeLayout) view.findViewById(R.id.layout);
-            indicator = (TextView) view.findViewById(R.id.indicator);
-            topView = (TextView) view.findViewById(R.id.top);
-            centerView = (TextView) view.findViewById(R.id.center);
-            bottomView = (TextView) view.findViewById(R.id.bottom);
-            rightCenterView = (TextView) view.findViewById(R.id.right_center);
-            rightView = (TextView) view.findViewById(R.id.right);
-            iconView = (ImageView) view.findViewById(R.id.right_top);
-            checkBox = (CheckBox) view.findViewById(R.id.cb);
+            layout = view.findViewById(R.id.layout);
+            indicator = view.findViewById(R.id.indicator);
+            topView = view.findViewById(R.id.top);
+            centerView = view.findViewById(R.id.center);
+            bottomView = view.findViewById(R.id.bottom);
+            rightCenterView = view.findViewById(R.id.right_center);
+            rightView = view.findViewById(R.id.right);
+            iconView = view.findViewById(R.id.right_top);
+            checkBox = view.findViewById(R.id.cb);
         }
 
     }

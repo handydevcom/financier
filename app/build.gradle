@@ -10,8 +10,9 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding true
+        // viewBinding true
     }
     compileSdkVersion 29
     buildToolsVersion '29.0.2'

@@ -25,8 +25,7 @@ abstract class AbstractListFragment protected constructor(private val contentId:
     protected var enablePin = true
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val root = inflater.inflate(contentId, container, false)
-        return root
+        return inflater.inflate(contentId, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

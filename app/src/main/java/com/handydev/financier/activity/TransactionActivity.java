@@ -13,6 +13,7 @@ package com.handydev.financier.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -86,7 +87,7 @@ public class TransactionActivity extends AbstractTransactionActivity {
         currencyAsAccount.name = getString(R.string.original_currency_as_account);
     }
 
-    private void prepareUnsplitActionGrid() {
+   private void prepareUnsplitActionGrid() {
         unsplitActionGrid = new QuickActionGrid(this);
         unsplitActionGrid.addQuickAction(new MyQuickAction(this, R.drawable.ic_action_add, R.string.transaction));
         unsplitActionGrid.addQuickAction(new MyQuickAction(this, R.drawable.ic_action_transfer, R.string.transfer));
