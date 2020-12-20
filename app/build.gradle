@@ -34,8 +34,8 @@ android {
         applicationId "com.handydev.financier"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 212
-        versionName "2.0.12"
+        versionCode 213
+        versionName "2.0.13"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         javaCompileOptions {

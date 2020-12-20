@@ -122,6 +122,7 @@ public abstract class AbstractTransactionActivity extends AbstractActivity imple
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        db.updateCategoriesCache(false);
 
         df = DateUtils.getLongDateFormat(this);
         tf = DateUtils.getTimeFormat(this);
