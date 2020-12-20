@@ -17,6 +17,7 @@ import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
 import com.handydev.financier.R
 import com.handydev.financier.activity.ActivityLayout.FilterNode
+import com.handydev.financier.db.CategoriesCache
 import com.handydev.financier.db.DatabaseAdapter
 import com.handydev.financier.db.DatabaseHelper
 import com.handydev.financier.model.*
@@ -227,9 +228,10 @@ class CategorySelector<A : AbstractActivity?> @JvmOverloads constructor(private 
             if (listener != null) listener!!.onCategorySelected(null, false)
         } else {
             if (selectedCategoryId != categoryId) {
-                val category = db.getCategoryWithParent(categoryId)
+                db.updateCategoriesCache(false)
+                val category = CategoriesCache.getCategory(categoryId)
                 if (category != null) {
-                    categoryText!!.text = category.getTitle(db) //Category.getTitle(category.title, category.level)
+                    categoryText!!.text = category.getNestedTitle() //Category.getTitle(category.title, category.level)
                     showHideMinusBtn(true)
                 }
                 selectedCategoryId = categoryId
@@ -305,19 +307,21 @@ class CategorySelector<A : AbstractActivity?> @JvmOverloads constructor(private 
         return AttributeViewFactory.createViewForAttribute(activity, attribute)
     }
 
-    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 CategorySelectorActivity.CATEGORY_ADD -> {
                     categoryCursor!!.requery()
-                    val categoryId = data.getLongExtra(DatabaseHelper.CategoryColumns._id.name, -1)
-                    if (categoryId != -1L) {
+                    val categoryId = data?.getLongExtra(DatabaseHelper.CategoryColumns._id.name, -1)
+                    if (categoryId != null && categoryId != -1L) {
                         selectCategory(categoryId)
                     }
                 }
                 CategorySelectorActivity.CATEGORY_PICK -> {
-                    val categoryId = data.getLongExtra(CategorySelectorActivity.SELECTED_CATEGORY_ID, 0)
-                    selectCategory(categoryId)
+                    val categoryId = data?.getLongExtra(CategorySelectorActivity.SELECTED_CATEGORY_ID, 0)
+                    if(categoryId != null) {
+                        selectCategory(categoryId)
+                    }
                 }
             }
         }

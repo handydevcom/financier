@@ -57,6 +57,7 @@ import java.lang.Exception
 import java.lang.StringBuilder
 import java.math.BigDecimal
 import java.util.*
+import kotlin.collections.ArrayList
 
 @EBean(scope = EBean.Scope.Singleton)
 open class DatabaseAdapter(context: Context?) : MyEntityManager(context) {
@@ -535,13 +536,15 @@ open class DatabaseAdapter(context: Context?) : MyEntityManager(context) {
             val parent = map[parentId]
             if (parent != null && parent.hasChildren()) {
                 val children = parent.children
-                return insertAsLast(category, children)
+                if(children != null) {
+                    return insertAsLast(category, children)
+                }
             }
         }
         return insertChildCategory(parentId, category)
     }
 
-    private fun insertAsLast(category: Category, tree: CategoryTree<Category?>): Long {
+    private fun insertAsLast(category: Category, tree: CategoryTree<Category>): Long {
         val mateId = tree.getAt(tree.size() - 1)!!.id
         return insertMateCategory(mateId, category)
     }
@@ -614,23 +617,37 @@ open class DatabaseAdapter(context: Context?) : MyEntityManager(context) {
         return res
     }
 
-    fun getCategoriesTreeWithoutSubTree(excludingTreeId: Long, includeNoCategory: Boolean): CategoryTree<Category?> {
-        var c: Cursor
-        if (excludingTreeId > 0) {
-            c = getCategoriesWithoutSubtree(excludingTreeId, includeNoCategory)
-        } else {
-            c = getCategories(includeNoCategory)
+    fun getCategoriesTreeWithoutSubTree(excludingTreeId: Long, includeNoCategory: Boolean): CategoryTree<Category> {
+        var categories = getAllCategoriesList()
+        if(!includeNoCategory) {
+            categories = categories.filter { it.id > 0 }
         }
-        return CategoryTree.createFromCursor<Category>(c) { obj: Cursor? -> formCursor(c) }
+        if(excludingTreeId > 0)
+        {
+            val category = categories.firstOrNull { it.id == excludingTreeId }
+            if(category != null) {
+                categories = categories.filter { it.id < category.left || it.id > category.right }
+            }
+        }
+        return CategoryTree.createFromCache(categories)
+        /*val c: Cursor = when {
+            excludingTreeId > 0 -> {
+                getCategoriesWithoutSubtree(excludingTreeId, includeNoCategory)
+            }
+            else -> {
+                getCategories(includeNoCategory)
+            }
+        }
+        return CategoryTree.createFromCursor<Category>(c) { obj: Cursor? -> formCursor(c) }*/
     }
 
-    fun getCategoriesTree(includeNoCategory: Boolean): CategoryTree<Category?> {
+    fun getCategoriesTree(includeNoCategory: Boolean): CategoryTree<Category> {
         return getCategoriesTreeWithoutSubTree(-1, includeNoCategory)
     }
 
-    val allCategoriesTree: CategoryTree<Category>
+    private val allCategoriesTree: CategoryTree<Category>
         get() {
-            allCategories.use { c -> return CategoryTree.createFromCursor<Category>(c) { obj: Cursor? -> formCursor(c) } }
+            return CategoryTree.createFromCache(CategoriesCache.categoriesList)
         }
 
     val allCategoriesMap: Map<Long, Category>
@@ -642,13 +659,22 @@ open class DatabaseAdapter(context: Context?) : MyEntityManager(context) {
 
     val allCategories: Cursor
         get() = db().query(DatabaseHelper.V_CATEGORY, CategoryViewColumns.NORMAL_PROJECTION, null, null, null, null, null)
-    val allCategoriesList: List<Category>
-        get() {
-            allCategories.use { c -> return categoriesAsList(c) }
-        }
 
-    private fun categoriesAsList(c: Cursor): List<Category> {
-        val list: MutableList<Category> = ArrayList()
+    fun getAllCategoriesList(): List<Category> {
+        updateCategoriesCache(false)
+        return CategoriesCache.categoriesList
+    }
+
+    fun updateCategoriesCache(force: Boolean) {
+        if (force || CategoriesCache.categoriesList.isEmpty()) {
+            allCategories.use { c ->
+                CategoriesCache.updateCache(categoriesAsList(c))
+            }
+        }
+    }
+
+    private fun categoriesAsList(c: Cursor): ArrayList<Category> {
+        val list: ArrayList<Category> = ArrayList()
         while (c.moveToNext()) {
             val category = formCursor(c)
             list.add(category)
@@ -759,6 +785,7 @@ open class DatabaseAdapter(context: Context?) : MyEntityManager(context) {
         values.put(CategoryColumns.type.name, type)
         val id = db.insert(DatabaseHelper.CATEGORY_TABLE, null, values)
         updateChildCategoriesType(type, left, right)
+        updateCategoriesCache(true)
         return id
     }
 
@@ -805,6 +832,7 @@ open class DatabaseAdapter(context: Context?) : MyEntityManager(context) {
             db.setTransactionSuccessful()
         } finally {
             db.endTransaction()
+            updateCategoriesCache(true)
         }
     }
 
@@ -813,24 +841,27 @@ open class DatabaseAdapter(context: Context?) : MyEntityManager(context) {
         values.put(CategoryColumns.title.name, title)
         values.put(CategoryColumns.type.name, type)
         db().update(DatabaseHelper.CATEGORY_TABLE, values, CategoryColumns._id.toString() + "=?", arrayOf(id.toString()))
+        updateCategoriesCache(true)
     }
 
-    fun insertCategoryTreeInTransaction(tree: CategoryTree<Category?>) {
+    fun insertCategoryTreeInTransaction(tree: CategoryTree<Category>) {
         db().delete("category", "_id > 0", null)
         insertCategoryInTransaction(tree)
         updateCategoryTreeInTransaction(tree)
+        updateCategoriesCache(true)
     }
 
-    private fun insertCategoryInTransaction(tree: CategoryTree<Category?>) {
+    private fun insertCategoryInTransaction(tree: CategoryTree<Category>) {
         for (category in tree) {
             reInsertEntity(category)
-            if (category!!.hasChildren()) {
-                insertCategoryInTransaction(category.children)
+            if (category.children != null) {
+                insertCategoryInTransaction(category.children!!)
             }
         }
+        updateCategoriesCache(true)
     }
 
-    fun updateCategoryTree(tree: CategoryTree<Category?>) {
+    fun updateCategoryTree(tree: CategoryTree<Category>) {
         val db = db()
         db.beginTransaction()
         try {
@@ -838,10 +869,11 @@ open class DatabaseAdapter(context: Context?) : MyEntityManager(context) {
             db.setTransactionSuccessful()
         } finally {
             db.endTransaction()
+            updateCategoriesCache(true)
         }
     }
 
-    private fun updateCategoryTreeInTransaction(tree: CategoryTree<Category?>) {
+    private fun updateCategoryTreeInTransaction(tree: CategoryTree<Category>) {
         var left = 1
         var right = 2
         val values = ContentValues()
@@ -851,8 +883,8 @@ open class DatabaseAdapter(context: Context?) : MyEntityManager(context) {
             values.put(CategoryColumns.right.name, c.right)
             sid[0] = c.id.toString()
             db().update(DatabaseHelper.CATEGORY_TABLE, values, WHERE_CATEGORY_ID, sid)
-            if (c.hasChildren()) {
-                updateCategoryTreeInTransaction(c.children)
+            if (c.children != null) {
+                updateCategoryTreeInTransaction(c.children!!)
             }
             if (c.left < left) {
                 left = c.left
@@ -865,6 +897,7 @@ open class DatabaseAdapter(context: Context?) : MyEntityManager(context) {
         values.put(CategoryColumns.right.name, right + 1)
         sid[0] = Category.NO_CATEGORY_ID.toString()
         db().update(DatabaseHelper.CATEGORY_TABLE, values, WHERE_CATEGORY_ID, sid)
+        updateCategoriesCache(true)
     }
 
     // ===================================================================

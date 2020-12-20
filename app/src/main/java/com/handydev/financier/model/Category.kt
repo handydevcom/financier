@@ -11,6 +11,7 @@
 package com.handydev.financier.model
 
 import android.database.Cursor
+import com.handydev.financier.db.CategoriesCache
 import com.handydev.financier.db.DatabaseAdapter
 import com.handydev.financier.db.DatabaseHelper.CategoryViewColumns
 import javax.persistence.Column
@@ -20,7 +21,7 @@ import javax.persistence.Transient
 
 @Entity
 @Table(name = "category")
-class Category : CategoryEntity<Category?> {
+class Category : CategoryEntity<Category> {
     @JvmField
     @Column(name = "last_location_id")
     var lastLocationId: Long = 0
@@ -70,13 +71,16 @@ class Category : CategoryEntity<Category?> {
         }
     }
 
-    fun getTitle(db: DatabaseAdapter): String {
+    fun computeParent(): Category? {
+        return CategoriesCache.categoriesList.firstOrNull{it.left <= left && it.right >= right && it.id != 0L && it.id != id}
+    }
+
+    fun getNestedTitle(): String {
         var fullTitle = title
-        var currentParentId = parentId
-        while(currentParentId != 0L) {
-            val currentCat = db.getCategoryWithParent(currentParentId)
-            fullTitle = currentCat.title + " / " + fullTitle
-            currentParentId = currentCat.parentId
+        var currentParent = computeParent()
+        while(currentParent != null) {
+            fullTitle = currentParent.title + " / " + fullTitle
+            currentParent = currentParent.computeParent()
         }
         return fullTitle
     }
