@@ -12,7 +12,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-        android:background="@android:drawable/title_bar">
+        android:background="@color/brown_background">
     <ImageView android:id="@+id/icon"
                android:layout_width="40dp"
                android:layout_height="40dp"
@@ -28,8 +28,8 @@
               android:ellipsize="marquee"
               android:fadingEdge="horizontal"
               android:layout_toLeftOf="@+id/icon"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="3dip"/>
+              android:layout_alignParentLeft="true"
+              android:layout_marginLeft="3dip"/>
     <TextView android:id="@+id/data" android:layout_width="wrap_content"
               android:layout_height="wrap_content" android:layout_below="@+id/label"
               android:layout_alignLeft="@+id/label"

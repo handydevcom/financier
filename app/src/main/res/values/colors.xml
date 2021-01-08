@@ -24,4 +24,8 @@
     <color name="calculator_background">#424242</color>
     <color name="global_background">#000000</color>
     <color name="alternate_row">#1F1F1F</color>
+    <color name="brown_background">#7e442e</color>
+    <color name="brown_background_light">#ffe7d5</color>
+    <color name="calculator_title">#fff6f1</color>
+    <color name="button_background">#491700</color>
 </resources>

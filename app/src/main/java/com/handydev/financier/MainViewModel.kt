@@ -39,6 +39,7 @@ class MainViewModel(activity: FragmentActivity, val context: Context): ViewModel
                     val blotter = BlotterFragment()
                     val bundle = Bundle()
                     bundle.putBoolean(BlotterFragment.SAVE_FILTER, true)
+                    bundle.putBoolean(BlotterFragment.SHOW_TITLE, false)
                     blotter.arguments = bundle
                     return blotter
                 }
