@@ -12,6 +12,8 @@ import com.handydev.financier.model.Payee;
 import com.handydev.financier.utils.MyPreferences;
 import com.handydev.financier.utils.TransactionUtils;
 
+import org.jetbrains.annotations.Nullable;
+
 public class PayeeSelector<A extends AbstractActivity> extends MyEntitySelector<Payee,A> {
 
     public PayeeSelector(A activity, MyEntityManager em, ActivityLayout x) {
@@ -35,18 +37,18 @@ public class PayeeSelector<A extends AbstractActivity> extends MyEntitySelector<
     }
 
     @Override
-    protected ListAdapter createAdapter(Activity activity, List<Payee> entities) {
-        return TransactionUtils.createPayeeAdapter(activity, entities);
-    }
-
-    @Override
     protected ArrayAdapter<Payee> createFilterAdapter() {
-        return TransactionUtils.payeeFilterAdapter(activity, em);
+        return TransactionUtils.payeeFilterAdapter(getActivity(), getEm());
     }
 
     @Override
     protected boolean isListPickConfigured() {
-        return MyPreferences.isPayeeSelectorList(activity);
+        return MyPreferences.isPayeeSelectorList(getActivity());
     }
 
+    @Nullable
+    @Override
+    protected ListAdapter createAdapter(@Nullable Activity activity, @Nullable List<? extends Payee> entities) {
+       return TransactionUtils.createPayeeAdapter(activity, entities);
+    }
 }

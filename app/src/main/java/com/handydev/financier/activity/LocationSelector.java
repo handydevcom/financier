@@ -13,6 +13,8 @@ import com.handydev.financier.model.MyLocation;
 import com.handydev.financier.utils.MyPreferences;
 import com.handydev.financier.utils.TransactionUtils;
 
+import org.jetbrains.annotations.Nullable;
+
 public class LocationSelector<A extends AbstractActivity> extends MyEntitySelector<MyLocation, A> {
 
     public LocationSelector(A activity, DatabaseAdapter db, ActivityLayout x) {
@@ -36,18 +38,18 @@ public class LocationSelector<A extends AbstractActivity> extends MyEntitySelect
     }
 
     @Override
-    protected ListAdapter createAdapter(Activity activity, List<MyLocation> entities) {
-        return TransactionUtils.createLocationAdapter(activity, entities);
-    }
-
-    @Override
     protected ArrayAdapter<MyLocation> createFilterAdapter() {
-        return TransactionUtils.locationFilterAdapter(activity, em);
+        return TransactionUtils.locationFilterAdapter(getActivity(), getEm());
     }
 
     @Override
     protected boolean isListPickConfigured() {
-        return MyPreferences.isLocationSelectorList(activity);
+        return MyPreferences.isLocationSelectorList(getActivity());
     }
 
+    @Nullable
+    @Override
+    protected ListAdapter createAdapter(@Nullable Activity activity, @Nullable List<? extends MyLocation> entities) {
+        return TransactionUtils.createLocationAdapter(activity, entities);
+    }
 }

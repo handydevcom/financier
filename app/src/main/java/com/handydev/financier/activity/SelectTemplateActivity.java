@@ -18,6 +18,9 @@ import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View;
 import android.widget.*;
+
+import androidx.appcompat.widget.AppCompatEditText;
+
 import com.handydev.financier.R;
 import com.handydev.financier.adapter.TemplateListAdapter;
 import com.handydev.financier.filter.Criteria;
@@ -35,7 +38,7 @@ public class SelectTemplateActivity extends TemplatesListActivity {
     public static final String EDIT_AFTER_CREATION = "edit_after_creation";
 
     private TextView multiplierText;
-    private EditText searchFilter;
+    private AppCompatEditText searchFilter;
     private int multiplier = 1;
 
     public SelectTemplateActivity() {

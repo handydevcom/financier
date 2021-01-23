@@ -57,7 +57,7 @@ public class BlotterFilterActivity extends FilterAbstractActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.blotter_filter);
 		
 		df = DateUtils.getShortDateFormat(this);

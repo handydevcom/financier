@@ -58,7 +58,7 @@ public abstract class FilterAbstractActivity extends AbstractActivity implements
     }
 
     protected void initCategorySelector(LinearLayout layout) {
-        categorySelector = new CategorySelector<>(this, db, activityLayout);
+        categorySelector = new CategorySelector<>(this, db, activityLayout, -1, true);
         categorySelector.setListener(this);
         categorySelector.initMultiSelect();
         categorySelector.createNode(layout, FILTER);

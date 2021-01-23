@@ -30,13 +30,15 @@
 		<Button 
 			android:layout_weight="1" 
 			android:id="@+id/bEdit"
-			android:text="@string/edit" 
+			android:text="@string/edit"
+			android:backgroundTint="@color/button_background"
 			android:layout_height="wrap_content"
 			android:layout_width="0dp" />
 		<Button 
 			android:layout_height="wrap_content"
 			android:layout_weight="1" 
-			android:id="@+id/bClose" 
+			android:id="@+id/bClose"
+			android:backgroundTint="@color/button_background"
 			android:text="@string/close"
 			android:layout_width="0dp" />
 	</LinearLayout>

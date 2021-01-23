@@ -19,6 +19,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.appcompat.widget.AppCompatEditText;
+
 import com.handydev.financier.R;
 import com.handydev.financier.blotter.BlotterFilter;
 import com.handydev.financier.filter.Criteria;
@@ -29,7 +31,7 @@ public class NoteFilterActivity extends Activity {
 
     public static final String NOTE_CONTAINING = "note_containing";
 
-    private EditText edNoteContaining;
+    private AppCompatEditText edNoteContaining;
 
     @Override
     protected void attachBaseContext(Context base) {

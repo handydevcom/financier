@@ -9,18 +9,26 @@
       Denis Solonenko - initial API and implementation
 -->
 <LinearLayout android:layout_width="fill_parent"
-    android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:minWidth="300dp">
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:minWidth="300dp"
+    android:background="@color/brown_background_light">
     <TextView android:layout_width="wrap_content"
         android:layout_height="wrap_content" android:layout_gravity="center"
+        android:textColor="@color/main_text_color"
         android:text="@string/note_text_containing" />
-    <EditText android:layout_height="wrap_content"
+    <androidx.appcompat.widget.AppCompatEditText android:layout_height="wrap_content"
         android:layout_width="fill_parent"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
+        app:backgroundTint="@color/brown_background"
+        android:textColor="@color/main_text_color"
         android:id="@+id/edNoteContaining" />
     <Button android:layout_height="wrap_content" android:id="@+id/bNoFilter"
         android:text="@string/no_filter" android:drawableLeft="@drawable/actionbar_filter_cancel"
+        android:backgroundTint="@color/button_background"
         android:layout_width="fill_parent" android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp" android:layout_marginTop="3dp" />
     <include layout="@layout/ok_cancel_buttons" />

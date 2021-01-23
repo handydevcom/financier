@@ -190,7 +190,7 @@ public class CategoryActivity extends AbstractActivity implements CategorySelect
      * todo.mb: consider refactoring to common logic with attributes and so on.
      */
     private void addSmsTemplate(SmsTemplate t) {
-        View v = activityLayout.inflater.new Builder(smsTemplatesLayout, R.layout.select_entry_simple_minus).withId(R.id.edit_sms_template, this).create();
+        View v = activityLayout.getInflater().new Builder(smsTemplatesLayout, R.layout.select_entry_simple_minus).withId(R.id.edit_sms_template, this).create();
         setSmsTemplateData(v, t);
         ImageView minusImageView = v.findViewById(R.id.plus_minus);
         minusImageView.setId(R.id.remove_sms_template);
@@ -223,7 +223,7 @@ public class CategoryActivity extends AbstractActivity implements CategorySelect
         ArrayList<Attribute> attributes = db.getAllAttributesForCategory(categoryId);
         if (attributes.size() > 0) {
             for (Attribute a : attributes) {
-                View v = activityLayout.inflater.new Builder(parentAttributesLayout, R.layout.select_entry_simple).create();
+                View v = activityLayout.getInflater().new Builder(parentAttributesLayout, R.layout.select_entry_simple).create();
                 v.setTag(a);
                 setAttributeData(v, a);
             }
@@ -233,7 +233,7 @@ public class CategoryActivity extends AbstractActivity implements CategorySelect
     }
 
     private void addAttribute(Attribute a) {
-        View v = activityLayout.inflater.new Builder(attributesLayout, R.layout.select_entry_simple_minus).withId(R.id.edit_attribute, this).create();
+        View v = activityLayout.getInflater().new Builder(attributesLayout, R.layout.select_entry_simple_minus).withId(R.id.edit_attribute, this).create();
         setAttributeData(v, a);
         ImageView plusImageView = v.findViewById(R.id.plus_minus);
         plusImageView.setId(R.id.remove_attribute);

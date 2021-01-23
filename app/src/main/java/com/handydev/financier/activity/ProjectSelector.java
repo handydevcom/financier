@@ -13,6 +13,8 @@ import com.handydev.financier.model.Project;
 import com.handydev.financier.utils.MyPreferences;
 import com.handydev.financier.utils.TransactionUtils;
 
+import org.jetbrains.annotations.Nullable;
+
 /**
  * Created by IntelliJ IDEA.
  * User: denis.solonenko
@@ -41,18 +43,18 @@ public class ProjectSelector<A extends AbstractActivity> extends MyEntitySelecto
     }
 
     @Override
-    protected ListAdapter createAdapter(Activity activity, List<Project> entities) {
-        return TransactionUtils.createProjectAdapter(activity, entities);
-    }
-
-    @Override
     protected ArrayAdapter<Project> createFilterAdapter() {
-        return TransactionUtils.projectFilterAdapter(activity, em);
+        return TransactionUtils.projectFilterAdapter(getActivity(), getEm());
     }
 
     @Override
     protected boolean isListPickConfigured() {
-        return MyPreferences.isProjectSelectorList(activity);
+        return MyPreferences.isProjectSelectorList(getActivity());
     }
 
+    @Nullable
+    @Override
+    protected ListAdapter createAdapter(@Nullable Activity activity, @Nullable List<? extends Project> entities) {
+        return TransactionUtils.createProjectAdapter(activity, entities);
+    }
 }
