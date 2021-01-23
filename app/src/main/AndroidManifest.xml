@@ -401,19 +401,19 @@
             android:name="com.handydev.financier.activity.AccountListTotalsDetailsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/totals"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+            android:theme="@style/DialogStyle" />
 
         <activity
             android:name="com.handydev.financier.activity.BlotterTotalsDetailsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/totals"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+            android:theme="@style/DialogStyle" />
 
         <activity
             android:name="com.handydev.financier.activity.BudgetListTotalsDetailsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/totals"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+            android:theme="@style/DialogStyle" />
 
         <activity
             android:name="com.handydev.financier.activity.PurgeAccountActivity"

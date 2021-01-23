@@ -10,6 +10,7 @@ package com.handydev.financier.activity
 import android.app.Activity
 import android.content.Intent
 import android.database.Cursor
+import android.graphics.Color
 import android.text.InputType
 import android.view.View
 import android.view.View.OnFocusChangeListener
@@ -28,7 +29,7 @@ import com.handydev.financier.view.AttributeView
 import com.handydev.financier.view.AttributeViewFactory
 import java.util.*
 
-class CategorySelector<A : AbstractActivity?> @JvmOverloads constructor(private val activity: A, private val db: DatabaseAdapter, private val x: ActivityLayout, private val excludingSubTreeId: Long = -1) {
+class CategorySelector<A : AbstractActivity?> @JvmOverloads constructor(private val activity: A, private val db: DatabaseAdapter, private val x: ActivityLayout, private val excludingSubTreeId: Long = -1, private val darkUI: Boolean = false) {
     private var filterNode: FilterNode? = null
     private var categoryText: TextView? = null
     private var autoCompleteTextView: AutoCompleteTextView? = null
@@ -106,23 +107,31 @@ class CategorySelector<A : AbstractActivity?> @JvmOverloads constructor(private 
     }
 
     fun createNode(layout: LinearLayout?, type: SelectorType): TextView? {
+        return createNode(layout, type, false)
+    }
+
+    fun createNode(layout: LinearLayout?, type: SelectorType, darkUI: Boolean): TextView? {
         when (type) {
             SelectorType.TRANSACTION -> {
                 if (emptyResId <= 0) emptyResId = R.string.no_category
-                filterNode = x.addCategoryNodeForTransaction(layout, emptyResId)
+                filterNode = x.addCategoryNodeForTransaction(layout, emptyResId, darkUI)
             }
             SelectorType.PARENT, SelectorType.SPLIT, SelectorType.TRANSFER -> {
                 if (emptyResId <= 0) emptyResId = R.string.no_category
-                filterNode = x.addCategoryNodeForTransfer(layout, emptyResId)
+                filterNode = x.addCategoryNodeForTransfer(layout, emptyResId, darkUI)
             }
             SelectorType.FILTER -> {
                 if (emptyResId <= 0) emptyResId = R.string.no_filter
-                filterNode = x.addCategoryNodeForFilter(layout, emptyResId)
+                filterNode = x.addCategoryNodeForFilter(layout, emptyResId, darkUI)
             }
-            else -> throw IllegalArgumentException("unknown type: $type")
         }
         categoryText = filterNode?.textView
         autoCompleteTextView = filterNode?.autoCompleteTextView
+        if(darkUI) {
+            categoryText?.setTextColor(activity!!.resources.getColor(R.color.main_text_color, null))
+            autoCompleteTextView?.setTextColor(activity!!.resources.getColor(R.color.main_text_color, null))
+            autoCompleteTextView?.setHintTextColor(activity!!.resources.getColor(R.color.main_text_color, null))
+        }
         return categoryText
     }
 
@@ -182,7 +191,7 @@ class CategorySelector<A : AbstractActivity?> @JvmOverloads constructor(private 
         if (isMultiSelect()) {
             x.selectMultiChoice(activity, R.id.category, R.string.categories, categories)
         } else if (!CategorySelectorActivity.pickCategory(activity, multiSelect, selectedCategoryId, excludingSubTreeId, showSplitCategory)) {
-            x.select(activity, R.id.category, R.string.category, categoryCursor, categoryAdapter,
+            x.select(activity!!, R.id.category, R.string.category, categoryCursor!!, categoryAdapter!!,
                     DatabaseHelper.CategoryViewColumns._id.name, selectedCategoryId)
         }
     }
@@ -243,11 +252,11 @@ class CategorySelector<A : AbstractActivity?> @JvmOverloads constructor(private 
         }
     }
 
-    fun updateCheckedEntities(checkedCommaIds: String?) {
+    fun updateCheckedEntities(checkedCommaIds: String) {
         MyEntitySelector.updateCheckedEntities(categories, checkedCommaIds)
     }
 
-    fun updateCheckedEntities(checkedIds: Array<String?>?) {
+    fun updateCheckedEntities(checkedIds: Array<String>) {
         MyEntitySelector.updateCheckedEntities(categories, checkedIds)
     }
 

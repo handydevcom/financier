@@ -12,12 +12,14 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
 	android:minWidth="300dp"
-	android:background="?android:colorBackground"
+	android:background="@color/brown_background_light"
 	android:orientation="vertical">
 	<Spinner
 		android:id="@+id/period"
+		android:backgroundTint="@color/brown_background"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
+		android:textColor="@color/main_text_color"
 		android:layout_marginLeft="3dp"
 		android:layout_marginRight="3dp"
 		android:prompt="@string/period" />
@@ -25,17 +27,20 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
+		android:textColor="@color/main_text_color"
 		android:text="@string/period_from" />
 	<Button
 		android:id="@+id/bPeriodFrom"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
+		android:backgroundTint="@color/button_background"
 		android:layout_marginLeft="3dp"
 		android:layout_marginRight="3dp"
 		android:enabled="false" />
 	<TextView
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
+		android:textColor="@color/main_text_color"
 		android:layout_gravity="center"
 		android:text="@string/period_to" />
 
@@ -44,6 +49,7 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginLeft="3dp"
+		android:backgroundTint="@color/button_background"
 		android:layout_marginRight="3dp"
 		android:enabled="false" />
 	<Button
@@ -53,6 +59,7 @@
 		android:layout_marginLeft="3dp"
 		android:layout_marginTop="3dp"
 		android:layout_marginRight="3dp"
+		android:backgroundTint="@color/button_background"
 		android:drawableLeft="@drawable/actionbar_filter_cancel"
 		android:text="@string/no_filter" />
 	<include layout="@layout/ok_cancel_buttons" />

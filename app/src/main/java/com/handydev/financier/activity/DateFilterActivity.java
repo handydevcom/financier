@@ -129,7 +129,7 @@ public class DateFilterActivity extends Activity {
 
     private void createPeriodsSpinner() {
         spinnerPeriodType = findViewById(R.id.period);
-        spinnerPeriodType.setAdapter(createSpinnerAdapter(this, periods));
+        spinnerPeriodType.setAdapter(createSpinnerAdapter(this, true, periods));
         spinnerPeriodType.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

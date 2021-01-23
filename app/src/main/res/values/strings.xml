@@ -1,16 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  Copyright (c) 2010 Denis Solonenko.
-  All rights reserved. This program and the accompanying materials
-  are made available under the terms of the GNU Public License v2.0
-  which accompanies this distribution, and is available at
-  http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-  
-  Contributors:
-	  Denis Solonenko - initial API and implementation
-	  Abdsandryk Souza - bill filtering, report 2D chart
-	  Rodrigo Sousa - google docs backup
-	  
--->
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
     <string name="accounts">Accounts</string>
     <string name="blotter">Blotter</string>
@@ -1013,6 +1001,7 @@
     <string name="create_new_entity_with_title">Not able to find %s with title \"%s\"? Create a new one if missing?</string>
     <string name="complete_category_selection">Not able to find existing Category with title \"%s\"? Please create a new one using the + button on the category selector.</string>
     <string name="list_all">List all</string>
+    <string name="type_template">Type template…</string>
 
     <string-array name="entity_selector_entities">
         <item>Show Filter</item>

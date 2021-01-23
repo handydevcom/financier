@@ -56,9 +56,6 @@ open class CalculatorInput : DialogFragment() {
 
     @AfterViews
     fun initUi() {
-        val bgColorResource = R.color.mdtp_date_picker_view_animator_dark_theme
-        val bgColor = ContextCompat.getColor(activity, bgColorResource)
-        view!!.setBackgroundColor(bgColor)
         setDisplay(amount)
     }
 

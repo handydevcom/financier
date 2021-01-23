@@ -41,7 +41,7 @@ public class TransferActivity extends AbstractTransactionActivity {
     }
 
     protected int getLayoutId() {
-        return MyPreferences.isUseFixedLayout(this) ? R.layout.transfer_fixed : R.layout.transfer_free;
+        return MyPreferences.isUseFixedLayout(this) ? R.layout.transaction_fixed : R.layout.transaction_free;
     }
 
     @Override

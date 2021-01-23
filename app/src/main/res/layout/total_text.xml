@@ -19,6 +19,7 @@
               android:padding="10dp"
               android:gravity="right|center"
               android:textStyle="bold"
+              android:typeface="monospace"
               android:clickable="true"
               android:layout_margin="4dp"/>
 </merge>

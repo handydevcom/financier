@@ -57,7 +57,7 @@ public class BlotterFilterActivity extends FilterAbstractActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.blotter_filter);
 		
 		df = DateUtils.getShortDateFormat(this);
@@ -68,10 +68,10 @@ public class BlotterFilterActivity extends FilterAbstractActivity {
 		period = activityLayout.addFilterNodeMinus(layout, R.id.period, R.id.period_clear, R.string.period, R.string.no_filter);
 		account = activityLayout.addFilterNodeMinus(layout, R.id.account, R.id.account_clear, R.string.account, R.string.no_filter);
 		currency = activityLayout.addFilterNodeMinus(layout, R.id.currency, R.id.currency_clear, R.string.currency, R.string.no_filter);
-		initCategorySelector(layout);
-		initPayeeSelector(layout);
-		initProjectSelector(layout);
-		initLocationSelector(layout);
+		initCategorySelector(layout, true);
+		initPayeeSelector(layout, true);
+		initProjectSelector(layout, true);
+		initLocationSelector(layout, true);
 		note = activityLayout.addFilterNodeMinus(layout, R.id.note, R.id.note_clear, R.string.note, R.string.no_filter);
 		status = activityLayout.addFilterNodeMinus(layout, R.id.status, R.id.status_clear, R.string.transaction_status, R.string.no_filter);
 		sortOrder = activityLayout.addFilterNodeMinus(layout, R.id.sort_order, R.id.sort_order_clear, R.string.sort_order, 0, sortBlotterEntries[0]);

@@ -77,6 +77,14 @@ public class TransactionsTotalCalculator {
                 total.balance = balance;
                 totals.add(total);
             }
+            if(totals.isEmpty())  {
+                Currency currency = Currency.getDefaultCurrency(db);
+                if(currency != null) {
+                    Total total = new Total(currency, false);
+                    total.amount = 0l;
+                    totals.add(total);
+                }
+            }
             return totals.toArray(new Total[totals.size()]);
         }
     }

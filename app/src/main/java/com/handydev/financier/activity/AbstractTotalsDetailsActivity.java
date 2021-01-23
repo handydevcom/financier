@@ -54,16 +54,11 @@ public abstract class AbstractTotalsDetailsActivity extends AbstractActivity {
         setContentView(R.layout.totals_details);
 
         u = new Utils(this);
-        layout = (LinearLayout)findViewById(R.id.list);
+        layout = findViewById(R.id.list);
         calculatingNode = activityLayout.addTitleNodeNoDivider(layout, R.string.calculating);
 
         Button bOk = (Button)findViewById(R.id.bOK);
-        bOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        bOk.setOnClickListener(view -> finish());
 
         internalOnCreate();
         calculateTotals();

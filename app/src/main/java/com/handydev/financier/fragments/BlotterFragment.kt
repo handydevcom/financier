@@ -44,6 +44,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         private const val NEW_TRANSACTION_FROM_TEMPLATE_REQUEST = 5
         private const val MONTHLY_VIEW_REQUEST = 6
         private const val BILL_PREVIEW_REQUEST = 7
+        const val SHOW_TITLE = "showTitle"
         protected const val FILTER_REQUEST = 6
     }
 
@@ -63,6 +64,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
     private var calculationTask: TotalCalculationTask? = null
 
     private var saveFilter = false
+    private var showTitle = true
     private var blotterFilter = WhereFilter.empty()
 
     private var isAccountBlotter = false
@@ -109,6 +111,8 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         val intent: Intent = activity!!.intent
         blotterFilter = WhereFilter.fromIntent(intent)
         saveFilter = arguments?.getBoolean(SAVE_FILTER) ?: false
+        showTitle = arguments?.getBoolean(SHOW_TITLE) ?: false
+        //view?.findViewById<LinearLayout>(R.id.title_view)?.visibility = if(showTitle) View.VISIBLE else View.GONE
         isAccountBlotter = intent.getBooleanExtra(BlotterFilterActivity.IS_ACCOUNT_FILTER, false)
         if (savedInstanceState != null) {
             blotterFilter = WhereFilter.fromBundle(savedInstanceState)
@@ -210,8 +214,8 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
     }
 
     private fun setScreenTitle(title: String) {
-        view?.findViewById<LinearLayout>(R.id.title_view)?.visibility = View.VISIBLE
-        view?.findViewById<TextView>(R.id.title_view_text)?.text = title
+        view?.findViewById<LinearLayout>(R.id.title_view)?.visibility = if(title.isNotEmpty() || showTitle) View.VISIBLE else View.GONE
+        view?.findViewById<TextView>(R.id.title_view_text)?.text = getString(R.string.blotter) + ": " + title
     }
 
     private fun onPopupMenuSelected(id: Int) {
@@ -511,7 +515,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         }
         val title = blotterFilter.title
         if (title != null) {
-            setScreenTitle(getString(R.string.blotter) + " : " + title)
+            setScreenTitle(title)
         }
         updateFilterImage()
     }

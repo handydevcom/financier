@@ -11,14 +11,17 @@
  ******************************************************************************/
 package com.handydev.financier.model;
 
+import com.handydev.financier.db.DatabaseAdapter;
 import com.handydev.financier.utils.CurrencyCache;
 
+import javax.annotation.Nullable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.List;
 
 import static com.handydev.financier.db.DatabaseHelper.CURRENCY_TABLE;
 import static com.handydev.orb.EntityManager.DEF_SORT_COL;
@@ -89,6 +92,16 @@ public class Currency extends MyEntity implements SortableEntity {
 		c.symbol = "$";
 		c.decimals = 2;
 		return c;
+	}
+
+	public static @Nullable Currency getDefaultCurrency(DatabaseAdapter db) {
+		List<Currency> currencies = db.getAllCurrenciesList("name");
+		for (Currency currency : currencies) {
+			if (currency.isDefault) {
+				return currency;
+			}
+		}
+		return null;
 	}
 
 	@Override
