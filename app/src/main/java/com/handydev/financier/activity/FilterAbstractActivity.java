@@ -40,28 +40,44 @@ public abstract class FilterAbstractActivity extends AbstractActivity implements
     protected String noFilterValue;
 
     protected void initPayeeSelector(LinearLayout layout) {
+        initPayeeSelector(layout, false);
+    }
+
+    protected void initPayeeSelector(LinearLayout layout, Boolean darkUI) {
         payeeSelector = new PayeeSelector<>(this, db, activityLayout, R.string.no_filter);
         payeeSelector.initMultiSelect();
-        payeeSelector.createNode(layout);
+        payeeSelector.createNode(layout, darkUI);
     }
 
     protected void initProjectSelector(LinearLayout layout) {
+        initProjectSelector(layout, false);
+    }
+
+    protected void initProjectSelector(LinearLayout layout, Boolean darkUI) {
         projectSelector = new ProjectSelector<>(this, db, activityLayout, R.string.no_filter);
         projectSelector.initMultiSelect();
-        projectSelector.createNode(layout);
+        projectSelector.createNode(layout, darkUI);
     }
 
     protected void initLocationSelector(LinearLayout layout) {
+        initLocationSelector(layout, false);
+    }
+
+    protected void initLocationSelector(LinearLayout layout, Boolean darkUI) {
         locationSelector = new LocationSelector<>(this, db, activityLayout, R.string.no_filter);
         locationSelector.initMultiSelect();
-        locationSelector.createNode(layout);
+        locationSelector.createNode(layout, darkUI);
     }
 
     protected void initCategorySelector(LinearLayout layout) {
+        initCategorySelector(layout, false);
+    }
+
+    protected void initCategorySelector(LinearLayout layout, Boolean darkUI) {
         categorySelector = new CategorySelector<>(this, db, activityLayout, -1, true);
         categorySelector.setListener(this);
         categorySelector.initMultiSelect();
-        categorySelector.createNode(layout, FILTER);
+        categorySelector.createNode(layout, FILTER, darkUI);
     }
 
     protected void clear(String criteria) {

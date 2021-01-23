@@ -45,7 +45,7 @@ class NodeInflater(var inflater: LayoutInflater) {
             val labelView = v.findViewById<TextView>(R.id.label)
             labelView.setText(labelId)
             if (darkUI) {
-                labelView.setBackgroundColor(inflater.context.resources.getColor(R.color.main_text_color, null))
+                labelView.setTextColor(inflater.context.resources.getColor(R.color.main_text_color, null))
             }
             return this
         }

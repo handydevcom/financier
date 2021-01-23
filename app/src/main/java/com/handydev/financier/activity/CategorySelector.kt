@@ -107,18 +107,22 @@ class CategorySelector<A : AbstractActivity?> @JvmOverloads constructor(private 
     }
 
     fun createNode(layout: LinearLayout?, type: SelectorType): TextView? {
+        return createNode(layout, type, false)
+    }
+
+    fun createNode(layout: LinearLayout?, type: SelectorType, darkUI: Boolean): TextView? {
         when (type) {
             SelectorType.TRANSACTION -> {
                 if (emptyResId <= 0) emptyResId = R.string.no_category
-                filterNode = x.addCategoryNodeForTransaction(layout, emptyResId, true)
+                filterNode = x.addCategoryNodeForTransaction(layout, emptyResId, darkUI)
             }
             SelectorType.PARENT, SelectorType.SPLIT, SelectorType.TRANSFER -> {
                 if (emptyResId <= 0) emptyResId = R.string.no_category
-                filterNode = x.addCategoryNodeForTransfer(layout, emptyResId)
+                filterNode = x.addCategoryNodeForTransfer(layout, emptyResId, darkUI)
             }
             SelectorType.FILTER -> {
                 if (emptyResId <= 0) emptyResId = R.string.no_filter
-                filterNode = x.addCategoryNodeForFilter(layout, emptyResId)
+                filterNode = x.addCategoryNodeForFilter(layout, emptyResId, darkUI)
             }
         }
         categoryText = filterNode?.textView
@@ -126,6 +130,7 @@ class CategorySelector<A : AbstractActivity?> @JvmOverloads constructor(private 
         if(darkUI) {
             categoryText?.setTextColor(activity!!.resources.getColor(R.color.main_text_color, null))
             autoCompleteTextView?.setTextColor(activity!!.resources.getColor(R.color.main_text_color, null))
+            autoCompleteTextView?.setHintTextColor(activity!!.resources.getColor(R.color.main_text_color, null))
         }
         return categoryText
     }

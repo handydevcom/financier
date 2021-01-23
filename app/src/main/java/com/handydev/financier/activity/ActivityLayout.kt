@@ -115,13 +115,13 @@ class ActivityLayout(private val inflater: NodeInflater, private val listener: A
             get() = filterLayout.visibility == View.VISIBLE
     }
 
-    fun addFilterNode(layout: LinearLayout?, id: Int, actBtnId: Int, clearBtnId: Int, labelId: Int, defaultValueResId: Int, showListId: Int, closeFilterId: Int, showFilterId: Int): FilterNode {
+    fun addFilterNode(layout: LinearLayout?, id: Int, actBtnId: Int, clearBtnId: Int, labelId: Int, defaultValueResId: Int, showListId: Int, closeFilterId: Int, showFilterId: Int, darkUI: Boolean = false): FilterNode {
         val b = inflater.ListBuilder(layout!!, R.layout.select_entry_filter)
         val v = b.withButtonId(actBtnId, listener)
                 .withClearButtonId(clearBtnId, listener)
                 .withAutoCompleteFilter(listener, showListId)
                 .withId(id, listener)
-                .withLabel(labelId)
+                .withLabel(labelId, darkUI)
                 .create()
         val filterTxt = getAutoCompleteTextView(showListId, v)
         filterTxt.setHint(defaultValueResId)
@@ -140,7 +140,7 @@ class ActivityLayout(private val inflater: NodeInflater, private val listener: A
 
     fun addCategoryNodeForTransaction(layout: LinearLayout?, emptyResId: Int, darkUI: Boolean): FilterNode {
         val filterNode = addFilterNode(layout, R.id.category, R.id.category_add, R.id.category_clear, R.string.category, emptyResId,
-                R.id.category_show_list, R.id.category_close_filter, R.id.category_show_filter)
+                R.id.category_show_list, R.id.category_close_filter, R.id.category_show_filter, darkUI)
         val splitImage = filterNode.nodeLayout.findViewById<ImageView>(R.id.split)
         splitImage.visibility = View.VISIBLE
         splitImage.id = R.id.category_split
@@ -148,14 +148,14 @@ class ActivityLayout(private val inflater: NodeInflater, private val listener: A
         return filterNode
     }
 
-    fun addCategoryNodeForTransfer(layout: LinearLayout?, emptyResId: Int): FilterNode {
+    fun addCategoryNodeForTransfer(layout: LinearLayout?, emptyResId: Int, darkUI: Boolean): FilterNode {
         return addFilterNode(layout, R.id.category, R.id.category_add, R.id.category_clear, R.string.category, emptyResId,
-                R.id.category_show_list, R.id.category_close_filter, R.id.category_show_filter)
+                R.id.category_show_list, R.id.category_close_filter, R.id.category_show_filter, darkUI)
     }
 
-    fun addCategoryNodeForFilter(layout: LinearLayout?, emptyResId: Int): FilterNode {
+    fun addCategoryNodeForFilter(layout: LinearLayout?, emptyResId: Int, darkUI: Boolean): FilterNode {
         return addFilterNode(layout, R.id.category, -1, R.id.category_clear, R.string.category, emptyResId,
-                R.id.category_show_list, R.id.category_close_filter, R.id.category_show_filter)
+                R.id.category_show_list, R.id.category_close_filter, R.id.category_show_filter, darkUI)
     }
 
     private fun getAutoCompleteTextView(showListId: Int, v: View): AutoCompleteTextView {

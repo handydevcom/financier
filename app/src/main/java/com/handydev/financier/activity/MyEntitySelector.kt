@@ -57,12 +57,21 @@ abstract class MyEntitySelector<T : MyEntity, A : AbstractActivity?> internal co
     protected abstract fun createAdapter(activity: Activity?, entities: List<T>?): ListAdapter?
     protected abstract fun createFilterAdapter(): ArrayAdapter<T>
     fun createNode(layout: LinearLayout?): TextView? {
+        return createNode(layout, false)
+    }
+
+    fun createNode(layout: LinearLayout?, darkUI: Boolean): TextView? {
         if (isShow) {
             filterNode = x.addFilterNode(layout, layoutId, if (isMultiSelect) -1 else actBtnId, clearBtnId,
-                    labelResId, defaultValueResId, showListId, closeFilterId, showFilterId)
+                    labelResId, defaultValueResId, showListId, closeFilterId, showFilterId, darkUI)
             text = filterNode!!.textView
             node = filterNode!!.nodeLayout
             autoCompleteView = filterNode!!.autoCompleteTextView
+            if(darkUI) {
+                text?.setTextColor(activity!!.resources.getColor(R.color.main_text_color, null))
+                autoCompleteView?.setTextColor(activity!!.resources.getColor(R.color.main_text_color, null))
+                autoCompleteView?.setHintTextColor(activity!!.resources.getColor(R.color.main_text_color, null))
+            }
         }
         return text
     }
