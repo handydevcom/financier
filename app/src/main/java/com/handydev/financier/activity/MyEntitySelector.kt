@@ -193,7 +193,7 @@ abstract class MyEntitySelector<T : MyEntity, A : AbstractActivity?> internal co
                 updateCheckedEntities("" + entityId)
                 fillCheckedEntitiesInUI()
             } else {
-                val e: T = MyEntity.find(entities!!, entityId)
+                val e = MyEntity.find(entities, entityId)
                 selectEntity(e)
             }
         }

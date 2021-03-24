@@ -11,6 +11,7 @@
 package com.handydev.financier.model
 
 import android.database.Cursor
+import android.util.Log
 import com.handydev.financier.db.CategoriesCache.categoriesList
 import java.util.*
 import kotlin.collections.ArrayList
@@ -212,18 +213,24 @@ class CategoryTree<T : CategoryEntity<T>> : Iterable<T> {
                     }
                 }
             }
-            fun parseCategoryRecursive(category: Category?, parent: Category?) {
+            fun parseCategoryRecursive(category: Category?, parent: Category?, level: Int) {
                 if(category == null) {
                     return
+                }
+                if(category.title == Category.noCategory().title) {
+                    return
+                }
+                if(level > 10) {
+                    Log.d("f", "f")
                 }
                 addCategoryIfNeeded(category, parent)
                 var children = categoriesList.filter { it.left >= category.left && it.right <= category.right && it.id != category.id }
                 for(child in children) {
-                    parseCategoryRecursive(child, category)
+                    parseCategoryRecursive(child, category, level + 1)
                 }
             }
             for (category in categories) {
-                parseCategoryRecursive(category, null)
+                parseCategoryRecursive(category, null, 0)
             }
             return CategoryTree(roots)
         }
