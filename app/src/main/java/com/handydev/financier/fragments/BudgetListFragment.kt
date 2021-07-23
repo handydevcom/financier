@@ -50,9 +50,9 @@ class BudgetListFragment: AbstractListFragment(R.layout.budget_list) {
     override fun internalOnCreate(savedInstanceState: Bundle?) {
         super.internalOnCreate(savedInstanceState)
         val totalText = view?.findViewById<TextView>(R.id.total)
-        totalText?.setOnClickListener { view: View? -> showTotals() }
-        bFilter = view?.findViewById<ImageButton>(R.id.bFilter)
-        bFilter!!.setOnClickListener { v: View? ->
+        totalText?.setOnClickListener { showTotals() }
+        bFilter = view?.findViewById(R.id.bFilter)
+        bFilter!!.setOnClickListener {
             val intent = Intent(activity!!, DateFilterActivity::class.java)
             filter.toIntent(intent)
             startActivityForResult(intent, FILTER_BUDGET_REQUEST)
@@ -183,7 +183,7 @@ class BudgetListFragment: AbstractListFragment(R.layout.budget_list) {
             val recur = RecurUtils.createFromExtraString(b.recur)
             AlertDialog.Builder(activity!!)
                     .setMessage(if (recur.interval === RecurInterval.NO_RECUR) R.string.delete_budget_confirm else R.string.delete_budget_recurring_confirm)
-                    .setPositiveButton(R.string.yes) { arg0, arg1 ->
+                    .setPositiveButton(R.string.yes) { _, _ ->
                         db!!.deleteBudget(id)
                         recreateCursor()
                     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="accounts">Accounts</string>
     <string name="blotter">Blotter</string>
     <string name="currencies">Currencies</string>
@@ -168,10 +168,10 @@
 
     <string name="period_today">Today</string>
     <string name="period_yesterday">Yesterday</string>
-    <string name="period_this_week">This week</string>
-    <string name="period_this_month">This month</string>
-    <string name="period_last_week">Last week</string>
-    <string name="period_last_month">Last month</string>
+    <string name="period_this_week">Current week</string>
+    <string name="period_this_month">Current month</string>
+    <string name="period_last_week">Previous week</string>
+    <string name="period_last_month">Previous month</string>
     <string name="currency_name">Name</string>
     <string name="currency_symbol">Symbol</string>
     <string name="currency_code">Code</string>
@@ -814,8 +814,8 @@
 
     <string name="select_to_account_differ_from_to_account">Cannot transfer to the same account…</string>
 
-    <string name="period_this_and_last_week">This and last week</string>
-    <string name="period_this_and_last_month">This and last month</string>
+    <string name="period_this_and_last_week">Current and previous week</string>
+    <string name="period_this_and_last_month">Current and previous month</string>
     <string name="period_custom">Custom</string>
 
     <string name="original_amount">Original Amount</string>
@@ -963,8 +963,8 @@
     <string name="auto_backup_warning_enabled">Notify about failures</string>
     <string name="auto_backup_warning_summary">Notify if autobackup failed during the last execution.</string>
     <string name="auto_backup_is_not_enabled">You should consider enabling autobackup to Google Drive or Dropbox to keep your data safe. Go to Menu -> Preferences -> Backup.</string>
-    <string name="integrity_error_message">%s%n(Tap to dismiss this message)</string>
-    <string name="autobackup_failed_message">Autobackup failed at %s with error [%s].</string>
+    <string name="integrity_error_message">%s (Tap to dismiss this message)</string>
+    <string name="autobackup_failed_message">Autobackup failed at %1$s with error [%2$s].</string>
 
     <string name="request_permissions_storage_not_granted">Write external storage permisson not granted</string>
     <string name="permissions">Permissions</string>
@@ -998,7 +998,7 @@
     <string name="project_selector_title">Project selector</string>
     <string name="entity_selector_summary">Show list or filter on tap</string>
 
-    <string name="create_new_entity_with_title">Not able to find %s with title \"%s\"? Create a new one if missing?</string>
+    <string name="create_new_entity_with_title">Not able to find %1$s with title \"%2$s\"? Create a new one if missing?</string>
     <string name="complete_category_selection">Not able to find existing Category with title \"%s\"? Please create a new one using the + button on the category selector.</string>
     <string name="list_all">List all</string>
     <string name="type_template">Type template…</string>

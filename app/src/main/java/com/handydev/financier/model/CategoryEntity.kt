@@ -40,6 +40,9 @@ open class CategoryEntity<T : CategoryEntity<T>> : MyEntity() {
         if (children == null) {
             children = CategoryTree()
         }
+        if(children?.any { it.id == category.id } == true) {
+            return
+        }
         category.parent = this as T
         category.type = type
         children!!.add(category)
