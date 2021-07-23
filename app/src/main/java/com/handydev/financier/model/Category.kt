@@ -12,7 +12,6 @@ package com.handydev.financier.model
 
 import android.database.Cursor
 import com.handydev.financier.db.CategoriesCache
-import com.handydev.financier.db.DatabaseAdapter
 import com.handydev.financier.db.DatabaseHelper.CategoryViewColumns
 import javax.persistence.Column
 import javax.persistence.Entity

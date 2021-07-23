@@ -630,15 +630,6 @@ open class DatabaseAdapter(context: Context?) : MyEntityManager(context) {
             }
         }
         return CategoryTree.createFromCache(categories)
-        /*val c: Cursor = when {
-            excludingTreeId > 0 -> {
-                getCategoriesWithoutSubtree(excludingTreeId, includeNoCategory)
-            }
-            else -> {
-                getCategories(includeNoCategory)
-            }
-        }
-        return CategoryTree.createFromCursor<Category>(c) { obj: Cursor? -> formCursor(c) }*/
     }
 
     fun getCategoriesTree(includeNoCategory: Boolean): CategoryTree<Category> {

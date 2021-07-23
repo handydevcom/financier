@@ -220,9 +220,6 @@ class CategoryTree<T : CategoryEntity<T>> : Iterable<T> {
                 if(category.title == Category.noCategory().title) {
                     return
                 }
-                if(level > 10) {
-                    Log.d("f", "f")
-                }
                 addCategoryIfNeeded(category, parent)
                 var children = categoriesList.filter { it.left >= category.left && it.right <= category.right && it.id != category.id }
                 for(child in children) {
