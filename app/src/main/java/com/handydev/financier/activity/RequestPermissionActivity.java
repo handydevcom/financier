@@ -73,7 +73,7 @@ public class RequestPermissionActivity extends AppCompatActivity {
         super.attachBaseContext(MyPreferences.switchLocale(base));
     }
 
-    @Override
+   /* @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(SDK_INT >= 30) {
@@ -86,7 +86,7 @@ public class RequestPermissionActivity extends AppCompatActivity {
                         }
                     });
         }
-    }
+    }*/
 
     @AfterViews
     public void initViews() {
@@ -101,11 +101,11 @@ public class RequestPermissionActivity extends AppCompatActivity {
     }
 
     private void checkPermissions() {
-        if(SDK_INT >= 30) {
-            checkAllFilesPermission();
-        } else {
+        //if(SDK_INT >= 30) {
+        //    checkAllFilesPermission();
+        //} else {
             disableToggleIfGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE, toggleWriteStorage, toggleWriteStorageWrap);
-        }
+        //}
         disableToggleIfGranted(Manifest.permission.GET_ACCOUNTS, toggleGetAccounts, toggleGetAccountsWrap);
         disableToggleIfGranted(Manifest.permission.CAMERA, toggleCamera, toggleCameraWrap);
         if(!BuildConfig.FLAVOR.equals("googleplay")) {
@@ -129,12 +129,12 @@ public class RequestPermissionActivity extends AppCompatActivity {
 
     @Click(R.id.toggleWriteStorage)
     public void onGrantWriteStorage() {
-        if(SDK_INT >= 30){
+        /*if(SDK_INT >= 30){
             Intent intent = new Intent(ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, Uri.parse("package:" + BuildConfig.APPLICATION_ID));
             activityResultLauncher.launch(intent);
-        } else {
+        } else {*/
             requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, toggleWriteStorage);
-        }
+        //}
     }
 
     @Click(R.id.toggleGetAccounts)

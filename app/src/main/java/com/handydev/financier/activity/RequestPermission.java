@@ -20,11 +20,11 @@ public class RequestPermission {
     }
 
     public static boolean checkPermission(Context ctx, String permission) {
-        if(SDK_INT >= 30) {
+        /*if(SDK_INT >= 30) {
             if(permission.equals(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                 return Environment.isExternalStorageManager();
             }
-        }
+        }*/
         return ContextCompat.checkSelfPermission(ctx, permission) == PackageManager.PERMISSION_GRANTED;
     }
 

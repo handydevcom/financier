@@ -9,6 +9,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+def financierPropertiesFile = rootProject.file("./Keys/financier.properties")
+def financierProperties = new Properties()
+
+financierProperties.load(new FileInputStream(financierPropertiesFile))
+
 android {
     buildFeatures {
         dataBinding true
@@ -28,10 +33,19 @@ android {
         }
     }
 
+    signingConfigs {
+        release {
+            storeFile file(financierProperties['storeFile'])
+            storePassword financierProperties['storePassword']
+            keyAlias financierProperties['keyAlias']
+            keyPassword financierProperties['keyPassword']
+        }
+    }
+
     defaultConfig {
         applicationId "com.handydev.financier"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 29
         versionCode 216
         versionName "2.0.16"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -48,6 +62,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             applicationVariants.all { variant ->
                 variant.outputs.all { output ->
