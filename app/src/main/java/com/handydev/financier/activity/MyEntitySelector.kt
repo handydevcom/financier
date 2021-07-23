@@ -219,8 +219,8 @@ abstract class MyEntitySelector<T : MyEntity, A : AbstractActivity?> internal co
         }
     }
 
-    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-        if (resultCode == Activity.RESULT_OK && requestCode == actBtnId) {
+    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == Activity.RESULT_OK && requestCode == actBtnId && data != null) {
             onNewEntity(data)
         }
     }
