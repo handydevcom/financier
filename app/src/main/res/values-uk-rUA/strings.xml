@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="accounts">Рахунки</string>
   <string name="blotter">Журнал</string>
   <string name="currencies">Валюти</string>
@@ -963,8 +963,8 @@
   <string name="auto_backup_warning_enabled">Сповіщати про проблеми</string>
   <string name="auto_backup_warning_summary">Сповіщати, якщо авто резервне копіювання не вдалося під час останнього виконання.</string>
   <string name="auto_backup_is_not_enabled">Ви повинні розглянути можливість увімкнення автотоматичного резервування до Google Drive або Dropbox, щоб зберегти ваші дані. Відкрийте меню -&gt; Налаштування -&gt; резервне копіювання.</string>
-  <string name="integrity_error_message">%s%n(Натисніть, щоб відхилити це повідомлення)</string>
-  <string name="autobackup_failed_message">Помилка автоматичоно резервування при %s з помилкою [%s].</string>
+  <string name="integrity_error_message">%s (Натисніть, щоб відхилити це повідомлення)</string>
+  <string name="autobackup_failed_message">Помилка автоматичоно резервування при %1$s з помилкою [%2$s].</string>
 
   <string name="request_permissions_storage_not_granted">Дозвіл на запис до зовнішнього накопичувача не надано</string>
   <string name="permissions">Дозволи</string>
@@ -998,7 +998,7 @@
   <string name="project_selector_title">Вибір проєкту</string>
   <string name="entity_selector_summary">Показати список або фільтр</string>
 
-  <string name="create_new_entity_with_title">Не вдалося знайти %s з заголовком \"%s\"? Створити новий, якщо відсутній?</string>
+  <string name="create_new_entity_with_title">Не вдалося знайти %1$s з заголовком \"%2$s\"? Створити новий, якщо відсутній?</string>
   <string name="complete_category_selection">Не вдалося знайти наявну категорію з заголовком \"%s\"? Будь ласка, створіть нову, використовуючи кнопку + на селекторі категорій.</string>
   <string name="list_all">Показати все</string>
   <string name="type_template">Тип шаблону…</string>
