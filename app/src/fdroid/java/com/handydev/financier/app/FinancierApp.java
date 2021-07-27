@@ -12,7 +12,7 @@ import org.androidannotations.annotations.EApplication;
 import org.greenrobot.eventbus.EventBus;
 
 @EApplication
-public class FinancierApp extends MultiDexApplication {
+public class FinancierApp extends FinancierApplication {
 
     public EventBus bus;
 

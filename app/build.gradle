@@ -46,8 +46,8 @@ android {
         applicationId "com.handydev.financier"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 216
-        versionName "2.0.16"
+        versionCode 217
+        versionName "2.0.17"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         javaCompileOptions {
@@ -72,9 +72,12 @@ android {
                     //def flavorName = variant.flavorName // e. g. Free
                     //def buildType = variant.buildType.name // e. g. debug
                     def variantName = variant.name // e. g. FreeDebug
-
-                    //customize your app name by using variables
-                    outputFileName = "Financier_${variantName}_${versionName}.apk"
+                    if(variant.flavorName == "untied") {
+                        outputFileName = "Financier.apk"
+                    } else {
+                        //customize your app name by using variables
+                        outputFileName = "Financier_${variantName}_${versionName}.apk"
+                    }
                 }
             }
         }
@@ -124,8 +127,10 @@ android {
 
 def AAVersion = '4.7.0'
 def eventbus_version = '3.2.0'
+def acraVersion = "5.8.4"
 
 dependencies {
+    implementation("ch.acra:acra-http:$acraVersion")
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'androidx.multidex:multidex:2.0.1'
