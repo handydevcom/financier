@@ -11,8 +11,10 @@ apply plugin: 'kotlin-kapt'
 
 def financierPropertiesFile = rootProject.file("./Keys/financier.properties")
 def financierProperties = new Properties()
-
 financierProperties.load(new FileInputStream(financierPropertiesFile))
+def acraUri = financierProperties['acraUri']
+def acraLogin = financierProperties['acraLogin']
+def acraPassword = financierProperties['acraPassword']
 
 android {
     buildFeatures {
@@ -57,6 +59,9 @@ android {
                 ]
             }
         }
+        buildConfigField "String", "ACRA_URI", "\"$acraUri\""
+        buildConfigField "String", "ACRA_LOGIN", "\"$acraLogin\""
+        buildConfigField "String", "ACRA_PASSWORD", "\"$acraPassword\""
     }
 
     buildTypes {
