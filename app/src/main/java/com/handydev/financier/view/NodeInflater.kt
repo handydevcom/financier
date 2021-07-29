@@ -11,6 +11,7 @@ import com.handydev.financier.BuildConfig
 import com.handydev.financier.R
 import com.handydev.financier.activity.RequestPermission
 import com.handydev.financier.utils.PicturesUtil
+import com.handydev.financier.utils.getColorHelper
 
 class NodeInflater(var inflater: LayoutInflater) {
 
@@ -45,7 +46,7 @@ class NodeInflater(var inflater: LayoutInflater) {
             val labelView = v.findViewById<TextView>(R.id.label)
             labelView.setText(labelId)
             if (darkUI) {
-                labelView.setTextColor(inflater.context.resources.getColor(R.color.main_text_color, null))
+                labelView.setTextColor(getColorHelper(inflater.context, R.color.main_text_color))
             }
             return this
         }

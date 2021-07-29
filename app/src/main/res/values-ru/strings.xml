@@ -945,5 +945,8 @@
     <string name="create_new_entity_with_title">%1$s: не удалось найти \"%2$s\"? Создать новую сущность?</string>
     <string name="complete_category_selection">Категория: не удалось найти \"%s\"? Создайте новую категорию нажав кнопку +.</string>
     <string name="list_all">Список</string>
+    <string name="enable_crash_reporting">Позволить отправлять отчёты о ошибках</string>
+    <string name="enable_crash_reporting_summary">Ошибки собираются и отправляются с использованием открытой библиотеки ACRA на наш внутренний сервер Acrarium, без передачи личных данных</string>
+
 
 </resources>

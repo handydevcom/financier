@@ -1003,6 +1003,9 @@
     <string name="list_all">List all</string>
     <string name="type_template">Type template…</string>
 
+    <string name="enable_crash_reporting">Allow to send anonymous crash reports</string>
+    <string name="enable_crash_reporting_summary">Crashes are collected and sent using the open-source ACRA library to our internal Acrarium server</string>
+
     <string-array name="entity_selector_entities">
         <item>Show Filter</item>
         <item>Show List</item>

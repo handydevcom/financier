@@ -14,6 +14,7 @@ import com.handydev.financier.model.MultiChoiceItem
 import com.handydev.financier.model.MyEntity
 import com.handydev.financier.utils.ArrUtils
 import com.handydev.financier.utils.Utils
+import com.handydev.financier.utils.getColorHelper
 import java.util.*
 
 abstract class MyEntitySelector<T : MyEntity, A : AbstractActivity?> internal constructor(
@@ -68,9 +69,10 @@ abstract class MyEntitySelector<T : MyEntity, A : AbstractActivity?> internal co
             node = filterNode!!.nodeLayout
             autoCompleteView = filterNode!!.autoCompleteTextView
             if(darkUI) {
-                text?.setTextColor(activity!!.resources.getColor(R.color.main_text_color, null))
-                autoCompleteView?.setTextColor(activity!!.resources.getColor(R.color.main_text_color, null))
-                autoCompleteView?.setHintTextColor(activity!!.resources.getColor(R.color.main_text_color, null))
+                val color = getColorHelper(activity!!, R.color.main_text_color)
+                text?.setTextColor(color)
+                autoCompleteView?.setTextColor(color)
+                autoCompleteView?.setHintTextColor(color)
             }
         }
         return text

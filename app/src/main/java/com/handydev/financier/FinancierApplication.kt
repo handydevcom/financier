@@ -1,7 +1,10 @@
 package com.handydev.financier
 
 import android.content.Context
+import android.preference.PreferenceManager
 import androidx.multidex.MultiDexApplication
+import com.handydev.financier.activity.PreferencesActivity
+import com.handydev.financier.utils.MyPreferences
 import org.acra.ACRA
 import org.acra.config.httpSender
 import org.acra.data.StringFormat
@@ -12,6 +15,10 @@ import java.lang.RuntimeException
 open class FinancierApplication : MultiDexApplication() {
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
+        val acraPrefExists = PreferenceManager.getDefaultSharedPreferences(this).contains("acra.enable")
+        if(!acraPrefExists) {
+            PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("acra.enable", false).commit()
+        }
 
         initAcra {
             //core configuration:
@@ -24,6 +31,6 @@ open class FinancierApplication : MultiDexApplication() {
                 httpMethod = HttpSender.Method.POST
             }
         }
-        ACRA.DEV_LOGGING = true
+        //ACRA.DEV_LOGGING = true
     }
 }
