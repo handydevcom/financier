@@ -102,7 +102,7 @@ class CategorySelector<A : AbstractActivity?> @JvmOverloads constructor(private 
                     db.getCategories(true)
                 }
             }
-            requireActivity().startManagingCursor(categoryCursor)
+            activity?.startManagingCursor(categoryCursor)
             categoryAdapter = TransactionUtils.createCategoryAdapter(db, activity, categoryCursor)
         }
     }
@@ -129,7 +129,7 @@ class CategorySelector<A : AbstractActivity?> @JvmOverloads constructor(private 
         categoryText = filterNode?.textView
         autoCompleteTextView = filterNode?.autoCompleteTextView
         if(darkUI) {
-            val color = getColorHelper(requireActivity(), R.color.main_text_color)
+            val color = getColorHelper(activity!!, R.color.main_text_color)
             categoryText?.setTextColor(color)
             autoCompleteTextView?.setTextColor(color)
             autoCompleteTextView?.setHintTextColor(color)
@@ -151,7 +151,7 @@ class CategorySelector<A : AbstractActivity?> @JvmOverloads constructor(private 
                     autoCompleteTextView!!.selectAll()
                 }
             }
-            autoCompleteTextView!!.onItemClickListener = OnItemClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long -> requireActivity().onSelectedId(R.id.category, id) }
+            autoCompleteTextView!!.onItemClickListener = OnItemClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long -> activity?.onSelectedId(R.id.category, id) }
             initAutocomplete = false
         }
     }
@@ -186,14 +186,14 @@ class CategorySelector<A : AbstractActivity?> @JvmOverloads constructor(private 
 
     private fun addCategory() {
         val intent = Intent(activity, CategoryActivity::class.java)
-        requireActivity().startActivityForResult(intent, CategorySelectorActivity.CATEGORY_ADD)
+        activity?.startActivityForResult(intent, CategorySelectorActivity.CATEGORY_ADD)
     }
 
     private fun pickCategory() {
         if (isMultiSelect()) {
             x.selectMultiChoice(activity, R.id.category, R.string.categories, categories)
         } else if (!CategorySelectorActivity.pickCategory(activity, multiSelect, selectedCategoryId, excludingSubTreeId, showSplitCategory)) {
-            x.select(requireActivity(), R.id.category, R.string.category, categoryCursor!!, categoryAdapter!!,
+            x.select(activity!!, R.id.category, R.string.category, categoryCursor!!, categoryAdapter!!,
                     DatabaseHelper.CategoryViewColumns._id.name, selectedCategoryId)
         }
     }
