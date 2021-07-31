@@ -363,7 +363,7 @@ public class DateTimeFormatter {
      * @since 1.1
      */
     public DateTimeFormatter withPivotYear(Integer pivotYear) {
-        if (iPivotYear == pivotYear || (iPivotYear != null && iPivotYear.equals(pivotYear))) {
+        if (iPivotYear != null && iPivotYear.equals(pivotYear)) {
             return this;
         }
         return new DateTimeFormatter(iPrinter, iParser, iLocale,

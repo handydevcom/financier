@@ -56,22 +56,4 @@ public class FuturePlanner extends AbstractPlanner {
         totals[0] = TransactionsTotalCalculator.calculateTotalFromListInHomeCurrency(db, transactions);
         return totals;
     }
-
-    /*@Override
-    protected Comparator<TransactionInfo> createSortComparator() {
-        return new Comparator<TransactionInfo>() {
-            @Override
-            public int compare(TransactionInfo t1, TransactionInfo t2) {
-                return t1.dateTime > t2.dateTime ? -1 : (t1.dateTime < t2.dateTime ? 1 : 0);
-            }
-        };
-    } */
-
-//    private WhereFilter createMonthlyViewFilter() {
-//        return WhereFilter.empty()
-//                .btw("datetime", String.valueOf(startDate.getTime()), String.valueOf(endDate.getTime()))
-//                .desc("datetime");
-//    }
-//
-//
 }

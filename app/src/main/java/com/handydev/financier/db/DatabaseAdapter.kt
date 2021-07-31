@@ -545,7 +545,7 @@ open class DatabaseAdapter(context: Context?) : MyEntityManager(context) {
     }
 
     private fun insertAsLast(category: Category, tree: CategoryTree<Category>): Long {
-        val mateId = tree.getAt(tree.size() - 1)!!.id
+        val mateId = tree.getAt(tree.size() - 1).id
         return insertMateCategory(mateId, category)
     }
 
@@ -870,7 +870,7 @@ open class DatabaseAdapter(context: Context?) : MyEntityManager(context) {
         val values = ContentValues()
         val sid = arrayOfNulls<String>(1)
         for (c in tree) {
-            values.put(CategoryColumns.left.name, c!!.left)
+            values.put(CategoryColumns.left.name, c.left)
             values.put(CategoryColumns.right.name, c.right)
             sid[0] = c.id.toString()
             db().update(DatabaseHelper.CATEGORY_TABLE, values, WHERE_CATEGORY_ID, sid)

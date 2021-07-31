@@ -154,7 +154,7 @@ class CategoryTree<T : CategoryEntity<T>> : Iterable<T> {
     fun reIndex() {
         var left = Int.MAX_VALUE
         for (node in roots) {
-            if (node!!.left < left) {
+            if (node.left < left) {
                 left = node.left
             }
         }

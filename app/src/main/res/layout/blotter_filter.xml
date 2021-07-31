@@ -12,15 +12,15 @@
 	android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" android:minWidth="300dp"
 	>
-	<ScrollView android:layout_height="wrap_content"
+	<ScrollView android:layout_height="0dp"
 		android:layout_weight="1" android:layout_width="fill_parent"
 		android:background="@color/brown_background_light"
 		>
 		<LinearLayout android:layout_height="wrap_content" android:id="@+id/layout"
-			android:layout_weight="1" android:layout_width="fill_parent" 
+			android:layout_width="fill_parent"
 			android:orientation="vertical"/>
 	</ScrollView>
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	<LinearLayout
 		android:layout_height="wrap_content" android:layout_width="fill_parent"
 		style="@style/ButtonBar">
 		<Button android:layout_weight="1" android:id="@+id/bOK" android:text="@string/ok"

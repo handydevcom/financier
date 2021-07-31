@@ -13,8 +13,8 @@
 	a:orientation="vertical" a:paddingLeft="3dp"
 	a:paddingRight="3dp" a:paddingTop="3dp">
 
-	<LinearLayout xmlns:a="http://schemas.android.com/apk/res/android"
-		a:layout_width="fill_parent" a:layout_height="wrap_content"
+	<LinearLayout
+        a:layout_width="fill_parent" a:layout_height="wrap_content"
 		a:orientation="vertical" a:id="@+id/list">
 
 		<TextView a:layout_height="wrap_content" a:layout_width="fill_parent" a:text="@string/sms_number" />
@@ -35,8 +35,8 @@
 		<TextView a:layout_height="wrap_content" a:paddingTop="5dp"
 			a:layout_width="fill_parent" a:text="@string/choose_sms_template_type_and_account" />
 
-		<LinearLayout xmlns:a="http://schemas.android.com/apk/res/android"
-			a:layout_height="wrap_content" a:layout_width="fill_parent"
+		<LinearLayout
+            a:layout_height="wrap_content" a:layout_width="fill_parent"
 			a:orientation="horizontal" a:paddingLeft="0dp"
 			a:paddingRight="0dp" a:paddingTop="0dp" a:paddingBottom="30dp">
 		<ToggleButton a:layout_width="wrap_content"

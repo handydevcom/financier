@@ -400,11 +400,6 @@ public final class IslamicChronology extends BasicChronology {
             return 12;
         }
         return ((doyZeroBased * 2) / MONTH_PAIR_LENGTH) + 1;
-//        return (int) (doyZeroBased / 29.9f) + 1;
-//        
-//        int monthPairZeroBased = doyZeroBased / MONTH_PAIR_LENGTH;
-//        int monthPairRemainder = doyZeroBased % MONTH_PAIR_LENGTH;
-//        return (monthPairZeroBased * 2) + 1 + (monthPairRemainder >= LONG_MONTH_LENGTH ? 1 : 0);
     }
 
     //-----------------------------------------------------------------------
