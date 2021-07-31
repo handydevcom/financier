@@ -255,10 +255,6 @@ public class MyPreferences {
         return sharedPreferences.getBoolean("ntsl_open_calculator_for_template_transactions", true);
     }
 
-    public static boolean isSetFocusOnAmountField(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("ntsl_set_focus_on_amount_field", false);
-    }
-
     public static boolean isPayeeSelectorList(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return ENTITY_SELECTOR_LIST.equals(sharedPreferences.getString("payee_selector", ENTITY_SELECTOR_FILTER));
