@@ -57,6 +57,7 @@ class AccountActivity : AbstractActivity() {
     private var electronicPaymentAdapter: EntityEnumAdapter<ElectronicPaymentType>? = null
     private var currencyAdapter: ListAdapter? = null
     private var account: Account? = Account()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.account)
@@ -85,6 +86,7 @@ class AccountActivity : AbstractActivity() {
         amountInput?.setOwner(this)
         limitInput = AmountInput_.build(this)
         limitInput?.setOwner(this)
+
         val layout = findViewById<LinearLayout>(R.id.layout)
         accountTypeAdapter = EntityEnumAdapter(this, AccountType.values(), false)
         accountTypeNode = activityLayout.addListNodeIcon(
@@ -93,6 +95,7 @@ class AccountActivity : AbstractActivity() {
             R.string.account_type,
             R.string.account_type
         )
+
         val icon = accountTypeNode!!.findViewById<ImageView>(R.id.icon)
         icon.setColorFilter(ContextCompat.getColor(this, R.color.holo_gray_light))
         cardIssuerAdapter = EntityEnumAdapter(this, CardIssuer.values(), false)
@@ -134,6 +137,7 @@ class AccountActivity : AbstractActivity() {
         limitInput?.disableIncomeExpenseButton()
         limitAmountView = activityLayout.addEditNode(layout, R.string.limit_amount, limitInput)
         setVisibility(limitAmountView, View.GONE)
+
         val intent = intent
         if (intent != null) {
             val accountId = intent.getLongExtra(ACCOUNT_ID_EXTRA, -1)
@@ -150,6 +154,7 @@ class AccountActivity : AbstractActivity() {
             activityLayout.addEditNode(layout, R.string.opening_amount, amountInput)
             amountInput?.setIncome()
         }
+
         noteText = EditText(this)
         noteText!!.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
         noteText!!.setLines(2)
@@ -163,6 +168,7 @@ class AccountActivity : AbstractActivity() {
         if (account!!.id > 0) {
             editAccount()
         }
+
         val bOK = findViewById<Button>(R.id.bOK)
         bOK.setOnClickListener {
             if (account!!.currency == null) {
@@ -210,6 +216,7 @@ class AccountActivity : AbstractActivity() {
                     }
                 }
             }
+
             account!!.title = Utils.text(accountTitle)
             account!!.creationDate = System.currentTimeMillis()
             val sortOrder = Utils.text(sortOrderText)
@@ -268,10 +275,16 @@ class AccountActivity : AbstractActivity() {
                     ElectronicPaymentType.PAYPAL
                 ).ordinal
             )
-            R.id.currency -> activityLayout.select(
-                this, R.id.currency, R.string.currency, currencyCursor!!, currencyAdapter!!,
-                "_id", if (account!!.currency != null) account!!.currency.id else -1
-            )
+            R.id.currency -> {
+                if((currencyCursor?.count ?: 0) > 0) {
+                    activityLayout.select(
+                        this, R.id.currency, R.string.currency, currencyCursor!!, currencyAdapter!!,
+                        "_id", if (account!!.currency != null) account!!.currency.id else -1
+                    )
+                } else {
+                    addNewCurrency()
+                }
+            }
             R.id.currency_add -> addNewCurrency()
         }
     }
