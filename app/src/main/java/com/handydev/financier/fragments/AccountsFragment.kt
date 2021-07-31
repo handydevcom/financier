@@ -71,10 +71,10 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
             return
         }
         val bMenu = view?.findViewById<ImageButton>(R.id.bMenu)
-        if (MyPreferences.isShowMenuButtonOnAccountsScreen(activity!!)) {
+        if (MyPreferences.isShowMenuButtonOnAccountsScreen(requireActivity())) {
             bMenu?.setOnClickListener { v: View? ->
-                val popupMenu = PopupMenu(activity!!, bMenu)
-                val inflater = activity!!.menuInflater
+                val popupMenu = PopupMenu(requireActivity(), bMenu)
+                val inflater = requireActivity().menuInflater
                 inflater.inflate(R.menu.account_list_menu, popupMenu.menu)
                 popupMenu.setOnMenuItemClickListener { item: MenuItem ->
                     handlePopupMenu(item.itemId)
@@ -92,7 +92,7 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
             return
         }
         when (id) {
-            R.id.backup -> MenuListItem.MENU_BACKUP.call(activity!!)
+            R.id.backup -> MenuListItem.MENU_BACKUP.call(requireActivity())
         }
     }
 
@@ -101,20 +101,20 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
             return
         }
         val a: Account = db!!.getAccount(selectedId)
-        accountActionGrid = QuickActionGrid(activity!!)
-        accountActionGrid?.addQuickAction(MyQuickAction(activity!!, R.drawable.ic_action_info, R.string.info))
-        accountActionGrid?.addQuickAction(MyQuickAction(activity!!, R.drawable.ic_action_list, R.string.blotter))
-        accountActionGrid?.addQuickAction(MyQuickAction(activity!!, R.drawable.ic_action_edit, R.string.edit))
-        accountActionGrid?.addQuickAction(MyQuickAction(activity!!, R.drawable.ic_action_add, R.string.transaction))
-        accountActionGrid?.addQuickAction(MyQuickAction(activity!!, R.drawable.ic_action_transfer, R.string.transfer))
-        accountActionGrid?.addQuickAction(MyQuickAction(activity!!, R.drawable.ic_action_tick, R.string.balance))
-        accountActionGrid?.addQuickAction(MyQuickAction(activity!!, R.drawable.ic_action_flash, R.string.delete_old_transactions))
+        accountActionGrid = QuickActionGrid(requireActivity())
+        accountActionGrid?.addQuickAction(MyQuickAction(requireActivity(), R.drawable.ic_action_info, R.string.info))
+        accountActionGrid?.addQuickAction(MyQuickAction(requireActivity(), R.drawable.ic_action_list, R.string.blotter))
+        accountActionGrid?.addQuickAction(MyQuickAction(requireActivity(), R.drawable.ic_action_edit, R.string.edit))
+        accountActionGrid?.addQuickAction(MyQuickAction(requireActivity(), R.drawable.ic_action_add, R.string.transaction))
+        accountActionGrid?.addQuickAction(MyQuickAction(requireActivity(), R.drawable.ic_action_transfer, R.string.transfer))
+        accountActionGrid?.addQuickAction(MyQuickAction(requireActivity(), R.drawable.ic_action_tick, R.string.balance))
+        accountActionGrid?.addQuickAction(MyQuickAction(requireActivity(), R.drawable.ic_action_flash, R.string.delete_old_transactions))
         if (a.isActive) {
-            accountActionGrid?.addQuickAction(MyQuickAction(activity!!, R.drawable.ic_action_lock_closed, R.string.close_account))
+            accountActionGrid?.addQuickAction(MyQuickAction(requireActivity(), R.drawable.ic_action_lock_closed, R.string.close_account))
         } else {
-            accountActionGrid?.addQuickAction(MyQuickAction(activity!!, R.drawable.ic_action_lock_open, R.string.reopen_account))
+            accountActionGrid?.addQuickAction(MyQuickAction(requireActivity(), R.drawable.ic_action_lock_open, R.string.reopen_account))
         }
-        accountActionGrid?.addQuickAction(MyQuickAction(activity!!, R.drawable.ic_action_trash, R.string.delete_account))
+        accountActionGrid?.addQuickAction(MyQuickAction(requireActivity(), R.drawable.ic_action_trash, R.string.delete_account))
         accountActionGrid?.setOnQuickActionClickListener(accountActionListener)
     }
 
@@ -136,7 +136,7 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
         if(activity == null) {
             return
         }
-        val intent = Intent(activity!!, clazz)
+        val intent = Intent(requireActivity(), clazz)
         intent.putExtra(TransactionActivity.ACCOUNT_ID_EXTRA, accountId)
         startActivityForResult(intent, VIEW_ACCOUNT_REQUEST)
     }
@@ -158,7 +158,7 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
         }
         val totalText = view?.findViewById<TextView>(R.id.total)
         totalText?.setOnClickListener { showTotals() }
-        totalCalculationTask = AccountTotalsCalculationTask(activity!!, db!!, totalText)
+        totalCalculationTask = AccountTotalsCalculationTask(requireActivity(), db!!, totalText)
         totalCalculationTask!!.execute()
     }
 
@@ -166,7 +166,7 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
         if(activity == null) {
             return
         }
-        val intent = Intent(activity!!, AccountListTotalsDetailsActivity::class.java)
+        val intent = Intent(requireActivity(), AccountListTotalsDetailsActivity::class.java)
         startActivityForResult(intent, -1)
     }
 
@@ -183,12 +183,12 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
         if(activity == null) {
             return null
         }
-        return AccountListAdapter2(activity!!, cursor)
+        return AccountListAdapter2(requireActivity(), cursor)
     }
 
     override fun createCursor(): Cursor? {
         if(activity != null) {
-            return if (MyPreferences.isHideClosedAccounts(activity!!)) {
+            return if (MyPreferences.isHideClosedAccounts(requireActivity())) {
                 db?.allActiveAccounts
             } else {
                 db?.allAccounts
@@ -209,7 +209,7 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
     private fun updateAccountBalance(id: Long): Boolean {
         val a = db?.getAccount(id)
         if (a != null && activity != null) {
-            val intent = Intent(activity!!, TransactionActivity::class.java)
+            val intent = Intent(requireActivity(), TransactionActivity::class.java)
             intent.putExtra(TransactionActivity.ACCOUNT_ID_EXTRA, a.id)
             intent.putExtra(TransactionActivity.CURRENT_BALANCE_EXTRA, a.totalAmount)
             startActivityForResult(intent, 0)
@@ -222,7 +222,7 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
         if(activity == null) {
             return
         }
-        val intent = Intent(activity!!, AccountActivity::class.java)
+        val intent = Intent(requireActivity(), AccountActivity::class.java)
         startActivityForResult(intent, NEW_ACCOUNT_REQUEST)
     }
 
@@ -230,7 +230,7 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
         if(activity == null) {
             return
         }
-        AlertDialog.Builder(activity!!)
+        AlertDialog.Builder(requireActivity())
                 .setMessage(R.string.delete_account_confirm)
                 .setPositiveButton(R.string.yes) { _, _ ->
                     db?.deleteAccount(id)
@@ -248,7 +248,7 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
         if(activity == null) {
             return
         }
-        val intent = Intent(activity!!, AccountActivity::class.java)
+        val intent = Intent(requireActivity(), AccountActivity::class.java)
         intent.putExtra(AccountActivity.ACCOUNT_ID_EXTRA, id)
         startActivityForResult(intent, EDIT_ACCOUNT_REQUEST)
     }
@@ -259,9 +259,9 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
         if(activity == null) {
             return
         }
-        val layoutInflater = activity!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val layoutInflater = requireActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val inflater = NodeInflater(layoutInflater)
-        val accountInfoDialog = AccountInfoDialog(activity!!, id, db, inflater)
+        val accountInfoDialog = AccountInfoDialog(requireActivity(), id, db, inflater)
         accountInfoDialog.show()
     }
 
@@ -270,7 +270,7 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
         if(activity == null) {
             return
         }
-        if (MyPreferences.isQuickMenuEnabledForAccount(activity!!)) {
+        if (MyPreferences.isQuickMenuEnabledForAccount(requireActivity())) {
             selectedId = id
             prepareAccountActionGrid()
             accountActionGrid!!.show(v)
@@ -286,11 +286,11 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
     private fun showAccountTransactions(id: Long) {
         val account = db?.getAccount(id)
         if (account != null && activity != null) {
-            val intent = Intent(activity!!, BlotterActivity2::class.java)
+            val intent = Intent(requireActivity(), BlotterActivity2::class.java)
             Criteria.eq(BlotterFilter.FROM_ACCOUNT_ID, id.toString())
                     .toIntent(account.title, intent)
             intent.putExtra(BlotterFilterActivity.IS_ACCOUNT_FILTER, true)
-            activity!!.startActivityForResult(intent, VIEW_ACCOUNT_REQUEST)
+            requireActivity().startActivityForResult(intent, VIEW_ACCOUNT_REQUEST)
         }
     }
 
@@ -306,7 +306,7 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
         if(activity == null) {
             return
         }
-        val intent = Intent(activity!!, PurgeAccountActivity::class.java)
+        val intent = Intent(requireActivity(), PurgeAccountActivity::class.java)
         intent.putExtra(PurgeAccountActivity.ACCOUNT_ID, selectedId)
         startActivityForResult(intent, PURGE_ACCOUNT_REQUEST)
     }
@@ -317,7 +317,7 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
             return
         }
         if (a.isActive) {
-            AlertDialog.Builder(activity!!)
+            AlertDialog.Builder(requireActivity())
                     .setMessage(R.string.close_account_confirm)
                     .setPositiveButton(R.string.yes) { _, _ -> flipAccountActive(a) }
                     .setNegativeButton(R.string.no, null)
@@ -337,7 +337,7 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
         if(activity == null) {
             return
         }
-        AlertDialog.Builder(activity!!)
+        AlertDialog.Builder(requireActivity())
                 .setMessage(R.string.delete_account_confirm)
                 .setPositiveButton(R.string.yes) { _, _ ->
                     db?.deleteAccount(selectedId)
@@ -351,6 +351,6 @@ open class AccountsFragment: AbstractListFragment(R.layout.account_list) {
         if(activity == null) {
             return
         }
-        IntegrityCheckTask(activity!!).execute(IntegrityCheckAutobackup(activity!!, TimeUnit.DAYS.toMillis(7)))
+        IntegrityCheckTask(requireActivity()).execute(IntegrityCheckAutobackup(requireActivity(), TimeUnit.DAYS.toMillis(7)))
     }
 }

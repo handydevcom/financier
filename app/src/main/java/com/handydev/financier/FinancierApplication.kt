@@ -17,7 +17,7 @@ open class FinancierApplication : MultiDexApplication() {
         super.attachBaseContext(base)
         val acraPrefExists = PreferenceManager.getDefaultSharedPreferences(this).contains("acra.enable")
         if(!acraPrefExists) {
-            PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("acra.enable", false).commit()
+            PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("acra.enable", false).apply()
         }
 
         initAcra {

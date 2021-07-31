@@ -139,8 +139,6 @@ class Category : CategoryEntity<Category> {
                 }
                 else -> {
                     val sb = StringBuilder()
-                    for (i in 1 until level) {
-                    }
                     sb.toString()
                 }
             }

@@ -96,9 +96,9 @@ public class RequestPermissionActivity extends AppCompatActivity {
         }
     }
 
-    private void checkAllFilesPermission() {
+    /*private void checkAllFilesPermission() {
         enableToggle(!Environment.isExternalStorageManager(), toggleWriteStorage, toggleWriteStorageWrap);
-    }
+    }*/
 
     private void checkPermissions() {
         //if(SDK_INT >= 30) {

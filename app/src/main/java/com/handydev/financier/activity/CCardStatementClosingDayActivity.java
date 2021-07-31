@@ -100,9 +100,9 @@ public class CCardStatementClosingDayActivity extends Activity {
 		dbAdapter = new DatabaseAdapter(this);
 		dbAdapter.open();
 		
-    	customCD = (RadioButton)findViewById(R.id.custom_closing_day);
-    	regularCD = (RadioButton)findViewById(R.id.regular_closing_day);
-    	newClosingDay = (EditText)findViewById(R.id.new_closing_day);
+    	customCD = findViewById(R.id.custom_closing_day);
+    	regularCD = findViewById(R.id.regular_closing_day);
+    	newClosingDay = findViewById(R.id.new_closing_day);
     	
     	customClosingDay = dbAdapter.getCustomClosingDay(accountId, periodKey);
     	if (customClosingDay>0) {
@@ -121,8 +121,7 @@ public class CCardStatementClosingDayActivity extends Activity {
 		this.setTitle(R.string.closing_day_title);
 		
 		if (customClosingDay>0) {
-			EditText newCD = (EditText)findViewById(R.id.new_closing_day);
-			newCD.setText(Integer.toString(customClosingDay));
+			newClosingDay.setText(Integer.toString(customClosingDay));
 			// set custom closing day selected
 			regularCD.setChecked(false);
 			customCD.setChecked(true);

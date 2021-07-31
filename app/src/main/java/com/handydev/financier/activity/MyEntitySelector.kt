@@ -69,7 +69,7 @@ abstract class MyEntitySelector<T : MyEntity, A : AbstractActivity?> internal co
             node = filterNode!!.nodeLayout
             autoCompleteView = filterNode!!.autoCompleteTextView
             if(darkUI) {
-                val color = getColorHelper(activity!!, R.color.main_text_color)
+                val color = getColorHelper(requireActivity(), R.color.main_text_color)
                 text?.setTextColor(color)
                 autoCompleteView?.setTextColor(color)
                 autoCompleteView?.setHintTextColor(color)
@@ -89,7 +89,7 @@ abstract class MyEntitySelector<T : MyEntity, A : AbstractActivity?> internal co
             autoCompleteView!!.threshold = 1
             autoCompleteView!!.onItemClickListener = OnItemClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long ->
                 val e = filterAdapter.getItem(position)
-                activity!!.onSelectedId(layoutId, e!!.id)
+                requireActivity().onSelectedId(layoutId, e!!.id)
             }
             initAutoComplete = false
         }
@@ -117,7 +117,7 @@ abstract class MyEntitySelector<T : MyEntity, A : AbstractActivity?> internal co
 
     private fun createEntity() {
         val intent = Intent(activity, editActivityClass)
-        activity!!.startActivityForResult(intent, requestCode)
+        requireActivity().startActivityForResult(intent, requestCode)
     }
 
     private fun showFilter() {
@@ -147,7 +147,7 @@ abstract class MyEntitySelector<T : MyEntity, A : AbstractActivity?> internal co
             x.selectMultiChoice(activity, layoutId, labelResId, entities)
         } else {
             val selectedEntityPos = MyEntity.indexOf(entities, selectedEntityId)
-            x.selectPosition(activity!!, layoutId, labelResId, adapter!!, selectedEntityPos)
+            x.selectPosition(requireActivity(), layoutId, labelResId, adapter!!, selectedEntityPos)
         }
     }
 

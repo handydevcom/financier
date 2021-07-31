@@ -45,7 +45,7 @@ class MenuListFragment: ListFragment() {
             return
         }
         bus = EventBus.getDefault()
-        listAdapter = SummaryEntityListAdapter(activity!!, MenuListItem.values())
+        listAdapter = SummaryEntityListAdapter(requireActivity(), MenuListItem.values())
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,7 +58,7 @@ class MenuListFragment: ListFragment() {
         if(activity == null) {
             return
         }
-        MenuListItem.values()[position].call(activity!!)
+        MenuListItem.values()[position].call(requireActivity())
     }
 
     fun redirectedActivityResult(requestCode: Int, resultCode: Int, data:Intent?) {
@@ -76,7 +76,7 @@ class MenuListFragment: ListFragment() {
     private fun onCsvExportResult(resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK && activity != null) {
             val options = CsvExportOptions.fromIntent(data)
-            MenuListItem.doCsvExport(activity!!, options)
+            MenuListItem.doCsvExport(requireActivity(), options)
         }
     }
 
@@ -84,7 +84,7 @@ class MenuListFragment: ListFragment() {
    private fun onQifExportResult(resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK && activity != null) {
             val options = QifExportOptions.fromIntent(data)
-            MenuListItem.doQifExport(activity!!, options)
+            MenuListItem.doQifExport(requireActivity(), options)
         }
     }
 
@@ -92,7 +92,7 @@ class MenuListFragment: ListFragment() {
     private fun onCsvImportResult(resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK && activity != null) {
             val options = CsvImportOptions.fromIntent(data)
-            MenuListItem.doCsvImport(activity!!, options)
+            MenuListItem.doCsvImport(requireActivity(), options)
         }
     }
 
@@ -100,21 +100,21 @@ class MenuListFragment: ListFragment() {
     private fun onQifImportResult(resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK && activity != null) {
             val options = QifImportOptions.fromIntent(data)
-            MenuListItem.doQifImport(activity!!, options)
+            MenuListItem.doQifImport(requireActivity(), options)
         }
     }
 
     //@OnActivityResult(MenuListItem.ACTIVITY_CHANGE_PREFERENCES)
     private fun onChangePreferences() {
         if(activity != null) {
-            DailyAutoBackupScheduler.scheduleNextAutoBackup(activity!!)
+            DailyAutoBackupScheduler.scheduleNextAutoBackup(requireActivity())
         }
     }
 
     override fun onPause() {
         super.onPause()
         if(activity != null) {
-            PinProtection.lock(activity!!)
+            PinProtection.lock(requireActivity())
         }
         bus!!.unregister(this)
     }
@@ -122,7 +122,7 @@ class MenuListFragment: ListFragment() {
     override fun onResume() {
         super.onResume()
         if(activity != null) {
-            PinProtection.unlock(activity!!)
+            PinProtection.unlock(requireActivity())
         }
         bus!!.register(this)
     }
@@ -151,7 +151,7 @@ class MenuListFragment: ListFragment() {
             return
         }
 
-        progressDialog = ProgressDialog.show(activity!!, null, getString(R.string.backup_database_gdocs_inprogress), true)
+        progressDialog = ProgressDialog.show(requireActivity(), null, getString(R.string.backup_database_gdocs_inprogress), true)
         bus!!.post(DoDriveBackup())
     }
 
@@ -188,7 +188,7 @@ class MenuListFragment: ListFragment() {
             (activity as? MainActivity)?.googleDriveLogin()
             return
         }
-        progressDialog = ProgressDialog.show(activity!!, null, getString(R.string.google_drive_loading_files), true)
+        progressDialog = ProgressDialog.show(requireActivity(), null, getString(R.string.google_drive_loading_files), true)
         bus!!.post(DoDriveListFiles())
     }
 
@@ -208,7 +208,7 @@ class MenuListFragment: ListFragment() {
         }
         val fileNames = getFileNames(filteredFiles)
         var selectedDriveFile : File? = null
-        AlertDialog.Builder(activity!!)
+        AlertDialog.Builder(requireActivity())
                 .setTitle(R.string.restore_database_online_google_drive)
                 .setPositiveButton(R.string.restore) { _, _ ->
                     if (selectedDriveFile != null) {
@@ -243,13 +243,13 @@ class MenuListFragment: ListFragment() {
         val connectionResult = event.connectionResult
         if (connectionResult.hasResolution()) {
             try {
-                connectionResult.startResolutionForResult(activity!!, RESOLVE_CONNECTION_REQUEST_CODE)
+                connectionResult.startResolutionForResult(requireActivity(), RESOLVE_CONNECTION_REQUEST_CODE)
             } catch (e: SendIntentException) {
                 // Unable to resolve, message user appropriately
                 onDriveBackupError(DriveBackupError(e.message))
             }
         } else {
-            GooglePlayServicesUtil.getErrorDialog(connectionResult.errorCode, activity!!, 0).show()
+            GooglePlayServicesUtil.getErrorDialog(connectionResult.errorCode, requireActivity(), 0).show()
         }
     }
 
@@ -263,13 +263,13 @@ class MenuListFragment: ListFragment() {
        /* val status = event.status
         if (status.hasResolution()) {
             try {
-                status.startResolutionForResult(activity!!, RESOLVE_CONNECTION_REQUEST_CODE)
+                status.startResolutionForResult(requireActivity(), RESOLVE_CONNECTION_REQUEST_CODE)
             } catch (e: SendIntentException) {
                 // Unable to resolve, message user appropriately
                 onDriveBackupError(DriveBackupError(e.message))
             }
         } else {
-            GooglePlayServicesUtil.getErrorDialog(status.statusCode, activity!!, 0).show()
+            GooglePlayServicesUtil.getErrorDialog(status.statusCode, requireActivity(), 0).show()
         }*/
     }
 
@@ -279,7 +279,7 @@ class MenuListFragment: ListFragment() {
         if(activity == null) {
             return
         }
-        Toast.makeText(activity!!, getString(R.string.google_drive_backup_success, event.fileName), Toast.LENGTH_LONG).show()
+        Toast.makeText(requireActivity(), getString(R.string.google_drive_backup_success, event.fileName), Toast.LENGTH_LONG).show()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -288,7 +288,7 @@ class MenuListFragment: ListFragment() {
         if(activity == null) {
             return
         }
-        Toast.makeText(activity!!, R.string.restore_database_success, Toast.LENGTH_LONG).show()
+        Toast.makeText(requireActivity(), R.string.restore_database_success, Toast.LENGTH_LONG).show()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -297,13 +297,13 @@ class MenuListFragment: ListFragment() {
         if(activity == null) {
             return
         }
-        Toast.makeText(activity!!, getString(R.string.google_drive_connection_failed, event.message), Toast.LENGTH_LONG).show()
+        Toast.makeText(requireActivity(), getString(R.string.google_drive_connection_failed, event.message), Toast.LENGTH_LONG).show()
     }
 
     //@OnActivityResult(RESOLVE_CONNECTION_REQUEST_CODE)
     private fun onConnectionRequest(resultCode: Int) {
         if (resultCode == Activity.RESULT_OK && activity != null) {
-            Toast.makeText(activity!!, R.string.google_drive_connection_resolved, Toast.LENGTH_LONG).show()
+            Toast.makeText(requireActivity(), R.string.google_drive_connection_resolved, Toast.LENGTH_LONG).show()
         }
     }
 
@@ -313,12 +313,12 @@ class MenuListFragment: ListFragment() {
         val backupFiles = event.files
         if (backupFiles != null && activity != null) {
             val selectedDropboxFile = arrayOfNulls<String>(1)
-            AlertDialog.Builder(activity!!)
+            AlertDialog.Builder(requireActivity())
                     .setTitle(R.string.restore_database_online_dropbox)
                     .setPositiveButton(R.string.restore) { _, _ ->
                         if (selectedDropboxFile[0] != null) {
-                            val d = ProgressDialog.show(activity!!, null, getString(R.string.restore_database_inprogress_dropbox), true)
-                            DropboxRestoreTask(activity!!, d, selectedDropboxFile[0]).execute()
+                            val d = ProgressDialog.show(requireActivity(), null, getString(R.string.restore_database_inprogress_dropbox), true)
+                            DropboxRestoreTask(requireActivity(), d, selectedDropboxFile[0]).execute()
                         }
                     }
                     .setSingleChoiceItems(backupFiles, -1, DialogInterface.OnClickListener { dialog: DialogInterface?, which: Int ->
@@ -335,8 +335,8 @@ class MenuListFragment: ListFragment() {
         if(activity == null) {
             return
         }
-        val d = ProgressDialog.show(activity!!, null, this.getString(R.string.backup_database_dropbox_inprogress), true)
-        DropboxBackupTask(activity!!, d).execute()
+        val d = ProgressDialog.show(requireActivity(), null, this.getString(R.string.backup_database_dropbox_inprogress), true)
+        DropboxBackupTask(requireActivity(), d).execute()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -344,8 +344,8 @@ class MenuListFragment: ListFragment() {
         if(activity == null) {
             return
         }
-        val d = ProgressDialog.show(activity!!, null, this.getString(R.string.dropbox_loading_files), true)
-        DropboxListFilesTask(activity!!, d).execute()
+        val d = ProgressDialog.show(requireActivity(), null, this.getString(R.string.dropbox_loading_files), true)
+        DropboxListFilesTask(requireActivity(), d).execute()
     }
 
     class StartDropboxBackup

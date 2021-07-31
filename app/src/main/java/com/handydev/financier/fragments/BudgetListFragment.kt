@@ -53,12 +53,12 @@ class BudgetListFragment: AbstractListFragment(R.layout.budget_list) {
         totalText?.setOnClickListener { showTotals() }
         bFilter = view?.findViewById(R.id.bFilter)
         bFilter!!.setOnClickListener {
-            val intent = Intent(activity!!, DateFilterActivity::class.java)
+            val intent = Intent(requireActivity(), DateFilterActivity::class.java)
             filter.toIntent(intent)
             startActivityForResult(intent, FILTER_BUDGET_REQUEST)
         }
         if (filter.isEmpty) {
-            filter = WhereFilter.fromSharedPreferences(activity!!.getPreferences(0))
+            filter = WhereFilter.fromSharedPreferences(requireActivity().getPreferences(0))
         }
         if (filter.isEmpty) {
             filter.put(DateTimeCriteria(PeriodType.THIS_MONTH))
@@ -73,7 +73,7 @@ class BudgetListFragment: AbstractListFragment(R.layout.budget_list) {
         if(activity == null) {
             return
         }
-        val intent = Intent(activity!!, BudgetListTotalsDetailsActivity::class.java)
+        val intent = Intent(requireActivity(), BudgetListTotalsDetailsActivity::class.java)
         filter.toIntent(intent)
         startActivityForResult(intent, -1)
     }
@@ -82,7 +82,7 @@ class BudgetListFragment: AbstractListFragment(R.layout.budget_list) {
         if(activity == null) {
             return
         }
-        val preferences: SharedPreferences = activity!!.getPreferences(0)
+        val preferences: SharedPreferences = requireActivity().getPreferences(0)
         filter.toSharedPreferences(preferences)
         applyFilter()
         recreateCursor()
@@ -92,7 +92,7 @@ class BudgetListFragment: AbstractListFragment(R.layout.budget_list) {
         if(activity == null) {
             return
         }
-        updateFilterColor(activity!!, filter, bFilter)
+        updateFilterColor(requireActivity(), filter, bFilter)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -122,7 +122,7 @@ class BudgetListFragment: AbstractListFragment(R.layout.budget_list) {
         if(activity == null) {
             return null
         }
-        return BudgetListAdapter(activity!!, budgets)
+        return BudgetListAdapter(requireActivity(), budgets)
     }
 
     override fun createCursor(): Cursor? {
@@ -157,7 +157,7 @@ class BudgetListFragment: AbstractListFragment(R.layout.budget_list) {
         if(activity == null) {
             return
         }
-        val intent = Intent(activity!!, BudgetActivity::class.java)
+        val intent = Intent(requireActivity(), BudgetActivity::class.java)
         startActivityForResult(intent, NEW_BUDGET_REQUEST)
     }
 
@@ -167,7 +167,7 @@ class BudgetListFragment: AbstractListFragment(R.layout.budget_list) {
         }
         val b = db!!.load(Budget::class.java, id)
         if (b.parentBudgetId > 0) {
-            AlertDialog.Builder(activity!!)
+            AlertDialog.Builder(requireActivity())
                     .setMessage(R.string.delete_budget_recurring_select)
                     .setPositiveButton(R.string.delete_budget_one_entry) { arg0, arg1 ->
                         db!!.deleteBudgetOneEntry(id)
@@ -181,7 +181,7 @@ class BudgetListFragment: AbstractListFragment(R.layout.budget_list) {
                     .show()
         } else {
             val recur = RecurUtils.createFromExtraString(b.recur)
-            AlertDialog.Builder(activity!!)
+            AlertDialog.Builder(requireActivity())
                     .setMessage(if (recur.interval === RecurInterval.NO_RECUR) R.string.delete_budget_confirm else R.string.delete_budget_recurring_confirm)
                     .setPositiveButton(R.string.yes) { _, _ ->
                         db!!.deleteBudget(id)
@@ -199,10 +199,10 @@ class BudgetListFragment: AbstractListFragment(R.layout.budget_list) {
         val b = db!!.load(Budget::class.java, id)
         val recur = b.getRecur()
         if (recur.interval !== RecurInterval.NO_RECUR) {
-            val t: Toast = Toast.makeText(activity!!, R.string.edit_recurring_budget, Toast.LENGTH_LONG)
+            val t: Toast = Toast.makeText(requireActivity(), R.string.edit_recurring_budget, Toast.LENGTH_LONG)
             t.show()
         }
-        val intent = Intent(activity!!, BudgetActivity::class.java)
+        val intent = Intent(requireActivity(), BudgetActivity::class.java)
         intent.putExtra(BudgetActivity.BUDGET_ID_EXTRA, if (b.parentBudgetId > 0) b.parentBudgetId else id)
         startActivityForResult(intent, EDIT_BUDGET_REQUEST)
     }
@@ -212,7 +212,7 @@ class BudgetListFragment: AbstractListFragment(R.layout.budget_list) {
             return
         }
         val b = db!!.load(Budget::class.java, id)
-        val intent = Intent(activity!!, BudgetBlotterActivity::class.java)
+        val intent = Intent(requireActivity(), BudgetBlotterActivity::class.java)
         Criteria.eq(BlotterFilter.BUDGET_ID, id.toString())
                 .toIntent(b.title, intent)
         startActivityForResult(intent, VIEW_BUDGET_REQUEST)
@@ -235,7 +235,7 @@ class BudgetListFragment: AbstractListFragment(R.layout.budget_list) {
 
         override fun onPostExecute(result: Total) {
             if (isRunning && this@BudgetListFragment.activity != null) {
-                val u = Utils(this@BudgetListFragment.activity!!)
+                val u = Utils(this@BudgetListFragment.requireActivity())
                 u.setTotal(totalText, result)
                 (adapter as BudgetListAdapter).notifyDataSetChanged()
             }
