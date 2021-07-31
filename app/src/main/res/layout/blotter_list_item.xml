@@ -58,6 +58,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:text="Center"
+        android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView

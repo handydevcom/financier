@@ -39,7 +39,8 @@
             android:ellipsize="marquee"
             android:singleLine="true"
             android:text="center"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
             android:id="@+id/right_center"
