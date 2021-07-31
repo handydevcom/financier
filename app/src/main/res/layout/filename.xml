@@ -13,7 +13,7 @@
               android:text="@string/file_name"/>
     <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent"
                   android:layout_height="wrap_content">
-        <EditText android:layout_weight="1" android:layout_width="wrap_content"
+        <EditText android:layout_weight="1" android:layout_width="0dp"
                   android:layout_height="wrap_content"
                   android:id="@+id/edFilename" android:singleLine="true">
             <requestFocus/>

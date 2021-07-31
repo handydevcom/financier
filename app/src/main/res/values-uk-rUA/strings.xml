@@ -12,59 +12,42 @@
   <string name="save">Зберегти</string>
   <string name="cancel">Скасувати</string>
   <string name="close">Закрити</string>
-  <string name="edit_account">Редагування рахунку</string>
-  <string name="add_account">Додати рахунок</string>
-  <string name="title">Назва</string>
+    <string name="title">Назва</string>
   <string name="payee">Одержувач</string>
   <string name="currency">Валюта</string>
-  <string name="add_currency">Додати валюту</string>
-  <string name="opening_amount">Початковий баланс</string>
+    <string name="opening_amount">Початковий баланс</string>
   <string name="limit_amount">Ліміт</string>
   <string name="view">Переглянути</string>
   <string name="edit">Редагувати</string>
   <string name="delete">Видалити</string>
-  <string name="add_transaction">Додати транзакцію</string>
-  <string name="account">Рахунок</string>
+    <string name="account">Рахунок</string>
   <string name="category">Категорія</string>
-  <string name="add_category">Додати категорію</string>
-  <string name="income">Прихід</string>
+    <string name="income">Прихід</string>
   <string name="expense">Розхід</string>
   <string name="amount">Сума</string>
   <string name="date">Дата</string>
-  <string name="time">Час</string>
-  <string name="parent">Батьківська категорія</string>
-  <string name="total">Загалом:</string>
-  <string name="filter">Фільтр</string>
+    <string name="filter">Фільтр</string>
   <string name="no_filter">Без фільтру</string>
   <string name="transfer">Перевід</string>
-  <string name="confirmation">Підтвердження</string>
-  <string name="delete_category_dialog">Видалити категорію, а також всі підкатегорії (якщо є)?</string>
+    <string name="delete_category_dialog">Видалити категорію, а також всі підкатегорії (якщо є)?</string>
   <string name="currency_delete_alert">Не можна видалити валюту, що використовується.</string>
   <string name="yes">Так</string>
   <string name="no">Ні</string>
-  <string name="error">Помилка</string>
-  <string name="include_subcategories">Включати підкатегорії</string>
+    <string name="include_subcategories">Включати підкатегорії</string>
   <string name="include_subcategories_summary">Додавати транзакції із підкатегорій</string>
   <string name="start_date">Дата початку</string>
-  <string name="end_date">Дата закінчення</string>
-  <string name="budget">Бюджет</string>
-  <string name="no_limit">Без ліміта</string>
-  <string name="period">Період</string>
+    <string name="budget">Бюджет</string>
+    <string name="period">Період</string>
   <string name="period_from">Початок періоду</string>
   <string name="period_to">Кінець періоду</string>
   <string name="period_recur">Повторення</string>
   <string name="preferences">Налаштування</string>
-  <string name="amount_picker">Введення суми</string>
-  <string name="integer_part_title">Кіл-сть розрядів</string>
-  <string name="use_hundredth_title">Використовувати копійки</string>
-  <string name="project">Проект</string>
+    <string name="project">Проект</string>
   <string name="select_account">Будь ласка, оберіть рахунок...</string>
   <string name="select_currency">Будь ласка, виберіть валюту...</string>
   <string name="select_category">Будь ласка, оберіть категорію...</string>
-  <string name="select_payee">Будь ласка, оберіть одержувача...</string>
-  <string name="autocomplete_filter_hint">Почніть друкувати…</string>
-  <string name="select_project">Будь ласка, виберіть проект...</string>
-  <string name="warning">Увага</string>
+    <string name="autocomplete_filter_hint">Почніть друкувати…</string>
+    <string name="warning">Увага</string>
   <string name="no_accounts">Почніть зі створення рахунку. Натисніть на зелений \'+\' внизу...</string>
   <string name="no_budgets">Немає бюджетів</string>
   <string name="no_transactions">Немає транзакцій</string>
@@ -79,29 +62,18 @@
   <string name="rate">Курс</string>
   <string name="no_rate">Немаю курсу</string>
   <string name="transaction">Транзакція</string>
-  <string name="transaction_title">Нова транзакція</string>
-  <string name="transfer_title">Новий перевід</string>
-  <string name="about">Про програму</string>
-  <string name="about_copyright2">Всі права застережено</string>
-  <string name="menu">Меню</string>
+    <string name="about">Про програму</string>
+    <string name="menu">Меню</string>
   <string name="location">Місцезнаходження</string>
   <string name="locations">Місцезнаходження</string>
   <string name="no_locations">Немає місцезнаходжень</string>
-  <string name="use_gps">Використовувати GPS</string>
-  <string name="use_gps_summary">Використання GPS, щоб отримати поточне розташування для операції</string>
-  <string name="use_my_location">Використовувати моє розташування</string>
-  <string name="use_my_location_summary">Використовувати Моє Розташування для нових дій</string>
-  <string name="select_location">Виберіть місцезнахождення</string>
-  <string name="no_fix">Невизначенне місцезнаходження</string>
+    <string name="no_fix">Невизначенне місцезнаходження</string>
   <string name="attribute">Атрибут</string>
   <string name="attributes">Атрибути</string>
   <string name="parent_attributes">Материнські атрибути</string>
-  <string name="change_attributes">Змінити атрибути</string>
-  <string name="calculator">Калькулятор</string>
-  <string name="no_attributes">Без атрибутів</string>
+    <string name="no_attributes">Без атрибутів</string>
   <string name="add_attribute">Додати атрибут</string>
-  <string name="new_attribute">Новий атрибут</string>
-  <string-array name="attribute_types">
+    <string-array name="attribute_types">
     <item>Текст</item>
     <item>Число</item>
     <item>Список</item>
@@ -116,25 +88,12 @@
   <string name="checkbox_values_yes">Так</string>
   <string name="checkbox_values_no">Ні</string>
   <string name="checkbox_values_hint">Так;Ні</string>
-  <string name="location_name">Ім\'я розташування</string>
-  <string name="satellite_on">Супутник вкл.</string>
-  <string name="satellite_off">Супутник викл.</string>
-  <string name="my_location">Моє розташування</string>
-  <string name="move_marker_to_center">Маркер на центр</string>
-  <string name="move_go_to_marker">Перейти до маркера</string>
-  <string name="tap_location">Нажміть на вказівник \"Моє місцезнаходження\"</string>
-  <string name="note">Примітка</string>
+    <string name="note">Примітка</string>
   <string name="note_text_containing">Примітка містить</string>
   <string name="note_text_containing_value">Містить \"%1$s\"</string>
-  <string name="service_is_not_available">Служба недоступна, будь ласка, спробуйте ще раз пізніше</string>
-  <string name="resolve_address">Визначити адресу</string>
-  <string name="resolving_address">Визначення адреси...</string>
-  <string name="report">Звіт</string>
+    <string name="report">Звіт</string>
   <string name="reports">Звіти</string>
-  <string name="no_reports">Немає звітів</string>
-  <string name="select_report">Будь ласка, виберіть звіт...</string>
-  <string name="overall">Загальний</string>
-  <string name="report_by_period">За період</string>
+    <string name="report_by_period">За період</string>
   <string name="report_by_period_summary">Звіт за періодом</string>
   <string name="report_by_category">За категоріями</string>
   <string name="report_by_category_summary">Звіт за категоріями</string>
@@ -192,12 +151,7 @@
   <string name="delete_budget_one_entry">Цей запис</string>
   <string name="delete_budget_all_entries">Усі записи</string>
   <string name="edit_recurring_budget">Ви редагуєте бюджет який повторюється, зміни торкнуться всіх повтореннь</string>
-  <string-array name="account_types">
-    <item>Банк</item>
-    <item>Готівка</item>
-    <item>Кредитка</item>
-  </string-array>
-  <string name="account_type">Тип рахунку</string>
+    <string name="account_type">Тип рахунку</string>
   <string name="card_issuer">Емітент</string>
   <string name="account_type_cash">Готівка</string>
   <string name="account_type_bank">Банківський рахунок</string>
@@ -206,14 +160,11 @@
   <string name="account_type_asset">Актив</string>
   <string name="account_type_liability">Пасив</string>
   <string name="account_type_other">Інші</string>
-  <string name="card_type">Тип картки</string>
-  <string name="card_number">Номер картки</string>
+    <string name="card_number">Номер картки</string>
   <string name="card_number_hint">Останні 4 цифри номера картки</string>
   <string name="issuer">Емітент</string>
-  <string name="cash">Готівка</string>
-  <string name="sort_order">Порядок сортування</string>
-  <string name="force_gps_location">Форсувати GPS місцезнаходження</string>
-  <string name="whats_new">Що нового</string>
+    <string name="sort_order">Порядок сортування</string>
+    <string name="whats_new">Що нового</string>
   <string name="attribute_delete_alert">Атрибут буде видалений з категорій і транзакцій</string>
   <string name="user_interface">Інтерфейс користувача</string>
   <string name="sort_accounts">Сортування рахунків</string>
@@ -249,51 +200,34 @@
     <item>Від новіших до старіших</item>
     <item>Від старіших до новіших</item>
   </string-array>
-  <string name="more_products">Більше продуктів...</string>
-  <string name="pin_protection">PIN-код захисту</string>
+    <string name="pin_protection">PIN-код захисту</string>
   <string name="pin_protection_summary">Поставте, щоб захистити запуск PIN-кодом</string>
-  <string name="pin_protection_notify">Будь ласка, встановіть PIN-код в налаштуваннях</string>
-  <string name="change_pin">Змінити PIN-код</string>
-  <string name="change_pin_summary">Змінити PIN-код</string>
-  <string name="pin">PIN-КОД</string>
-  <string name="set_pin">Встановити PIN-код</string>
+    <string name="change_pin">Змінити PIN-код</string>
+    <string name="set_pin">Встановити PIN-код</string>
   <string name="confirm_pin">Підтвердьте PIN-код</string>
   <string name="restore">Відновити</string>
   <string name="backup_database">Резервне копіювання бази даних</string>
   <string name="backup_database_inprogress">Резервне копіювання бази даних...</string>
-  <string name="backup_database_gdocs">Зробити резервну копію на Google Drive</string>
-  <string name="backup_database_gdocs_inprogress">Резервне копіювання бази даних...</string>
+    <string name="backup_database_gdocs_inprogress">Резервне копіювання бази даних...</string>
   <string name="csv_export">Експорт у формат CSV</string>
   <string name="csv_export_inprogress">Експорт бази даних в CSV...</string>
   <string name="restore_database">Відновлення бази даних</string>
   <string name="restore_database_inprogress">Відновлення бази даних...</string>
-  <string name="restore_database_gdocs">Відновити з Google Drive</string>
-  <string name="restore_database_inprogress_gdocs">Відновлення бази даних...</string>
-  <string name="restore_database_inprogress_dropbox">Відновлення бази даних...</string>
+    <string name="restore_database_inprogress_dropbox">Відновлення бази даних...</string>
   <string name="restore_database_success">Базу даних успішно відновлено.</string>
   <string name="gdocs_connection_failed">Не можна підключитися до Google Диска.</string>
-  <string name="gdocs_folder_not_found">Резервну папку на Google Диску не знайдено.</string>
-  <string name="gdocs_credentials_not_configured">Будь ласка, встановіть Google логін і пароль у налаштуваннях.</string>
-  <string name="gdocs_folder_not_configured">Вкажіть папку резервної копії Google Диску у налаштуваннях.</string>
-  <string name="gdocs_backup_failed">Помилка надсилання файлу резервної копії Google Диску. Будь ласка, спробуйте ще раз.</string>
-  <string name="gdocs_restore_failed">Помилка під час отримання файлу резервної копії. Будь ласка, спробуйте ще раз.</string>
+    <string name="gdocs_folder_not_configured">Вкажіть папку резервної копії Google Диску у налаштуваннях.</string>
 
-  <string name="gdocs_folder_error">Помилка доступу до папки в Google Диску.</string>
-  <string name="gdocs_service_error">Помилка, служба не доступна в Google Диску.</string>
-  <string name="gdocs_io_error">Помилка підключення з Google Диском.</string>
-
-  <string name="success">Успішно! %s</string>
+    <string name="success">Успішно! %s</string>
   <string name="fail">Невдало...</string>
   <string name="duplicate">Дублювати</string>
   <string name="select_from_account">Виберіть рахунок джерело...</string>
   <string name="select_to_account">Виберіть рахунок одержувач...</string>
-  <string name="update_balance">Оновити баланс</string>
-  <string name="close_account">Закрити рахунок</string>
+    <string name="close_account">Закрити рахунок</string>
   <string name="close_account_confirm">Закрити рахунок?</string>
   <string name="reopen_account">Перевідкрити рахунок</string>
   <string name="difference">Різниця</string>
-  <string name="new_balance">Новий баланс</string>
-  <string name="duplicate_success">Транзакцію дублюється з поточної дати та часу</string>
+    <string name="duplicate_success">Транзакцію дублюється з поточної дати та часу</string>
   <string name="duplicate_success_with_multiplier">Транзакцію дублюється з поточної дати та часу (x%d)</string>
   <string name="no_category">Без категорії</string>
   <string name="no_project">Без проекту</string>
@@ -309,9 +243,7 @@
   <string name="show_location_order_summary">Відносне положення списку місць на екрані</string>
   <string name="show_payee">Показувати одержувача</string>
   <string name="show_payee_summary">Показувати поле вводу одержувача (потрібне перезавантаження!)</string>
-  <string name="show_payee_order">Порядок списку одержувача</string>
-  <string name="show_payee_order_summary">Відносне положення поля одержувача на екрані</string>
-  <string name="show_note">Показувати примітки</string>
+    <string name="show_note">Показувати примітки</string>
   <string name="show_note_summary">Показувати поле вводу приміток</string>
   <string name="show_note_order">Порядок поля приміток</string>
   <string name="show_note_order_summary">Відносне положення поля приміток на екрані</string>
@@ -330,16 +262,13 @@
   <string name="position_move_up">Переміщення вгору</string>
   <string name="position_move_down">Переміщення вниз</string>
   <string name="position_move_bottom">Перемістити в кінець</string>
-  <string name="add_sibling">Додати поруч</string>
-  <string name="add_child">Додати всередину</string>
-  <string name="interval">Інтервал</string>
+    <string name="interval">Інтервал</string>
   <string name="recur_interval">Інтервал повторення</string>
   <string name="recur_interval_no_recur">Без повторень</string>
   <string name="recur_interval_every_x_day">Повторювати кожний x день</string>
   <string name="recur_interval_every_x_week">Повторювати кожний x тиждень</string>
   <string name="recur_interval_every_x_month">Повторювати кожний x місяць</string>
-  <string name="recur_interval_every_x_year">Повторювати кожний X рік</string>
-  <string name="recur_interval_daily">Щодня</string>
+    <string name="recur_interval_daily">Щодня</string>
   <string name="recur_interval_weekly">Щотижня</string>
   <string name="recur_interval_monthly">Щомісяця</string>
   <string name="recur_interval_semi_monthly">Два рази на місяць</string>
@@ -352,8 +281,7 @@
   <string name="recur_period_every">Кожен</string>
   <string name="recur_period_days">день (днів)</string>
   <string name="recur_period_semi_monthly">У такі дні</string>
-  <string name="recur_repeat_indefinitely">На невизначений час</string>
-  <string name="recur_repeat_exactly">Точно</string>
+    <string name="recur_repeat_exactly">Точно</string>
   <string name="recur_repeat_times">разів</string>
   <string name="recur_repeat_starts_on">Почати:</string>
   <string name="recur_repeat_stops_on">Зупинити:</string>
@@ -362,8 +290,7 @@
   <string name="recur_error_specify_second_day">Вкажіть другий день</string>
   <string name="recur_error_specify_times">Вкажіть, скільки разів</string>
   <string name="recur">Повторення</string>
-  <string name="recur_period">Період</string>
-  <string name="day_mon">Пн</string>
+    <string name="day_mon">Пн</string>
   <string name="day_tue">Вт</string>
   <string name="day_wed">Ср</string>
   <string name="day_thr">Чт</string>
@@ -381,11 +308,7 @@
   <string name="budget_mode">Пом\'ягшити умови</string>
   <string name="budget_mode_summary">Використовувати менш обмежувальні умови (категорія АБО проект) для фільтрації транзакцій</string>
   <string name="gdocs_backup">Резервна копія Google Диску</string>
-  <string name="user_login">Логін</string>
-  <string name="user_login_summary">Google Логін (ім\'я користувача)</string>
-  <string name="user_password">Пароль</string>
-  <string name="user_password_summary">Пароль облікового запису Google</string>
-  <string name="backup_folder">Резервна папка</string>
+    <string name="backup_folder">Резервна папка</string>
   <string name="backup_folder_summary">Для зберігання файлів резервної копії створити нову папку в Мій диск</string>
 
   <string name="report_preferences">Параметри звіту</string>
@@ -466,15 +389,13 @@
   <string name="recur_interval_geeky">Чи те того варте?</string>
   <string name="recurrence_pattern">Шаблон повторення</string>
   <string name="recurrence_period">Період повторення</string>
-  <string name="recurrence_period_starts_on">Почати з</string>
-  <string name="recurrence_weekly_days">Повторювати по</string>
+    <string name="recurrence_weekly_days">Повторювати по</string>
   <string name="recurrence_monthly_pattern">Щомісячно</string>
   <string name="recurrence_monthly_every_nth_day">Кожнмй N-ий день</string>
   <string name="recurrence_monthly_specific_day">Конкретний день</string>
   <string name="recur_interval_semi_monthly_1">1-й день</string>
   <string name="recur_interval_semi_monthly_2">2-й день</string>
-  <string name="recurrence_none">Без повторення</string>
-  <string name="specify_value">Вкажіть значення...</string>
+    <string name="specify_value">Вкажіть значення...</string>
   <string name="recurrence_evaluate">Розрахувати дати</string>
   <string name="first">Перший</string>
   <string name="second">Другий</string>
@@ -505,8 +426,7 @@
   <string name="new_scheduled_transfer_notification_differ_currency" formatted="false">%s(%s) переказано з %s на %s</string>
   <string name="new_scheduled_transfer_notification_same_currency" formatted="false">%s переказано з %s на %s</string>
   <string name="notification">Сповіщення</string>
-  <string name="notification_options_on">Вкл.</string>
-  <string name="notification_options_off">Викл.</string>
+    <string name="notification_options_off">Викл.</string>
   <string name="notification_options_short">Z</string>
   <string name="notification_options_2_short">Z-Z</string>
   <string name="notification_options_3_short">Z-Z-Z</string>
@@ -518,8 +438,7 @@
   <string name="notification_options_led_yellow">Жовтий</string>
   <string name="notification_options_led_red">Червоний</string>
   <string name="notification_options_led_pink">Рожевий</string>
-  <string name="notification_options_text" formatted="false">Звук:%s Вібрація:%s Світло:%s</string>
-  <string name="notification_options_custom">Нетиповий</string>
+    <string name="notification_options_custom">Нетиповий</string>
   <string name="notification_options_default">За замовчуванням</string>
   <string name="notification_sound">Мелодія</string>
   <string name="notification_vibra">Вібрація</string>
@@ -529,10 +448,7 @@
   <string name="transaction_status_unreconciled">Не вивірено</string>
   <string name="transaction_status_cleared">Заплачено</string>
   <string name="transaction_status_reconciled">Вивірено</string>
-  <string name="scheduled">(заплановано)</string>
-  <string name="expired">(протерміновано)</string>
-  <string name="pending">(очікування)</string>
-  <string name="system_attribute_delete_after_expired">Видалити після закінчення терміну дії</string>
+    <string name="system_attribute_delete_after_expired">Видалити після закінчення терміну дії</string>
   <string name="no_transaction_found">Немає транзакції, необхідно перезавантажити Financier…</string>
   <string name="include_credit">Включити прибуток</string>
   <string name="include_credit_summary">Включати доходи (надходження або прибутки) в увесь бюджет</string>
@@ -541,14 +457,10 @@
   <string name="attach_picture">Прикріпити зображення</string>
   <string name="new_picture">Зробити знімок</string>
 
-  <string name="credits">Подяка</string>
-  <string name="sort_by_title">Сортувати за назвою</string>
-  <string name="sort_all_by_title">Сортувати все за назвою</string>
-  <string name="include_transfers_into_reports">Перекази у звітах</string>
+    <string name="sort_by_title">Сортувати за назвою</string>
+    <string name="include_transfers_into_reports">Перекази у звітах</string>
   <string name="include_transfers_into_reports_summary">Включити перекази у звіти</string>
-  <string name="negative_opening_amount">Від\'ємний баланс</string>
-  <string name="negative_opening_amount_summary">Відкрити рахунок з від\'ємним балансом</string>
-  <string name="payment_day">День оплати</string>
+    <string name="payment_day">День оплати</string>
   <string name="closing_day">Розрахунковий день</string>
   <string name="payment_day_hint">День, в який ви оплачуєте рахунок кредитної картки.</string>
   <string name="closing_day_hint">День, в який здійснюють оплату</string>
@@ -563,8 +475,7 @@
 
   <string name="ccard_statement">Виписка</string>
   <string name="monthly_view">Виписка за місяць</string>
-  <string name="credit_card_statement">Виписка за кредитною карткою</string>
-  <string name="ccard_statement_title">&lt;ccard&gt; Виписка</string>
+    <string name="ccard_statement_title">&lt;ccard&gt; Виписка</string>
   <string name="ccard_par">&lt;ccard&gt;</string>
   <string name="bill_on">Рахунок на </string>
   <string name="monthly_result">Баланс на місяць</string>
@@ -579,10 +490,8 @@
   <string name="ui_language">Мова</string>
   <string name="ui_language_summary">Встановіть мову інтерфейсу (потрібне перезавантаження!)</string>
 
-  <string name="enter_pin">Введіть PIN</string>
-  <string name="mass_operations">Масові операції</string>
-  <string name="account_type_paypal">PayPal</string>
-  <string name="mass_operations_use_filter">Використовувати фільтр для пошуку транзакцій</string>
+    <string name="mass_operations">Масові операції</string>
+    <string name="mass_operations_use_filter">Використовувати фільтр для пошуку транзакцій</string>
   <string name="mass_operations_clear_all">Очистити все</string>
   <string name="mass_operations_reconcile">Узгодити все</string>
   <string name="mass_operations_delete">Видалити все</string>
@@ -606,15 +515,11 @@
   <string name="no_payee">Без одержувачів</string>
   <string name="no_payees">Без одержувачів</string>
   <string name="report_no_payee">Не знайдено одержувачів за вказаним фільтром у звіті.</string>
-  <string name="donate">Зробити пожертву</string>
-  <string name="donate_error">Android Маркет недоступний на вашому пристрої</string>
-  <string name="type">Тип</string>
 
-  <string name="qif_export">Експорт QIF</string>
+    <string name="qif_export">Експорт QIF</string>
   <string name="qif_export_inprogress">Експортування даних до QIF...</string>
   <string name="all_accounts">Усі рахунки</string>
-  <string name="filter_value_not_found">Не знайдено...</string>
-  <string name="empty_report">Порожній звіт</string>
+    <string name="empty_report">Порожній звіт</string>
   <string name="day_of_month">День місяця</string>
 
   <string name="show_running_balance">Відображати поточний баланс</string>
@@ -652,16 +557,11 @@
   <string name="downloading_rates">Завантажити курс валют з %s…</string>
 
   <string name="unsplit_adjust_amount">Сума</string>
-  <string name="unsplit_adjust_amount_summary">Відкорегувати суму</string>
-  <string name="unsplit_adjust_evenly">Рівномірно</string>
-  <string name="unsplit_adjust_evenly_summary">Поділити порівно</string>
-  <string name="unsplit_adjust_last">Останній</string>
-  <string name="unsplit_adjust_last_summary">Коригувати останню</string>
+    <string name="unsplit_adjust_evenly">Рівномірно</string>
+    <string name="unsplit_adjust_last">Останній</string>
 
-  <string name="add_transfer">Додати переказ</string>
-  <string name="file_name">Ім\'я файла</string>
-  <string name="choose_account">Оберіть рахунок</string>
-  <string name="no_filemanager_installed">Не встановлений файловий менеджер</string>
+    <string name="file_name">Ім\'я файла</string>
+    <string name="no_filemanager_installed">Не встановлений файловий менеджер</string>
   <string name="csv_import">CSV імпорт</string>
   <string name="csv_import_inprogress">Імпорт даних з CSV...</string>
   <string name="select_filename">Вибрати ім\'я файлу імпорту</string>
@@ -682,15 +582,7 @@
   <string name="import_export">Імпорт/експорт</string>
   <string name="qif_import_disclaimer">*ПОПЕРЕДЖЕННЯ* Зверніть увагу, що всі існуючі дані будуть видалені!</string>
 
-  <string name="googledrive" translatable="false">Google Диск</string>
-  <string name="googledrive_authorize">Включити синхронізацію з Google Диском</string>
-  <string name="googledrive_authorize_summary">Синхронізація зображень з Диском</string>
-  <string name="googledrive_upload">Вивантжувати зображення</string>
-  <string name="googledrive_upload_summary">Вивантжувати прикріплені зображеннядо Google Диску</string>
-  <string name="googledrive_folder">Папка Google Диск </string>
-  <string name="googledrive_folder_summary">Виберіть папку Google Диску для збереження зображень</string>
-
-  <string name="remember_last_category_for_payee">Остання категорія</string>
+    <string name="remember_last_category_for_payee">Остання категорія</string>
   <string name="remember_last_category_for_payee_summary">Запам\'ятати останню категорію для обраного одержувача (або рахунку, якщо поле одержувача вимкнене)</string>
 
   <string name="currency_symbol_format">Формат символу</string>
@@ -700,8 +592,7 @@
   <string name="balance">Баланс</string>
   <string name="show_category_in_transfer">Категорія переказу</string>
   <string name="show_category_in_transfer_summary">Показувати вибір категорії у екрані Нового переказу</string>
-  <string name="auto_backup">Авторезервування</string>
-  <string name="auto_backup_enabled">Увімкнути авторезервування</string>
+    <string name="auto_backup_enabled">Увімкнути авторезервування</string>
   <string name="auto_backup_enabled_summary">Резервувати базу даних щодня у зазначений час</string>
   <string name="auto_backup_time">Час авторезервування</string>
   <string name="auto_backup_time_summary" formatted="false">Щодня резервувати о %02d:%02d</string>
@@ -762,14 +653,11 @@
   <string name="blotter_total_in_currency">Усі %s транзакції</string>
   <string name="budget_total_in_currency">Усіх %s бюджети</string>
   <string name="home_currency_total">Всього в домашній валюті</string>
-  <string name="total_rate">Курс: %0.5f</string>
-  <string name="home_currency">Домашня валюта</string>
-  <string name="upload_to_dropbox">Завантажити у\nDropbox</string>
+    <string name="upload_to_dropbox">Завантажити у\nDropbox</string>
   <string name="not_available">Н/Д</string>
   <string name="rate_not_available_on_date_error" formatted="false">Немає обмінного курсу на %s, щоб обчислити суму від %s до %s</string>
-  <string name="rate_not_available_error" formatted="false">Немає обмінного курсу від %s до %s</string>
 
-  <string name="collapse_blotter_buttons">Об\'єднати кнопки журналу</string>
+    <string name="collapse_blotter_buttons">Об\'єднати кнопки журналу</string>
   <string name="collapse_blotter_buttons_summary">Групувати разом кнопки Нова транзакція/Переказ/Шаблон (потрібний перезапуск)</string>
 
   <string name="is_active">Активний</string>
@@ -798,8 +686,7 @@
   <string name="blotter_screen_summary">Налаштування журналу</string>
   <string name="hide_closed_accounts">Приховати закриті рахунки</string>
   <string name="hide_closed_accounts_summary">Показати або приховати закриті рахунки у списку рахунків (потрібний перезапуск)</string>
-  <string name="re_index_categories">Переіндексувати</string>
-  <string name="startup_screen">Екран запуску</string>
+    <string name="startup_screen">Екран запуску</string>
   <string name="startup_screen_summary">Виберіть вкладку, яка буде обрана під час запуску</string>
   <string-array name="startup_screen_entities">
     <item>Рахунки</item>
@@ -840,52 +727,36 @@
 
   <string name="period_tomorrow">Завтра</string>
   <string name="period_next_week">Наступний тиждень</string>
-  <string name="period_this_and_next_week">Це та наступний тиждень</string>
-  <string name="period_next_month">Наступний місяць</string>
+    <string name="period_next_month">Наступний місяць</string>
   <string name="period_this_and_next_month">Це та наступний місяць</string>
   <string name="period_next_3_months">Наступні 3 місяці</string>
 
-  <string name="exchange_rate_provider_error">Щось не так з постачальником валютних курсів. Відповідь від сервісу- %s</string>
-  <string name="exchange_rate_provider">Постачальник курсів валют</string>
+    <string name="exchange_rate_provider">Постачальник курсів валют</string>
   <string name="exchange_rate_provider_summary">Вибрати постачальника курсів валют для завантаження</string>
   <string name="openexchangerates_app_id" translatable="false">OpenExchangeRates App ID</string>
   <string name="openexchangerates_app_id_summary">Зареєструйте безкоштовний акаунт на OpenExchangeRates і введіть ваш App ID</string>
-  <string name="download_all_rates">Завантажити всі курси</string>
-  <string name="downloading_rates_result">Завантажені курси валют</string>
+    <string name="downloading_rates_result">Завантажені курси валют</string>
 
-  <string name="export_splits">Експорт розділень</string>
-
-  <string name="account_by_currency">Усі %s рахунки</string>
+    <string name="account_by_currency">Усі %s рахунки</string>
   <string name="budget_type_saving">Збереження</string>
   <string name="budget_type_saving_summary">Бюджет з метою заощадити гроші</string>
   <string name="pin_protection_haptic_feedback">Вібрація</string>
   <string name="pin_protection_haptic_feedback_summary">Вібрація при натисканні кнопок PIN або калькулятора</string>
-  <string name="offline_rate">Немає підключення до мережі, був використаний останні завантажені тарифи…</string>
 
-  <string name="show_payee_in_transfer">Одержувач переказу</string>
+    <string name="show_payee_in_transfer">Одержувач переказу</string>
   <string name="show_payee_in_transfer_summary">Показувати поле одержувача під час нового Переказу</string>
   <string name="google_drive_backup_account">Аккаунт для резервування</string>
   <string name="google_drive_backup_account_summary">Вибрати аккаунт Google Диску</string>
-  <string name="google_drive_permission_requested">Потрібен дозвіл</string>
-  <string name="google_drive_permission_requested_for_account">для рахунку %s</string>
-  <string name="google_drive_permission_required">Будь ласка, авторизуйтесь Financier для доступу до Google Drive та спробуйте ще раз…</string>
-  <string name="google_drive_loading_files">Завантаження файлів з Google Диску…</string>
-  <string name="google_drive_account_required">Будь ласка, вкажіть свій обліковий запис Google Диска в Налаштуваннях, потім спробуйте ще раз…</string>
-  <string name="google_drive_backup_success">Резервне копіювання здійснено на Google Диск: %s</string>
+    <string name="google_drive_loading_files">Завантаження файлів з Google Диску…</string>
+    <string name="google_drive_backup_success">Резервне копіювання здійснено на Google Диск: %s</string>
   <string name="google_drive_restore_in_progress">Відновлення бази даних з Диску Google…</string>
   <string name="google_drive_connection_resolved">З\'єднання встановлено. Будь ласка, спробуйте останню операцію ще раз…</string>
   <string name="google_drive_connection_failed">Неможливо підключитися до Google Диска:\n%s</string>
-  <string name="google_drive_account_select_error">Не моливо вибрати обліковий запис Google для використання. Виглядає що ваш пристрій не підтримує  сервіси Google Play.</string>
-  <string name="google_drive_backup_full_readonly">Доступ тільки на читання</string>
-  <string name="google_drive_backup_full_readonly_summary">Дозволити доступ тільки на читання усіх файлів на Google Диску</string>
-  <string name="google_drive_uploading_file">Завантажити тестовий файл на Диск Google...</string>
+    <string name="google_drive_uploading_file">Завантажити тестовий файл на Диск Google...</string>
   <string name="google_drive_upload_backup">Вивантажувати копії бази</string>
   <string name="google_drive_upload_backup_summary">Вивантажувати копії бази на Google Диск</string>
-  <string name="google_drive_upload_autobackup">Вивантажувати авт. копії</string>
-  <string name="google_drive_upload_autobackup_summary">Вивантажувати авт. копії бази на Google Диск</string>
 
-  <string name="backup_restore_database_online">Резевне копіювання/Відновлення Онлайн</string>
-  <string name="backup_database_online_google_drive">Резервне копіювання Google Диска</string>
+    <string name="backup_database_online_google_drive">Резервне копіювання Google Диска</string>
   <string name="restore_database_online_google_drive">Відновлення з Диску Google</string>
   <string name="backup_database_online_dropbox">Резервне копіювання Dropbox</string>
   <string name="restore_database_online_dropbox">Відновлення з Dropbox</string>
@@ -899,9 +770,7 @@
   <string name="request_permissions_camera_description">Потрібно для робити з зображеннями і додаванням їх до транзакцій.</string>
   <string name="request_permissions_get_accounts_title">Контакти</string>
   <string name="request_permissions_get_accounts_description">Потрібно для резервного копіювання в особистий Диск Google.</string>
-  <string name="request_permissions_granted">Дозволи надані.</string>
-  <string name="request_permissions_not_granted">Дозвіл не надано</string>
-  <string name="request_permissions_receive_sms_title">SMS</string>
+    <string name="request_permissions_receive_sms_title">SMS</string>
   <string name="request_permissions_receive_sms_description">Потрібно для додавання нових операцій автоматично по шаблонах SMS.</string>
   <string name="privacy_policy">Політика конфіденційності</string>
 
@@ -910,8 +779,7 @@
 
   <!-- SMS stuff >> -->
   <string name="sms_number">Номер SMS</string>
-  <string name="sms_tpl_filter_hint">Фільтрувати за номером або текстом</string>
-  <string name="sms_number_hint">Номер відправника SMS або ім\'я</string>
+    <string name="sms_number_hint">Номер відправника SMS або ім\'я</string>
   <string name="sms_tpl">Шаблони SMS</string>
   <string name="sms_tpl_title">Шаблон (?)</string>
   <string name="sms_tpl_desc">Заповнювачі: \n{{p}} - ціна\n{{a}} - цифри останнього облікового запису\n{{*}} - будь які символи/слова</string>
@@ -921,8 +789,7 @@
   <string name="no_sms_templates">Немає шаблонів SMS</string>
   <string name="add_sms_template">Додати шаблон SMS</string>
   <string name="new_sms_template">Новий шаблон SMS</string>
-  <string name="sort_sms_templates">Сортувати за іменем</string>
-  <string name="duplicate_sms_template">Шаблон SMS продубльовано</string>
+    <string name="duplicate_sms_template">Шаблон SMS продубльовано</string>
   <string name="sms_delete_alert">Видалити цей шаблон SMS?</string>
   <string name="new_sms_transaction_text">Нова операція додана SMS з %s</string>
   <string name="new_sms_transaction_title">Операція SMS з %s</string>
@@ -953,8 +820,7 @@
   <string name="mass_operations_summary">Застосувати операції для кількох транзакцій</string>
   <string name="planner_summary">Переглянути місячне планування</string>
   <string name="integrity_fix_summary">Виправити внутрішні проблеми, якщо необхідно</string>
-  <string name="donate_summary">Зробити добровільну пожертву для підтримки проекту</string>
-  <string name="about_summary">Отримати більш детальну інформацію про проект</string>
+    <string name="about_summary">Отримати більш детальну інформацію про проект</string>
 
   <string name="pin_warning">Будь ласка, не забудьте PIN. Немає способу відновити вашу інформацію або вимкнути захист, якщо ви втратите або забудете PIN.</string>
 
@@ -992,16 +858,12 @@
   <string name="inactive">Неактивний</string>
 
   <string name="entity_selector">Виберіть об\'єкт</string>
-  <string name="category_selector_title">Вибір категорії</string>
-  <string name="payee_selector_title">Вибір одержувача</string>
+    <string name="payee_selector_title">Вибір одержувача</string>
   <string name="location_selector_title">Вибір місцезнаходження</string>
   <string name="project_selector_title">Вибір проєкту</string>
   <string name="entity_selector_summary">Показати список або фільтр</string>
 
-  <string name="create_new_entity_with_title">Не вдалося знайти %1$s з заголовком \"%2$s\"? Створити новий, якщо відсутній?</string>
-  <string name="complete_category_selection">Не вдалося знайти наявну категорію з заголовком \"%s\"? Будь ласка, створіть нову, використовуючи кнопку + на селекторі категорій.</string>
-  <string name="list_all">Показати все</string>
-  <string name="type_template">Тип шаблону…</string>
+    <string name="type_template">Тип шаблону…</string>
 
   <string-array name="entity_selector_entities">
     <item>Показати фільтри</item>

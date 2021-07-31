@@ -545,7 +545,7 @@ open class DatabaseAdapter(context: Context?) : MyEntityManager(context) {
     }
 
     private fun insertAsLast(category: Category, tree: CategoryTree<Category>): Long {
-        val mateId = tree.getAt(tree.size() - 1)!!.id
+        val mateId = tree.getAt(tree.size() - 1).id
         return insertMateCategory(mateId, category)
     }
 
@@ -870,7 +870,7 @@ open class DatabaseAdapter(context: Context?) : MyEntityManager(context) {
         val values = ContentValues()
         val sid = arrayOfNulls<String>(1)
         for (c in tree) {
-            values.put(CategoryColumns.left.name, c!!.left)
+            values.put(CategoryColumns.left.name, c.left)
             values.put(CategoryColumns.right.name, c.right)
             sid[0] = c.id.toString()
             db().update(DatabaseHelper.CATEGORY_TABLE, values, WHERE_CATEGORY_ID, sid)
@@ -1225,8 +1225,7 @@ open class DatabaseAdapter(context: Context?) : MyEntityManager(context) {
                 CreditCardClosingDateColumns.PERIOD + "=?"
         val c = db().query(DatabaseHelper.CCARD_CLOSING_DATE_TABLE, arrayOf(CreditCardClosingDateColumns.CLOSING_DAY),
                 where, arrayOf(java.lang.Long.toString(accountId), Integer.toString(period)), null, null, null)
-        var res = 0
-        res = try {
+        var res = try {
             if (c != null) {
                 if (c.count > 0) {
                     c.moveToFirst()

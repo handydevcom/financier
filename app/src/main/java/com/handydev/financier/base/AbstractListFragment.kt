@@ -30,14 +30,14 @@ abstract class AbstractListFragment protected constructor(private val contentId:
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        db = DatabaseAdapter(activity!!)
+        db = DatabaseAdapter(requireActivity())
         db!!.open()
-        inflater = activity!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        inflater = requireActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         internalOnCreate(savedInstanceState)
         cursor = createCursor()
         recreateAdapter()
         listView.onItemLongClickListener = OnItemLongClickListener { _: AdapterView<*>?, view: View?, position: Int, id: Long ->
-            val popupMenu = PopupMenu(activity!!, view)
+            val popupMenu = PopupMenu(requireActivity(), view)
             val menu = popupMenu.menu
             val menus = createContextMenus(id)
             var i = 0
@@ -82,14 +82,14 @@ abstract class AbstractListFragment protected constructor(private val contentId:
     override fun onPause() {
         super.onPause()
         if(activity != null) {
-            if (enablePin) PinProtection.lock(activity!!)
+            if (enablePin) PinProtection.lock(requireActivity())
         }
     }
 
     override fun onResume() {
         super.onResume()
         if(activity != null) {
-            if (enablePin) PinProtection.unlock(activity!!)
+            if (enablePin) PinProtection.unlock(requireActivity())
         }
     }
 
@@ -149,13 +149,6 @@ abstract class AbstractListFragment protected constructor(private val contentId:
 
     override fun integrityCheck() {}
 
-    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-        if (resultCode == Activity.RESULT_OK) {
-            recreateCursor()
-        }
-    }
-
-    */
     companion object {
         const val MENU_VIEW = Menu.FIRST + 1
         const val MENU_EDIT = Menu.FIRST + 2

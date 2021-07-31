@@ -34,6 +34,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:drawSelectorOnTop="true"
+        android:listSelector="@drawable/selectable_list"
         android:cacheColorHint="@android:color/transparent"
         android:fastScrollEnabled="true" />
 

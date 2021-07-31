@@ -13,7 +13,7 @@
 	android:layout_height="wrap_content" android:layout_width="fill_parent">
 	<TextView android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:paddingRight="2dp" android:text="@string/recur_repeat_exactly"></TextView>
-	<EditText android:layout_width="wrap_content"
+	<EditText android:layout_width="0dp"
 		android:layout_height="wrap_content" android:layout_weight="1"
 		android:inputType="number" android:id="@+id/edTimes"></EditText>
 	<TextView android:layout_width="wrap_content"

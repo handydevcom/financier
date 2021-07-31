@@ -169,9 +169,7 @@ public class BlotterActivity extends AbstractListActivity implements IOTransacti
                 }
             });
 
-            searchTextClearButton.setOnClickListener(view -> {
-                searchText.setText("");
-            });
+            searchTextClearButton.setOnClickListener(view -> searchText.setText(""));
 
             if (searchLayout.getVisibility() == View.VISIBLE) {
                 imm.hideSoftInputFromWindow(searchLayout.getWindowToken(), 0);

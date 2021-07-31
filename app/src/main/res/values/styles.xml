@@ -66,10 +66,6 @@
         <item name="android:src">@drawable/ic_action_transfer</item>
     </style>
 
-    <style name="EditButton" parent="ListButton">
-        <item name="android:src">@drawable/ic_action_edit</item>
-    </style>
-
     <style name="FilterButton" parent="ListButton">
         <item name="android:src">@drawable/actionbar_filter</item>
     </style>
@@ -82,26 +78,6 @@
         <item name="android:src">@drawable/ic_action_list</item>
     </style>
 
-    <style name="DeleteButton" parent="ListButton">
-        <item name="android:src">@drawable/ic_action_trash</item>
-    </style>
-
-    <style name="UpButton">
-        <item name="android:src">@drawable/ic_btn_round_up</item>
-    </style>
-
-    <style name="DownButton">
-        <item name="android:src">@drawable/ic_btn_round_down</item>
-    </style>
-
-    <style name="TopButton">
-        <item name="android:src">@drawable/ic_btn_round_top</item>
-    </style>
-
-    <style name="BottomButton">
-        <item name="android:src">@drawable/ic_btn_round_bottom</item>
-    </style>
-
     <style name="UpDownButton" parent="ListButton">
         <item name="android:src">@drawable/ic_action_drag</item>
     </style>
@@ -112,10 +88,6 @@
 
     <style name="DownloadButton" parent="ListButton">
         <item name="android:src">@drawable/ic_action_download</item>
-    </style>
-
-    <style name="TallTitleBarTheme" parent="android:Theme.NoTitleBar">
-        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="ButtonBar">

@@ -1,0 +1,53 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  desc "Submit a new version to GitHub"
+  lane :github do
+    versionName = prompt(text: "Enter version name")
+    changelog = prompt(text: "Enter release notes")
+    gradle(
+           task: 'clean assemble',
+           build_type: 'release',
+           flavor: 'untied'
+        )
+        set_github_release(
+          repository_name: "handydevcom/financier",
+          api_token: ENV["GITHUB_TOKEN"],
+          name: versionName,
+          tag_name: versionName,
+          description: changelog,
+          commitish: "master",
+          upload_assets: ["./app/build/outputs/apk/untied/release/Financier.apk"]
+      )
+  end
+
+  desc "Deploy a new version to the Google Play"
+  lane :googleplay do
+    gradle(
+       task: 'clean assemble',
+       build_type: 'release',
+       flavor: 'googleplay'
+    )
+    upload_to_play_store
+  end
+end

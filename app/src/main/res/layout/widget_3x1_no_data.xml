@@ -44,7 +44,6 @@
         android:textColor="@android:color/white" />
 
     <ImageView
-        android:id="@+id/d1"
         android:layout_width="1px"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"

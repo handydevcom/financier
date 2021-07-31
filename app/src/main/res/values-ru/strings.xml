@@ -13,56 +13,40 @@
     <string name="save">Сохранить</string>
     <string name="cancel">Отмена</string>
     <string name="close">Закрыть</string>
-    <string name="edit_account">Редактировать счёт</string>
-    <string name="add_account">Добавить счёт</string>
     <string name="title">Название</string>
     <string name="payee">Получатель</string>
     <string name="currency">Валюта</string>
-    <string name="add_currency">Добавить валюту</string>
     <string name="opening_amount">Начальный баланс</string>
     <string name="limit_amount">Лимит</string>
     <string name="view">Просмотреть</string>
     <string name="edit">Редактировать</string>
     <string name="delete">Удалить</string>
-    <string name="add_transaction">Добавить транзакцию</string>
     <string name="account">Счёт</string>
     <string name="category">Категория</string>
-    <string name="add_category">Добавить категорию</string>
     <string name="income">Приход</string>
     <string name="expense">Расход</string>
     <string name="amount">Сумма</string>
     <string name="date">Дата</string>
-    <string name="time">Время</string>
-    <string name="parent">Родительская категория</string>
-    <string name="total">Итог:</string>
     <string name="filter">Фильтр</string>
     <string name="no_filter">Без фильтра</string>
     <string name="transfer">Перевод</string>
-    <string name="confirmation">Подтверждение</string>
     <string name="delete_category_dialog">Удалить категорию и все подкатегории (если есть)?</string>
     <string name="currency_delete_alert">Не могу удалить использующуюся валюту..</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
-    <string name="error">Ошибка</string>
     <string name="include_subcategories">Включить подкатегории</string>
     <string name="include_subcategories_summary">Добавлять транзакции из подкатегорий</string>
     <string name="start_date">Начальная дата</string>
-    <string name="end_date">Конечная дата</string>
     <string name="budget">Бюджет</string>
-    <string name="no_limit">Без лимита</string>
     <string name="period">Период</string>
     <string name="period_from">Начало периода</string>
     <string name="period_to">Конец периода</string>
     <string name="period_recur">Повторения</string>
     <string name="preferences">Настройки</string>
-    <string name="amount_picker">Ввод суммы</string>
-    <string name="integer_part_title">Кол-во разрядов</string>
-    <string name="use_hundredth_title">Использовать копейки</string>
     <string name="project">Проект</string>
     <string name="select_account">Выберите счёт..</string>
     <string name="select_currency">Выберите валюту..</string>
     <string name="select_category">Выберите категорию..</string>
-    <string name="select_project">Выберите проект..</string>
     <string name="warning">Предупреждение</string>
     <string name="no_accounts">Начните с добавления счёта. Нажмите \'+\' внизу..</string>
     <string name="no_budgets">Нет бюджетов</string>
@@ -78,28 +62,17 @@
     <string name="rate">Курс</string>
     <string name="no_rate">Нет курса</string>
     <string name="transaction">Транзакция</string>
-    <string name="transaction_title">Новая транзакция</string>
-    <string name="transfer_title">Новый перевод</string>
     <string name="about">О программе</string>
-    <string name="about_copyright2">Все права защищены :)</string>
     <string name="menu">Меню</string>
     <string name="location">Местоположение</string>
     <string name="locations">Места</string>
     <string name="no_locations">Нет местоположений</string>
-    <string name="use_gps">Использовать GPS</string>
-    <string name="use_gps_summary">Использовать GPS для получения текущего местоположения для транзакции</string>
-    <string name="use_my_location">Использовать \"Мое местоположение\"</string>
-    <string name="use_my_location_summary">Использовать \"Мое местоположение\" для нового места</string>
-    <string name="select_location">Выбрать место</string>
     <string name="no_fix">Местоположение неизвестно</string>
     <string name="attribute">Атрибут</string>
     <string name="attributes">Атрибуты</string>
     <string name="parent_attributes">Родительские атрибуты</string>
-    <string name="change_attributes">Изменить атрибуты</string>
-    <string name="calculator">Калькулятор</string>
     <string name="no_attributes">Нет атрибутов</string>
     <string name="add_attribute">Добавить атрибут</string>
-    <string name="new_attribute">Новый атрибут</string>
     <string name="attribute_type">Тип</string>
     <string name="attribute_name">Название</string>
     <string name="attribute_values">Значения</string>
@@ -109,24 +82,11 @@
     <string name="checkbox_values_yes">Да</string>
     <string name="checkbox_values_no">Нет</string>
     <string name="checkbox_values_hint">Да;Нет</string>
-    <string name="location_name">Имя местоположения</string>
-    <string name="satellite_on">Вкл спутник</string>
-    <string name="satellite_off">Выкл спутник</string>
-    <string name="my_location">Мое местоположение</string>
-    <string name="move_marker_to_center">Маркер на центр</string>
-    <string name="move_go_to_marker">К маркеру</string>
-    <string name="tap_location">Нажмите на указатель \'Мое местоположение\' чтобы вручную изменить место</string>
     <string name="note">Комментарий</string>
     <string name="note_text_containing">Комментарий содержит текст</string>
     <string name="note_text_containing_value">Содержит \"%1$s\"</string>
-    <string name="service_is_not_available">Сервис недоступен, попробуйте позже</string>
-    <string name="resolve_address">Получить адрес</string>
-    <string name="resolving_address">Получение адреса..</string>
     <string name="report">Отчёт</string>
     <string name="reports">Отчёты</string>
-    <string name="no_reports">Нет отчётов</string>
-    <string name="select_report">Выберите отчёт..</string>
-    <string name="overall">Итоговый</string>
     <string name="report_by_period">По периодам</string>
     <string name="report_by_period_summary">Отчёт по периодам</string>
     <string name="report_by_category">По категориям</string>
@@ -192,13 +152,10 @@
     <string name="account_type_asset">Актив</string>
     <string name="account_type_liability">Пассив</string>
     <string name="account_type_other">Другой</string>
-    <string name="card_type">Тип карты</string>
     <string name="card_number">Номер карты</string>
     <string name="card_number_hint">Последние 4 цифры номера</string>
     <string name="issuer">Эмитент</string>
-    <string name="cash">Наличные</string>
     <string name="sort_order">Порядок сортировки</string>
-    <string name="force_gps_location">Форсировать GPS местоположение</string>
     <string name="whats_new">Что нового</string>
     <string name="attribute_delete_alert">Аттрибут будет удален из категорий и транзакций</string>
     <string name="user_interface">Пользовательский интерфейс</string>
@@ -210,47 +167,31 @@
     <string name="sort_templates_summary">Порядок сортировки списка шаблонов</string>
     <string name="sort_budgets">Сортировать бюджеты</string>
     <string name="sort_budgets_summary">Порядок сортировки списка бюджетов</string>
-    <string name="more_products">Другие продукты..</string>
     <string name="pin_protection">Защита ПИНом</string>
     <string name="pin_protection_summary">Поставьте, чтобы защитить запуск ПИНом</string>
-    <string name="pin_protection_notify">Пожалуйста, укажите ПИН в Настройках</string>
     <string name="change_pin">Сменить ПИН</string>
-    <string name="change_pin_summary">Сменить ПИН</string>
-    <string name="pin">ПИН</string>
     <string name="set_pin">Установить ПИН</string>
     <string name="confirm_pin">Подтвердить ПИН</string>
     <string name="restore">Восстановить</string>
     <string name="backup_database">Резервная копия базы</string>
     <string name="backup_database_inprogress">Копирование базы..</string>
-    <string name="backup_database_gdocs">Резервная копия в Google Диск</string>
     <string name="backup_database_gdocs_inprogress">Копирование базы..</string>
     <string name="csv_export">Экспорт в CSV</string>
     <string name="csv_export_inprogress">Экспортирование базы в CSV..</string>
     <string name="restore_database">Восстановить базу</string>
     <string name="restore_database_inprogress">Восстановление базы…</string>
-    <string name="restore_database_gdocs">Восстановить базу из Google Диска</string>
-    <string name="restore_database_inprogress_gdocs">Восстановление базы…</string>
     <string name="restore_database_success">База была успешно восстановлена..</string>
     <string name="gdocs_connection_failed">Нет связи с Google Диском.</string>
-    <string name="gdocs_folder_not_found">Папка резервной копии на Google Диске не найдена.</string>
-    <string name="gdocs_credentials_not_configured">Пожалуйста, укажите логин и пароль аккаунта Google в Настройках.</string>
     <string name="gdocs_folder_not_configured">Укажите папку резервной копии Google Диске</string>
-    <string name="gdocs_backup_failed">Ошибка при отправке файла резервной копии в Google Диск. Попробуйте ещё раз.</string>
-    <string name="gdocs_restore_failed">Ошибка при получении файла резервной копии. Попробуйте ещё раз.</string>
-    <string name="gdocs_folder_error">Ошибка доступа к папке на Google Диске</string>
-    <string name="gdocs_service_error">Системная ошибка при подключении к Google Диску</string>
-    <string name="gdocs_io_error">Ошибка связи с Google Диском</string>
     <string name="success">Успешно! %s</string>
     <string name="fail">Неудачно..</string>
     <string name="duplicate">Дублировать</string>
     <string name="select_from_account">Выберите счёт источник..</string>
     <string name="select_to_account">Выберите счёт получатель..</string>
-    <string name="update_balance">Обновить баланс</string>
     <string name="close_account">Закрыть счёт</string>
     <string name="close_account_confirm">Закрыть счёт?</string>
     <string name="reopen_account">Переоткрыть счёт</string>
     <string name="difference">Разница</string>
-    <string name="new_balance">Новый баланс</string>
     <string name="duplicate_success">Транзакция была скопирована с текущей датой и временем</string>
     <string name="duplicate_success_with_multiplier">Транзакция была скопирована с текущей датой и временем (x%d)</string>
     <string name="no_category">Без категории</string>
@@ -267,8 +208,6 @@
     <string name="show_location_order_summary">Относительное положение списка мест на экране</string>
     <string name="show_payee">Показывать получателя</string>
     <string name="show_payee_summary">Показывать поле получателя (требует перезапуска)</string>
-    <string name="show_payee_order">Порядок списка получателя</string>
-    <string name="show_payee_order_summary">Относительное положение поля получателя на экране</string>
     <string name="show_note">Показывать комментарий</string>
     <string name="show_note_summary">Показывать поле комментария</string>
     <string name="show_note_order">Порядок поля комментария</string>
@@ -288,15 +227,12 @@
     <string name="position_move_up">Переместить вверх</string>
     <string name="position_move_down">Переместить вниз</string>
     <string name="position_move_bottom">Переместить на самый низ</string>
-    <string name="add_sibling">Добавить рядом</string>
-    <string name="add_child">Добавить внутрь</string>
     <string name="interval">Интервал</string>
     <string name="recur_interval">Интервал повторения</string>
     <string name="recur_interval_no_recur">Без повторения</string>
     <string name="recur_interval_every_x_day">Повторять каждый Х день</string>
     <string name="recur_interval_every_x_week">Повторять каждую X неделю</string>
     <string name="recur_interval_every_x_month">Повторять каждый X месяц</string>
-    <string name="recur_interval_every_x_year">Повторять каждый X год</string>
     <string name="recur_interval_daily">Ежедневно</string>
     <string name="recur_interval_weekly">Каждую неделю</string>
     <string name="recur_interval_monthly">Ежемесячно</string>
@@ -310,7 +246,6 @@
     <string name="recur_period_every">Каждый</string>
     <string name="recur_period_days">день(дней)</string>
     <string name="recur_period_semi_monthly">По выбранным дням:</string>
-    <string name="recur_repeat_indefinitely">Бесконечно</string>
     <string name="recur_repeat_exactly">В точности</string>
     <string name="recur_repeat_times">раз(а)</string>
     <string name="recur_repeat_starts_on">Начать:</string>
@@ -320,7 +255,6 @@
     <string name="recur_error_specify_second_day">Укажите второй день</string>
     <string name="recur_error_specify_times">Укажите кол-во раз</string>
     <string name="recur">Повторения</string>
-    <string name="recur_period">Период</string>
     <string name="day_mon">Пн</string>
     <string name="day_tue">Вт</string>
     <string name="day_wed">Ср</string>
@@ -339,10 +273,6 @@
     <string name="budget_mode">Смягчить условия</string>
     <string name="budget_mode_summary">Использовать менее ограничительные условия (категория ИЛИ проект) для фильтрации транзакций</string>
     <string name="gdocs_backup">Резервная копия на Google Диске</string>
-    <string name="user_login">Логин</string>
-    <string name="user_login_summary">Логин (имя пользователя) аккаунта Google</string>
-    <string name="user_password">Пароль</string>
-    <string name="user_password_summary">Пароль аккаунта Google</string>
     <string name="backup_folder">Папка для резервн. копии</string>
     <string name="backup_folder_summary">Создайте новую папку для резерных копий в Мой диск</string>
     <string name="report_preferences">Настройки отчетов</string>
@@ -407,14 +337,12 @@
     <string name="recur_interval_geeky">Занудно</string>
     <string name="recurrence_pattern">Паттерн повторения</string>
     <string name="recurrence_period">Период повторения</string>
-    <string name="recurrence_period_starts_on">Начать</string>
     <string name="recurrence_weekly_days">Повторять по</string>
     <string name="recurrence_monthly_pattern">Ежемесячно</string>
     <string name="recurrence_monthly_every_nth_day">Каждый N-ый день</string>
     <string name="recurrence_monthly_specific_day">Определенный день</string>
     <string name="recur_interval_semi_monthly_1">1й день</string>
     <string name="recur_interval_semi_monthly_2">2й день</string>
-    <string name="recurrence_none">Без повторения</string>
     <string name="specify_value">Укажите значение..</string>
     <string name="recurrence_evaluate">Рассчитать даты</string>
     <string name="first">Первый</string>
@@ -446,7 +374,6 @@
     <string name="new_scheduled_transfer_notification_differ_currency" formatted="false">%s(%s) было переведено с %s на %s</string>
     <string name="new_scheduled_transfer_notification_same_currency" formatted="false">%s было переведено с %s на %s</string>
     <string name="notification">Нотификация</string>
-    <string name="notification_options_on">Вкл</string>
     <string name="notification_options_off">Выкл</string>
     <string name="notification_options_short">З</string>
     <string name="notification_options_2_short">З-З</string>
@@ -459,7 +386,6 @@
     <string name="notification_options_led_yellow">Желтый</string>
     <string name="notification_options_led_red">Красный</string>
     <string name="notification_options_led_pink">Розовый</string>
-    <string name="notification_options_text" formatted="false">Звук:%s Вибрация:%s Индикатор:%s</string>
     <string name="notification_options_custom">Пользовательский</string>
     <string name="notification_options_default">По-умолчанию</string>
     <string name="notification_sound">Мелодия</string>
@@ -470,9 +396,6 @@
     <string name="transaction_status_unreconciled">Не выверено</string>
     <string name="transaction_status_cleared">Занесено</string>
     <string name="transaction_status_reconciled">Выверено</string>
-    <string name="scheduled">(запланированно)</string>
-    <string name="expired">(просроченно)</string>
-    <string name="pending">(в ожидании)</string>
     <string name="system_attribute_delete_after_expired">Удалить после истечения</string>
     <string name="no_transaction_found">Транзакция не найдена, перезагрузите Финансье…</string>
     <string name="include_credit">Включить приход</string>
@@ -481,13 +404,9 @@
     <string name="enable_widget_summary">Показывать баланс на виджете</string>
     <string name="attach_picture">Прикрепить фото</string>
     <string name="new_picture">Сфотографировать</string>
-    <string name="credits">Благодарность</string>
     <string name="sort_by_title">Сортировать по заголовкам</string>
-    <string name="sort_all_by_title">Сортировать все по заголовкам</string>
     <string name="include_transfers_into_reports">Переводы в репортах</string>
     <string name="include_transfers_into_reports_summary">Включать переводы в репорты</string>
-    <string name="negative_opening_amount">Отрицательный баланс</string>
-    <string name="negative_opening_amount_summary">Открыть аккаунт с отрицательным балансом</string>
     <string name="payment_day">День погашения</string>
     <string name="closing_day">Расчётный день</string>
     <string name="payment_day_hint">День, в который Вы платите по выписке за кредитную карту.</string>
@@ -501,7 +420,6 @@
     <string name="alert_regular_closing_day">Указанный день должен отличаться от регулярного.</string>
     <string name="ccard_statement">Выписка</string>
     <string name="monthly_view">Выписка на месяц</string>
-    <string name="credit_card_statement">Выписка по кредитной карте</string>
     <string name="ccard_statement_title">&lt;ccard&gt; выписка</string>
     <string name="ccard_par">&lt;ccard&gt;</string>
     <string name="bill_on">Счёт на </string>
@@ -516,10 +434,8 @@
     <string name="header_expenses">Расходы</string>
     <string name="ui_language">Язык</string>
     <string name="ui_language_summary">Выбрать язык интерфейса (требует перезапуска)</string>
-    <string name="enter_pin">Введите PIN</string>
     <string name="mass_operations">Массовые операции</string>
     <string name="card_issuer_unionpay">UnionPay</string>
-    <string name="account_type_paypal">PayPal</string>
     <string name="mass_operations_use_filter">Используйте фильтр для поиска транзакций</string>
     <string name="mass_operations_clear_all">Внести все</string>
     <string name="mass_operations_reconcile">Выверить все</string>
@@ -543,13 +459,9 @@
     <string name="report_by_payee_by_period_summary">Отчёт по получателям платежа за период времени</string>
     <string name="no_payee">Получатель не указан</string>
     <string name="report_no_payee">Не найдены получатели по указанному фильтру.</string>
-    <string name="donate">Сделать пожертвование</string>
-    <string name="donate_error">Android Market не доступен на Вашем устройстве</string>
-    <string name="type">Тип</string>
     <string name="qif_export">Экспорт в QIF</string>
     <string name="qif_export_inprogress">Экспортирование данных в QIF..</string>
     <string name="all_accounts">Все счета</string>
-    <string name="filter_value_not_found">Не найден..</string>
     <string name="empty_report">Пустой отчет</string>
     <string name="day_of_month">День месяца</string>
     <string name="show_running_balance">Показывать текущий баланс</string>
@@ -572,14 +484,9 @@
     <string name="delete_transaction_parent_confirm">Эта транзакция часть сплита. Вы действительно хотите удалить родительскую транзакцию?</string>
     <string name="downloading_rate" formatted="false">Загрузка обменного курса %s/%s …</string>
     <string name="unsplit_adjust_amount">Сумма</string>
-    <string name="unsplit_adjust_amount_summary">Корректировать сумму</string>
     <string name="unsplit_adjust_evenly">Поровну</string>
-    <string name="unsplit_adjust_evenly_summary">Корректировать поровну</string>
     <string name="unsplit_adjust_last">Крайняя</string>
-    <string name="unsplit_adjust_last_summary">Корректировать крайнюю</string>
-    <string name="add_transfer">Добавить перевод</string>
     <string name="file_name">Имя файла</string>
-    <string name="choose_account">Выбрать счёт</string>
     <string name="no_filemanager_installed">Не установлен менеджер файлов</string>
     <string name="csv_import">CSV импорт</string>
     <string name="csv_import_inprogress">Импорт данных из CSV…</string>
@@ -605,7 +512,6 @@
     <string name="balance">Баланс</string>
     <string name="show_category_in_transfer">Категория перевода</string>
     <string name="show_category_in_transfer_summary">Показывать поле категории для перевода</string>
-    <string name="auto_backup">Авто-бэкап</string>
     <string name="auto_backup_enabled">Включить авто-бэкап</string>
     <string name="auto_backup_enabled_summary">Резервная копия базы данных ежедневно в указанное время</string>
     <string name="auto_backup_time">Время авто-бэкапа</string>
@@ -656,12 +562,9 @@
     <string name="blotter_total_in_currency">Все %s транзакции</string>
     <string name="budget_total_in_currency">Все %s бюджеты</string>
     <string name="home_currency_total">Итог в домашней валюте</string>
-    <string name="total_rate">Курс: %0.5f</string>
-    <string name="home_currency">Домашняя валюта</string>
     <string name="upload_to_dropbox">Загрузить на\nDropbox</string>
     <string name="not_available">Н/Д</string>
     <string name="rate_not_available_on_date_error" formatted="false">Не указан обменный курс на %s чтобы вычислить сумму между %s и %s</string>
-    <string name="rate_not_available_error" formatted="false">Не указан обменный курс между %s и %s</string>
     <string name="collapse_blotter_buttons">Объединить кнопки Блоттера</string>
     <string name="collapse_blotter_buttons_summary">Объединить кнопки Новая транзакция/перевод/шаблон вместе (требует перезагрузки)</string>
     <string name="is_active">Активно</string>
@@ -686,7 +589,6 @@
     <string name="blotter_screen_summary">Настройки для Журнала</string>
     <string name="hide_closed_accounts">Скрывать закрытые счета</string>
     <string name="hide_closed_accounts_summary">Скрывать или показывать закрытые счета в списке счетов (требует перезагрузки)</string>
-    <string name="re_index_categories">Переиндексация</string>
     <string name="startup_screen">Экран запуска</string>
     <string name="startup_screen_summary">Выберите вкладку, которая будет выбрана при старте</string>
     <string name="integrity_error">Текущий баланс не корректен, пожалуйста вызовите Меню -&gt; Ещё -&gt; Корректировка данных</string>
@@ -718,8 +620,6 @@
     <string name="request_permissions_camera_description">Требуется для того чтобы делать фотографии и прикреплять их к транзакциям.</string>
     <string name="request_permissions_get_accounts_title">Контакты</string>
     <string name="request_permissions_get_accounts_description">Требуется чтобы разрешить бэкап базы на Ваш личный Google Диск</string>
-    <string name="request_permissions_granted">Разрешение выдано</string>
-    <string name="request_permissions_not_granted">Разрешение НЕ выдано</string>
     <string name="request_permissions_receive_sms_title">SMS</string>
     <string name="request_permissions_receive_sms_description">Требуется для автоматического добавления транзаций по SMS шаблонам</string>
 
@@ -731,11 +631,6 @@
         <item>Число</item>
         <item>Список</item>
         <item>Флажок</item>
-    </string-array>
-    <string-array name="account_types">
-        <item>Банк</item>
-        <item>Наличные</item>
-        <item>Кредитная карта</item>
     </string-array>
     <string-array name="sort_accounts_entities">
         <item>По увеличению порядка сортировки</item>
@@ -833,17 +728,12 @@
     <string name="mass_operations_summary">Операции со многими транзакциями</string>
     <string name="planner_summary">Посмотреть планировщик</string>
     <string name="integrity_fix_summary">Исправить внутренние проблемы если необходимо</string>
-    <string name="donate_summary">Добровольная помощь проекту</string>
     <string name="about_summary">Узнать информацию о проекте</string>
 
     <string name="google_drive_backup_account">Аккаунт для резервирования</string>
     <string name="google_drive_backup_account_summary">Выбрать аккаунт Google Диска</string>
-    <string name="google_drive_backup_full_readonly">Доступ только для чтения</string>
-    <string name="google_drive_backup_full_readonly_summary">Разрешить доступ только для чтения всех файлов на Google Диске</string>
     <string name="google_drive_upload_backup">Выгружать копии базы</string>
     <string name="google_drive_upload_backup_summary">Выгружать копии базы в Google Диск</string>
-    <string name="google_drive_upload_autobackup">Выгружать авт. копии</string>
-    <string name="google_drive_upload_autobackup_summary">Выгружать авт. копии базы в Google Диск</string>
 
     <string name="exchange_rate_provider">Поставщик курсов валют</string>
     <string name="exchange_rate_provider_summary">Выбрать поставщика курсов валют для загрузки</string>
@@ -876,7 +766,6 @@
     <string name="fingerprint_unavailable_unknown">Это устройство не поддерживается</string>
     <string name="fingerprint_unavailable">Не доступно: %s</string>
     <string name="use_pin">Использовать ПИН</string>
-    <string name="sms_tpl_filter_hint">Фильтр по номеру или тексту</string>
     <string name="app_description">Персональный финансовый менеджер с открытым исходным кодом</string>
     <string name="electronic_type_yandex_money">Яндекс.Деньги</string>
     <string name="image_pick_camera">Камера</string>
@@ -888,44 +777,29 @@
     <string name="period_next_month">Следующий месяц</string>
     <string name="period_next_week">Следующая неделя</string>
     <string name="period_this_and_next_month">Текущий и следующий месяц</string>
-    <string name="period_this_and_next_week">Текущая и следующая неделя</string>
     <string name="period_tomorrow">Завтра</string>
     <string name="restore_database_inprogress_dropbox">Восстановление базы данных...</string>
     <string name="budget_type_saving">Экономия</string>
     <string name="budget_type_saving_summary">Бюджет с целью сбережения средств</string>
-    <string name="about_copyright1">Выпущено под лицензией GNU GPL v2</string>
     <string name="account_by_currency">Все %s аккаунты</string>
     <string name="show_payee_in_transfer_summary">Показывать поле получателя в окне перевода</string>
-    <string name="google_drive_account_select_error">Невозможно выбрать учетную запись Google для использования. Похоже ваше устройство не поддерживает Google Play сервисы.</string>
     <string name="google_drive_connection_failed">Невозможно подключиться к Google Диску:\n%s</string>
     <string name="google_drive_loading_files">Загрузка файлов из Google Диска...</string>
     <string name="google_drive_restore_in_progress">Восстановление базы данных из Google Диска...</string>
     <string name="google_drive_uploading_file">Загрузка файл в Google Диск...</string>
-    <string name="googledrive_upload">Загружать изображения</string>
-    <string name="googledrive_upload_summary">Загружать прикрепленные изображения в Google Диск</string>
     <string name="restore_database_online_dropbox">Восстановление из Dropbox</string>
     <string name="restore_database_online_google_drive">Восстановление из Google Диска</string>
     <string name="show_payee_in_transfer">Получатель перевода</string>
-    <string name="download_all_rates">Загрузить все текущие курсы валют</string>
     <string name="downloading_rates">Загрузка обменного курса для %s...</string>
     <string name="downloading_rates_result">Курсы валют загружены</string>
     <string name="dropbox_error">Ошибка при подключении к Dropbox</string>
     <string name="dropbox_loading_files">Загрузка файлов из Dropbox...</string>
-    <string name="exchange_rate_provider_error">Проблемы с поставщиком курсов валют. Ответ от сервиса - %s</string>
     <string name="file_import_utf8_warning">Пожалуйста убедитесь, что файл создан в кодировке UTF-8</string>
-    <string name="googledrive_authorize">Включить синхронизацию с Google Диском</string>
-    <string name="googledrive_folder">Папка на Google Диске</string>
-    <string name="googledrive_folder_summary">Выберите папку на Google Диске для сохранения прикрепленных изображений</string>
-    <string name="offline_rate">Отсутствует соединение с интернетом. Применены последние загруженные курсы валют…</string>
-    <string name="google_drive_account_required">Пожалуйста выберите аккаунт на Google Диске в настройках и попробуйте снова…</string>
     <string name="backup_database_online_google_drive">Резервная копия на Google Диск</string>
     <string name="backup_database_online_dropbox">Резервная копия на Dropbox</string>
     <string name="openexchangerates_app_id_summary">Пожалуйста зарегистрируйте бесплатный аккаунт в сервисе OpenExchangeRates и введите ваш App ID</string>
-    <string name="google_drive_permission_requested_for_account">для аккаунта %s</string>
-    <string name="google_drive_permission_requested">Запрос разрешения</string>
     <string name="dropbox_auth_error">Нет разрешения для загрузки на Dropbox. Пожалуйста проверьте ваши настройки.</string>
     <string name="backup_database_dropbox_inprogress">Создание резервной копии базы данных…</string>
-    <string name="google_drive_permission_required">Пожалуйста разрешите Финансье доступ к вашему Google Диску и повторите попытку…</string>
     <string name="installed_on_sd_card_warning">Запланированные транзакции могут не работать как ожидается если Финансье установлен на карту памяти. Пожалуйста перенесите приложение во внутреннюю память телефона.</string>
     <string name="set_focus_on_amount_field_summary">Автоматически устанавливать фокус в поле ввода суммы для новых транзакций</string>
     <string name="set_focus_on_amount_field">Устанавливать фокус в поле суммы</string>
@@ -942,9 +816,6 @@
         <item>Список</item>
     </string-array>
 
-    <string name="create_new_entity_with_title">%1$s: не удалось найти \"%2$s\"? Создать новую сущность?</string>
-    <string name="complete_category_selection">Категория: не удалось найти \"%s\"? Создайте новую категорию нажав кнопку +.</string>
-    <string name="list_all">Список</string>
     <string name="enable_crash_reporting">Позволить отправлять отчёты о ошибках</string>
     <string name="enable_crash_reporting_summary">Ошибки собираются и отправляются с использованием открытой библиотеки ACRA на наш внутренний сервер Acrarium, без передачи личных данных</string>
 

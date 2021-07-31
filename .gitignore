@@ -13,3 +13,8 @@ app/release/output.json
 *.aab
 app/untied/release/output.json
 app/fdroid/release/output.json
+fastlane/.env.default
+Keys/financier.properties
+Keys/Signing.keystore
+fastlane/fastlane_key.json
+fastlane/report.xml

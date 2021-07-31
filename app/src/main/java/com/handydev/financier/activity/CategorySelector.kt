@@ -102,7 +102,7 @@ class CategorySelector<A : AbstractActivity?> @JvmOverloads constructor(private 
                     db.getCategories(true)
                 }
             }
-            activity!!.startManagingCursor(categoryCursor)
+            activity?.startManagingCursor(categoryCursor)
             categoryAdapter = TransactionUtils.createCategoryAdapter(db, activity, categoryCursor)
         }
     }
@@ -151,7 +151,7 @@ class CategorySelector<A : AbstractActivity?> @JvmOverloads constructor(private 
                     autoCompleteTextView!!.selectAll()
                 }
             }
-            autoCompleteTextView!!.onItemClickListener = OnItemClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long -> activity!!.onSelectedId(R.id.category, id) }
+            autoCompleteTextView!!.onItemClickListener = OnItemClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long -> activity?.onSelectedId(R.id.category, id) }
             initAutocomplete = false
         }
     }
@@ -186,7 +186,7 @@ class CategorySelector<A : AbstractActivity?> @JvmOverloads constructor(private 
 
     private fun addCategory() {
         val intent = Intent(activity, CategoryActivity::class.java)
-        activity!!.startActivityForResult(intent, CategorySelectorActivity.CATEGORY_ADD)
+        activity?.startActivityForResult(intent, CategorySelectorActivity.CATEGORY_ADD)
     }
 
     private fun pickCategory() {

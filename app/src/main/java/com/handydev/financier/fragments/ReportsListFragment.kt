@@ -39,21 +39,21 @@ class ReportsListFragment: ListFragment() {
             savedInstanceState: Bundle?
     ): View? {
         reports = getReportsList()
-        listAdapter = SummaryEntityListAdapter(activity!!, reports)
+        listAdapter = SummaryEntityListAdapter(requireActivity(), reports)
         return inflater.inflate(R.layout.reports_list, container, false)
     }
 
     override fun onPause() {
         super.onPause()
         if(activity != null) {
-            PinProtection.lock(activity!!)
+            PinProtection.lock(requireActivity())
         }
     }
 
     override fun onResume() {
         super.onResume()
         if(activity != null) {
-            PinProtection.unlock(activity!!)
+            PinProtection.unlock(requireActivity())
         }
     }
 
@@ -64,12 +64,12 @@ class ReportsListFragment: ListFragment() {
         }
         if (reports[position].isConventionalBarReport) {
             // Conventional Bars reports
-            val intent = Intent(activity!!, ReportActivity::class.java)
+            val intent = Intent(requireActivity(), ReportActivity::class.java)
             intent.putExtra(EXTRA_REPORT_TYPE, reports[position].name)
             startActivity(intent)
         } else {
             // 2D Chart reports
-            val intent = Intent(activity!!, Report2DChartActivity::class.java)
+            val intent = Intent(requireActivity(), Report2DChartActivity::class.java)
             intent.putExtra(Report2DChart.REPORT_TYPE, reports[position].name)
             startActivity(intent)
         }
@@ -80,24 +80,24 @@ class ReportsListFragment: ListFragment() {
         if(activity != null) {
             reports.add(ReportType.BY_PERIOD)
             reports.add(ReportType.BY_CATEGORY)
-            if (MyPreferences.isShowPayee(activity!!)) {
+            if (MyPreferences.isShowPayee(requireActivity())) {
                 reports.add(ReportType.BY_PAYEE)
             }
-            if (MyPreferences.isShowLocation(activity!!)) {
+            if (MyPreferences.isShowLocation(requireActivity())) {
                 reports.add(ReportType.BY_LOCATION)
             }
-            if (MyPreferences.isShowProject(activity!!)) {
+            if (MyPreferences.isShowProject(requireActivity())) {
                 reports.add(ReportType.BY_PROJECT)
             }
             reports.add(ReportType.BY_ACCOUNT_BY_PERIOD)
             reports.add(ReportType.BY_CATEGORY_BY_PERIOD)
-            if (MyPreferences.isShowPayee(activity!!)) {
+            if (MyPreferences.isShowPayee(requireActivity())) {
                 reports.add(ReportType.BY_PAYEE_BY_PERIOD)
             }
-            if (MyPreferences.isShowLocation(activity!!)) {
+            if (MyPreferences.isShowLocation(requireActivity())) {
                 reports.add(ReportType.BY_LOCATION_BY_PERIOD)
             }
-            if (MyPreferences.isShowProject(activity!!)) {
+            if (MyPreferences.isShowProject(requireActivity())) {
                 reports.add(ReportType.BY_PROJECT_BY_PERIOD)
             }
         }

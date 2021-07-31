@@ -177,7 +177,7 @@ public class MyPreferences {
 
     public static void setLastAccount(Context context, long accountId) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        sharedPreferences.edit().putLong("last_account_id", accountId).commit();
+        sharedPreferences.edit().putLong("last_account_id", accountId).apply();
     }
 
     public static boolean isRememberAccount(Context context) {
@@ -253,10 +253,6 @@ public class MyPreferences {
     public static boolean isOpenCalculatorForTemplates(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return sharedPreferences.getBoolean("ntsl_open_calculator_for_template_transactions", true);
-    }
-
-    public static boolean isSetFocusOnAmountField(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("ntsl_set_focus_on_amount_field", false);
     }
 
     public static boolean isPayeeSelectorList(Context context) {
@@ -539,7 +535,7 @@ public class MyPreferences {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         boolean result = sharedPreferences.getBoolean(name, true);
         if (result) {
-            sharedPreferences.edit().putBoolean(name, false).commit();
+            sharedPreferences.edit().putBoolean(name, false).apply();
         }
         return result;
     }
@@ -551,7 +547,7 @@ public class MyPreferences {
 
     public static void setDatabaseBackupFolder(Context context, String databaseBackupFolder) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        sharedPreferences.edit().putString("database_backup_folder", databaseBackupFolder).commit();
+        sharedPreferences.edit().putString("database_backup_folder", databaseBackupFolder).apply();
     }
 
     public static String[] getReportPreferences(Context context) {

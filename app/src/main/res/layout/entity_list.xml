@@ -33,9 +33,7 @@
         a:gravity="center"
         a:text="@string/no_projects" />
 
-    <LinearLayout
-        a:id="@+id/bottomBar"
-        style="@style/BottomBar">
+    <LinearLayout style="@style/BottomBar">
 
         <ImageButton
             a:id="@+id/bAdd"

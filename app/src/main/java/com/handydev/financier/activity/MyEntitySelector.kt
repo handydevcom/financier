@@ -87,9 +87,9 @@ abstract class MyEntitySelector<T : MyEntity, A : AbstractActivity?> internal co
                     or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS
                     or InputType.TYPE_TEXT_VARIATION_FILTER)
             autoCompleteView!!.threshold = 1
-            autoCompleteView!!.onItemClickListener = OnItemClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long ->
+            autoCompleteView!!.onItemClickListener = OnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, id: Long ->
                 val e = filterAdapter.getItem(position)
-                activity!!.onSelectedId(layoutId, e!!.id)
+                activity?.onSelectedId(layoutId, e!!.id)
             }
             initAutoComplete = false
         }
@@ -117,7 +117,7 @@ abstract class MyEntitySelector<T : MyEntity, A : AbstractActivity?> internal co
 
     private fun createEntity() {
         val intent = Intent(activity, editActivityClass)
-        activity!!.startActivityForResult(intent, requestCode)
+        activity?.startActivityForResult(intent, requestCode)
     }
 
     private fun showFilter() {
@@ -125,8 +125,8 @@ abstract class MyEntitySelector<T : MyEntity, A : AbstractActivity?> internal co
         filterNode!!.showFilter()
     }
 
-    protected val isListPick: Boolean
-        protected get() = isListPickConfigured
+    private val isListPick: Boolean
+        get() = isListPickConfigured
     protected abstract val isListPickConfigured: Boolean
     private fun clearSelection() {
         selectedEntityId = 0
@@ -134,12 +134,12 @@ abstract class MyEntitySelector<T : MyEntity, A : AbstractActivity?> internal co
             text!!.setText(defaultValueResId)
             showHideMinusBtn(false)
         }
-        for (e in entities) e!!.isChecked = false
+        for (e in entities) e.isChecked = false
     }
 
     private fun showHideMinusBtn(show: Boolean) {
         val minusBtn = text!!.getTag(R.id.bMinus) as ImageView
-        if (minusBtn != null) minusBtn.visibility = if (show) View.VISIBLE else View.GONE
+        minusBtn.visibility = if (show) View.VISIBLE else View.GONE
     }
 
     private fun pickEntity() {
@@ -177,7 +177,7 @@ abstract class MyEntitySelector<T : MyEntity, A : AbstractActivity?> internal co
         }
     }
 
-    val checkedTitles: String
+    private val checkedTitles: String
         get() = getCheckedTitles(entities)
     val checkedIds: Array<String>
         get() = getCheckedIds(entities)
@@ -274,7 +274,7 @@ abstract class MyEntitySelector<T : MyEntity, A : AbstractActivity?> internal co
             val sb = StringBuilder()
             for (e in list) {
                 if (e!!.checked) {
-                    if (sb.length > 0) {
+                    if (sb.isNotEmpty()) {
                         sb.append(", ")
                     }
                     sb.append(e.title)

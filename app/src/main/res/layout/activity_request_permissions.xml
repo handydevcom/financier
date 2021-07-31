@@ -5,7 +5,7 @@
     a:layout_height="wrap_content"
     a:padding="10dp">
 
-    <LinearLayout xmlns:a="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         a:layout_width="match_parent"
         a:layout_height="wrap_content"
         a:orientation="vertical"

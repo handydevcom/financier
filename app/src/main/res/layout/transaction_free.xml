@@ -18,7 +18,7 @@
 			<ImageButton android:id="@+id/status" android:layout_width="wrap_content"
 				android:backgroundTint="@color/button_background"
 				android:layout_height="wrap_content" android:src="@drawable/transaction_status_unreconciled_2"/>
-			<Button android:layout_width="wrap_content" android:gravity="center"
+			<Button android:layout_width="0dp" android:gravity="center"
 				android:backgroundTint="@color/button_background"
 				android:text="04/03/09" android:textColor="@android:color/white" android:id="@+id/date"
 				android:layout_height="wrap_content" android:layout_weight="1" />

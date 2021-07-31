@@ -73,10 +73,8 @@ public class RateLayoutView implements RateNodeOwner {
         rateNode = new RateNode(this, x, layout);
         setVisibility(rateNode.rateInfoNode, View.GONE);
 
-        if (MyPreferences.isSetFocusOnAmountField(activity)) {
-            amountInputFrom.requestFocusFromTouch();
-            activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        }
+        amountInputFrom.requestFocusFromTouch();
+        activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
     }
 
     public void createTransferUI() {
@@ -209,6 +207,7 @@ public class RateLayoutView implements RateNodeOwner {
     public void setFromAmount(long fromAmount) {
         amountInputFrom.setAmount(fromAmount);
         calculateRate();
+        amountInputFrom.primary.selectAll();
     }
 
     public void setToAmount(long toAmount) {

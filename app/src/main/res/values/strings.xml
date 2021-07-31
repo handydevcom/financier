@@ -12,58 +12,41 @@
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="close">Close</string>
-    <string name="edit_account">Edit Account</string>
-    <string name="add_account">Add account</string>
     <string name="title">Title</string>
     <string name="payee">Payee</string>
     <string name="currency">Currency</string>
-    <string name="add_currency">Add Currency</string>
     <string name="opening_amount">Opening amount</string>
     <string name="limit_amount">Limit amount</string>
     <string name="view">View</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
-    <string name="add_transaction">Add Transaction</string>
     <string name="account">Account</string>
     <string name="category">Category</string>
-    <string name="add_category">Add Category</string>
     <string name="income">Income</string>
     <string name="expense">Expense</string>
     <string name="amount">Amount</string>
     <string name="date">Date</string>
-    <string name="time">Time</string>
-    <string name="parent">Parent</string>
-    <string name="total">Total:</string>
     <string name="filter">Filter</string>
     <string name="no_filter">No filter</string>
     <string name="transfer">Transfer</string>
-    <string name="confirmation">Confirmation</string>
     <string name="delete_category_dialog">Delete the category and all sub-categories (if any)?</string>
     <string name="currency_delete_alert">Can\'t delete the currency which is in use.</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="error">Error</string>
     <string name="include_subcategories">Include sub-categories</string>
     <string name="include_subcategories_summary">Add transactions from sub-categories</string>
     <string name="start_date">Start date</string>
-    <string name="end_date">End date</string>
     <string name="budget">Budget</string>
-    <string name="no_limit">No limit</string>
     <string name="period">Period</string>
     <string name="period_from">Period From</string>
     <string name="period_to">Period To</string>
     <string name="period_recur">Period Recur</string>
     <string name="preferences">Preferences</string>
-    <string name="amount_picker">Amount Picker</string>
-    <string name="integer_part_title">Number of digits</string>
-    <string name="use_hundredth_title">Use hundredths</string>
     <string name="project">Project</string>
     <string name="select_account">Please select account…</string>
     <string name="select_currency">Please select currency…</string>
     <string name="select_category">Please select category…</string>
-    <string name="select_payee">Please select payee…</string>
     <string name="autocomplete_filter_hint">Start typing…</string>
-    <string name="select_project">Please select project…</string>
     <string name="warning">Warning</string>
     <string name="no_accounts">You should start with creating an account. Tap the \'+\' at the bottom…</string>
     <string name="no_budgets">No budgets</string>
@@ -79,28 +62,17 @@
     <string name="rate">Rate</string>
     <string name="no_rate">No rate</string>
     <string name="transaction">Transaction</string>
-    <string name="transaction_title">New Transaction</string>
-    <string name="transfer_title">New Transfer</string>
     <string name="about">About</string>
-    <string name="about_copyright2">All rights reserved</string>
     <string name="menu">Menu</string>
     <string name="location">Location</string>
     <string name="locations">Locations</string>
     <string name="no_locations">No locations</string>
-    <string name="use_gps">Use GPS</string>
-    <string name="use_gps_summary">Use GPS to get current location for transaction</string>
-    <string name="use_my_location">Use My Location</string>
-    <string name="use_my_location_summary">Use My Location to get current location for a new location</string>
-    <string name="select_location">Select location</string>
     <string name="no_fix">Unknown location</string>
     <string name="attribute">Attribute</string>
     <string name="attributes">Attributes</string>
     <string name="parent_attributes">Parent attributes</string>
-    <string name="change_attributes">Change attributes</string>
-    <string name="calculator">Calculator</string>
     <string name="no_attributes">No attributes</string>
     <string name="add_attribute">Add attribute</string>
-    <string name="new_attribute">New attribute</string>
     <string-array name="attribute_types">
         <item>Text</item>
         <item>Number</item>
@@ -116,24 +88,11 @@
     <string name="checkbox_values_yes">Yes</string>
     <string name="checkbox_values_no">No</string>
     <string name="checkbox_values_hint">Yes;No</string>
-    <string name="location_name">Location name</string>
-    <string name="satellite_on">Satellite On</string>
-    <string name="satellite_off">Satellite Off</string>
-    <string name="my_location">My location</string>
-    <string name="move_marker_to_center">Marker to center</string>
-    <string name="move_go_to_marker">Go to marker</string>
-    <string name="tap_location">Tap \'My location\' marker to manually adjust location</string>
     <string name="note">Note</string>
     <string name="note_text_containing">Note text containing</string>
     <string name="note_text_containing_value">Containing \"%1$s\"</string>
-    <string name="service_is_not_available">Service is not available, please try again later</string>
-    <string name="resolve_address">Resolve address</string>
-    <string name="resolving_address">Resolving address…</string>
     <string name="report">Report</string>
     <string name="reports">Reports</string>
-    <string name="no_reports">No reports</string>
-    <string name="select_report">Please select report…</string>
-    <string name="overall">Overall</string>
     <string name="report_by_period">By Period</string>
     <string name="report_by_period_summary">Transactions report by period</string>
     <string name="report_by_category">By Category</string>
@@ -192,11 +151,6 @@
     <string name="delete_budget_one_entry">This entry</string>
     <string name="delete_budget_all_entries">All entries</string>
     <string name="edit_recurring_budget">You\'re editing recurring budget, it will affect all entries</string>
-    <string-array name="account_types">
-        <item>Bank</item>
-        <item>Cash</item>
-        <item>Credit Card</item>
-    </string-array>
     <string name="account_type">Account Type</string>
     <string name="card_issuer">Card Issuer</string>
     <string name="account_type_cash">Cash</string>
@@ -206,13 +160,10 @@
     <string name="account_type_asset">Asset</string>
     <string name="account_type_liability">Liability</string>
     <string name="account_type_other">Other</string>
-    <string name="card_type">Card Type</string>
     <string name="card_number">Card Number</string>
     <string name="card_number_hint">Last 4 digits of the card number</string>
     <string name="issuer">Issuer</string>
-    <string name="cash">Cash</string>
     <string name="sort_order">Sort Order</string>
-    <string name="force_gps_location">Force GPS Location</string>
     <string name="whats_new">What\'s new</string>
     <string name="attribute_delete_alert">This will delete the attribute from categories and transactions as well.</string>
     <string name="user_interface">User interface</string>
@@ -249,50 +200,33 @@
         <item>Newer to Older</item>
         <item>Older to Newer</item>
     </string-array>
-    <string name="more_products">More products…</string>
     <string name="pin_protection">PIN Protection</string>
     <string name="pin_protection_summary">Check to protect access with PIN</string>
-    <string name="pin_protection_notify">Please set PIN in Preferences</string>
     <string name="change_pin">Change PIN</string>
-    <string name="change_pin_summary">Change the PIN number</string>
-    <string name="pin">PIN</string>
     <string name="set_pin">Set PIN</string>
     <string name="confirm_pin">Confirm PIN</string>
     <string name="restore">Restore</string>
     <string name="backup_database">Backup Database</string>
     <string name="backup_database_inprogress">Backing up database…</string>
-    <string name="backup_database_gdocs">Backup on Google Drive</string>
     <string name="backup_database_gdocs_inprogress">Backing up database…</string>
     <string name="csv_export">CSV Export</string>
     <string name="csv_export_inprogress">Exporting database to CSV…</string>
     <string name="restore_database">Restore Database</string>
     <string name="restore_database_inprogress">Restoring database…</string>
-    <string name="restore_database_gdocs">Restore from Google Drive</string>
-    <string name="restore_database_inprogress_gdocs">Restoring database…</string>
     <string name="restore_database_inprogress_dropbox">Restoring database…</string>
     <string name="restore_database_success">Database has been successfully restored.</string>
     <string name="gdocs_connection_failed">Can not connect to Google Drive.</string>
-    <string name="gdocs_folder_not_found">The backup folder on Google Drive was not found.</string>
-    <string name="gdocs_credentials_not_configured">Please set Google account login and password in the preferences.</string>
     <string name="gdocs_folder_not_configured">Please set the Google Drive backup folder in the preferences.</string>
-    <string name="gdocs_backup_failed">Error sending backup file to Google Drive. Please try again.</string>
-    <string name="gdocs_restore_failed">Error retrieving backup file. Please try again.</string>
-
-    <string name="gdocs_folder_error">Error accessing the folder in Google Drive.</string>
-    <string name="gdocs_service_error">Unexpected error while working with Google Drive.</string>
-    <string name="gdocs_io_error">Error connecting with Google Drive.</string>
 
     <string name="success">Success! %s</string>
     <string name="fail">Fail…</string>
     <string name="duplicate">Duplicate</string>
     <string name="select_from_account">Please select from account…</string>
     <string name="select_to_account">Please select to account…</string>
-    <string name="update_balance">Update balance</string>
     <string name="close_account">Close account</string>
     <string name="close_account_confirm">Close account?</string>
     <string name="reopen_account">Re-open account</string>
     <string name="difference">Difference</string>
-    <string name="new_balance">New balance</string>
     <string name="duplicate_success">Transaction has been duplicated with the current date and time</string>
     <string name="duplicate_success_with_multiplier">Transaction has been duplicated with the current date and time (x%d)</string>
     <string name="no_category">No category</string>
@@ -309,8 +243,6 @@
     <string name="show_location_order_summary">Relative position for the location drop down</string>
     <string name="show_payee">Show payee</string>
     <string name="show_payee_summary">Show payee edit box (requires restart)</string>
-    <string name="show_payee_order">Payee order</string>
-    <string name="show_payee_order_summary">Relative position for the payee box</string>
     <string name="show_note">Show note</string>
     <string name="show_note_summary">Show note edit box</string>
     <string name="show_note_order">Note order</string>
@@ -330,15 +262,12 @@
     <string name="position_move_up">Move up</string>
     <string name="position_move_down">Move down</string>
     <string name="position_move_bottom">Move to the bottom</string>
-    <string name="add_sibling">Add sibling</string>
-    <string name="add_child">Add child</string>
     <string name="interval">Interval</string>
     <string name="recur_interval">Recur Interval</string>
     <string name="recur_interval_no_recur">No recur</string>
     <string name="recur_interval_every_x_day">Repeat every X day(s)</string>
     <string name="recur_interval_every_x_week">Repeat every X week(s)</string>
     <string name="recur_interval_every_x_month">Repeat every X month(s)</string>
-    <string name="recur_interval_every_x_year">Repeat every X year(s)</string>
     <string name="recur_interval_daily">Daily</string>
     <string name="recur_interval_weekly">Weekly</string>
     <string name="recur_interval_monthly">Monthly</string>
@@ -352,7 +281,6 @@
     <string name="recur_period_every">Every</string>
     <string name="recur_period_days">days</string>
     <string name="recur_period_semi_monthly">On the following days</string>
-    <string name="recur_repeat_indefinitely">Indefinitely</string>
     <string name="recur_repeat_exactly">Exactly</string>
     <string name="recur_repeat_times">times</string>
     <string name="recur_repeat_starts_on">Starts on</string>
@@ -362,7 +290,6 @@
     <string name="recur_error_specify_second_day">Please specify the second day</string>
     <string name="recur_error_specify_times">Please specify number of times</string>
     <string name="recur">Recur</string>
-    <string name="recur_period">Period</string>
     <string name="day_mon">Mon</string>
     <string name="day_tue">Tue</string>
     <string name="day_wed">Wed</string>
@@ -381,10 +308,6 @@
     <string name="budget_mode">Ease conditions</string>
     <string name="budget_mode_summary">Use less restrictive conditions (category OR project) to filter transactions</string>
     <string name="gdocs_backup">Google Drive Backup</string>
-    <string name="user_login">Login</string>
-    <string name="user_login_summary">Google account login (username)</string>
-    <string name="user_password">Password</string>
-    <string name="user_password_summary">Google account password</string>
     <string name="backup_folder">Backup Folder</string>
     <string name="backup_folder_summary">To store backup files create a new folder in My Drive</string>
 
@@ -466,14 +389,12 @@
     <string name="recur_interval_geeky">Geeky</string>
     <string name="recurrence_pattern">Recurrence pattern</string>
     <string name="recurrence_period">Recurrence period</string>
-    <string name="recurrence_period_starts_on">Starts on</string>
     <string name="recurrence_weekly_days">Repeat on</string>
     <string name="recurrence_monthly_pattern">Monthly pattern</string>
     <string name="recurrence_monthly_every_nth_day">Every Nth day</string>
     <string name="recurrence_monthly_specific_day">Specific day</string>
     <string name="recur_interval_semi_monthly_1">1st day</string>
     <string name="recur_interval_semi_monthly_2">2nd day</string>
-    <string name="recurrence_none">No recurrence</string>
     <string name="specify_value">Specify value…</string>
     <string name="recurrence_evaluate">Evaluate dates</string>
     <string name="first">First</string>
@@ -505,7 +426,6 @@
     <string name="new_scheduled_transfer_notification_differ_currency" formatted="false">%s(%s) has been transferred from %s to %s</string>
     <string name="new_scheduled_transfer_notification_same_currency" formatted="false">%s has been transferred from %s to %s</string>
     <string name="notification">Notification</string>
-    <string name="notification_options_on">On</string>
     <string name="notification_options_off">Off</string>
     <string name="notification_options_short">Z</string>
     <string name="notification_options_2_short">Z-Z</string>
@@ -518,7 +438,6 @@
     <string name="notification_options_led_yellow">Yellow</string>
     <string name="notification_options_led_red">Red</string>
     <string name="notification_options_led_pink">Pink</string>
-    <string name="notification_options_text" formatted="false">Sound:%s Vibration:%s Led:%s</string>
     <string name="notification_options_custom">Custom</string>
     <string name="notification_options_default">Default</string>
     <string name="notification_sound">Ringtone</string>
@@ -529,9 +448,6 @@
     <string name="transaction_status_unreconciled">Unreconciled</string>
     <string name="transaction_status_cleared">Cleared</string>
     <string name="transaction_status_reconciled">Reconciled</string>
-    <string name="scheduled">(scheduled)</string>
-    <string name="expired">(expired)</string>
-    <string name="pending">(pending)</string>
     <string name="system_attribute_delete_after_expired">Delete after expired</string>
     <string name="no_transaction_found">No transaction found, please restart Financier…</string>
     <string name="include_credit">Include credits</string>
@@ -541,13 +457,9 @@
     <string name="attach_picture">Attach picture</string>
     <string name="new_picture">Take a picture</string>
 
-    <string name="credits">Credits</string>
     <string name="sort_by_title">Sort by title</string>
-    <string name="sort_all_by_title">Sort all by title</string>
     <string name="include_transfers_into_reports">Transfers into reports</string>
     <string name="include_transfers_into_reports_summary">Include transfers into reports</string>
-    <string name="negative_opening_amount">Negative opening amount</string>
-    <string name="negative_opening_amount_summary">Open account with negative opening amount</string>
     <string name="payment_day">Payment day</string>
     <string name="closing_day">Closing day</string>
     <string name="payment_day_hint">The day on which you pay your credit card bill.</string>
@@ -563,7 +475,6 @@
 
     <string name="ccard_statement">Statements</string>
     <string name="monthly_view">Month Preview</string>
-    <string name="credit_card_statement">Credit Card Statement</string>
     <string name="ccard_statement_title">&lt;ccard&gt; Statement</string>
     <string name="ccard_par">&lt;ccard&gt;</string>
     <string name="bill_on">Bill on </string>
@@ -579,9 +490,7 @@
     <string name="ui_language">Locale</string>
     <string name="ui_language_summary">Set language of user interface (requires restart!)</string>
 
-    <string name="enter_pin">Enter PIN</string>
     <string name="mass_operations">Mass operations</string>
-    <string name="account_type_paypal">PayPal</string>
     <string name="mass_operations_use_filter">Use filter to search for transactions</string>
     <string name="mass_operations_clear_all">Clear all</string>
     <string name="mass_operations_reconcile">Reconcile all</string>
@@ -606,14 +515,10 @@
     <string name="no_payee">No payee</string>
     <string name="no_payees">No payees</string>
     <string name="report_no_payee">There is no payee available for filtering in the report.</string>
-    <string name="donate">Make a donation</string>
-    <string name="donate_error">Android Market is not available on your device</string>
-    <string name="type">Type</string>
 
     <string name="qif_export">QIF Export</string>
     <string name="qif_export_inprogress">Exporting data to QIF…</string>
     <string name="all_accounts">All accounts</string>
-    <string name="filter_value_not_found">Not found…</string>
     <string name="empty_report">Empty report</string>
     <string name="day_of_month">Day of month</string>
 
@@ -652,15 +557,10 @@
     <string name="downloading_rates">Downloading conversion rates for %s…</string>
 
     <string name="unsplit_adjust_amount">Amount</string>
-    <string name="unsplit_adjust_amount_summary">Adjust amount</string>
     <string name="unsplit_adjust_evenly">Evenly</string>
-    <string name="unsplit_adjust_evenly_summary">Adjust evenly</string>
     <string name="unsplit_adjust_last">Last</string>
-    <string name="unsplit_adjust_last_summary">Adjust last</string>
 
-    <string name="add_transfer">Add Transfer</string>
     <string name="file_name">File name</string>
-    <string name="choose_account">Choose account</string>
     <string name="no_filemanager_installed">No filemanager installed</string>
     <string name="csv_import">CSV Import</string>
     <string name="csv_import_inprogress">Importing data from CSV…</string>
@@ -682,14 +582,6 @@
     <string name="import_export">Import/Export</string>
     <string name="qif_import_disclaimer">*WARNING* Please note that all existing data will be removed!</string>
 
-    <string name="googledrive" translatable="false">Google Drive</string>
-    <string name="googledrive_authorize">Enable Sync to Google Drive</string>
-    <string name="googledrive_authorize_summary">Sync your picture in Drive</string>
-    <string name="googledrive_upload">Upload pictures</string>
-    <string name="googledrive_upload_summary">Upload attached pictures to Google Drive</string>
-    <string name="googledrive_folder">Google Drive Folder</string>
-    <string name="googledrive_folder_summary">Select a Google Drive folder to store the uploaded pictures</string>
-
     <string name="remember_last_category_for_payee">Last category</string>
     <string name="remember_last_category_for_payee_summary">Remember the last category for the chosen payee (or account if payee is disabled)</string>
 
@@ -700,7 +592,6 @@
     <string name="balance">Balance</string>
     <string name="show_category_in_transfer">Transfer Category</string>
     <string name="show_category_in_transfer_summary">Show category select in New Transfer screen</string>
-    <string name="auto_backup">Auto-backup</string>
     <string name="auto_backup_enabled">Enable auto-backup</string>
     <string name="auto_backup_enabled_summary">Backup database daily at the specified time</string>
     <string name="auto_backup_time">Auto-backup time</string>
@@ -762,12 +653,9 @@
     <string name="blotter_total_in_currency">All %s transactions</string>
     <string name="budget_total_in_currency">All %s budgets</string>
     <string name="home_currency_total">Total in home currency</string>
-    <string name="total_rate">Rate: %0.5f</string>
-    <string name="home_currency">Home currency</string>
     <string name="upload_to_dropbox">Upload to\nDropbox</string>
     <string name="not_available">N/A</string>
     <string name="rate_not_available_on_date_error" formatted="false">No exchange rate specified on %s to calculate between %s and %s</string>
-    <string name="rate_not_available_error" formatted="false">No exchange rate specified between %s and %s</string>
 
     <string name="collapse_blotter_buttons">Collapse Blotter buttons</string>
     <string name="collapse_blotter_buttons_summary">Group New Transaction/Transfer/Template buttons together (requires restart)</string>
@@ -798,7 +686,6 @@
     <string name="blotter_screen_summary">Preferences for blotter screen</string>
     <string name="hide_closed_accounts">Hide closed accounts</string>
     <string name="hide_closed_accounts_summary">Hide or show closed accounts in the accounts list (requires restart)</string>
-    <string name="re_index_categories">Re-index</string>
     <string name="startup_screen">Startup screen</string>
     <string name="startup_screen_summary">Select tab which will be selected on startup</string>
     <string-array name="startup_screen_entities">
@@ -840,51 +727,35 @@
 
     <string name="period_tomorrow">Tomorrow</string>
     <string name="period_next_week">Next week</string>
-    <string name="period_this_and_next_week">This and next week</string>
     <string name="period_next_month">Next month</string>
     <string name="period_this_and_next_month">This and next month</string>
     <string name="period_next_3_months">Next 3 months</string>
 
-    <string name="exchange_rate_provider_error">Something wrong with the exchange rates provider. Response from the service - %s</string>
     <string name="exchange_rate_provider">Exchange Rate Provider</string>
     <string name="exchange_rate_provider_summary">Select provider to download exchange rates</string>
     <string name="openexchangerates_app_id" translatable="false">OpenExchangeRates App ID</string>
     <string name="openexchangerates_app_id_summary">Please register a free account on OpenExchangeRates and provide your App ID</string>
-    <string name="download_all_rates">Download all current rates</string>
     <string name="downloading_rates_result">Downloaded exchange rates</string>
-
-    <string name="export_splits">Export splits</string>
 
     <string name="account_by_currency">All %s Accounts</string>
     <string name="budget_type_saving">Saving</string>
     <string name="budget_type_saving_summary">Budget with a goal to save money</string>
     <string name="pin_protection_haptic_feedback">Haptic feedback</string>
     <string name="pin_protection_haptic_feedback_summary">Enable vibration when tapping PIN or Calculator buttons</string>
-    <string name="offline_rate">No network connection, the latest offline rate applied…</string>
 
     <string name="show_payee_in_transfer">Transfer Payee</string>
     <string name="show_payee_in_transfer_summary">Show payee field in New Transfer screen</string>
     <string name="google_drive_backup_account">Backup account</string>
     <string name="google_drive_backup_account_summary">Choose your Google Drive account</string>
-    <string name="google_drive_permission_requested">Permission requested</string>
-    <string name="google_drive_permission_requested_for_account">for account %s</string>
-    <string name="google_drive_permission_required">Please authorize Financier to access your Google Drive then try again…</string>
     <string name="google_drive_loading_files">Loading files from Google Drive…</string>
-    <string name="google_drive_account_required">Please specify your Google Drive account in the Preferences then try again…</string>
     <string name="google_drive_backup_success">Backup success on Google Drive: %s</string>
     <string name="google_drive_restore_in_progress">Restoring database from Google Drive…</string>
     <string name="google_drive_connection_resolved">Connection resolved. Please try the last operation again…</string>
     <string name="google_drive_connection_failed">Unable to connect to Google Drive:\n%s</string>
-    <string name="google_drive_account_select_error">Unable to select a Google account to use. Looks like your device does not support Google Play Services.</string>
-    <string name="google_drive_backup_full_readonly">Full read-only access</string>
-    <string name="google_drive_backup_full_readonly_summary">Allows read-only access to all files on your Google Drive.</string>
     <string name="google_drive_uploading_file">Uploading file to Google Drive…</string>
     <string name="google_drive_upload_backup">Upload Backups</string>
     <string name="google_drive_upload_backup_summary">Upload database backups to Google Drive</string>
-    <string name="google_drive_upload_autobackup">Upload Auto-backups</string>
-    <string name="google_drive_upload_autobackup_summary">Upload database auto-backups to Google Drive</string>
 
-    <string name="backup_restore_database_online">Backup/Restore Online</string>
     <string name="backup_database_online_google_drive">Google Drive Backup</string>
     <string name="restore_database_online_google_drive">Google Drive Restore</string>
     <string name="backup_database_online_dropbox">Dropbox Backup</string>
@@ -899,8 +770,6 @@
     <string name="request_permissions_camera_description">Required to take pictures and attach them to transactions.</string>
     <string name="request_permissions_get_accounts_title">Contacts</string>
     <string name="request_permissions_get_accounts_description">Required to allow backup to your personal Google Drive.</string>
-    <string name="request_permissions_granted">Permission granted</string>
-    <string name="request_permissions_not_granted">Permission NOT granted</string>
     <string name="request_permissions_receive_sms_title">SMS</string>
     <string name="request_permissions_receive_sms_description">Required for adding new transactions automatically by SMS templates.</string>
     <string name="privacy_policy">Privacy Policy</string>
@@ -910,7 +779,6 @@
 
     <!-- SMS stuff >> -->
     <string name="sms_number">Sms Number</string>
-    <string name="sms_tpl_filter_hint">Filter by number or text</string>
     <string name="sms_number_hint">SMS sender number or name</string>
     <string name="sms_tpl">Sms Template</string>
     <string name="sms_tpl_title">Template (?)</string>
@@ -921,7 +789,6 @@
     <string name="no_sms_templates">No SMS templates</string>
     <string name="add_sms_template">Add SMS template</string>
     <string name="new_sms_template">New SMS template</string>
-    <string name="sort_sms_templates">Sort By Name</string>
     <string name="duplicate_sms_template">SMS template has been duplicated</string>
     <string name="sms_delete_alert">Delete this SMS template?</string>
     <string name="new_sms_transaction_text">New transaction added by SMS from %s</string>
@@ -953,7 +820,6 @@
     <string name="mass_operations_summary">Apply operations to multiple transactions</string>
     <string name="planner_summary">View monthly planner</string>
     <string name="integrity_fix_summary">Fix internal problems when required</string>
-    <string name="donate_summary">Make a voluntary donation to support the project</string>
     <string name="about_summary">Get more information about the project</string>
 
     <string name="pin_warning">Please make sure to remember the pin. There is no way to recover your information or turn off the protection if you lose or forget the pin.</string>
@@ -992,15 +858,11 @@
     <string name="inactive">Inactive</string>
 
     <string name="entity_selector">Entity Selector</string>
-    <string name="category_selector_title">Category selector</string>
     <string name="payee_selector_title">Payee selector</string>
     <string name="location_selector_title">Location selector</string>
     <string name="project_selector_title">Project selector</string>
     <string name="entity_selector_summary">Show list or filter on tap</string>
 
-    <string name="create_new_entity_with_title">Not able to find %1$s with title \"%2$s\"? Create a new one if missing?</string>
-    <string name="complete_category_selection">Not able to find existing Category with title \"%s\"? Please create a new one using the + button on the category selector.</string>
-    <string name="list_all">List all</string>
     <string name="type_template">Type template…</string>
 
     <string name="enable_crash_reporting">Allow to send anonymous crash reports</string>

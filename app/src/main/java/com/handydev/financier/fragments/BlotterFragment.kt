@@ -85,9 +85,9 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         }
         val filter = WhereFilter.copyOf(blotterFilter)
         return if (filter.accountId > 0) {
-            AccountTotalCalculationTask(activity!!, db, filter, totalText)
+            AccountTotalCalculationTask(requireActivity(), db, filter, totalText)
         } else {
-            BlotterTotalCalculationTask(activity!!, db, filter, totalText)
+            BlotterTotalCalculationTask(requireActivity(), db, filter, totalText)
         }
     }
 
@@ -101,14 +101,14 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         integrityCheck()
         bFilter = view?.findViewById(R.id.bFilter)
         bFilter!!.setOnClickListener {
-            val intent = Intent(activity!!, BlotterFilterActivity::class.java)
+            val intent = Intent(requireActivity(), BlotterFilterActivity::class.java)
             blotterFilter.toIntent(intent)
             intent.putExtra(BlotterFilterActivity.IS_ACCOUNT_FILTER, isAccountBlotter && blotterFilter.accountId > 0)
             startActivityForResult(intent, FILTER_REQUEST)
         }
         totalText = view?.findViewById(R.id.total)
         totalText!!.setOnClickListener { showTotals() }
-        val intent: Intent = activity!!.intent
+        val intent: Intent = requireActivity().intent
         blotterFilter = WhereFilter.fromIntent(intent)
         saveFilter = arguments?.getBoolean(SAVE_FILTER) ?: false
         showTitle = arguments?.getBoolean(SHOW_TITLE) ?: false
@@ -118,9 +118,9 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
             blotterFilter = WhereFilter.fromBundle(savedInstanceState)
         }
         if (saveFilter && blotterFilter.isEmpty) {
-            blotterFilter = WhereFilter.fromSharedPreferences(activity!!.getPreferences(0))
+            blotterFilter = WhereFilter.fromSharedPreferences(requireActivity().getPreferences(0))
         }
-        showAllBlotterButtons = !isAccountBlotter && !MyPreferences.isCollapseBlotterButtons(activity!!)
+        showAllBlotterButtons = !isAccountBlotter && !MyPreferences.isCollapseBlotterButtons(requireActivity())
         if (showAllBlotterButtons) {
             bTransfer = view?.findViewById(R.id.bTransfer)
             bTransfer!!.visibility = View.VISIBLE
@@ -134,7 +134,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
             val searchText = view?.findViewById<EditText>(R.id.search_text)
             val searchLayout = view?.findViewById<FrameLayout>(R.id.search_text_frame)
             val searchTextClearButton = view?.findViewById<ImageButton>(R.id.search_text_clear)
-            val imm = activity!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             searchText?.onFocusChangeListener = OnFocusChangeListener { view: View, b: Boolean ->
                 if (!view.hasFocus()) {
                     imm.hideSoftInputFromWindow(searchLayout?.windowToken, 0)
@@ -186,7 +186,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         bMenu = view?.findViewById(R.id.bMenu)
         if (isAccountBlotter && activity != null) {
             bMenu!!.setOnClickListener {
-                val popupMenu = PopupMenu(activity!!, bMenu)
+                val popupMenu = PopupMenu(requireActivity(), bMenu)
                 val accountId = blotterFilter.accountId
                 if (accountId != -1L) {
                     // get account type
@@ -194,11 +194,11 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
                     val type = AccountType.valueOf(account.type)
                     if (type.isCreditCard) {
                         // Show menu for Credit Cards - bill
-                        val inflater: MenuInflater = activity!!.menuInflater
+                        val inflater: MenuInflater = requireActivity().menuInflater
                         inflater.inflate(R.menu.ccard_blotter_menu, popupMenu.menu)
                     } else {
                         // Show menu for other accounts - monthly view
-                        val inflater: MenuInflater = activity!!.menuInflater
+                        val inflater: MenuInflater = requireActivity().menuInflater
                         inflater.inflate(R.menu.blotter_menu, popupMenu.menu)
                     }
                     popupMenu.setOnMenuItemClickListener { item: MenuItem ->
@@ -223,7 +223,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
             return
         }
         val accountId = blotterFilter.accountId
-        val intent = Intent(activity!!, MonthlyViewActivity::class.java)
+        val intent = Intent(requireActivity(), MonthlyViewActivity::class.java)
         intent.putExtra(MonthlyViewActivity.ACCOUNT_EXTRA, accountId)
         when (id) {
             R.id.opt_menu_month -> {
@@ -240,7 +240,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
                     startActivityForResult(intent, BILL_PREVIEW_REQUEST)
                 } else {
                     // display message: need payment and closing day
-                    val dlgAlert = AlertDialog.Builder(activity!!)
+                    val dlgAlert = AlertDialog.Builder(requireActivity())
                     dlgAlert.setMessage(R.string.statement_error)
                     dlgAlert.setTitle(R.string.ccard_statement)
                     dlgAlert.setPositiveButton(R.string.ok, null)
@@ -255,7 +255,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         if(activity == null) {
             return
         }
-        val intent = Intent(activity!!, BlotterTotalsDetailsActivity::class.java)
+        val intent = Intent(requireActivity(), BlotterTotalsDetailsActivity::class.java)
         blotterFilter.toIntent(intent)
         startActivityForResult(intent, -1)
     }
@@ -264,13 +264,13 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         if(activity == null) {
             return
         }
-        transactionActionGrid = QuickActionGrid(activity!!)
-        transactionActionGrid!!.addQuickAction(MyQuickAction(activity!!, R.drawable.ic_action_info, R.string.info))
-        transactionActionGrid!!.addQuickAction(MyQuickAction(activity!!, R.drawable.ic_action_edit, R.string.edit))
-        transactionActionGrid!!.addQuickAction(MyQuickAction(activity!!, R.drawable.ic_action_trash, R.string.delete))
-        transactionActionGrid!!.addQuickAction(MyQuickAction(activity!!, R.drawable.ic_action_copy, R.string.duplicate))
-        transactionActionGrid!!.addQuickAction(MyQuickAction(activity!!, R.drawable.ic_action_tick, R.string.clear))
-        transactionActionGrid!!.addQuickAction(MyQuickAction(activity!!, R.drawable.ic_action_double_tick, R.string.reconcile))
+        transactionActionGrid = QuickActionGrid(requireActivity())
+        transactionActionGrid!!.addQuickAction(MyQuickAction(requireActivity(), R.drawable.ic_action_info, R.string.info))
+        transactionActionGrid!!.addQuickAction(MyQuickAction(requireActivity(), R.drawable.ic_action_edit, R.string.edit))
+        transactionActionGrid!!.addQuickAction(MyQuickAction(requireActivity(), R.drawable.ic_action_trash, R.string.delete))
+        transactionActionGrid!!.addQuickAction(MyQuickAction(requireActivity(), R.drawable.ic_action_copy, R.string.duplicate))
+        transactionActionGrid!!.addQuickAction(MyQuickAction(requireActivity(), R.drawable.ic_action_tick, R.string.clear))
+        transactionActionGrid!!.addQuickAction(MyQuickAction(requireActivity(), R.drawable.ic_action_double_tick, R.string.reconcile))
         transactionActionGrid!!.setOnQuickActionClickListener(transactionActionListener)
     }
 
@@ -289,11 +289,11 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         if(activity == null) {
             return
         }
-        addButtonActionGrid = QuickActionGrid(activity!!)
-        addButtonActionGrid!!.addQuickAction(MyQuickAction(activity!!, R.drawable.actionbar_add_big, R.string.transaction))
-        addButtonActionGrid!!.addQuickAction(MyQuickAction(activity!!, R.drawable.ic_action_transfer, R.string.transfer))
+        addButtonActionGrid = QuickActionGrid(requireActivity())
+        addButtonActionGrid!!.addQuickAction(MyQuickAction(requireActivity(), R.drawable.actionbar_add_big, R.string.transaction))
+        addButtonActionGrid!!.addQuickAction(MyQuickAction(requireActivity(), R.drawable.ic_action_transfer, R.string.transfer))
         if (addTemplateToAddButton()) {
-            addButtonActionGrid!!.addQuickAction(MyQuickAction(activity!!, R.drawable.actionbar_tiles_large, R.string.template))
+            addButtonActionGrid!!.addQuickAction(MyQuickAction(requireActivity(), R.drawable.actionbar_tiles_large, R.string.template))
         } else {
             addButtonActionGrid!!.setNumColumns(2)
         }
@@ -316,7 +316,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         if(activity == null) {
             return
         }
-        BlotterOperations(activity!!, this, db, selectedId, this).clearTransaction()
+        BlotterOperations(requireActivity(), this, db, selectedId, this).clearTransaction()
         recreateCursor()
     }
 
@@ -324,7 +324,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         if(activity == null) {
             return
         }
-        BlotterOperations(activity!!, this, db, selectedId, this).reconcileTransaction()
+        BlotterOperations(requireActivity(), this, db, selectedId, this).reconcileTransaction()
         recreateCursor()
     }
 
@@ -337,7 +337,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         if(activity == null) {
             return
         }
-        val intent = Intent(activity!!, SelectTemplateActivity::class.java)
+        val intent = Intent(requireActivity(), SelectTemplateActivity::class.java)
         startActivityForResult(intent, NEW_TRANSACTION_FROM_TEMPLATE_REQUEST)
     }
 
@@ -363,8 +363,8 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
                     return true
                 }
                 MENU_SAVE_AS_TEMPLATE -> {
-                    BlotterOperations(activity!!, this, db, id, this).duplicateAsTemplate()
-                    Toast.makeText(activity!!, R.string.save_as_template_success, Toast.LENGTH_SHORT).show()
+                    BlotterOperations(requireActivity(), this, db, id, this).duplicateAsTemplate()
+                    Toast.makeText(requireActivity(), R.string.save_as_template_success, Toast.LENGTH_SHORT).show()
                     return true
                 }
             }
@@ -376,15 +376,15 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         if(activity == null) {
             return 0
         }
-        val newId = BlotterOperations(activity!!, this, db, id, this).duplicateTransaction(multiplier)
+        val newId = BlotterOperations(requireActivity(), this, db, id, this).duplicateTransaction(multiplier)
         val toastText: String = if (multiplier > 1) {
             getString(R.string.duplicate_success_with_multiplier, multiplier)
         } else {
             getString(R.string.duplicate_success)
         }
-        Toast.makeText(activity!!, toastText, Toast.LENGTH_LONG).show()
+        Toast.makeText(requireActivity(), toastText, Toast.LENGTH_LONG).show()
         recreateCursor()
-        AccountWidget.updateWidgets(activity!!)
+        AccountWidget.updateWidgets(requireActivity())
         return newId
     }
 
@@ -400,7 +400,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         if(activity == null) {
             return
         }
-        val intent = Intent(activity!!, clazz)
+        val intent = Intent(requireActivity(), clazz)
         val accountId = blotterFilter.accountId
         if (accountId != -1L) {
             intent.putExtra(TransactionActivity.ACCOUNT_ID_EXTRA, accountId)
@@ -422,9 +422,9 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
             return null
         }
         return if (isAccountBlotter) {
-            TransactionsListAdapter(activity!!, db, cursor)
+            TransactionsListAdapter(requireActivity(), db, cursor)
         } else {
-            BlotterListAdapter(activity!!, db, cursor)
+            BlotterListAdapter(requireActivity(), db, cursor)
         }
     }
 
@@ -436,7 +436,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         if(activity == null) {
             return
         }
-        BlotterOperations(activity!!, this, db, id, this).deleteTransaction()
+        BlotterOperations(requireActivity(), this, db, id, this).deleteTransaction()
     }
 
     override fun afterDeletingTransaction(id: Long) {
@@ -444,7 +444,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
             return
         }
         recreateCursor()
-        AccountWidget.updateWidgets(activity!!)
+        AccountWidget.updateWidgets(requireActivity())
     }
 
     override fun editItem(v: View?, position: Int, id: Long) {
@@ -455,7 +455,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         if(activity == null) {
             return
         }
-        BlotterOperations(activity!!, this, db, id, this).editTransaction()
+        BlotterOperations(requireActivity(), this, db, id, this).editTransaction()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -491,7 +491,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
             val id = duplicateTransaction(templateId, multiplier)
             val t = db!!.getTransaction(id)
             if (t.fromAmount == 0L || edit) {
-                BlotterOperations(activity!!, this, db, id, this).asNewFromTemplate().editTransaction()
+                BlotterOperations(requireActivity(), this, db, id, this).asNewFromTemplate().editTransaction()
             }
         }
     }
@@ -500,7 +500,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         if(activity == null) {
             return
         }
-        val preferences: SharedPreferences = activity!!.getPreferences(0)
+        val preferences: SharedPreferences = requireActivity().getPreferences(0)
         blotterFilter.toSharedPreferences(preferences)
     }
 
@@ -530,7 +530,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         if(activity == null) {
             return
         }
-        FilterState.updateFilterColor(activity!!, blotterFilter, bFilter)
+        FilterState.updateFilterColor(requireActivity(), blotterFilter, bFilter)
     }
 
     private var selectedId: Long = -1
@@ -539,7 +539,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         if(activity == null) {
             return
         }
-        if (MyPreferences.isQuickMenuEnabledForTransaction(activity!!)) {
+        if (MyPreferences.isQuickMenuEnabledForTransaction(requireActivity())) {
             selectedId = id
             transactionActionGrid!!.show(v)
         } else {
@@ -555,15 +555,15 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         if(activity == null || inflater == null) {
             return
         }
-        val transactionInfoView = TransactionInfoDialog(activity!!, this, db, NodeInflater(inflater!!))
-        transactionInfoView.show(activity!!, id, this)
+        val transactionInfoView = TransactionInfoDialog(requireActivity(), this, db, NodeInflater(inflater!!))
+        transactionInfoView.show(requireActivity(), id, this)
     }
 
     override fun integrityCheck() {
         if(activity == null) {
             return
         }
-        IntegrityCheckTask(activity!!).execute(IntegrityCheckRunningBalance(activity!!, db))
+        IntegrityCheckTask(requireActivity()).execute(IntegrityCheckRunningBalance(requireActivity(), db))
     }
 
     override fun onBackPressed(): Boolean {

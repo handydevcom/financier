@@ -239,7 +239,6 @@ public class BlotterListAdapter extends ResourceCursorAdapter {
         String category = getCategoryTitle(cursor, categoryId);
         String text = generateTransactionTitle(sb, payee, note, location, categoryId, category);
         noteView.setText(text);
-        noteView.setTextColor(Color.WHITE);
     }
 
     private String getCategoryTitle(Cursor cursor, long categoryId) {
