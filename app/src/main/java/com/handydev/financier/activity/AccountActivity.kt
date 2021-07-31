@@ -11,39 +11,25 @@
  */
 package com.handydev.financier.activity
 
-import com.handydev.financier.activity.ActivityLayout.addListNodeIcon
-import com.handydev.financier.activity.ActivityLayout.addEditNode
-import com.handydev.financier.utils.TransactionUtils.createCurrencyAdapter
-import com.handydev.financier.activity.ActivityLayout.addListNodePlus
-import com.handydev.financier.activity.ActivityLayout.addCheckboxNode
-import com.handydev.financier.db.DatabaseAdapter.insertOrUpdate
-import com.handydev.financier.activity.ActivityLayout.selectPosition
-import com.handydev.financier.activity.ActivityLayout.select
-import com.handydev.financier.activity.AbstractActivity
-import com.handydev.financier.widget.AmountInput
-import com.handydev.financier.adapter.EntityEnumAdapter
+import android.content.Intent
+import android.database.Cursor
 import android.os.Bundle
-import com.handydev.financier.R
-import android.text.InputType
 import android.text.InputFilter
 import android.text.InputFilter.LengthFilter
-import com.handydev.financier.widget.AmountInput_
-import androidx.core.content.ContextCompat
-import com.handydev.financier.utils.TransactionUtils
-import android.content.Intent
-import com.handydev.financier.activity.AccountActivity
-import com.handydev.financier.activity.AccountWidget
-import android.app.Activity
-import android.database.Cursor
+import android.text.InputType
 import android.view.View
 import android.widget.*
-import com.handydev.financier.utils.EnumUtils
-import com.handydev.financier.activity.CurrencySelector
-import com.handydev.financier.activity.CurrencySelector.OnCurrencyCreatedListener
-import com.handydev.financier.activity.CurrencyActivity
+import androidx.core.content.ContextCompat
+import com.handydev.financier.R
+import com.handydev.financier.adapter.EntityEnumAdapter
 import com.handydev.financier.model.*
 import com.handydev.financier.utils.EntityEnum
+import com.handydev.financier.utils.EnumUtils
+import com.handydev.financier.utils.TransactionUtils.createCurrencyAdapter
 import com.handydev.financier.utils.Utils
+import com.handydev.financier.widget.AmountInput
+import com.handydev.financier.widget.AmountInput_
+import kotlin.math.abs
 
 class AccountActivity : AbstractActivity() {
     private var amountInput: AmountInput? = null
@@ -96,9 +82,9 @@ class AccountActivity : AbstractActivity() {
         paymentDayText!!.setHint(R.string.payment_day_hint)
         paymentDayText!!.setSingleLine()
         amountInput = AmountInput_.build(this)
-        amountInput.setOwner(this)
+        amountInput?.setOwner(this)
         limitInput = AmountInput_.build(this)
-        limitInput.setOwner(this)
+        limitInput?.setOwner(this)
         val layout = findViewById<LinearLayout>(R.id.layout)
         accountTypeAdapter = EntityEnumAdapter(this, AccountType.values(), false)
         accountTypeNode = activityLayout.addListNodeIcon(
@@ -144,8 +130,8 @@ class AccountActivity : AbstractActivity() {
             R.string.currency,
             R.string.select_currency
         )
-        limitInput.setExpense()
-        limitInput.disableIncomeExpenseButton()
+        limitInput?.setExpense()
+        limitInput?.disableIncomeExpenseButton()
         limitAmountView = activityLayout.addEditNode(layout, R.string.limit_amount, limitInput)
         setVisibility(limitAmountView, View.GONE)
         val intent = intent
@@ -162,7 +148,7 @@ class AccountActivity : AbstractActivity() {
         }
         if (account!!.id == -1L) {
             activityLayout.addEditNode(layout, R.string.opening_amount, amountInput)
-            amountInput.setIncome()
+            amountInput?.setIncome()
         }
         noteText = EditText(this)
         noteText!!.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
@@ -178,7 +164,7 @@ class AccountActivity : AbstractActivity() {
             editAccount()
         }
         val bOK = findViewById<Button>(R.id.bOK)
-        bOK.setOnClickListener { arg0: View? ->
+        bOK.setOnClickListener {
             if (account!!.currency == null) {
                 Toast.makeText(this@AccountActivity, R.string.select_currency, Toast.LENGTH_SHORT)
                     .show()
@@ -229,10 +215,10 @@ class AccountActivity : AbstractActivity() {
             val sortOrder = Utils.text(sortOrderText)
             account!!.sortOrder = sortOrder?.toInt() ?: 0
             account!!.isIncludeIntoTotals = isIncludedIntoTotals!!.isChecked
-            account!!.limitAmount = -Math.abs(limitInput.getAmount())
+            account!!.limitAmount = -abs(limitInput?.amount ?: 0)
             account!!.note = Utils.text(noteText)
             val accountId = db.saveAccount(account)
-            val amount = amountInput.getAmount()
+            val amount = amountInput?.amount ?: 0
             if (amount != 0L) {
                 val t = Transaction()
                 t.fromAccountId = accountId
@@ -341,24 +327,28 @@ class AccountActivity : AbstractActivity() {
             if (type == AccountType.CREDIT_CARD) View.VISIBLE else View.GONE
         )
         account!!.type = type.name
-        if (type.isCard) {
-            selectCardIssuer(
-                EnumUtils.selectEnum(
-                    CardIssuer::class.java,
-                    account!!.cardIssuer,
-                    CardIssuer.DEFAULT
+        when {
+            type.isCard -> {
+                selectCardIssuer(
+                    EnumUtils.selectEnum(
+                        CardIssuer::class.java,
+                        account!!.cardIssuer,
+                        CardIssuer.DEFAULT
+                    )
                 )
-            )
-        } else if (type.isElectronic) {
-            selectElectronicType(
-                EnumUtils.selectEnum(
-                    ElectronicPaymentType::class.java,
-                    account!!.cardIssuer,
-                    ElectronicPaymentType.PAYPAL
+            }
+            type.isElectronic -> {
+                selectElectronicType(
+                    EnumUtils.selectEnum(
+                        ElectronicPaymentType::class.java,
+                        account!!.cardIssuer,
+                        ElectronicPaymentType.PAYPAL
+                    )
                 )
-            )
-        } else {
-            account!!.cardIssuer = null
+            }
+            else -> {
+                account!!.cardIssuer = null
+            }
         }
     }
 
@@ -410,7 +400,7 @@ class AccountActivity : AbstractActivity() {
         /** */
         isIncludedIntoTotals!!.isChecked = account!!.isIncludeIntoTotals
         if (account!!.limitAmount != 0L) {
-            limitInput!!.amount = -Math.abs(account!!.limitAmount)
+            limitInput!!.amount = -abs(account!!.limitAmount)
         }
         noteText!!.setText(account!!.note)
     }
@@ -428,14 +418,6 @@ class AccountActivity : AbstractActivity() {
                 }
             }
         }
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
     }
 
     companion object {
