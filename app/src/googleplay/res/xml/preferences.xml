@@ -449,6 +449,11 @@
             android:key="restore_missed_scheduled_transactions"
             android:summary="@string/restore_missed_scheduled_transactions_summary"
             android:title="@string/restore_missed_scheduled_transactions" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="acra.enable"
+            android:summary="@string/enable_crash_reporting_summary"
+            android:title="@string/enable_crash_reporting" />
     </PreferenceCategory>
 
 </PreferenceScreen>

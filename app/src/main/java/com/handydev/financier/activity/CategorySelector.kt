@@ -25,6 +25,7 @@ import com.handydev.financier.model.*
 import com.handydev.financier.utils.ArrUtils
 import com.handydev.financier.utils.TransactionUtils
 import com.handydev.financier.utils.Utils
+import com.handydev.financier.utils.getColorHelper
 import com.handydev.financier.view.AttributeView
 import com.handydev.financier.view.AttributeViewFactory
 import java.util.*
@@ -128,9 +129,10 @@ class CategorySelector<A : AbstractActivity?> @JvmOverloads constructor(private 
         categoryText = filterNode?.textView
         autoCompleteTextView = filterNode?.autoCompleteTextView
         if(darkUI) {
-            categoryText?.setTextColor(activity!!.resources.getColor(R.color.main_text_color, null))
-            autoCompleteTextView?.setTextColor(activity!!.resources.getColor(R.color.main_text_color, null))
-            autoCompleteTextView?.setHintTextColor(activity!!.resources.getColor(R.color.main_text_color, null))
+            val color = getColorHelper(activity!!, R.color.main_text_color)
+            categoryText?.setTextColor(color)
+            autoCompleteTextView?.setTextColor(color)
+            autoCompleteTextView?.setHintTextColor(color)
         }
         return categoryText
     }

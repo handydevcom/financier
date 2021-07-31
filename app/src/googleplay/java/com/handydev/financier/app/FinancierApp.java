@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 
 import androidx.multidex.MultiDexApplication;
 
+import com.handydev.financier.FinancierApplication;
 import com.handydev.financier.utils.MyPreferences;
 import com.handydev.main.googledrive.GoogleDriveClient;
 
@@ -13,7 +14,7 @@ import org.androidannotations.annotations.EApplication;
 import org.greenrobot.eventbus.EventBus;
 
 @EApplication
-public class FinancierApp extends MultiDexApplication {
+public class FinancierApp extends FinancierApplication {
 
     public EventBus bus;
 
