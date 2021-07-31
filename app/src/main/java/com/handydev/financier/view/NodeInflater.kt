@@ -162,7 +162,7 @@ class NodeInflater(var inflater: LayoutInflater) {
                 if (RequestPermission.isRequestingPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE)) {
                     return@setOnClickListener
                 }
-                val fileName = imageView.getTag(R.id.attached_picture) as String
+                val fileName = imageView.getTag(R.id.attached_picture) as? String
                 if (fileName != null) {
                     val target = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID, PicturesUtil.pictureFile(fileName, true))
                     val intent = Intent()

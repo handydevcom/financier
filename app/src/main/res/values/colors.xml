@@ -18,4 +18,5 @@
     <color name="brown_background_light">#ffe7d5</color>
     <color name="calculator_title">#fff6f1</color>
     <color name="button_background">#491700</color>
+    <color name="selected_list_item_color">#40D7CCC8</color>
 </resources>

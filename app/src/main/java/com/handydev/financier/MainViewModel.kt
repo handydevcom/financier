@@ -3,11 +3,13 @@ package com.handydev.financier
 import android.content.Context
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.handydev.financier.utils.MyPreferences
 import com.handydev.financier.fragments.*
@@ -28,6 +30,11 @@ class MainViewModel(activity: FragmentActivity, val context: Context): ViewModel
     {
         override fun getItemCount(): Int {
             return 5
+        }
+
+        override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+            super.onAttachedToRecyclerView(recyclerView)
+            recyclerView.descendantFocusability = ViewGroup.FOCUS_AFTER_DESCENDANTS
         }
 
         override fun createFragment(position: Int): Fragment {
@@ -96,7 +103,7 @@ class MainViewModel(activity: FragmentActivity, val context: Context): ViewModel
         updateBottomNavigationPosition(activePage)
     }
 
-    var tabPageAdapter: MainPagerAdapter
+    var tabPageAdapter: MainPagerAdapter = MainPagerAdapter(activity, context)
 
     private fun updateBottomNavigationPosition(page: Int) {
         when(page) {
@@ -109,7 +116,6 @@ class MainViewModel(activity: FragmentActivity, val context: Context): ViewModel
     }
 
     init {
-        tabPageAdapter = MainPagerAdapter(activity, context)
         when (MyPreferences.getStartupScreen(context)) {
             MyPreferences.StartupScreen.ACCOUNTS -> { }
             MyPreferences.StartupScreen.BLOTTER -> {

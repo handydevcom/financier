@@ -149,13 +149,6 @@ abstract class AbstractListFragment protected constructor(private val contentId:
 
     override fun integrityCheck() {}
 
-    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-        if (resultCode == Activity.RESULT_OK) {
-            recreateCursor()
-        }
-    }
-
-    */
     companion object {
         const val MENU_VIEW = Menu.FIRST + 1
         const val MENU_EDIT = Menu.FIRST + 2
