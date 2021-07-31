@@ -48,7 +48,7 @@ public class QuickActionGrid extends QuickActionWidget {
         setContentView(R.layout.gd_quick_action_grid);
 
         final View v = getContentView();
-        mGridView = (GridView) v.findViewById(R.id.gdi_grid);
+        mGridView = v.findViewById(R.id.gdi_grid);
     }
 
     public void setNumColumns(int columns) {
@@ -94,8 +94,6 @@ public class QuickActionGrid extends QuickActionWidget {
 
     @Override
     protected void onMeasureAndLayout(Rect anchorRect, View contentView) {
-
-        //contentView.setLayoutParams(new GridView.LayoutParams(GridView.LayoutParams.WRAP_CONTENT, GridView.LayoutParams.WRAP_CONTENT));
         contentView.measure(MeasureSpec.makeMeasureSpec(getScreenWidth(), MeasureSpec.EXACTLY),
                 ViewGroup.LayoutParams.WRAP_CONTENT);
 
@@ -111,13 +109,10 @@ public class QuickActionGrid extends QuickActionWidget {
         setWidgetSpecs(popupY, onTop);
     }
 
-    private OnItemClickListener mInternalItemClickListener = new OnItemClickListener() {
-        public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-            getOnQuickActionClickListener().onQuickActionClicked(QuickActionGrid.this, position);
-            if (getDismissOnClick()) {
-                dismiss();
-            }
+    private OnItemClickListener mInternalItemClickListener = (adapterView, view, position, id) -> {
+        getOnQuickActionClickListener().onQuickActionClicked(QuickActionGrid.this, position);
+        if (getDismissOnClick()) {
+            dismiss();
         }
     };
-
 }
