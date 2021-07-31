@@ -1225,8 +1225,7 @@ open class DatabaseAdapter(context: Context?) : MyEntityManager(context) {
                 CreditCardClosingDateColumns.PERIOD + "=?"
         val c = db().query(DatabaseHelper.CCARD_CLOSING_DATE_TABLE, arrayOf(CreditCardClosingDateColumns.CLOSING_DAY),
                 where, arrayOf(java.lang.Long.toString(accountId), Integer.toString(period)), null, null, null)
-        var res = 0
-        res = try {
+        var res = try {
             if (c != null) {
                 if (c.count > 0) {
                     c.moveToFirst()

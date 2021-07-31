@@ -12,56 +12,40 @@
   <string name="save">Zapisz</string>
   <string name="cancel">Anuluj</string>
   <string name="close">Zamknij</string>
-  <string name="edit_account">Edytuj rachunek</string>
-  <string name="add_account">Dodaj rachunek</string>
   <string name="title">Tytuł</string>
   <string name="payee">Odbiorca</string>
   <string name="currency">Waluta</string>
-  <string name="add_currency">Dodaj walutę</string>
   <string name="opening_amount">Kwota otwarcia</string>
   <string name="limit_amount">Kwota limitu</string>
   <string name="view">Widok</string>
   <string name="edit">Edytuj</string>
   <string name="delete">Usuń</string>
-  <string name="add_transaction">Dodaj transakcję</string>
   <string name="account">Rachunek</string>
   <string name="category">Kategoria</string>
-  <string name="add_category">Dodaj kategorię</string>
   <string name="income">Przychód</string>
   <string name="expense">Koszt</string>
   <string name="amount">Kwota</string>
   <string name="date">Data</string>
-  <string name="time">Czas</string>
-  <string name="parent">Nadrzędny</string>
-  <string name="total">Suma:</string>
   <string name="filter">Filtr</string>
   <string name="no_filter">Brak filtra</string>
   <string name="transfer">Przelew</string>
-  <string name="confirmation">Potwierdzenie</string>
   <string name="delete_category_dialog">Usunąć kategorię i wszystkie podkategorie (jeżeli istnieją)?</string>
   <string name="currency_delete_alert">Nie można usunąć waluty, która jest używana.</string>
   <string name="yes">Tak</string>
   <string name="no">Nie</string>
-  <string name="error">Błąd</string>
   <string name="include_subcategories">Uwzględniaj podkategorie</string>
   <string name="include_subcategories_summary">Dodaj transakcje z podkategorii</string>
   <string name="start_date">Data początkowa</string>
-  <string name="end_date">Data końcowa</string>
   <string name="budget">Budżet</string>
-  <string name="no_limit">Brak limitu</string>
   <string name="period">Okres</string>
   <string name="period_from">Okres od</string>
   <string name="period_to">okres do</string>
   <string name="period_recur">Okres powtarzania</string>
   <string name="preferences">Preferencje</string>
-  <string name="amount_picker">Wybór kwoty</string>
-  <string name="integer_part_title">Liczba cyfr</string>
-  <string name="use_hundredth_title">Używaj setek</string>
   <string name="project">Projekt</string>
   <string name="select_account">Proszę wybrać rachunek...</string>
   <string name="select_currency">Proszę wybrać walutę...</string>
   <string name="select_category">Proszę wybrać kategorię...</string>
-  <string name="select_project">Proszę wybrać projekt...</string>
   <string name="warning">Ostrzeżenie</string>
   <string name="no_accounts">Powinieneś zacząć od utworzenia rachunku. Dotknij zielonego \'+\' na dole...</string>
   <string name="no_budgets">Brak budżetów</string>
@@ -77,28 +61,17 @@
   <string name="rate">Stawka</string>
   <string name="no_rate">Brak stawki</string>
   <string name="transaction">Transakcja</string>
-  <string name="transaction_title">Nowa transakcja</string>
-  <string name="transfer_title">Nowy przelew</string>
   <string name="about">O programie</string>
-  <string name="about_copyright2">Wszelkie prawa zastrzeżone</string>
   <string name="menu">Menu</string>
   <string name="location">Lokalizacja</string>
   <string name="locations">Lokalizacje</string>
   <string name="no_locations">Brak lokalizacji</string>
-  <string name="use_gps">Użyj GPS</string>
-  <string name="use_gps_summary">Użyj GPS aby pobrać bieżącą lokalizację dla transakcji</string>
-  <string name="use_my_location">Użyj Mojej lokalizacji</string>
-  <string name="use_my_location_summary">Użyj Mojej lokalizacji aby pobrać bieżącą lokalizację dla nowej lokalizacji</string>
-  <string name="select_location">Wybierz lokalizację</string>
   <string name="no_fix">Nieznana lokalizacja</string>
   <string name="attribute">Atrybut</string>
   <string name="attributes">Atrybuty</string>
   <string name="parent_attributes">Nadrzędne atrybuty</string>
-  <string name="change_attributes">Zmień atrybuty</string>
-  <string name="calculator">Kalkulator</string>
   <string name="no_attributes">Brak atrybutów</string>
   <string name="add_attribute">Dodaj atrybut</string>
-  <string name="new_attribute">Nowy atrybut</string>
   <string name="attribute_type">Typ</string>
   <string name="attribute_name">Nazwa</string>
   <string name="attribute_values">Wartości</string>
@@ -108,22 +81,9 @@
   <string name="checkbox_values_yes">Tak</string>
   <string name="checkbox_values_no">Nie</string>
   <string name="checkbox_values_hint">Tak;Nie</string>
-  <string name="location_name">Nazwa lokalizacji</string>
-  <string name="satellite_on">Satelity włączone</string>
-  <string name="satellite_off">Satelity wyłączone</string>
-  <string name="my_location">Moja lokalizacja</string>
-  <string name="move_marker_to_center">Znacznik na środek</string>
-  <string name="move_go_to_marker">Idź do znacznika</string>
-  <string name="tap_location">Dotknij znacznika \'Moja lokalizacja\' aby ręcznie dostosować lokalizację</string>
   <string name="note">Notatka</string>
-  <string name="service_is_not_available">Serwis niedostępny, proszę spróbować później</string>
-  <string name="resolve_address">Przetwórz adres</string>
-  <string name="resolving_address">Przetwarzanie adresu...</string>
   <string name="report">Raport</string>
   <string name="reports">Raporty</string>
-  <string name="no_reports">Brak raportów</string>
-  <string name="select_report">Proszę wybrać raport...</string>
-  <string name="overall">Ogólny</string>
   <string name="report_by_period">Według okresu</string>
   <string name="report_by_period_summary">Raport transakcji według okresu</string>
   <string name="report_by_category">By Category</string>
@@ -189,13 +149,10 @@
   <string name="account_type_asset">Kapitał</string>
   <string name="account_type_liability">Odpowiedzialność</string>
   <string name="account_type_other">Inne</string>
-  <string name="card_type">Typ karty</string>
   <string name="card_number">Numer karty</string>
   <string name="card_number_hint">Ostatnie 4 cyfry numeru karty</string>
   <string name="issuer">Wydawca</string>
-  <string name="cash">Gotówka</string>
   <string name="sort_order">Kolejność sortowania</string>
-  <string name="force_gps_location">Wymuś lokalizację GPS</string>
   <string name="whats_new">Co nowego</string>
   <string name="attribute_delete_alert">Spowoduje to usunięcie atrybutu z kategorii i transakcji.</string>
   <string name="user_interface">Interfejs użytkownika</string>
@@ -203,46 +160,30 @@
   <string name="sort_accounts_summary">Określ kolejność sortowania listy rachunków (wymaga ponownego uruchomienia)</string>
   <string name="sort_locations">Sortowanie lokalizacji</string>
   <string name="sort_locations_summary">Określ kolejność sortowania listy lokalizacji</string>
-  <string name="more_products">Więcej produktów...</string>
   <string name="pin_protection">Ochrona PIN</string>
   <string name="pin_protection_summary">Zaznacz aby chronić dostęp numerem PIN</string>
-  <string name="pin_protection_notify">Proszę ustaw PIN w preferencjach</string>
   <string name="change_pin">Zmień PIN</string>
-  <string name="change_pin_summary">Zmień numer PIN</string>
-  <string name="pin">Kod PIN</string>
   <string name="set_pin">Ustaw PIN</string>
   <string name="confirm_pin">Potwierdź PIN</string>
   <string name="restore">Przywróc</string>
   <string name="backup_database">Kopia zapasowa bazy danych</string>
   <string name="backup_database_inprogress">Tworzenie kopii zapasowej bazy danych...</string>
-  <string name="backup_database_gdocs">Kopia zapasowaw dokumentach Google</string>
   <string name="backup_database_gdocs_inprogress">Tworzenie kopii zapasowej bazy danych...</string>
   <string name="csv_export">Eksport CSV</string>
   <string name="csv_export_inprogress">Tworzenie kopii zapasowej do CSV...</string>
   <string name="restore_database">Przywróć bazę danych</string>
   <string name="restore_database_inprogress">Przywracanie bazy danych...</string>
-  <string name="restore_database_gdocs">Przywracanie z dokumentów Google</string>
-  <string name="restore_database_inprogress_gdocs">Przywracanie bazy danych...</string>
   <string name="restore_database_success">Baza danych została pomyślnie przywrócona.</string>
   <string name="gdocs_connection_failed">Nie można się połączyć z dokumentami Google.</string>
-  <string name="gdocs_folder_not_found">Nie można odnaleźć katalogu kopii zapasowych w dokumentach Google.</string>
-  <string name="gdocs_credentials_not_configured">Proszę ustaw login i hasło konta Google w preferencjach.</string>
   <string name="gdocs_folder_not_configured">Proszę ustaw katalog kopii zapasowych dokumentów Google w preferencjach.</string>
-  <string name="gdocs_backup_failed">Bład podczas wysyłania pliku kopii zapasowej do dokumentów Google. Proszę spróbuj ponownie.</string>
-  <string name="gdocs_restore_failed">Bład podczas pobierania pliku kopii zapasowej. Proszę spróbuj ponownie.</string>
-  <string name="gdocs_folder_error">Błąd dostępu do katalogu w dokumentach Google.</string>
-  <string name="gdocs_service_error">Błąd serwisu dokumentów Google.</string>
-  <string name="gdocs_io_error">Błąd połączenia z dokumentami Google.</string>
   <string name="success">Sukces! %s</string>
   <string name="fail">Niepowodzenie...</string>
   <string name="duplicate">Duplikat</string>
   <string name="select_from_account">Proszę wybrać rachunek źródłowy...</string>
   <string name="select_to_account">Proszę wybrać rachunek docelowy...</string>
-  <string name="update_balance">Aktualizacja salda</string>
   <string name="close_account">Zamknij rachunek</string>
   <string name="reopen_account">Otwórz ponownie rachunek</string>
   <string name="difference">Różnica</string>
-  <string name="new_balance">Nowe saldo</string>
   <string name="duplicate_success">Transakcja została zduplikowana z bieżącą datą i czasem</string>
   <string name="duplicate_success_with_multiplier">Transakcja została zduplikowana z bieżącą datą i czasem (x%d)</string>
   <string name="no_category">Brak kategorii</string>
@@ -259,8 +200,6 @@
   <string name="show_location_order_summary">Względna pozycja dla pola rozwijanego lokalizacji</string>
   <string name="show_payee">Pokaż odbiorcę</string>
   <string name="show_payee_summary">Pokaż pole edycji odbiorcy</string>
-  <string name="show_payee_order">Kolejność odbiorcy</string>
-  <string name="show_payee_order_summary">Względna pozycja dla pola odbiorcy</string>
   <string name="show_note">Pokaż notatkę</string>
   <string name="show_note_summary">Pokaż pole edycji notatki</string>
   <string name="show_note_order">Kolejność notatki</string>
@@ -280,15 +219,12 @@
   <string name="position_move_up">Przenieś wyżej</string>
   <string name="position_move_down">Przenieś niżej</string>
   <string name="position_move_bottom">Przenieś na dół</string>
-  <string name="add_sibling">Dodaj rodzeństwo</string>
-  <string name="add_child">Dodaj dziecko</string>
   <string name="interval">Przedział</string>
   <string name="recur_interval">Powtarzanie przedziału</string>
   <string name="recur_interval_no_recur">Bez powtórzeń</string>
   <string name="recur_interval_every_x_day">Powtarzaj co X dni</string>
   <string name="recur_interval_every_x_week">Powtarzaj co X tygodni</string>
   <string name="recur_interval_every_x_month">Powtarzaj co X miesięcy</string>
-  <string name="recur_interval_every_x_year">Powtarzaj co X lat</string>
   <string name="recur_interval_daily">Dzienny</string>
   <string name="recur_interval_weekly">Tygodniowy</string>
   <string name="recur_interval_monthly">Miesięczny</string>
@@ -302,7 +238,6 @@
   <string name="recur_period_every">Co</string>
   <string name="recur_period_days">dni</string>
   <string name="recur_period_semi_monthly">W kolejnych dniach</string>
-  <string name="recur_repeat_indefinitely">Nieskończony</string>
   <string name="recur_repeat_exactly">Dokładnie</string>
   <string name="recur_repeat_times">razy</string>
   <string name="recur_repeat_starts_on">Rozpocznij w</string>
@@ -312,7 +247,6 @@
   <string name="recur_error_specify_second_day">Proszę określić drugi dzień</string>
   <string name="recur_error_specify_times">Proszę podać liczbę razy</string>
   <string name="recur">Powtarzanie</string>
-  <string name="recur_period">okres</string>
   <string name="day_mon">Pon</string>
   <string name="day_tue">Wto</string>
   <string name="day_wed">Śro</string>
@@ -331,10 +265,6 @@
   <string name="budget_mode">Łatwe warunki</string>
   <string name="budget_mode_summary">Użyj mniej restrykcyjnych warunków (kategoria lub projekt) do filtrowania transakcji</string>
   <string name="gdocs_backup">Kopia zapasowa w dokumentach Google</string>
-  <string name="user_login">Użytkownik</string>
-  <string name="user_login_summary">Użytkownik konta Google</string>
-  <string name="user_password">Hasło</string>
-  <string name="user_password_summary">Hasło konta Google</string>
   <string name="backup_folder">Backup Collection</string>
   <string name="backup_folder_summary">To store backup files create a new collection in My Collections</string>
   <string name="report_preferences">Preferencje raportu</string>
@@ -399,14 +329,12 @@
   <string name="recur_interval_geeky">Sztywny</string>
   <string name="recurrence_pattern">Wzorzec powtarzania</string>
   <string name="recurrence_period">Okres powtarzania</string>
-  <string name="recurrence_period_starts_on">Rozpocznij w</string>
   <string name="recurrence_weekly_days">Powtarzaj co</string>
   <string name="recurrence_monthly_pattern">Wzór miesięczny</string>
   <string name="recurrence_monthly_every_nth_day">Co Nty dzień</string>
   <string name="recurrence_monthly_specific_day">Szczególny dzień</string>
   <string name="recur_interval_semi_monthly_1">1szy dzień</string>
   <string name="recur_interval_semi_monthly_2">2gi dzień</string>
-  <string name="recurrence_none">Brak powtórzeń</string>
   <string name="specify_value">Określ wartość...</string>
   <string name="recurrence_evaluate">Oblicz daty</string>
   <string name="first">Pierwszy</string>
@@ -438,7 +366,6 @@
   <string name="new_scheduled_transfer_notification_differ_currency" formatted="false">%s(%s) został przelany z %s na %s</string>
   <string name="new_scheduled_transfer_notification_same_currency" formatted="false">%s został przelany z %s na %s</string>
   <string name="notification">Powiadomienie</string>
-  <string name="notification_options_on">Włączone</string>
   <string name="notification_options_off">Wyłączone</string>
   <string name="notification_options_short">Z</string>
   <string name="notification_options_2_short">Z-Z</string>
@@ -451,7 +378,6 @@
   <string name="notification_options_led_yellow">Żółty</string>
   <string name="notification_options_led_red">Czerwony</string>
   <string name="notification_options_led_pink">Różowy</string>
-  <string name="notification_options_text" formatted="false">Dzwonek:%s Wibracje:%s Led:%s</string>
   <string name="notification_options_custom">Niestandardowy</string>
   <string name="notification_options_default">Domyślny</string>
   <string name="notification_sound">Dzwonek</string>
@@ -462,9 +388,6 @@
   <string name="transaction_status_unreconciled">Niezapisany</string>
   <string name="transaction_status_cleared">Zapłacony</string>
   <string name="transaction_status_reconciled">Zapisany</string>
-  <string name="scheduled">(zaplanowany)</string>
-  <string name="expired">(przeterminowany)</string>
-  <string name="pending">(oczekujący)</string>
   <string name="system_attribute_delete_after_expired">Usuń po przeterminowaniu</string>
   <string name="no_transaction_found">Nie znaleziono transakcji, proszę uruchom ponownie Financier…</string>
   <string name="include_credit">Uwzględnij kredyty</string>
@@ -473,13 +396,9 @@
   <string name="enable_widget_summary">Pokaż sumę rachunku na wwidżecie</string>
   <string name="attach_picture">Załącz zdjęcie</string>
   <string name="new_picture">Wykonaj zdjęcie</string>
-  <string name="credits">Kredyty</string>
   <string name="sort_by_title">Sortuj po tytule</string>
-  <string name="sort_all_by_title">Sortuj wszystko po tytule</string>
   <string name="include_transfers_into_reports">Przelewy w raportach</string>
   <string name="include_transfers_into_reports_summary">Uwzględnij przelewy w raportach</string>
-  <string name="negative_opening_amount">Ujemne saldo początkowe</string>
-  <string name="negative_opening_amount_summary">Załóż konto z ujemną kwotą otwarcia</string>
   <string name="payment_day">Dzień zapłaty</string>
   <string name="closing_day">Dzień zamknięcia</string>
   <string name="payment_day_hint">Dzień, w którym spłacasz rachuek karty kredytowej.</string>
@@ -493,7 +412,6 @@
   <string name="alert_regular_closing_day">Niestandardowy dzień zamknięcia musi być inny niż standardowy.</string>
   <string name="ccard_statement">Rozliczenia</string>
   <string name="monthly_view">Podgląd miesiąca</string>
-  <string name="credit_card_statement">Rozliczenie karty kredytowej</string>
   <string name="ccard_statement_title">Rozliczenie &lt;ccard&gt;</string>
   <string name="ccard_par">&lt;ccard&gt;</string>
   <string name="bill_on">Rachunek do </string>
@@ -508,10 +426,8 @@
   <string name="header_expenses">Wydatki</string>
   <string name="ui_language">Język</string>
   <string name="ui_language_summary">Ustaw język interfejsu użytkownika (wymaga ponownego uruchomienia!)</string>
-  <string name="enter_pin">Wprowadź PIN</string>
   <string name="mass_operations">Operacje masowe</string>
   <string name="card_issuer_unionpay">UnionPay</string>
-  <string name="account_type_paypal">PayPal</string>
   <string name="mass_operations_use_filter">Użyj filtra do wyszukiwania transakcji</string>
   <string name="mass_operations_clear_all">Wyczyść wszystko</string>
   <string name="mass_operations_reconcile">Zapisz wszystko</string>
@@ -535,13 +451,9 @@
   <string name="report_by_payee_by_period_summary">Raport transakcji według odbiorcy i okresu</string>
   <string name="no_payee">Brak odbiorców</string>
   <string name="report_no_payee">Nie ma dostępnych odbiorców do filtrowania raportu.</string>
-  <string name="donate">Wykonaj datek</string>
-  <string name="donate_error">Android Market nie jest dostępny na Twoim urządzeniu</string>
-  <string name="type">Typ</string>
   <string name="qif_export">Eksport do QIF</string>
   <string name="qif_export_inprogress">Eksportowanie danych do QIF...</string>
   <string name="all_accounts">Wszystkie rachunki</string>
-  <string name="filter_value_not_found">Nie znaleziono...</string>
   <string name="empty_report">Pusty raport</string>
   <string name="day_of_month">Dzień miesiąca</string>
   <string name="show_running_balance">Pokaż bieżące saldo</string>
@@ -560,14 +472,9 @@
   <string name="delete_transaction_parent_confirm">Ta transakcja jest częścią innej. Czy chcesz usunąć transakcję nadrzędną?</string>
   <string name="downloading_rate" formatted="false">Pobieranie kursu %s/%s...</string>
   <string name="unsplit_adjust_amount">Kwota</string>
-  <string name="unsplit_adjust_amount_summary">Skoryguj kwotę</string>
   <string name="unsplit_adjust_evenly">Równo</string>
-  <string name="unsplit_adjust_evenly_summary">Ustaw równo</string>
   <string name="unsplit_adjust_last">Ostatni</string>
-  <string name="unsplit_adjust_last_summary">Dopasuj ostatni</string>
-  <string name="add_transfer">Dodaj Transfer</string>
   <string name="file_name">Nazwa pliku</string>
-  <string name="choose_account">Wybierz konto</string>
   <string name="no_filemanager_installed">Nie zainstalowano menedżera plików</string>
   <string name="csv_import">Import z CSV</string>
   <string name="csv_import_inprogress">Importowanie danych z pliku CSV...</string>
@@ -593,7 +500,6 @@
   <string name="balance">Saldo</string>
   <string name="show_category_in_transfer">Przenieść kategorię</string>
   <string name="show_category_in_transfer_summary">Pokaż wybór kategorii w Nowym ekranie Transferu</string>
-  <string name="auto_backup">Automatyczna kopia zapasowa</string>
   <string name="auto_backup_enabled">Włącz automatyczną kopię zapasową</string>
   <string name="auto_backup_enabled_summary">Wykonaj kopię zapasowa bazy danych codziennie o określonej godzinie</string>
   <string name="auto_backup_time">Godzina automatycznej kopii zapasowej</string>
@@ -644,12 +550,9 @@
   <string name="blotter_total_in_currency">All %s transactions</string>
   <string name="budget_total_in_currency">All %s budgets</string>
   <string name="home_currency_total">Total in home currency</string>
-  <string name="total_rate">Rate: %0.5f</string>
-  <string name="home_currency">Home currency</string>
   <string name="upload_to_dropbox">Upload to\nDropbox</string>
   <string name="not_available">N/A</string>
   <string name="rate_not_available_on_date_error" formatted="false">No exchange rate specified on %s to calculate between %s and %s</string>
-  <string name="rate_not_available_error" formatted="false">No exchange rate specified between %s and %s</string>
   <string name="collapse_blotter_buttons">Collapse Blotter buttons</string>
   <string name="collapse_blotter_buttons_summary">Group New Transaction/Transfer/Template buttons together (requires restart)</string>
   <string name="is_active">Is active</string>
@@ -662,11 +565,6 @@
     <item>Liczba</item>
     <item>Lista</item>
     <item>Pole wyboru</item>
-  </string-array>
-  <string-array name="account_types">
-    <item>Bank</item>
-    <item>Gotówka</item>
-    <item>Karta kredytowa</item>
   </string-array>
   <string-array name="sort_accounts_entities">
     <item>Według kolejności (rosnąco)</item>

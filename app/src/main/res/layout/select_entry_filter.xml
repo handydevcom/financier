@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <FrameLayout xmlns:a="http://schemas.android.com/apk/res/android"
-    a:id="@+id/top_layout"
     a:layout_width="fill_parent"
     a:layout_height="wrap_content"
     a:background="?android:attr/listChoiceBackgroundIndicator"
