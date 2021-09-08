@@ -626,7 +626,7 @@ open class DatabaseAdapter(context: Context?) : MyEntityManager(context) {
         {
             val category = categories.firstOrNull { it.id == excludingTreeId }
             if(category != null) {
-                categories = categories.filter { it.id < category.left || it.id > category.right }
+                categories = categories.filter { !((it.id == category.id && it.level == category.level) || (it.id >= category.left && it.id <= category.right && it.level > category.level)) }
             }
         }
         return CategoryTree.createFromCache(categories)
