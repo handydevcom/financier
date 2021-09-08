@@ -198,7 +198,7 @@ public class RecurActivity extends Activity {
             String value = x.name();
             items[i] = new SpinnerItem(title, value);
         }
-        ArrayAdapter<SpinnerItem> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
+        ArrayAdapter<SpinnerItem> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
