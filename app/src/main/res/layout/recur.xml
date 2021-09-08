@@ -11,6 +11,7 @@
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:background="@color/brown_background_light"
 	android:orientation="vertical">
 	<View android:layout_height="1dp" android:background="@drawable/divider_horizontal_dark"
 		android:layout_width="fill_parent" android:layout_marginLeft="10dp"
@@ -21,22 +22,36 @@
 		<LinearLayout android:layout_height="wrap_content"
 			android:orientation="vertical" android:layout_width="fill_parent">
 			<TextView android:layout_width="wrap_content"
+				android:textColor="@color/main_text_color"
 				android:layout_height="wrap_content" android:text="@string/start_date" />
-			<Button android:layout_height="wrap_content" android:id="@+id/bStartDate"
-				android:layout_width="fill_parent"></Button>
+
+			<Button
+				android:layout_height="wrap_content"
+				android:id="@+id/bStartDate"
+				android:layout_width="fill_parent" />
 			<TextView android:layout_width="wrap_content"
+				android:textColor="@color/main_text_color"
 				android:layout_height="wrap_content" android:text="@string/interval" />
 			<Spinner android:layout_height="wrap_content"
 				android:layout_width="fill_parent" android:prompt="@string/recur_interval"
 				android:id="@+id/intervalSpinner" />
-			<LinearLayout android:layout_height="wrap_content"
-				android:id="@+id/layoutInterval" android:layout_width="fill_parent"></LinearLayout>
+
+			<LinearLayout
+				android:layout_height="wrap_content"
+				android:id="@+id/layoutInterval"
+				android:layout_width="fill_parent" />
 			<TextView android:layout_width="wrap_content"
+				android:textColor="@color/main_text_color"
 				android:layout_height="wrap_content" android:text="@string/recur" />
-			<Spinner android:layout_height="wrap_content" android:id="@+id/recurSpinner"
+			<Spinner android:layout_height="wrap_content"
+				android:id="@+id/recurSpinner"
 				android:layout_width="fill_parent" android:prompt="@string/recur" />
-			<LinearLayout android:layout_height="wrap_content"
-				android:layout_width="fill_parent" android:id="@+id/recurInterval"></LinearLayout>
+
+			<LinearLayout
+				android:layout_height="wrap_content"
+				android:layout_width="fill_parent"
+				android:id="@+id/recurInterval"
+				android:orientation="horizontal" />
 
 		</LinearLayout>
 	</ScrollView>

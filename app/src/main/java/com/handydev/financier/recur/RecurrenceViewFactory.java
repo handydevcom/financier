@@ -35,6 +35,8 @@ import java.util.*;
 
 import static com.handydev.financier.activity.UiUtils.applyTheme;
 
+import androidx.core.content.ContextCompat;
+
 public class RecurrenceViewFactory {
 
     private final RecurrenceActivity activity;
@@ -722,6 +724,7 @@ public class RecurrenceViewFactory {
         public void createNodes(LinearLayout layout) {
             onDateText = x.addInfoNode(layout, R.id.date, R.string.recur_repeat_stops_on,
                     DateUtils.getMediumDateFormat(activity).format(c.getTime()));
+            //onDateText.setTextColor(ContextCompat.getColor());
         }
 
         @Override

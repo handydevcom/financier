@@ -27,7 +27,10 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 public class CategoryListAdapter2 extends BaseAdapter {
 
@@ -49,8 +52,8 @@ public class CategoryListAdapter2 extends BaseAdapter {
 		this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		this.categories = categories;
         Resources resources = context.getResources();
-        this.expandedDrawable = resources.getDrawable(R.drawable.expander_ic_maximized);
-		this.collapsedDrawable = resources.getDrawable(R.drawable.expander_ic_minimized);
+        this.expandedDrawable = ContextCompat.getDrawable(context, R.drawable.expander_ic_maximized);
+        this.collapsedDrawable = ContextCompat.getDrawable(context, R.drawable.expander_ic_minimized);
         this.incomeColor = resources.getColor(R.color.category_type_income);
         this.expenseColor = resources.getColor(R.color.category_type_expense);
         this.levelPadding = resources.getDimensionPixelSize(R.dimen.category_padding);
@@ -108,21 +111,14 @@ public class CategoryListAdapter2 extends BaseAdapter {
 		if (c.hasChildren()) {
 			span.setImageDrawable(state.contains(c.id) ? expandedDrawable : collapsedDrawable);
 			span.setClickable(true);
-			span.setOnClickListener(new OnClickListener(){
-				@Override
-				public void onClick(View v) {
-					onListItemClick(c.id);
-				}
-			});
-            span.setPadding(padding, 0, 0, 0);
+			span.setOnClickListener(v -> onListItemClick(c.id));
 			span.setVisibility(View.VISIBLE);
-            padding += collapsedDrawable.getMinimumWidth();
 		} else {
-            padding += levelPadding/2;
 			span.setVisibility(View.GONE);
 		}
-        title.setPadding(padding, 0, 0, 0);
-        label.setPadding(padding, 0, 0, 0);
+		RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) indicator.getLayoutParams();
+		layoutParams.leftMargin = padding + 8;
+		indicator.requestLayout();
 		long id = c.id;
 		if (attributes != null && attributes.containsKey(id)) {
 			label.setText(attributes.get(id));
@@ -193,10 +189,10 @@ public class CategoryListAdapter2 extends BaseAdapter {
 
 		public static Holder create(View convertView) {
 			Holder h = new Holder();
-            h.indicator = (TextView)convertView.findViewById(R.id.indicator);
-			h.span = (ImageView)convertView.findViewById(R.id.span);
-			h.title = (TextView)convertView.findViewById(R.id.line1);
-			h.label = (TextView)convertView.findViewById(R.id.label);
+            h.indicator = convertView.findViewById(R.id.indicator);
+			h.span = convertView.findViewById(R.id.span);
+			h.title = convertView.findViewById(R.id.line1);
+			h.label = convertView.findViewById(R.id.label);
 			convertView.setTag(h);
 			return h;
 		}

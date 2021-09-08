@@ -184,7 +184,7 @@ class CategoryTree<T : CategoryEntity<T>> : Iterable<T> {
                 val category = creator.createNode(c)
                 while (parent != null) {
                     parent = if (category.left > parent.left && category.right < parent.right) {
-                        parent.addChild(category)
+                        parent.addChild(category, false)
                         break
                     } else {
                         parent.parent

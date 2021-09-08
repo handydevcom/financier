@@ -125,7 +125,7 @@ public class CategoryCache {
         Category child = categoryNameToCategory.get(name);
         if (child == null) {
             child = createCategoryInCache(name, childCategoryName, income);
-            parent.addChild(child);
+            parent.addChild(child, true);
         }
         return child;
     }

@@ -98,9 +98,9 @@ class BudgetListFragment: AbstractListFragment(R.layout.budget_list) {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val unmaskedRequestCode = requestCode and 0x0000ffff
         if (unmaskedRequestCode == FILTER_BUDGET_REQUEST) {
-            if (unmaskedRequestCode == Activity.RESULT_FIRST_USER) {
+            if (resultCode == Activity.RESULT_FIRST_USER) {
                 filter.clear()
-            } else if (unmaskedRequestCode == Activity.RESULT_OK) {
+            } else if (resultCode == Activity.RESULT_OK) {
                 val periodType = data?.getStringExtra(DateFilterActivity.EXTRA_FILTER_PERIOD_TYPE)
                 if(periodType != null) {
                     val p = PeriodType.valueOf(periodType)

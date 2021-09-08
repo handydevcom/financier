@@ -70,7 +70,7 @@ public class SubCategoryReport extends Report {
             });
 
             ArrayList<GraphUnitTree> roots = createTree(amounts, 0);
-            ArrayList<GraphUnit> units = new ArrayList<GraphUnit>();
+            ArrayList<GraphUnit> units = new ArrayList<>();
             flattenTree(roots, units);
             Total total = calculateTotal(roots);
             return new ReportData(units, total);

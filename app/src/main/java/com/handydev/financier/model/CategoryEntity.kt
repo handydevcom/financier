@@ -36,11 +36,11 @@ open class CategoryEntity<T : CategoryEntity<T>> : MyEntity() {
     val parentId: Long
         get() = if (parent != null) parent!!.id else 0
 
-    fun addChild(category: T) {
+    fun addChild(category: T, uniqueOnly: Boolean = true) {
         if (children == null) {
             children = CategoryTree()
         }
-        if(children?.any { it.id == category.id } == true) {
+        if(uniqueOnly && children?.any { it.id == category.id } == true) {
             return
         }
         category.parent = this as T
