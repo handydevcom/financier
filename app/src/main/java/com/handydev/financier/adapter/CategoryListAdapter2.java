@@ -112,20 +112,13 @@ public class CategoryListAdapter2 extends BaseAdapter {
 			span.setImageDrawable(state.contains(c.id) ? expandedDrawable : collapsedDrawable);
 			span.setClickable(true);
 			span.setOnClickListener(v -> onListItemClick(c.id));
-            //span.setPadding(padding, 0, 0, 0);
 			span.setVisibility(View.VISIBLE);
-           // padding += collapsedDrawable.getMinimumWidth();
 		} else {
-            //padding += levelPadding/2;
 			span.setVisibility(View.GONE);
 		}
 		RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) indicator.getLayoutParams();
-		layoutParams.leftMargin = padding;
+		layoutParams.leftMargin = padding + 8;
 		indicator.requestLayout();
-		//indicator.setLayoutParams(layoutParams);
-        //title.setPadding(padding, 0, 0, 0);
-        //label.setPadding(padding, 0, 0, 0);
-		//indicator.setPadding(100, 0, 0, 0);
 		long id = c.id;
 		if (attributes != null && attributes.containsKey(id)) {
 			label.setText(attributes.get(id));
