@@ -152,9 +152,9 @@ public class CategoryTreeNavigator {
                 newCategories.add(category);
             } else {
                 if (category.isIncome()) {
-                    income.addChild(category);
+                    income.addChild(category, true);
                 } else {
-                    expense.addChild(category);
+                    expense.addChild(category, true);
                 }
             }
         }
