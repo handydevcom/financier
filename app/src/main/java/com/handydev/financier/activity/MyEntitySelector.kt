@@ -122,7 +122,7 @@ abstract class MyEntitySelector<T : MyEntity, A : AbstractActivity?> internal co
 
     private fun showFilter() {
         initAutoCompleteFilter()
-        filterNode!!.showFilter()
+        filterNode!!.showFilter(selectedEntityId != 0L)
     }
 
     private val isListPick: Boolean

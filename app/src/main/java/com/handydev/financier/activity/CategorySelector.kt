@@ -178,7 +178,7 @@ class CategorySelector<A : AbstractActivity?> @JvmOverloads constructor(private 
 
     private fun showFilter() {
         initAutoCompleteFilter()
-        filterNode!!.showFilter()
+        filterNode!!.showFilter(selectedCategoryId != 0L)
     }
 
     private val isListPick: Boolean
