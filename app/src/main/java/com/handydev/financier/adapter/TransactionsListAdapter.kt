@@ -4,14 +4,12 @@ import android.content.Context
 import android.database.Cursor
 import android.graphics.Color
 import android.text.format.DateUtils
-import com.handydev.financier.utils.TransactionTitleUtils.generateTransactionTitle
-import com.handydev.financier.db.DatabaseAdapter
-import com.handydev.financier.adapter.BlotterListAdapter
-import com.handydev.financier.adapter.BlotterListAdapter.BlotterViewHolder
-import com.handydev.financier.db.DatabaseHelper.BlotterColumns
 import com.handydev.financier.R
+import com.handydev.financier.db.DatabaseAdapter
+import com.handydev.financier.db.DatabaseHelper.BlotterColumns
 import com.handydev.financier.utils.CurrencyCache
 import com.handydev.financier.utils.StringUtil
+import com.handydev.financier.utils.TransactionTitleUtils.generateTransactionTitle
 import com.handydev.financier.utils.Utils
 
 class TransactionsListAdapter(context: Context?, db: DatabaseAdapter?, c: Cursor?) :
