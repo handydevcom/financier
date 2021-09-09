@@ -12,7 +12,7 @@ import com.handydev.financier.utils.StringUtil
 import com.handydev.financier.utils.TransactionTitleUtils.generateTransactionTitle
 import com.handydev.financier.utils.Utils
 
-class TransactionsListAdapter(context: Context?, db: DatabaseAdapter?, c: Cursor?) :
+class TransactionsListAdapter(context: Context, db: DatabaseAdapter?, c: Cursor?) :
     BlotterListAdapter(context, db, c) {
     override fun bindView(v: BlotterViewHolder, context: Context, cursor: Cursor) {
         val toAccountId = cursor.getLong(BlotterColumns.to_account_id.ordinal)
@@ -35,7 +35,6 @@ class TransactionsListAdapter(context: Context?, db: DatabaseAdapter?, c: Cursor
         } else {
             val title = cursor.getString(BlotterColumns.from_account_title.ordinal)
             v.topView.text = title
-            v.centerView.setTextColor(Color.WHITE)
         }
         val categoryId = cursor.getLong(BlotterColumns.category_id.ordinal)
         var category: String? = ""
@@ -63,13 +62,13 @@ class TransactionsListAdapter(context: Context?, db: DatabaseAdapter?, c: Cursor
         } else {
             u.setAmountText(v.rightCenterView, c, fromAmount, true)
         }
-        if (fromAmount > 0) {
+        /*if (fromAmount > 0) {
             v.iconView.setImageDrawable(icBlotterIncome)
             v.iconView.setColorFilter(u.positiveColor)
         } else if (fromAmount < 0) {
             v.iconView.setImageDrawable(icBlotterExpense)
             v.iconView.setColorFilter(u.negativeColor)
-        }
+        }*/
         val date = cursor.getLong(BlotterColumns.datetime.ordinal)
         v.bottomView.text = StringUtil.capitalize(
             DateUtils.formatDateTime(
@@ -77,15 +76,15 @@ class TransactionsListAdapter(context: Context?, db: DatabaseAdapter?, c: Cursor
                 DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_SHOW_TIME or DateUtils.FORMAT_ABBREV_MONTH or DateUtils.FORMAT_SHOW_WEEKDAY or DateUtils.FORMAT_ABBREV_WEEKDAY
             )
         )
-        if (date > System.currentTimeMillis()) {
+        /*if (date > System.currentTimeMillis()) {
             u.setFutureTextColor(v.bottomView)
         } else {
             v.bottomView.setTextColor(v.topView.textColors.defaultColor)
         }
         val balance = cursor.getLong(BlotterColumns.from_account_balance.ordinal)
-        v.rightView.text = Utils.amountToString(c, balance, false)
+        v.rightView?.text = Utils.amountToString(c, balance, false)
         removeRightViewIfNeeded(v)
         setIndicatorColor(v, cursor)
-        alternateColorIfNeeded(v, context, cursor)
+        alternateColorIfNeeded(v, context, cursor)*/
     }
 }
