@@ -98,10 +98,12 @@ class ActivityLayout(private val inflater: NodeInflater, private val listener: A
     }
 
     class FilterNode(val nodeLayout: View, val listLayout: View, val filterLayout: View, val textView: TextView, val autoCompleteTextView: AutoCompleteTextView) {
-        fun showFilter() {
+        fun showFilter(initializeWithSelectedItem: Boolean = false) {
             listLayout.visibility = View.GONE
             filterLayout.visibility = View.VISIBLE
-            autoCompleteTextView.setText("")
+            if(initializeWithSelectedItem) {
+                autoCompleteTextView.setText(textView.text)
+            }
             Utils.openSoftKeyboard(autoCompleteTextView, autoCompleteTextView.context)
         }
 

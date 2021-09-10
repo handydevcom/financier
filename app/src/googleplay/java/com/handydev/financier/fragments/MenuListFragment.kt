@@ -40,7 +40,7 @@ class MenuListFragment: ListFragment() {
 
     var bus: EventBus? = null
 
-    protected fun init() {
+    private fun init() {
         if(activity == null) {
             return
         }

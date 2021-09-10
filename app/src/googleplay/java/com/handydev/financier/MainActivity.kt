@@ -66,6 +66,7 @@ class MainActivity : FragmentActivity() {
         eventBus = EventBus.getDefault()
         initialLoad()
         val tabPager = findViewById<ViewPager2>(R.id.mainViewPager)
+        tabPager.offscreenPageLimit = 4
         tabPager.isUserInputEnabled = false
     }
 

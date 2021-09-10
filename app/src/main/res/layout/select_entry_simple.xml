@@ -30,7 +30,6 @@
 			android:layout_height="wrap_content" android:layout_below="@+id/label"
 			android:layout_alignLeft="@+id/label"
 			android:textColor="@color/main_text_color"
-			android:typeface="monospace"
 			android:maxLines="3" android:duplicateParentState="true" />
 	</RelativeLayout>
 </LinearLayout>
