@@ -14,13 +14,16 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 
@@ -176,6 +179,11 @@ public class DateFilterActivity extends Activity {
             setDialogResult(d, id == 1 ? cFrom : cTo);
             d.dismiss();
         });
+		DatePicker dp = d.findViewById(R.id.date);
+		CalendarView cv = dp.getCalendarView();
+		LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) cv.getLayoutParams();
+		params.height = LinearLayout.LayoutParams.WRAP_CONTENT; // Or 300dp
+		cv.setLayoutParams(params);
 		Button bCancel = d.findViewById(R.id.bCancel);
 		bCancel.setOnClickListener(v -> d.cancel());
 		return d;
