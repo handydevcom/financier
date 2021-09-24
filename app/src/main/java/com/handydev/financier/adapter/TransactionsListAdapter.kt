@@ -85,7 +85,7 @@ class TransactionsListAdapter(context: Context, db: DatabaseAdapter?, c: Cursor?
         val balance = cursor.getLong(BlotterColumns.from_account_balance.ordinal)
         v.rightView?.text = Utils.amountToString(c, balance, false)
         removeRightViewIfNeeded(v)
-        /*setIndicatorColor(v, cursor)
-        alternateColorIfNeeded(v, context, cursor)*/
+        setIndicatorColor(v, cursor)
+        alternateColorIfNeeded(v, context, cursor)
     }
 }
