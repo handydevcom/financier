@@ -28,7 +28,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.Scope
 import com.google.api.services.drive.DriveScopes
-import com.handydev.financier.activity.PreferencesActivity.CHOOSE_ACCOUNT
+import com.handydev.financier.activity.PreferencesActivity.Companion.CHOOSE_ACCOUNT
 import com.handydev.financier.activity.RefreshSupportedActivity
 import com.handydev.financier.app.FinancierApp
 import com.handydev.financier.base.AbstractListFragment

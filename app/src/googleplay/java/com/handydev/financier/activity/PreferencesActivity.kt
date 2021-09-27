@@ -1,21 +1,53 @@
 package com.handydev.financier.activity
 
 import android.Manifest
+import android.accounts.Account
+import android.accounts.AccountManager
+import android.content.ComponentName
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
+import android.os.Bundle
+import android.preference.Preference
+import android.preference.PreferenceActivity
+import android.preference.PreferenceManager
+import android.preference.PreferenceScreen
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.Scope
+import com.google.api.services.drive.DriveScopes
+import com.handydev.financier.R
+import com.handydev.financier.activity.RequestPermission.isRequestingPermission
+import com.handydev.financier.app.FinancierApp
+import com.handydev.financier.dialog.FolderBrowser
+import com.handydev.financier.export.Export
+import com.handydev.financier.export.drive.DriveBackupError
+import com.handydev.financier.export.dropbox.Dropbox
+import com.handydev.financier.rates.ExchangeRateProviderFactory
+import com.handydev.financier.utils.FingerprintUtils.fingerprintUnavailable
+import com.handydev.financier.utils.FingerprintUtils.reasonWhyFingerprintUnavailable
+import com.handydev.financier.utils.MyPreferences
+import com.handydev.financier.utils.PinProtection
+import org.greenrobot.eventbus.EventBus
 
-class PreferencesActivity : PreferenceActivity(), OnSharedPreferenceChangeListener {
+class PreferencesActivity : PreferenceActivity(),
+    SharedPreferences.OnSharedPreferenceChangeListener {
     var pOpenExchangeRatesAppId: Preference? = null
-    @Override
-    fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         setGDriveBackupFolder()
     }
 
-    @Override
-    protected fun attachBaseContext(base: Context?) {
+    override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(MyPreferences.switchLocale(base))
     }
 
-    @Override
-    protected fun onCreate(savedInstanceState: Bundle?) {
+    private fun isOpenExchangeRatesProvider(provider: String?): Boolean {
+        return ExchangeRateProviderFactory.openexchangerates.name == provider
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         addPreferencesFromResource(R.xml.preferences)
         val preferenceScreen: PreferenceScreen = getPreferenceScreen()
@@ -38,13 +70,13 @@ class PreferencesActivity : PreferenceActivity(), OnSharedPreferenceChangeListen
         }
         val pNewTransferShortcut: Preference =
             preferenceScreen.findPreference("shortcut_new_transfer")
-        pNewTransferShortcut.setOnPreferenceClickListener { arg0 ->
+        pNewTransferShortcut.setOnPreferenceClickListener {
             addShortcut(".activity.TransferActivity", R.string.transfer, R.drawable.icon_transfer)
             true
         }
         val pDatabaseBackupFolder: Preference =
             preferenceScreen.findPreference("database_backup_folder")
-        pDatabaseBackupFolder.setOnPreferenceClickListener { arg0 ->
+        pDatabaseBackupFolder.setOnPreferenceClickListener {
             if (isRequestingPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                 return@setOnPreferenceClickListener false
             }
@@ -52,34 +84,27 @@ class PreferencesActivity : PreferenceActivity(), OnSharedPreferenceChangeListen
             true
         }
         val pGDriveBackupFolder: Preference = preferenceScreen.findPreference("backup_folder")
-        pGDriveBackupFolder.setOnPreferenceChangeListener { preference, o ->
+        pGDriveBackupFolder.setOnPreferenceChangeListener { _, _ ->
             setGDriveBackupFolder()
             true
         }
         val pAuthDropbox: Preference = preferenceScreen.findPreference("dropbox_authorize")
-        pAuthDropbox.setOnPreferenceClickListener { arg0 ->
+        pAuthDropbox.setOnPreferenceClickListener {
             authDropbox()
             true
         }
         val pDeauthDropbox: Preference = preferenceScreen.findPreference("dropbox_unlink")
-        pDeauthDropbox.setOnPreferenceClickListener { arg0 ->
+        pDeauthDropbox.setOnPreferenceClickListener {
             deAuthDropbox()
             true
         }
         val pExchangeProvider: Preference =
             preferenceScreen.findPreference("exchange_rate_provider")
         pOpenExchangeRatesAppId = preferenceScreen.findPreference("openexchangerates_app_id")
-        pExchangeProvider.setOnPreferenceChangeListener(object : OnPreferenceChangeListener() {
-            @Override
-            fun onPreferenceChange(preference: Preference?, newValue: Object?): Boolean {
-                pOpenExchangeRatesAppId.setEnabled(isOpenExchangeRatesProvider(newValue as String?))
-                return true
-            }
-
-            private fun isOpenExchangeRatesProvider(provider: String?): Boolean {
-                return ExchangeRateProviderFactory.openexchangerates.name().equals(provider)
-            }
-        })
+        pExchangeProvider.onPreferenceChangeListener = Preference.OnPreferenceChangeListener() { preference, newValue ->
+            pOpenExchangeRatesAppId?.isEnabled = isOpenExchangeRatesProvider(newValue as String?)
+            true
+        }
         val pDriveAccount: Preference =
             preferenceScreen.findPreference("google_drive_backup_account")
         pDriveAccount.setOnPreferenceClickListener { arg0 ->
@@ -89,13 +114,11 @@ class PreferencesActivity : PreferenceActivity(), OnSharedPreferenceChangeListen
         val useFingerprint: Preference =
             preferenceScreen.findPreference("pin_protection_use_fingerprint")
         if (fingerprintUnavailable(this)) {
-            useFingerprint.setSummary(
-                getString(
-                    R.string.fingerprint_unavailable,
-                    reasonWhyFingerprintUnavailable(this)
-                )
+            useFingerprint.summary = getString(
+                R.string.fingerprint_unavailable,
+                reasonWhyFingerprintUnavailable(this)
             )
-            useFingerprint.setEnabled(false)
+            useFingerprint.isEnabled = false
         }
         linkToDropbox()
         setCurrentDatabaseBackupFolder()
@@ -104,7 +127,7 @@ class PreferencesActivity : PreferenceActivity(), OnSharedPreferenceChangeListen
     }
 
     private fun chooseAccount() {
-        val signInOptions: GoogleSignInOptions = Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        val signInOptions: GoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
             .requestScopes(Scope(DriveScopes.DRIVE_FILE), Scope(DriveScopes.DRIVE_APPDATA))
             .build()
@@ -116,8 +139,8 @@ class PreferencesActivity : PreferenceActivity(), OnSharedPreferenceChangeListen
     }
 
     private val selectedAccount: Account?
-        private get() {
-            val accountName: String = MyPreferences.getGoogleDriveAccount(this)
+        get() {
+            val accountName = MyPreferences.getGoogleDriveAccount(this)
             if (accountName != null) {
                 val accountManager: AccountManager = AccountManager.get(this)
                 val accounts: Array<Account> = accountManager.getAccountsByType("com.google")
@@ -132,10 +155,10 @@ class PreferencesActivity : PreferenceActivity(), OnSharedPreferenceChangeListen
 
     private fun linkToDropbox() {
         val dropboxAuthorized: Boolean = MyPreferences.isDropboxAuthorized(this)
-        val preferenceScreen: PreferenceScreen = getPreferenceScreen()
-        preferenceScreen.findPreference("dropbox_unlink").setEnabled(dropboxAuthorized)
-        preferenceScreen.findPreference("dropbox_upload_backup").setEnabled(dropboxAuthorized)
-        preferenceScreen.findPreference("dropbox_upload_autobackup").setEnabled(dropboxAuthorized)
+        val preferenceScreen: PreferenceScreen = preferenceScreen
+        preferenceScreen.findPreference("dropbox_unlink").isEnabled = dropboxAuthorized
+        preferenceScreen.findPreference("dropbox_upload_backup").isEnabled = dropboxAuthorized
+        preferenceScreen.findPreference("dropbox_upload_autobackup").isEnabled = dropboxAuthorized
     }
 
     private fun selectDatabaseBackupFolder() {
@@ -145,11 +168,11 @@ class PreferencesActivity : PreferenceActivity(), OnSharedPreferenceChangeListen
     }
 
     private fun enableOpenExchangeApp() {
-        pOpenExchangeRatesAppId.setEnabled(MyPreferences.isOpenExchangeRatesProviderSelected(this))
+        pOpenExchangeRatesAppId?.isEnabled = MyPreferences.isOpenExchangeRatesProviderSelected(this)
     }
 
     private val databaseBackupFolder: String
-        private get() = Export.getBackupFolder(this).getAbsolutePath()
+        get() = Export.getBackupFolder(this).absolutePath
 
     private fun setCurrentDatabaseBackupFolder() {
         val pDatabaseBackupFolder: Preference =
@@ -160,17 +183,16 @@ class PreferencesActivity : PreferenceActivity(), OnSharedPreferenceChangeListen
     }
 
     private fun setGDriveBackupFolder() {
-        val pGDriveBackupFolder: Preference = getPreferenceScreen().findPreference("backup_folder")
-        pGDriveBackupFolder.setSummary(MyPreferences.getBackupFolder(this))
+        val pGDriveBackupFolder: Preference = preferenceScreen.findPreference("backup_folder")
+        pGDriveBackupFolder.summary = MyPreferences.getBackupFolder(this)
     }
 
-    @Override
-    protected fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {
             when (requestCode) {
                 SELECT_DATABASE_FOLDER -> {
-                    val databaseBackupFolder: String = data.getStringExtra(FolderBrowser.PATH)
+                    val databaseBackupFolder = data.getStringExtra(FolderBrowser.PATH)
                     MyPreferences.setDatabaseBackupFolder(this, databaseBackupFolder)
                     setCurrentDatabaseBackupFolder()
                 }
@@ -182,11 +204,11 @@ class PreferencesActivity : PreferenceActivity(), OnSharedPreferenceChangeListen
     private fun handleSignInResult(intent: Intent) {
         GoogleSignIn.getSignedInAccountFromIntent(intent)
             .addOnSuccessListener { googleSignInAccount ->
-                MyPreferences.setGoogleDriveAccount(this, googleSignInAccount.getEmail())
-                FinancierApp.driveClient.setAccount(googleSignInAccount.getAccount())
+                MyPreferences.setGoogleDriveAccount(this, googleSignInAccount.email)
+                FinancierApp.driveClient.account = googleSignInAccount.account
                 selectAccount()
             }.addOnFailureListener { e ->
-            EventBus.getDefault().post(DriveBackupError(e.getMessage()))
+            EventBus.getDefault().post(DriveBackupError(e.message))
         }
     }
 
@@ -210,11 +232,11 @@ class PreferencesActivity : PreferenceActivity(), OnSharedPreferenceChangeListen
     private fun createShortcutIntent(
         activity: String,
         shortcutName: String,
-        shortcutIcon: ShortcutIconResource,
+        shortcutIcon: Intent.ShortcutIconResource,
         action: String
     ): Intent {
         val shortcutIntent = Intent()
-        shortcutIntent.setComponent(ComponentName(this.getPackageName(), activity))
+        shortcutIntent.component = ComponentName(this.packageName, activity)
         shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val intent = Intent()
@@ -235,16 +257,14 @@ class PreferencesActivity : PreferenceActivity(), OnSharedPreferenceChangeListen
         linkToDropbox()
     }
 
-    @Override
-    protected fun onPause() {
+    override fun onPause() {
         super.onPause()
         PreferenceManager.getDefaultSharedPreferences(this)
             .unregisterOnSharedPreferenceChangeListener(this)
         PinProtection.lock(this)
     }
 
-    @Override
-    protected fun onResume() {
+    override fun onResume() {
         super.onResume()
         PreferenceManager.getDefaultSharedPreferences(this)
             .registerOnSharedPreferenceChangeListener(this)
