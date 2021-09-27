@@ -22,6 +22,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
+import com.handydev.financier.activity.RefreshSupportedActivity
 import com.handydev.financier.bus.RefreshData
 import com.handydev.financier.databinding.MainBinding
 import com.handydev.financier.db.DatabaseAdapter
@@ -133,7 +134,8 @@ class MainActivity : FragmentActivity() {
 
     fun refreshCurrentTab() {
         for(fragment in supportFragmentManager.fragments) {
-            if(fragment.isVisible && fragment is RefreshSupportedActivity) {
+            if(fragment.isVisible && fragment is RefreshSupportedActivity
+            ) {
                 fragment.recreateCursor()
                 fragment.integrityCheck()
             }

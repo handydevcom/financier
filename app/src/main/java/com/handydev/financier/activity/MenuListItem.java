@@ -26,13 +26,13 @@ import com.handydev.financier.export.qif.QifExportOptions;
 import com.handydev.financier.export.qif.QifExportTask;
 import com.handydev.financier.export.qif.QifImportOptions;
 import com.handydev.financier.export.qif.QifImportTask;
+import com.handydev.financier.fragments.MenuListFragment;
 import com.handydev.financier.utils.EntityEnum;
 import com.handydev.financier.utils.EnumUtils;
 import com.handydev.financier.utils.ExecutableEntityEnum;
 import com.handydev.financier.utils.IntegrityFix;
 import com.handydev.financier.utils.SummaryEntityEnum;
 import com.handydev.financier.MainActivity;
-import com.handydev.main.fragments.MenuListFragment;
 
 import org.greenrobot.eventbus.EventBus;
 
