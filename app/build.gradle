@@ -144,10 +144,11 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+    implementation "androidx.preference:preference-ktx:1.1.1"
 
     //googledrive
     googleplayImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0'
-    googleplayImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1'
+    googleplayImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
     googleplayImplementation 'com.google.android.gms:play-services-auth:19.2.0'
     googleplayImplementation 'com.google.http-client:google-http-client-gson:1.26.0'
     googleplayImplementation 'com.google.api-client:google-api-client-android:1.26.0'
@@ -163,7 +164,7 @@ dependencies {
 
     //untied - SAME AS ABOVE
     untiedImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0'
-    untiedImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1'
+    untiedImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
     untiedImplementation 'com.google.android.gms:play-services-auth:19.2.0'
     untiedImplementation 'com.google.http-client:google-http-client-gson:1.26.0'
     untiedImplementation 'com.google.api-client:google-api-client-android:1.26.0'

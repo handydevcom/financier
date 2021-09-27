@@ -9,7 +9,7 @@
 package com.handydev.financier.dialog;
 
 import android.content.Context;
-import android.preference.DialogPreference;
+import androidx.preference.DialogPreference;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TimePicker;
@@ -34,7 +34,7 @@ public class TimePreference extends DialogPreference implements TimePicker.OnTim
         setPersistent(true);
     }
 
-    public TimePreference(Context context, AttributeSet attrs) {
+    /*public TimePreference(Context context, AttributeSet attrs) {
         super(context, attrs);
         setPersistent(true);
     }
@@ -73,13 +73,12 @@ public class TimePreference extends DialogPreference implements TimePicker.OnTim
     }
 
     @Override
-    public void onTimeChanged(TimePicker timePicker, int hh, int mm) {
-        this.hh = hh;
-        this.mm = mm;        
-    }
-
-    @Override
     public CharSequence getSummary() {
         return getContext().getString(R.string.auto_backup_time_summary, getHour(), getMinute());
+    }*/
+    @Override
+    public void onTimeChanged(TimePicker timePicker, int hh, int mm) {
+        this.hh = hh;
+        this.mm = mm;
     }
 }

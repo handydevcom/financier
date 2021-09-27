@@ -1,13 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2010 Denis Solonenko.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the GNU Public License v2.0
- * which accompanies this distribution, and is available at
- * http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- * 
- * Contributors:
- *     Denis Solonenko - initial API and implementation
- ******************************************************************************/
 package com.handydev.financier.dialog;
 
 import com.handydev.financier.R;
@@ -16,7 +6,7 @@ import androidx.appcompat.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.preference.DialogPreference;
+import androidx.preference.DialogPreference;
 import android.util.AttributeSet;
 
 public class PinDialogPreference extends DialogPreference implements PinView.PinListener {
@@ -38,7 +28,7 @@ public class PinDialogPreference extends DialogPreference implements PinView.Pin
         	.setTitle(R.string.set_pin)
         	.setView(pinView.getView())
         	.create();
-		dialog.setOnDismissListener(this);
+		//dialog.setOnDismissListener(this);
 		dialog.show();
     }
 
