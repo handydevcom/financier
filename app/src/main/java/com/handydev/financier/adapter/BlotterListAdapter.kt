@@ -34,7 +34,7 @@ open class BlotterListAdapter @JvmOverloads constructor(
     protected val icBlotterIncome: Drawable? = ContextCompat.getDrawable(context, R.drawable.ic_action_arrow_left_bottom)
     protected val icBlotterExpense: Drawable? = ContextCompat.getDrawable(context, R.drawable.ic_action_arrow_right_top)
     private val icBlotterTransfer: Drawable? = ContextCompat.getDrawable(context, R.drawable.ic_action_arrow_top_down)
-    private val icBlotterSplit: Drawable? = ContextCompat.getDrawable(context, R.drawable.ic_action_share)
+    val icBlotterSplit: Drawable? = ContextCompat.getDrawable(context, R.drawable.ic_action_share)
     protected val u: Utils = Utils(context)
     protected val db: DatabaseAdapter?
     private val colors: IntArray

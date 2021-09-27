@@ -14,7 +14,8 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListAdapter;
-import com.handydev.financier.adapter.TransactionsListAdapter;
+
+import com.handydev.financier.adapter.BlotterListAdapter;
 import com.handydev.financier.blotter.BlotterTotalCalculationTask;
 import com.handydev.financier.blotter.TotalCalculationTask;
 
@@ -33,7 +34,7 @@ public class SplitsBlotterActivity extends BlotterActivity {
 
 	@Override
 	protected ListAdapter createAdapter(Cursor cursor) {
-		return new TransactionsListAdapter(this, db, cursor);
+		return new BlotterListAdapter(this, db, cursor);
 	}
 
     @Override

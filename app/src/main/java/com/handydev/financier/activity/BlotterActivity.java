@@ -26,7 +26,6 @@ import greendroid.widget.QuickActionGrid;
 import greendroid.widget.QuickActionWidget;
 import com.handydev.financier.R;
 import com.handydev.financier.adapter.BlotterListAdapter;
-import com.handydev.financier.adapter.TransactionsListAdapter;
 import com.handydev.financier.blotter.AccountTotalCalculationTask;
 import com.handydev.financier.blotter.BlotterFilter;
 import com.handydev.financier.blotter.BlotterTotalCalculationTask;
@@ -456,11 +455,7 @@ public class BlotterActivity extends AbstractListActivity implements IOTransacti
 
     @Override
     protected ListAdapter createAdapter(Cursor cursor) {
-        if (isAccountBlotter) {
-            return new TransactionsListAdapter(this, db, cursor);
-        } else {
-            return new BlotterListAdapter(this, db, cursor);
-        }
+        return new BlotterListAdapter(this, db, cursor);
     }
 
     @Override
