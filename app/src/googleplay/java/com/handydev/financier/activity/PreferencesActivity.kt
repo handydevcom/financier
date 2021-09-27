@@ -3,6 +3,7 @@ package com.handydev.financier.activity
 import android.Manifest
 import android.accounts.Account
 import android.accounts.AccountManager
+import android.app.Activity.RESULT_CANCELED
 import android.app.Activity.RESULT_OK
 import android.content.ComponentName
 import android.content.Context
@@ -40,7 +41,7 @@ import org.greenrobot.eventbus.EventBus
 
 class PreferencesFragment: PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener {
     var pOpenExchangeRatesAppId: Preference? = null
-    var dropbox: Dropbox = Dropbox(context)
+    var dropbox: Dropbox? = null
     private var rootKey: String? = null
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
@@ -49,8 +50,9 @@ class PreferencesFragment: PreferenceFragmentCompat(), SharedPreferences.OnShare
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK) {
-            when (requestCode) {
+        val unmaskedRequestCode = requestCode and 0x0000ffff
+        if (resultCode == RESULT_OK || resultCode == RESULT_CANCELED) {
+            when (unmaskedRequestCode) {
                 SELECT_DATABASE_FOLDER -> {
                     val databaseBackupFolder = data?.getStringExtra(FolderBrowser.PATH)
                     MyPreferences.setDatabaseBackupFolder(context, databaseBackupFolder)
@@ -74,6 +76,7 @@ class PreferencesFragment: PreferenceFragmentCompat(), SharedPreferences.OnShare
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         this.rootKey = rootKey
+        dropbox = Dropbox(context)
         setPreferencesFromResource(R.xml.preferences, rootKey)
         if(rootKey != null) {
             return
@@ -264,11 +267,11 @@ class PreferencesFragment: PreferenceFragmentCompat(), SharedPreferences.OnShare
     }
 
     private fun authDropbox() {
-        dropbox.startAuth()
+        dropbox?.startAuth()
     }
 
     private fun deAuthDropbox() {
-        dropbox.deAuth()
+        dropbox?.deAuth()
         linkToDropbox()
     }
 
@@ -287,7 +290,7 @@ class PreferencesFragment: PreferenceFragmentCompat(), SharedPreferences.OnShare
             PreferenceManager.getDefaultSharedPreferences(context)
                 .registerOnSharedPreferenceChangeListener(this)
             PinProtection.unlock(context)
-            dropbox.completeAuth()
+            dropbox?.completeAuth()
             linkToDropbox()
         }
     }
