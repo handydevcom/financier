@@ -8,6 +8,7 @@ import android.database.Cursor
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
@@ -68,6 +69,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
 
     private var isAccountBlotter = false
     private var showAllBlotterButtons = true
+    private var shouldUpdateTransactionsOnResume = true
 
     protected fun calculateTotals() {
         if (calculationTask != null) {
@@ -92,7 +94,17 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
 
     override fun recreateCursor() {
         super.recreateCursor()
+        Log.d("recreateCursor", "recreateCursor")
         calculateTotals()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(shouldUpdateTransactionsOnResume) {
+            recreateCursor()
+        } else {
+            shouldUpdateTransactionsOnResume = true
+        }
     }
 
     override fun internalOnCreate(savedInstanceState: Bundle?) {
@@ -470,8 +482,8 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
             createTransactionFromTemplate(data)
         }
         if (resultCode == Activity.RESULT_OK || resultCode == Activity.RESULT_FIRST_USER) {
+            shouldUpdateTransactionsOnResume = false
             recreateCursor()
-            calculateTotals()
         }
     }
 
