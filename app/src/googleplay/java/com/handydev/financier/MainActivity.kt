@@ -42,7 +42,7 @@ import com.handydev.financier.protocol.IOnBackPressed
 import com.handydev.financier.utils.CurrencyCache
 import com.handydev.financier.utils.MyPreferences
 import com.handydev.financier.utils.PinProtection
-import com.handydev.main.fragments.MenuListFragment
+import com.handydev.financier.fragments.MenuListFragment
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
