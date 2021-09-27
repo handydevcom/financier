@@ -13,7 +13,6 @@ package com.handydev.financier.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -542,7 +541,7 @@ public class TransactionActivity extends AbstractTransactionActivity {
     private void addOrEditSplit(Transaction split) {
         View v = findView(split);
         if (v == null) {
-            v = activityLayout.addSplitNodeMinus(splitsLayout, R.id.edit_aplit, R.id.delete_split, R.string.split, "");
+            v = activityLayout.addSplitNodeMinus(splitsLayout, R.id.edit_split, R.id.delete_split, R.string.split, "");
         }
         setSplitData(v, split);
         viewToSplitMap.put(v, split);
