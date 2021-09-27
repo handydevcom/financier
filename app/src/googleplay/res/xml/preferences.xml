@@ -1,13 +1,3 @@
-<!--
-  Copyright (c) 2010 Denis Solonenko.
-  All rights reserved. This program and the accompanying materials
-  are made available under the terms of the GNU Public License v2.0
-  which accompanies this distribution, and is available at
-  http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-  
-  Contributors:
-      Denis Solonenko - initial API and implementation
--->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="@string/user_interface">
         <ListPreference
@@ -26,6 +16,7 @@
             android:title="@string/startup_screen" />
         <PreferenceScreen
             android:summary="@string/accounts_list_screen_summary"
+            android:key="accounts_list_screen_key"
             android:title="@string/accounts_list_screen">
             <CheckBoxPreference
                 android:defaultValue="true"
@@ -62,6 +53,7 @@
         </PreferenceScreen>
         <PreferenceScreen
             android:summary="@string/blotter_screen_summary"
+            android:key="blotter_screen_key"
             android:title="@string/blotter_screen">
             <CheckBoxPreference
                 android:defaultValue="true"
@@ -86,6 +78,7 @@
         </PreferenceScreen>
         <PreferenceScreen
             android:summary="@string/transaction_screen_summary"
+            android:key="transaction_screen_key"
             android:title="@string/transaction_screen">
             <PreferenceCategory android:title="@string/category_selector">
                 <!-- todo.mb: remove it as not used really >> -->
@@ -304,11 +297,7 @@
             android:key="auto_backup_enabled"
             android:summary="@string/auto_backup_enabled_summary"
             android:title="@string/auto_backup_enabled" />
-        <com.handydev.financier.dialog.TimePreference
-            android:dependency="auto_backup_enabled"
-            android:key="auto_backup_time"
-            android:summary="@string/auto_backup_time_summary"
-            android:title="@string/auto_backup_time" />
+
         <CheckBoxPreference
             android:defaultValue="true"
             android:dependency="auto_backup_enabled"

@@ -1,0 +1,40 @@
+Financier is based on the great Financisto app.
+
+Features include:
+- Multiple accounts, multiple currencies.
+- Home currency and exchange rates.
+- Transfers with downloadable rates.
+- Scheduled & recurring transactions.
+- Split transactions.
+- Hierarchical categories with custom attributes.
+- Recurring budgets.
+- Projects and payees.
+- Filtering and reporting.
+- Cloud backup (Dropbox, Google Docs).
+- Automatic daily backups.
+- QIF/CSV import/export.
+
+*WARNING*
+
+Please DO BACKUP before upgrade!
+
+Please DO NOT move Financier to SD card if you're using the widget and/or scheduled transactions.
+
+*PERMISSIONS*
+
+GET_ACCOUNTS/USE_CREDENTIALS - For backup on Google Drive
+
+INTERNET - for downloading currency rates in multi-currency transfer; to do online backup to Dropbox and Google Docs;
+
+CAMERA - to attach pictures to transactions.
+
+*FAQ*
+
+Q: Why currency XYZ is missing?
+A: You can add any currency manually. Go to Menu -> Entities -> Currencies -> [+]
+
+Q: How to delete account/transaction/balance etc?
+A: Long tap on an item in the list to bring up the popup menu.
+
+Q: Shortcuts do not work on Home screen.
+A: Try to restart your phone, it helps with most of the launchers out there.

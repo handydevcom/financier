@@ -18,7 +18,7 @@ import android.widget.ListAdapter;
 
 import java.util.Map;
 
-import com.handydev.financier.adapter.TransactionsListAdapter;
+import com.handydev.financier.adapter.BlotterListAdapter;
 import com.handydev.financier.blotter.TotalCalculationTask;
 import com.handydev.financier.model.Budget;
 import com.handydev.financier.model.Category;
@@ -51,7 +51,7 @@ public class BudgetBlotterActivity extends BlotterActivity {
 
 	@Override
 	protected ListAdapter createAdapter(Cursor cursor) {
-		return new TransactionsListAdapter(this, db, cursor);
+		return new BlotterListAdapter(this, db, cursor);
 	}
 	
 	private Cursor getBlotterForBudget(long budgetId) {

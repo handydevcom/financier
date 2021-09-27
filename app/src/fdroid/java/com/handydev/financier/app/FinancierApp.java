@@ -3,8 +3,7 @@ package com.handydev.financier.app;
 import android.content.Context;
 import android.content.res.Configuration;
 
-import androidx.multidex.MultiDexApplication;
-
+import com.handydev.financier.FinancierApplication;
 import com.handydev.financier.utils.MyPreferences;
 
 import org.androidannotations.annotations.AfterInject;

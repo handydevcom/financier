@@ -1,14 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2010 Denis Solonenko.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the GNU Public License v2.0
- * which accompanies this distribution, and is available at
- * http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- *
- *
- * Contributors:
- * Denis Solonenko - initial API and implementation
- */
 package com.handydev.financier
 
 import android.content.Context
@@ -22,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
+import com.handydev.financier.activity.RefreshSupportedActivity
 import com.handydev.financier.bus.RefreshData
 import com.handydev.financier.databinding.MainBinding
 import com.handydev.financier.db.DatabaseAdapter
@@ -133,7 +123,8 @@ class MainActivity : FragmentActivity() {
 
     fun refreshCurrentTab() {
         for(fragment in supportFragmentManager.fragments) {
-            if(fragment.isVisible && fragment is RefreshSupportedActivity) {
+            if(fragment.isVisible && fragment is RefreshSupportedActivity
+            ) {
                 fragment.recreateCursor()
                 fragment.integrityCheck()
             }

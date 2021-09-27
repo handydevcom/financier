@@ -1,0 +1,1 @@
+Categories filter in transaction now shows nested categories correctly.

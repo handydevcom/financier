@@ -8,6 +8,7 @@ import android.database.Cursor
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
@@ -18,7 +19,6 @@ import androidx.appcompat.app.AlertDialog
 import com.handydev.financier.R
 import com.handydev.financier.activity.*
 import com.handydev.financier.adapter.BlotterListAdapter
-import com.handydev.financier.adapter.TransactionsListAdapter
 import com.handydev.financier.base.AbstractListFragment
 import com.handydev.financier.blotter.AccountTotalCalculationTask
 import com.handydev.financier.blotter.BlotterFilter
@@ -69,6 +69,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
 
     private var isAccountBlotter = false
     private var showAllBlotterButtons = true
+    private var shouldUpdateTransactionsOnResume = true
 
     protected fun calculateTotals() {
         if (calculationTask != null) {
@@ -93,7 +94,17 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
 
     override fun recreateCursor() {
         super.recreateCursor()
+        Log.d("recreateCursor", "recreateCursor")
         calculateTotals()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(shouldUpdateTransactionsOnResume) {
+            recreateCursor()
+        } else {
+            shouldUpdateTransactionsOnResume = true
+        }
     }
 
     override fun internalOnCreate(savedInstanceState: Bundle?) {
@@ -421,11 +432,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         if(activity == null) {
             return null
         }
-        return if (isAccountBlotter) {
-            TransactionsListAdapter(requireActivity(), db, cursor)
-        } else {
-            BlotterListAdapter(requireActivity(), db, cursor)
-        }
+        return BlotterListAdapter(requireActivity(), db, cursor)
     }
 
     override fun deleteItem(v: View?, position: Int, id: Long) {
@@ -475,8 +482,8 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
             createTransactionFromTemplate(data)
         }
         if (resultCode == Activity.RESULT_OK || resultCode == Activity.RESULT_FIRST_USER) {
+            shouldUpdateTransactionsOnResume = false
             recreateCursor()
-            calculateTotals()
         }
     }
 
