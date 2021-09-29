@@ -207,7 +207,7 @@ open class BlotterListAdapter @JvmOverloads constructor(
     }
 
     protected fun alternateColorIfNeeded(v: BlotterViewHolder, context: Context, cursor: Cursor) {
-        if (MyPreferences.isAccountAlternateColors(context) && cursor.position % 2 == 1) {
+        if (MyPreferences.isBlotterAlternateColors(context) && cursor.position % 2 == 1) {
             v.layout.setBackgroundColor(context.resources.getColor(R.color.alternate_row))
         } else {
             v.layout.setBackgroundColor(context.resources.getColor(R.color.global_background))
