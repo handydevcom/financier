@@ -28,7 +28,6 @@ public class PinDialogPreference extends DialogPreference implements PinView.Pin
         	.setTitle(R.string.set_pin)
         	.setView(pinView.getView())
         	.create();
-		//dialog.setOnDismissListener(this);
 		dialog.show();
     }
 
