@@ -5,12 +5,13 @@ import android.accounts.Account
 import android.accounts.AccountManager
 import android.app.Activity.RESULT_CANCELED
 import android.app.Activity.RESULT_OK
+import android.app.Dialog
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.provider.Contacts.SettingsColumns.KEY
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
@@ -31,18 +32,20 @@ import com.handydev.financier.dialog.PinDialogPreference
 import com.handydev.financier.export.Export
 import com.handydev.financier.export.drive.DriveBackupError
 import com.handydev.financier.export.dropbox.Dropbox
-import com.handydev.financier.fragments.FinancierPreferenceDialogFragment
 import com.handydev.financier.rates.ExchangeRateProviderFactory
 import com.handydev.financier.utils.FingerprintUtils.fingerprintUnavailable
 import com.handydev.financier.utils.FingerprintUtils.reasonWhyFingerprintUnavailable
 import com.handydev.financier.utils.MyPreferences
 import com.handydev.financier.utils.PinProtection
+import com.handydev.financier.view.PinView
 import org.greenrobot.eventbus.EventBus
 
-class PreferencesFragment: PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener {
+class PreferencesFragment: PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener, PinView.PinListener {
     var pOpenExchangeRatesAppId: Preference? = null
     var dropbox: Dropbox? = null
     private var rootKey: String? = null
+    private var pinDialog: Dialog? = null
+    private var pinPreference: Preference? = null
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         setGDriveBackupFolder()
@@ -156,12 +159,27 @@ class PreferencesFragment: PreferenceFragmentCompat(), SharedPreferences.OnShare
         selectAccount()
     }
 
+
+    override fun onConfirm(pinBase64: String?) {
+        pinDialog?.setTitle(R.string.confirm_pin)
+    }
+
+    override fun onSuccess(pinBase64: String?) {
+        if(pinPreference != null) {
+            pinPreference!!.preferenceManager?.sharedPreferences?.edit()?.putString(pinPreference!!.key, pinBase64)?.commit()
+        }
+        pinDialog?.dismiss()
+    }
+
     override fun onDisplayPreferenceDialog(preference: Preference?) {
         if (preference is PinDialogPreference) {
-            val fragment = FinancierPreferenceDialogFragment.newInstance(preference.key)
-            fragment?.setTargetFragment(this, 0)
-            val manager = requireFragmentManager()
-            fragment?.show(manager, null)
+            pinPreference = preference
+            val pinView = PinView(context, this, R.layout.lock)
+            pinDialog = AlertDialog.Builder(requireContext())
+                .setTitle(R.string.set_pin)
+                .setView(pinView.view)
+                .create()
+            pinDialog?.show()
         } else {
             super.onDisplayPreferenceDialog(preference)
         }

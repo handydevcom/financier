@@ -66,8 +66,8 @@ public class PinView implements OnClickListener {
 		for (int id : buttons) {
 			v.findViewById(id).setOnClickListener(this);
 		}
-		result = (TextView)v.findViewById(R.id.result1);		
-		switcher = (ViewSwitcher)v.findViewById(R.id.switcher);  
+		result = v.findViewById(R.id.result1);
+		switcher = v.findViewById(R.id.switcher);
 		switcher.setInAnimation(inFromRightAnimation());
 		switcher.setOutAnimation(outToLeftAnimation());		
 		try {
@@ -76,6 +76,27 @@ public class PinView implements OnClickListener {
 			throw new RuntimeException(e);
 		}
         this.vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+	}
+
+	public PinView(Context context, PinListener listener, View pinView) {
+		this.context = context;
+		this.listener = listener;
+		this.confirmPin = true;
+		this.pin1 = null;
+		v = pinView;
+		for (int id : buttons) {
+			v.findViewById(id).setOnClickListener(this);
+		}
+		result = v.findViewById(R.id.result1);
+		switcher = v.findViewById(R.id.switcher);
+		switcher.setInAnimation(inFromRightAnimation());
+		switcher.setOutAnimation(outToLeftAnimation());
+		try {
+			digest = MessageDigest.getInstance("SHA-1");
+		} catch (NoSuchAlgorithmException e) {
+			throw new RuntimeException(e);
+		}
+		this.vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
 	}
 	
 	public View getView() {

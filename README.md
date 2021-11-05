@@ -1,9 +1,11 @@
 # Financier
 
+Latest &nbsp; &nbsp; &nbsp; [![GitHub (pre-)release](https://img.shields.io/github/release/handydevcom/financier/all.svg?style=flat)](https://github.com/handydevcom/financier/releases) [![Github Releases](https://img.shields.io/github/downloads/handydevcom/financier/latest/total)](https://github.com/handydevcom/financier/releases)
+Total &nbsp; &nbsp; &nbsp; &nbsp; [![Github Releases](https://img.shields.io/github/downloads/handydevcom/financier/total)](https://github.com/handydevcom/financier/releases)
+
 ## About
 
-Financier is a fork of the great Financisto app.
-Financisto is an open-source personal finance tracker for Android platform.
+Financier is a fork of the great [Financisto](https://github.com/dsolonenko/financisto) app. Financisto is an open-source personal finance tracker for Android platform.
 
 ## Features
 
