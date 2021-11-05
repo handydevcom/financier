@@ -9,12 +9,19 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
-def financierPropertiesFile = rootProject.file("./Keys/financier.properties")
+def acraUri = ""
+def acraLogin = ""
+def acraPassword = ""
+
 def financierProperties = new Properties()
-financierProperties.load(new FileInputStream(financierPropertiesFile))
-def acraUri = financierProperties['acraUri']
-def acraLogin = financierProperties['acraLogin']
-def acraPassword = financierProperties['acraPassword']
+try {
+    def financierPropertiesFile = rootProject.file("./Keys/financier.properties")
+    financierProperties.load(new FileInputStream(financierPropertiesFile))
+    acraUri = financierProperties['acraUri']
+    acraLogin = financierProperties['acraLogin']
+    acraPassword = financierProperties['acraPassword']
+} catch(Exception ignored) {
+}
 
 android {
     buildFeatures {
@@ -37,10 +44,13 @@ android {
 
     signingConfigs {
         release {
-            storeFile file(financierProperties['storeFile'])
-            storePassword financierProperties['storePassword']
-            keyAlias financierProperties['keyAlias']
-            keyPassword financierProperties['keyPassword']
+            try {
+                storeFile file(financierProperties['storeFile'])
+                storePassword financierProperties['storePassword']
+                keyAlias financierProperties['keyAlias']
+                keyPassword financierProperties['keyPassword']
+            } catch(Exception ignored) {
+            }
         }
     }
 
@@ -48,8 +58,8 @@ android {
         applicationId "com.handydev.financier"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 225
-        versionName "2.0.24"
+        versionCode 226
+        versionName "2.0.25"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         javaCompileOptions {
