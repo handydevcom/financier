@@ -15,7 +15,7 @@
 
     <LinearLayout
         android:id="@+id/title_view"
-        android:background="#6B3D29"
+        android:background="@color/bar_background"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:visibility="gone"
