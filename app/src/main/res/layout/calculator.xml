@@ -12,7 +12,7 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:defaultFocusHighlightEnabled="false"
-    android:background="@color/brown_background"
+    android:background="@color/accent_color"
     android:orientation="vertical">
 
     <LinearLayout

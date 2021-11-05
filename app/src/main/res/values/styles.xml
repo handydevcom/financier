@@ -95,7 +95,7 @@
         <item name="android:paddingLeft">4dip</item>
         <item name="android:paddingRight">4dip</item>
         <item name="android:paddingBottom">1dip</item>
-        <item name="android:background">@color/brown_background</item>
+        <item name="android:background">@color/bar_color</item>
     </style>
 
     <style name="ProgressBarBudget" parent="@android:style/Widget.ProgressBar.Horizontal">
@@ -107,7 +107,7 @@
     <style name="BottomBar">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">#6B3D29</item>
+        <item name="android:background">@color/bar_color</item>
         <item name="android:minHeight">@dimen/action_button_size</item>
     </style>
 
@@ -163,6 +163,6 @@
 
     <style name="TitleDialogTextStyle" parent="Base.DialogWindowTitle.AppCompat">
         <item name="android:textColor">#ffffff</item>
-        <item name="android:background">@color/brown_background</item>
+        <item name="android:background">@color/accent_color</item>
     </style>
 </resources>
