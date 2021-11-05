@@ -6,7 +6,7 @@
     android:id="@+id/account_list_item_layout"
     android:paddingBottom="2dp"
     android:paddingStart="8dp"
-    android:paddingEnd="12dp"
+    android:paddingEnd="6dp"
     android:paddingTop="2dp"
     >
 
@@ -55,67 +55,48 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         >
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/account_name_type_container"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintWidth_percent="0.6"
+        <TextView
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            >
-            <TextView
-                android:id="@+id/account_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:text="description"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-            <TextView
-                android:id="@+id/account_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:autoSizeMinTextSize="10sp"
-                app:layout_constraintTop_toBottomOf="@id/account_description"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:maxLines="1"
-                android:textStyle="bold"
-                android:ellipsize="end"
-                android:text="center"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/account_description"
             android:layout_width="0dp"
-            app:layout_constraintWidth_percent="0.4"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/account_name_type_container"
+            android:maxLines="1"
+            android:text="description"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        <TextView
+            android:id="@+id/balance"
+            style="@style/TextAppearance.TransactionAmount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBaseline_toBaselineOf="@id/account_description"
+            app:layout_constraintLeft_toRightOf="@id/account_description"
+            android:maxLines="1"
+            android:text="balance"/>
+        <TextView
+            android:id="@+id/account_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/account_description"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            >
-            <TextView
-                android:id="@+id/balance"
-                style="@style/TextAppearance.TransactionAmount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:gravity="bottom"
-                android:maxLines="1"
-                android:text="balance"/>
-            <TextView
-                android:id="@+id/last_transaction_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/balance"
-                android:text="last_transaction_date"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintRight_toLeftOf="@id/last_transaction_date"
+            android:maxLines="1"
+            android:textStyle="bold"
+            android:ellipsize="end"
+            android:text="Account name"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/last_transaction_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBaseline_toBaselineOf="@id/account_name"
+            android:text="last_transaction_date"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
