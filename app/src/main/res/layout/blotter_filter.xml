@@ -14,7 +14,7 @@
 	>
 	<ScrollView android:layout_height="0dp"
 		android:layout_weight="1" android:layout_width="fill_parent"
-		android:background="@color/brown_background_light"
+		android:background="@color/accent_light_color"
 		>
 		<LinearLayout android:layout_height="wrap_content" android:id="@+id/layout"
 			android:layout_width="fill_parent"

@@ -14,7 +14,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:minWidth="300dp"
-    android:background="@color/brown_background_light">
+    android:background="@color/accent_light_color">
     <TextView android:layout_width="wrap_content"
         android:layout_height="wrap_content" android:layout_gravity="center"
         android:textColor="@color/main_text_color"
@@ -23,7 +23,7 @@
         android:layout_width="fill_parent"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
-        app:backgroundTint="@color/brown_background"
+        app:backgroundTint="@color/accent_color"
         android:textColor="@color/main_text_color"
         android:id="@+id/edNoteContaining" />
     <Button android:layout_height="wrap_content" android:id="@+id/bNoFilter"

@@ -16,7 +16,7 @@
 		android:layout_height="wrap_content" android:layout_weight="1"
 		android:gravity="center" android:text="@string/no_categories" />
 	<LinearLayout android:layout_height="wrap_content"
-		android:layout_width="fill_parent" android:background="@color/brown_background"
+		android:layout_width="fill_parent" android:background="@color/accent_color"
 		android:paddingTop="2dp">
 		<Button android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
