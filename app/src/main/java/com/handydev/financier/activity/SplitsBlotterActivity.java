@@ -34,7 +34,7 @@ public class SplitsBlotterActivity extends BlotterActivity {
 
 	@Override
 	protected ListAdapter createAdapter(Cursor cursor) {
-		return new BlotterListAdapter(this, db, cursor);
+		return new BlotterListAdapter(this, false, db, cursor);
 	}
 
     @Override

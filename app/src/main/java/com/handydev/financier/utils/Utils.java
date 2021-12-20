@@ -11,6 +11,7 @@ import android.location.Location;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.TextAppearanceSpan;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -125,7 +126,9 @@ public class Utils {
     }
 
     public void setAmountText(StringBuilder sb, TextView view, Currency c, long amount, boolean addPlus) {
-        view.setText(amountToString(sb, c, amount, addPlus).toString());
+        StringBuilder sbModified = amountToString(sb, c, amount, addPlus);
+        Log.d("sbmodified", sbModified.toString());
+        view.setText(sbModified.toString());
         view.setTextColor(amount == 0 ? zeroColor : (amount > 0 ? positiveColor : negativeColor));
     }
 

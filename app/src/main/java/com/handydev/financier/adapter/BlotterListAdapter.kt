@@ -13,6 +13,7 @@ import com.handydev.financier.db.DatabaseAdapter
 import com.handydev.financier.db.DatabaseHelper.BlotterColumns
 import com.handydev.financier.model.Category.Companion.isSplit
 import com.handydev.financier.model.CategoryEntity
+import com.handydev.financier.model.Currency
 import com.handydev.financier.model.TransactionStatus
 import com.handydev.financier.recur.Recurrence
 import com.handydev.financier.utils.CurrencyCache
@@ -31,24 +32,26 @@ open class BlotterListAdapter @JvmOverloads constructor(
 ) : ResourceCursorAdapter(context, layoutId, c, autoRequery) {
     private val dt = Date()
     protected val sb = StringBuilder()
-    protected val icBlotterIncome: Drawable? = ContextCompat.getDrawable(context, R.drawable.ic_action_arrow_left_bottom)
-    protected val icBlotterExpense: Drawable? = ContextCompat.getDrawable(context, R.drawable.ic_action_arrow_right_top)
+    private val icBlotterIncome: Drawable? = ContextCompat.getDrawable(context, R.drawable.ic_action_arrow_left_bottom)
+    private val icBlotterExpense: Drawable? = ContextCompat.getDrawable(context, R.drawable.ic_action_arrow_right_top)
     private val icBlotterTransfer: Drawable? = ContextCompat.getDrawable(context, R.drawable.ic_action_arrow_top_down)
-    val icBlotterSplit: Drawable? = ContextCompat.getDrawable(context, R.drawable.ic_action_share)
-    protected val u: Utils = Utils(context)
+    private val icBlotterSplit: Drawable? = ContextCompat.getDrawable(context, R.drawable.ic_action_share)
+    protected val utils = Utils(context)
     protected val db: DatabaseAdapter?
     private val colors: IntArray
     private var allChecked = true
+    private var isAccountBlotter = false
     private val checkedItems = HashMap<Long, Boolean?>()
     protected open val isShowRunningBalance: Boolean
 
-    constructor(context: Context, db: DatabaseAdapter?, c: Cursor?) : this(
+    constructor(context: Context, isAccountBlotter: Boolean, db: DatabaseAdapter?, c: Cursor?) : this(
         context,
         db,
         R.layout.blotter_list_item,
         c,
         false
     ) {
+        this.isAccountBlotter = isAccountBlotter
     }
 
     private fun initializeColors(context: Context): IntArray {
@@ -82,86 +85,84 @@ open class BlotterListAdapter @JvmOverloads constructor(
         val toAccountId = cursor.getLong(BlotterColumns.to_account_id.ordinal)
         val isTemplate = cursor.getInt(BlotterColumns.is_template.ordinal)
         val noteView = if (isTemplate == 1) v.bottomView else v.centerView
+        val fromCurrencyId = cursor.getLong(BlotterColumns.from_account_currency_id.ordinal)
+        val fromCurrency = CurrencyCache.getCurrency(db, fromCurrencyId)
+        val fromAccountTitle = cursor.getString(BlotterColumns.from_account_title.ordinal)
+        val originalCurrencyId = cursor.getLong(BlotterColumns.original_currency_id.ordinal)
+        val originalAmount = cursor.getLong(BlotterColumns.original_from_amount.ordinal)
+        val fromAmount = cursor.getLong(BlotterColumns.from_amount.ordinal)
+        sb.setLength(0)
         if (toAccountId > 0) {
             v.topView.setText(R.string.transfer)
-            val fromAccountTitle = cursor.getString(BlotterColumns.from_account_title.ordinal)
             val toAccountTitle = cursor.getString(BlotterColumns.to_account_title.ordinal)
-            u.setTransferTitleText(noteView, fromAccountTitle, toAccountTitle)
-            val fromCurrencyId = cursor.getLong(BlotterColumns.from_account_currency_id.ordinal)
-            val fromCurrency = CurrencyCache.getCurrency(db, fromCurrencyId)
+            val toAmount = cursor.getLong(BlotterColumns.to_amount.ordinal)
+            if (isAccountBlotter) {
+                var note = ""
+                if(fromAmount > 0) {
+                    note = "$toAccountTitle \u00BB"
+                } else {
+                    note = "\u00BB $toAccountTitle"
+                }
+                noteView.text = note
+            } else {
+                utils.setTransferTitleText(noteView, fromAccountTitle, toAccountTitle)
+            }
             val toCurrencyId = cursor.getLong(BlotterColumns.to_account_currency_id.ordinal)
             val toCurrency = CurrencyCache.getCurrency(db, toCurrencyId)
-            val fromAmount = cursor.getLong(BlotterColumns.from_amount.ordinal)
-            val toAmount = cursor.getLong(BlotterColumns.to_amount.ordinal)
             val fromBalance = cursor.getLong(BlotterColumns.from_account_balance.ordinal)
             val toBalance = cursor.getLong(BlotterColumns.to_account_balance.ordinal)
-            u.setTransferAmountText(
-                v.rightCenterView,
-                fromCurrency,
-                fromAmount,
-                toCurrency,
-                toAmount
-            )
-            if (v.rightView != null) {
-                u.setTransferBalanceText(
-                    v.rightView,
+            if (isAccountBlotter) {
+                setupAmountField(v, originalCurrencyId, originalAmount, fromCurrency, fromAmount)
+            } else {
+                utils.setTransferAmountText(
+                    v.rightCenterView,
                     fromCurrency,
-                    fromBalance,
+                    fromAmount,
                     toCurrency,
-                    toBalance
+                    toAmount
                 )
             }
-            v.iconView.setImageDrawable(icBlotterTransfer)
-            v.iconView.setColorFilter(u.transferColor)
+            if (v.rightView != null) {
+                if (isAccountBlotter) {
+                    setBalanceView(cursor, v.rightView, fromCurrency)
+                } else {
+                    utils.setTransferBalanceText(
+                        v.rightView,
+                        fromCurrency,
+                        fromBalance,
+                        toCurrency,
+                        toBalance
+                    )
+                }
+            }
+            if (isAccountBlotter) {
+                setUpIconAndColor(fromAmount, v)
+            } else {
+                v.iconView.setImageDrawable(icBlotterTransfer)
+                v.iconView.setColorFilter(utils.transferColor)
+            }
         } else {
-            val fromAccountTitle = cursor.getString(BlotterColumns.from_account_title.ordinal)
             v.topView.text = fromAccountTitle
             setTransactionTitleText(cursor, noteView)
-            sb.setLength(0)
-            val fromCurrencyId = cursor.getLong(BlotterColumns.from_account_currency_id.ordinal)
-            val fromCurrency = CurrencyCache.getCurrency(db, fromCurrencyId)
-            val amount = cursor.getLong(BlotterColumns.from_amount.ordinal)
-            val originalCurrencyId = cursor.getLong(BlotterColumns.original_currency_id.ordinal)
-            if (originalCurrencyId > 0) {
-                val originalCurrency = CurrencyCache.getCurrency(db, originalCurrencyId)
-                val originalAmount = cursor.getLong(BlotterColumns.original_from_amount.ordinal)
-                u.setAmountText(
-                    sb,
-                    v.rightCenterView,
-                    originalCurrency,
-                    originalAmount,
-                    fromCurrency,
-                    amount,
-                    true
-                )
-            } else {
-                u.setAmountText(sb, v.rightCenterView, fromCurrency, amount, true)
-            }
+            setupAmountField(v, originalCurrencyId, originalAmount, fromCurrency, fromAmount)
             val categoryId = cursor.getLong(BlotterColumns.category_id.ordinal)
             if (isSplit(categoryId)) {
                 v.iconView.setImageDrawable(icBlotterSplit)
-                v.iconView.setColorFilter(u.splitColor)
-            } else if (amount == 0L) {
+                v.iconView.setColorFilter(utils.splitColor)
+            } else if (fromAmount == 0L) {
                 val categoryType = cursor.getInt(BlotterColumns.category_type.ordinal)
                 if (categoryType == CategoryEntity.TYPE_INCOME) {
                     v.iconView.setImageDrawable(icBlotterIncome)
-                    v.iconView.setColorFilter(u.positiveColor)
+                    v.iconView.setColorFilter(utils.positiveColor)
                 } else if (categoryType == CategoryEntity.TYPE_EXPENSE) {
                     v.iconView.setImageDrawable(icBlotterExpense)
-                    v.iconView.setColorFilter(u.negativeColor)
+                    v.iconView.setColorFilter(utils.negativeColor)
                 }
             } else {
-                if (amount > 0) {
-                    v.iconView.setImageDrawable(icBlotterIncome)
-                    v.iconView.setColorFilter(u.positiveColor)
-                } else if (amount < 0) {
-                    v.iconView.setImageDrawable(icBlotterExpense)
-                    v.iconView.setColorFilter(u.negativeColor)
-                }
+                setUpIconAndColor(fromAmount, v)
             }
             if (v.rightView != null) {
-                val balance = cursor.getLong(BlotterColumns.from_account_balance.ordinal)
-                v.rightView.text = Utils.amountToString(fromCurrency, balance, false)
+                setBalanceView(cursor, v.rightView, fromCurrency)
             }
         }
         setIndicatorColor(v, cursor)
@@ -184,7 +185,7 @@ open class BlotterListAdapter @JvmOverloads constructor(
                     )
                 )
                 if (isTemplate == 0 && date > System.currentTimeMillis()) {
-                    u.setFutureTextColor(v.bottomView)
+                    utils.setFutureTextColor(v.bottomView)
                 } else {
                     v.bottomView.setTextColor(v.topView.textColors.defaultColor)
                 }
@@ -204,6 +205,51 @@ open class BlotterListAdapter @JvmOverloads constructor(
             v.checkBox.isChecked = isChecked
         }
         alternateColorIfNeeded(v, context, cursor)
+    }
+
+    private fun setupAmountField(
+        v: BlotterViewHolder,
+        originalCurrencyId: Long,
+        originalAmount: Long,
+        fromCurrency: Currency?,
+        fromAmount: Long
+    ) {
+        if (originalCurrencyId > 0) {
+            val originalCurrency = CurrencyCache.getCurrency(db, originalCurrencyId)
+            utils.setAmountText(
+                sb,
+                v.rightCenterView,
+                originalCurrency,
+                originalAmount,
+                fromCurrency,
+                fromAmount,
+                true
+            )
+        } else {
+            utils.setAmountText(sb, v.rightCenterView, fromCurrency, fromAmount, true)
+        }
+    }
+
+    private fun setUpIconAndColor(
+        fromAmount: Long,
+        v: BlotterViewHolder
+    ) {
+        if (fromAmount > 0) {
+            v.iconView.setImageDrawable(icBlotterIncome)
+            v.iconView.setColorFilter(utils.positiveColor)
+        } else {
+            v.iconView.setImageDrawable(icBlotterExpense)
+            v.iconView.setColorFilter(utils.negativeColor)
+        }
+    }
+
+    private fun setBalanceView(
+        cursor: Cursor,
+        rightView: TextView,
+        fromCurrency: Currency?
+    ) {
+        val balance = cursor.getLong(BlotterColumns.from_account_balance.ordinal)
+        rightView.text = Utils.amountToString(fromCurrency, balance, false)
     }
 
     protected fun alternateColorIfNeeded(v: BlotterViewHolder, context: Context, cursor: Cursor) {

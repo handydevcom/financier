@@ -432,7 +432,7 @@ open class BlotterFragment: AbstractListFragment(R.layout.blotter), IOTransactio
         if(activity == null) {
             return null
         }
-        return BlotterListAdapter(requireActivity(), db, cursor)
+        return BlotterListAdapter(requireActivity(), isAccountBlotter, db, cursor)
     }
 
     override fun deleteItem(v: View?, position: Int, id: Long) {

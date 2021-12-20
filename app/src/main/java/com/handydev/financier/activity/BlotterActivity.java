@@ -455,7 +455,7 @@ public class BlotterActivity extends AbstractListActivity implements IOTransacti
 
     @Override
     protected ListAdapter createAdapter(Cursor cursor) {
-        return new BlotterListAdapter(this, db, cursor);
+        return new BlotterListAdapter(this, isAccountBlotter, db, cursor);
     }
 
     @Override
