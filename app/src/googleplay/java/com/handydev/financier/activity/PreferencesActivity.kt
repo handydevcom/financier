@@ -29,6 +29,8 @@ import com.handydev.financier.activity.RequestPermission.isRequestingPermission
 import com.handydev.financier.app.FinancierApp
 import com.handydev.financier.dialog.FolderBrowser
 import com.handydev.financier.dialog.PinDialogPreference
+import com.handydev.financier.dialog.TimePreference
+import com.handydev.financier.dialog.TimePreferenceDialog
 import com.handydev.financier.export.Export
 import com.handydev.financier.export.drive.DriveBackupError
 import com.handydev.financier.export.dropbox.Dropbox
@@ -153,6 +155,9 @@ class PreferencesFragment: PreferenceFragmentCompat(), SharedPreferences.OnShare
             )
             useFingerprint?.isEnabled = false
         }
+        val timePreference: TimePreference? =
+            preferenceScreen.findPreference("auto_backup_time")
+        timePreference?.updateSummary()
         linkToDropbox()
         setCurrentDatabaseBackupFolder()
         enableOpenExchangeApp()
@@ -180,7 +185,12 @@ class PreferencesFragment: PreferenceFragmentCompat(), SharedPreferences.OnShare
                 .setView(pinView.view)
                 .create()
             pinDialog?.show()
-        } else {
+        } else if(preference is TimePreference) {
+            val timePickerDialog = TimePreferenceDialog.newInstance(preference.key)
+            timePickerDialog.setTargetFragment(this, 0)
+            timePickerDialog.show(parentFragmentManager, "TimePreferenceDialogTag")
+        }
+        else {
             super.onDisplayPreferenceDialog(preference)
         }
     }

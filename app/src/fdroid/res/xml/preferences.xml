@@ -308,6 +308,7 @@
             android:dependency="auto_backup_enabled"
             android:key="auto_backup_time"
             android:summary="@string/auto_backup_time_summary"
+            android:defaultValue="600"
             android:title="@string/auto_backup_time" />
         <CheckBoxPreference
             android:defaultValue="true"

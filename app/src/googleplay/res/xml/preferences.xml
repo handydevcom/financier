@@ -297,7 +297,12 @@
             android:key="auto_backup_enabled"
             android:summary="@string/auto_backup_enabled_summary"
             android:title="@string/auto_backup_enabled" />
-
+        <com.handydev.financier.dialog.TimePreference
+            android:dependency="auto_backup_enabled"
+            android:key="auto_backup_time"
+            android:summary="@string/auto_backup_time_summary"
+            android:defaultValue="600"
+            android:title="@string/auto_backup_time" />
         <CheckBoxPreference
             android:defaultValue="true"
             android:dependency="auto_backup_enabled"

@@ -17,24 +17,23 @@ import com.handydev.financier.R;
 
 import static com.handydev.financier.datetime.DateUtils.is24HourFormat;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Denis Solonenko
- * Date: 12/17/11 1:59 AM
- */
-public class TimePreference extends DialogPreference implements TimePicker.OnTimeChangedListener {
+
+/*public class TimePreference extends DialogPreference implements TimePicker.OnTimeChangedListener {
 
     private static final int DEFAULT_VALUE = 600;
 
     private int hh;
     private int mm;
-    
-    public TimePreference(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-        setPersistent(true);
+
+    public TimePreference(Context context, AttributeSet attrs) {
+        super(context, attrs);
     }
 
-    /*public TimePreference(Context context, AttributeSet attrs) {
+    public TimePreference(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+    }
+
+    public TimePreference(Context context, AttributeSet attrs) {
         super(context, attrs);
         setPersistent(true);
     }
@@ -75,10 +74,10 @@ public class TimePreference extends DialogPreference implements TimePicker.OnTim
     @Override
     public CharSequence getSummary() {
         return getContext().getString(R.string.auto_backup_time_summary, getHour(), getMinute());
-    }*/
+    }
     @Override
     public void onTimeChanged(TimePicker timePicker, int hh, int mm) {
         this.hh = hh;
         this.mm = mm;
     }
-}
+}*/
