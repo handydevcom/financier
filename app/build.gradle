@@ -56,7 +56,7 @@ android {
 
     defaultConfig {
         applicationId "com.handydev.financier"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 29
         versionCode 226
         versionName "2.0.25"
