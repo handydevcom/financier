@@ -1,11 +1,10 @@
 package com.handydev.financier.test;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import android.database.sqlite.SQLiteDatabase;
 import com.handydev.financier.db.DatabaseAdapter;
+import com.handydev.financier.db.DatabaseHelper;
 import com.handydev.financier.model.Attribute;
 import com.handydev.financier.model.Category;
 
@@ -37,6 +36,28 @@ public class CategoryBuilder {
         new CategoryBuilder(db).withParent(a).withTitle("A2").create();
         new CategoryBuilder(db).withTitle("B").income().create();
         return allCategoriesAsMap(db);
+    }
+
+    /**
+     * Set up a corrupted category tree, where walking into it leads to a StackOverflow
+     *
+     * RECURSIVE
+     * - LEVEL_1
+     * -- RECURSIVE
+     * --- LEVEL_1
+     * ---- ... StackOverflow
+     */
+    public static void createBrokenHierarchy(DatabaseAdapter db) {
+        SQLiteDatabase sqlite = db.db();
+
+        sqlite.beginTransaction();
+        sqlite.execSQL("insert into category (_id, title, 'left', 'right', is_active) values (11, 'ONE', 11, 12, 1)");
+        sqlite.execSQL("insert into category (_id, title, 'left', 'right', is_active) values (12, 'TWO', 11, 12, 1)");
+        sqlite.execSQL("insert into category (_id, title, 'left', 'right', is_active) values (13, 'THREE', 12, 13, 1)");
+        sqlite.setTransactionSuccessful();
+        sqlite.endTransaction();
+
+        //new CategoryBuilder(db).withTitle("IGNORE").create(); // inserting manually to the DB doesn't commit the categories for some reason
     }
 
     private CategoryBuilder withAttributes(Attribute...attributes) {

@@ -2,22 +2,14 @@ package com.handydev.financier.db;
 
 import android.database.Cursor;
 
+import com.handydev.financier.model.*;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
-import com.handydev.financier.model.Account;
-import com.handydev.financier.model.Attribute;
-import com.handydev.financier.model.Category;
-import com.handydev.financier.model.Currency;
-import com.handydev.financier.model.MyEntity;
-import com.handydev.financier.model.MyLocation;
-import com.handydev.financier.model.Payee;
-import com.handydev.financier.model.Project;
-import com.handydev.financier.model.RestoredTransaction;
-import com.handydev.financier.model.Transaction;
 import com.handydev.financier.test.AccountBuilder;
 import com.handydev.financier.test.CategoryBuilder;
 import com.handydev.financier.test.CurrencyBuilder;
@@ -246,6 +238,47 @@ public class DatabaseAdapterTest extends AbstractDbTest {
             db.delete(e.getClass(), e.id);
             assertNull(db.get(e.getClass(), e.id));
         }
+    }
+
+    @Test
+    public void should_fix_recursive_categories() {
+        //given
+        givenAnRecursiveCategoryExist();
+        //when
+        db.restoreSystemEntities();
+        //then
+
+        List<Category> allCategories = db.getCategoriesList(false);
+        Category categoryOne = allCategories
+                .stream()
+                .filter(c -> "ONE".equals(c.title)).findAny()
+                .orElseThrow(() -> new RuntimeException("Category ONE not found"));
+        Category categoryTwo = allCategories
+                .stream()
+                .filter(c -> "TWO".equals(c.title)).findAny()
+                .orElseThrow(() -> new RuntimeException("Category TWO not found"));
+        Category categoryThree = allCategories
+                .stream()
+                .filter(c -> "THREE".equals(c.title)).findAny()
+                .orElseThrow(() -> new RuntimeException("Category THREE not found"));
+
+        assertEquals( 15, categoryOne.left);
+        assertEquals( 16, categoryOne.right);
+
+        assertEquals( 13, categoryTwo.left);
+        assertEquals( 14, categoryTwo.right);
+
+        assertEquals( 11, categoryThree.left);
+        assertEquals( 12, categoryThree.right);
+
+        CategoryBuilder.createDefaultHierarchy(db);
+    }
+
+    private void givenAnRecursiveCategoryExist() {
+        db.getCategoriesList(false)
+                        .forEach((c) -> db.deleteCategory(c.id));
+        CategoryBuilder.createBrokenHierarchy(db);
+        db.updateCategoriesCache(true);
     }
 
     @Test

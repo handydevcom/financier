@@ -11,53 +11,29 @@
  */
 package com.handydev.financier.db
 
-import com.handydev.financier.model.Category.Companion.formCursor
-import com.handydev.financier.model.Category.Companion.noCategory
-import com.handydev.financier.model.Category.Companion.splitCategory
-import org.androidannotations.annotations.EBean
-import com.handydev.financier.db.MyEntityManager
-import android.database.sqlite.SQLiteDatabase
-import com.handydev.financier.db.DatabaseAdapter
-import com.handydev.financier.db.DatabaseHelper.TransactionAttributeColumns
-import com.handydev.financier.db.DatabaseHelper.TransactionColumns
-import com.handydev.financier.filter.WhereFilter
-import com.handydev.financier.db.DatabaseHelper.BlotterColumns
-import com.handydev.financier.blotter.BlotterFilter
-import kotlin.jvm.JvmOverloads
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
+import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.util.Log
-import com.handydev.financier.db.DatabaseHelper.CategoryAttributeColumns
-import com.handydev.financier.db.DatabaseHelper.CategoryViewColumns
-import com.handydev.financier.db.DatabaseHelper.CategoryColumns
-import com.handydev.financier.utils.ArrUtils
-import com.handydev.financier.model.CategoryTree.NodeCreator
-import com.handydev.financier.db.DatabaseHelper.SmsTemplateColumns
-import com.handydev.financier.db.DatabaseHelper.SmsTemplateListColumns
-import com.handydev.financier.db.DatabaseHelper.AttributeColumns
-import com.handydev.financier.db.DatabaseHelper.AttributeViewColumns
-import com.handydev.financier.db.DatabaseHelper.CreditCardClosingDateColumns
-import com.handydev.financier.db.TransactionsTotalCalculator
-import com.handydev.financier.db.DatabaseHelper.AccountColumns
-import com.handydev.financier.rates.ExchangeRate
-import com.handydev.financier.db.DatabaseHelper.ExchangeRateColumns
-import com.handydev.financier.rates.ExchangeRateProvider
-import com.handydev.financier.rates.LatestExchangeRates
-import com.handydev.financier.rates.HistoryExchangeRates
-import com.handydev.financier.rates.ExchangeRatesCollection
 import com.handydev.financier.R
+import com.handydev.financier.blotter.BlotterFilter
 import com.handydev.financier.datetime.DateUtils
+import com.handydev.financier.db.DatabaseHelper.*
 import com.handydev.financier.filter.Criteria
+import com.handydev.financier.filter.WhereFilter
 import com.handydev.financier.model.*
+import com.handydev.financier.model.Category.Companion.formCursor
+import com.handydev.financier.model.Category.Companion.noCategory
+import com.handydev.financier.model.Category.Companion.splitCategory
 import com.handydev.financier.model.Currency
+import com.handydev.financier.rates.*
+import com.handydev.financier.utils.ArrUtils
 import com.handydev.financier.utils.StringUtil
-import java.lang.Exception
-import java.lang.StringBuilder
+import org.androidannotations.annotations.EBean
 import java.math.BigDecimal
 import java.util.*
-import kotlin.collections.ArrayList
 
 @EBean(scope = EBean.Scope.Singleton)
 open class DatabaseAdapter(context: Context?) : MyEntityManager(context) {
@@ -1679,6 +1655,7 @@ open class DatabaseAdapter(context: Context?) : MyEntityManager(context) {
         val db = db()
         db.beginTransaction()
         try {
+            fixRecursiveCategories()
             restoreCategories()
             restoreAttributes()
             restoreProjects()
@@ -1689,6 +1666,54 @@ open class DatabaseAdapter(context: Context?) : MyEntityManager(context) {
         } finally {
             db.endTransaction()
         }
+    }
+
+    private fun recursiveFixClashingCategories(list: Collection<Category>): Collection<Category> {
+        val clashingCategories = mutableListOf<Category>()
+
+        for (catToTest in list) {
+            for (otherCat in list) {
+                if (catToTest != otherCat && (
+                            catToTest.left == otherCat.right ||
+                                    catToTest.left == otherCat.left ||
+                                    catToTest.right == otherCat.right)
+                ) {
+                    clashingCategories.add(otherCat)
+                }
+            }
+        }
+
+        if (clashingCategories.isEmpty()) {
+            return list
+        }
+
+        var curIdx = clashingCategories.minOf { it.left }
+        for (cat in clashingCategories.distinctBy { it.toString() }) {
+            cat.left = curIdx
+            curIdx++
+            cat.right = curIdx
+            curIdx++
+        }
+
+        return this.recursiveFixClashingCategories(list)
+    }
+
+    private fun fixRecursiveCategories() {
+        val sqlite: SQLiteDatabase = db()
+
+        sqlite.beginTransaction()
+        recursiveFixClashingCategories(getCategoriesList(false))
+            .forEach {
+                sqlite.execSQL("update category set 'left'=" + it.left + ", 'right'=" + it.right + " where _id=" + it.id)
+            }
+        sqlite.setTransactionSuccessful()
+        sqlite.endTransaction()
+
+        updateCategoriesCache(true)
+        val reindexedTree = getCategoriesTree(false)
+        reindexedTree.reIndex()
+
+        updateCategoryTree(reindexedTree)
     }
 
     private fun restoreCategories() {
