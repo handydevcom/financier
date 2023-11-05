@@ -15,7 +15,7 @@ import com.handydev.financier.utils.MyPreferences
 import com.handydev.financier.fragments.*
 
 class MainViewModelFactory(val activity: FragmentActivity, val context: Context) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return MainViewModel(activity, context) as T
     }
 }
