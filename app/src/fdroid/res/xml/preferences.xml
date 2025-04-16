@@ -8,7 +8,7 @@
   Contributors:
       Denis Solonenko - initial API and implementation
 -->
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="@string/user_interface">
         <ListPreference
             android:defaultValue="default"
@@ -304,12 +304,11 @@
             android:key="auto_backup_enabled"
             android:summary="@string/auto_backup_enabled_summary"
             android:title="@string/auto_backup_enabled" />
-        <com.handydev.financier.dialog.TimePreference
+        <!--com.handydev.financier.dialog.TimePreference
             android:dependency="auto_backup_enabled"
             android:key="auto_backup_time"
             android:summary="@string/auto_backup_time_summary"
-            android:defaultValue="600"
-            android:title="@string/auto_backup_time" />
+            android:title="@string/auto_backup_time" /-->
         <CheckBoxPreference
             android:defaultValue="true"
             android:dependency="auto_backup_enabled"
@@ -420,4 +419,4 @@
             android:title="@string/restore_missed_scheduled_transactions" />
     </PreferenceCategory>
 
-</PreferenceScreen>
+</androidx.preference.PreferenceScreen>
