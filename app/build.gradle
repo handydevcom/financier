@@ -141,7 +141,6 @@ dependencies {
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
     implementation "androidx.preference:preference-ktx:1.2.1"
-    implementation "androidx.preference:preference:1.2.1"
 
     //googledrive
     googleplayImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'

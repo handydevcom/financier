@@ -28,7 +28,7 @@ final class Conditions {
   static Predicate<DateValue> countCondition(final int count) {
     return new Predicate<DateValue>() {
       int count_ = count;
-      public boolean apply(DateValue _) {
+      public boolean apply(DateValue a) {
         return --count_ >= 0;
       }
       @Override
